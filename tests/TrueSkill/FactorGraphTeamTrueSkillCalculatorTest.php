@@ -3,7 +3,7 @@
 use DNW\Skills\Tests\TestCase;
 use DNW\Skills\TrueSkill\FactorGraphTrueSkillCalculator;
 
-class FactorGraphTrueSkillCalculatorTest extends TestCase
+class FactorGraphTeamTrueSkillCalculatorTest extends TestCase
 {
     public function testFactorGraphTrueSkillCalculator()
     {
