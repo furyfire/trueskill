@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73eba85f9a7262ebc53f6fad1fe3c7d8",
+    "content-hash": "6b092682644fef66d759ad40475e1f2e",
     "packages": [
         {
             "name": "laravel/pint",
