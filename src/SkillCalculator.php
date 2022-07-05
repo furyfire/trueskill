@@ -47,6 +47,7 @@ abstract class SkillCalculator
     /**
      * @param  array<\DNW\Skills\Team>  $teams
      * @return void
+     *
      * @throws \Exception
      */
     private static function validateTeamCountAndPlayersCountPerTeamWithRanges(array $teams, TeamsRange $totalTeams, PlayersRange $playersPerTeam)

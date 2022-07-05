@@ -989,7 +989,7 @@ class TrueSkillCalculatorTests
     private static function assertRating(TestCase $testClass, $expectedMean, $expectedStandardDeviation, $actual)
     {
         $testClass->assertEqualsWithDelta($expectedMean, $actual->getMean(), self::ERROR_TOLERANCE_TRUESKILL);
-        $testClass->assertEqualsWithDelta($expectedStandardDeviation, $actual->getStandardDeviation(),self::ERROR_TOLERANCE_TRUESKILL);
+        $testClass->assertEqualsWithDelta($expectedStandardDeviation, $actual->getStandardDeviation(), self::ERROR_TOLERANCE_TRUESKILL);
     }
 
     private static function assertMatchQuality(TestCase $testClass, $expectedMatchQuality, $actualMatchQuality)

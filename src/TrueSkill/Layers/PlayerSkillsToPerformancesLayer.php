@@ -6,7 +6,6 @@ use DNW\Skills\FactorGraphs\KeyedVariable;
 use DNW\Skills\FactorGraphs\ScheduleStep;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\TrueSkill\Factors\GaussianLikelihoodFactor;
-use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 {
@@ -51,7 +50,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 
         return $this->scheduleSequence(
             array_map(
-                fn($likelihood) => new ScheduleStep('Skill to Perf step', $likelihood, 0),
+                fn ($likelihood) => new ScheduleStep('Skill to Perf step', $likelihood, 0),
                 $localFactors),
             'All skill to performance sending');
     }
@@ -62,7 +61,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 
         return $this->scheduleSequence(
             array_map(
-                fn($likelihood) => new ScheduleStep('name', $likelihood, 1),
+                fn ($likelihood) => new ScheduleStep('name', $likelihood, 1),
                 $localFactors),
             'All skill to performance sending');
     }

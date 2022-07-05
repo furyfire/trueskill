@@ -88,7 +88,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
     {
         // A simple vector of all the player means.
         return new Vector(self::getPlayerRatingValues($teamAssignmentsList,
-            fn($rating) => $rating->getMean()));
+            fn ($rating) => $rating->getMean()));
     }
 
     private static function getPlayerCovarianceMatrix(array $teamAssignmentsList)
@@ -97,7 +97,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         // players.
         return new DiagonalMatrix(
             self::getPlayerRatingValues($teamAssignmentsList,
-                fn($rating) => BasicMath::square($rating->getStandardDeviation())));
+                fn ($rating) => BasicMath::square($rating->getStandardDeviation())));
     }
 
     // Helper function that gets a list of values for all player ratings

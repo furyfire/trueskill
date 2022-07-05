@@ -5,7 +5,6 @@ namespace DNW\Skills\TrueSkill\Layers;
 use DNW\Skills\FactorGraphs\ScheduleStep;
 use DNW\Skills\PartialPlay;
 use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
-use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLayer
 {
@@ -31,7 +30,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
 
         return $this->scheduleSequence(
             array_map(
-                fn($weightedSumFactor) => new ScheduleStep('Perf to Team Perf Step', $weightedSumFactor, 0),
+                fn ($weightedSumFactor) => new ScheduleStep('Perf to Team Perf Step', $weightedSumFactor, 0),
                 $localFactors),
             'all player perf to team perf schedule');
     }
@@ -70,7 +69,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
 
     private function createOutputVariable($team)
     {
-        $memberNames = array_map(fn($currentPlayer) => (string) ($currentPlayer->getKey()), $team);
+        $memberNames = array_map(fn ($currentPlayer) => (string) ($currentPlayer->getKey()), $team);
 
         $teamMemberNames = \implode(', ', $memberNames);
 

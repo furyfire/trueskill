@@ -4,7 +4,6 @@ namespace DNW\Skills\TrueSkill\Layers;
 
 use DNW\Skills\FactorGraphs\Variable;
 use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
-use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorGraphLayer
 {
