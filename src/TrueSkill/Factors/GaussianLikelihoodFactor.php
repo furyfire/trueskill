@@ -1,10 +1,10 @@
-<?php namespace Moserware\Skills\TrueSkill\Factors;
+<?php namespace DNW\Skills\TrueSkill\Factors;
 
 use Exception;
-use Moserware\Skills\FactorGraphs\KeyedVariable;
-use Moserware\Skills\FactorGraphs\Message;
-use Moserware\Skills\FactorGraphs\Variable;
-use Moserware\Skills\Numerics\GaussianDistribution;
+use DNW\Skills\FactorGraphs\KeyedVariable;
+use DNW\Skills\FactorGraphs\Message;
+use DNW\Skills\FactorGraphs\Variable;
+use DNW\Skills\Numerics\GaussianDistribution;
 
 /**
  * Connects two variables and adds uncertainty.

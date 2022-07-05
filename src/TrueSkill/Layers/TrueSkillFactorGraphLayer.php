@@ -1,7 +1,7 @@
-<?php namespace Moserware\Skills\TrueSkill\Layers;
+<?php namespace DNW\Skills\TrueSkill\Layers;
 
-use Moserware\Skills\FactorGraphs\FactorGraphLayer;
-use Moserware\Skills\TrueSkill\TrueSkillFactorGraph;
+use DNW\Skills\FactorGraphs\FactorGraphLayer;
+use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 abstract class TrueSkillFactorGraphLayer extends FactorGraphLayer
 {

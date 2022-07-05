@@ -1,9 +1,9 @@
-<?php namespace Moserware\Skills\FactorGraphs;
+<?php namespace DNW\Skills\FactorGraphs;
 // edit this
 abstract class FactorGraphLayer
 {
     private $_localFactors = array();
-    private $_outputVariablesGroups = array();    
+    private $_outputVariablesGroups = array();
     private $_inputVariablesGroups = array();
     private $_parentFactorGraph;
 

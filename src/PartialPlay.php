@@ -1,4 +1,4 @@
-<?php namespace Moserware\Skills;
+<?php namespace DNW\Skills;
 
 class PartialPlay
 {

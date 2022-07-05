@@ -1,11 +1,11 @@
-<?php namespace Moserware\Skills;
+<?php namespace DNW\Skills;
 
 class Team extends RatingContainer
 {
     public function __construct(Player $player = null, Rating $rating = null)
     {
         parent::__construct();
-        
+
         if(!is_null($player))
         {
             $this->addPlayer($player, $rating);
@@ -16,5 +16,5 @@ class Team extends RatingContainer
     {
         $this->setRating($player, $rating);
         return $this;
-    }    
+    }
 }

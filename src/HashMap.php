@@ -1,4 +1,4 @@
-<?php namespace Moserware\Skills;
+<?php namespace DNW\Skills;
 
 /**
  * Basic hashmap that supports object keys.

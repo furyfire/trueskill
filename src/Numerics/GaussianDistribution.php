@@ -1,4 +1,4 @@
-<?php namespace Moserware\Skills\Numerics;
+<?php namespace DNW\Skills\Numerics;
 
 /**
  * Computes Gaussian (bell curve) values.
@@ -177,7 +177,7 @@ class GaussianDistribution
 
     private static function errorFunctionCumulativeTo($x)
     {
-        // Derived from page 265 of Numerical Recipes 3rd Edition            
+        // Derived from page 265 of Numerical Recipes 3rd Edition
         $z = abs($x);
 
         $t = 2.0 / (2.0 + $z);
@@ -229,7 +229,7 @@ class GaussianDistribution
 
     private static function inverseErrorFunctionCumulativeTo($p)
     {
-        // From page 265 of numerical recipes                       
+        // From page 265 of numerical recipes
 
         if ($p >= 2.0) {
             return -100;

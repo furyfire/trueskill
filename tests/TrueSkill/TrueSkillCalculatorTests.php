@@ -1,11 +1,11 @@
-<?php namespace Moserware\Skills\Tests\TrueSkill;
+<?php namespace DNW\Skills\Tests\TrueSkill;
 
-use Moserware\Skills\GameInfo;
-use Moserware\Skills\Player;
-use Moserware\Skills\Rating;
-use Moserware\Skills\Team;
-use Moserware\Skills\Teams;
-use Moserware\Skills\SkillCalculator;
+use DNW\Skills\GameInfo;
+use DNW\Skills\Player;
+use DNW\Skills\Rating;
+use DNW\Skills\Team;
+use DNW\Skills\Teams;
+use DNW\Skills\SkillCalculator;
 
 class TrueSkillCalculatorTests
 {

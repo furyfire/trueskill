@@ -1,7 +1,7 @@
-<?php namespace Moserware\Skills\Tests\Numerics;
+<?php namespace DNW\Skills\Tests\Numerics;
 
-use Moserware\Skills\Numerics\BasicMath;
-use Moserware\Skills\Tests\TestCase;
+use DNW\Skills\Numerics\BasicMath;
+use DNW\Skills\Tests\TestCase;
 
 class BasicMathTest extends TestCase
 {

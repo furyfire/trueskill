@@ -1,6 +1,6 @@
-<?php namespace Moserware\Skills\Elo;
+<?php namespace DNW\Skills\Elo;
 
-use Moserware\Skills\GameInfo;
+use DNW\Skills\GameInfo;
 
 /**
  * Including Elo's scheme as a simple comparison.

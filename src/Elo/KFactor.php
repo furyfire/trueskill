@@ -1,4 +1,4 @@
-<?php namespace Moserware\Skills\Elo;
+<?php namespace DNW\Skills\Elo;
 
 class KFactor
 {

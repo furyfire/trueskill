@@ -1,19 +1,19 @@
-<?php namespace Moserware\Skills\TrueSkill;
+<?php namespace DNW\Skills\TrueSkill;
 
-use Moserware\Skills\GameInfo;
-use Moserware\Skills\Numerics\GaussianDistribution;
-use Moserware\Skills\Rating;
-use Moserware\Skills\RatingContainer;
-use Moserware\Skills\FactorGraphs\FactorGraph;
-use Moserware\Skills\FactorGraphs\FactorList;
-use Moserware\Skills\FactorGraphs\ScheduleSequence;
-use Moserware\Skills\FactorGraphs\VariableFactory;
-use Moserware\Skills\TrueSkill\Layers\IteratedTeamDifferencesInnerLayer;
-use Moserware\Skills\TrueSkill\Layers\PlayerPerformancesToTeamPerformancesLayer;
-use Moserware\Skills\TrueSkill\Layers\PlayerPriorValuesToSkillsLayer;
-use Moserware\Skills\TrueSkill\Layers\PlayerSkillsToPerformancesLayer;
-use Moserware\Skills\TrueSkill\Layers\TeamDifferencesComparisonLayer;
-use Moserware\Skills\TrueSkill\Layers\TeamPerformancesToTeamPerformanceDifferencesLayer;
+use DNW\Skills\GameInfo;
+use DNW\Skills\Numerics\GaussianDistribution;
+use DNW\Skills\Rating;
+use DNW\Skills\RatingContainer;
+use DNW\Skills\FactorGraphs\FactorGraph;
+use DNW\Skills\FactorGraphs\FactorList;
+use DNW\Skills\FactorGraphs\ScheduleSequence;
+use DNW\Skills\FactorGraphs\VariableFactory;
+use DNW\Skills\TrueSkill\Layers\IteratedTeamDifferencesInnerLayer;
+use DNW\Skills\TrueSkill\Layers\PlayerPerformancesToTeamPerformancesLayer;
+use DNW\Skills\TrueSkill\Layers\PlayerPriorValuesToSkillsLayer;
+use DNW\Skills\TrueSkill\Layers\PlayerSkillsToPerformancesLayer;
+use DNW\Skills\TrueSkill\Layers\TeamDifferencesComparisonLayer;
+use DNW\Skills\TrueSkill\Layers\TeamPerformancesToTeamPerformanceDifferencesLayer;
 
 class TrueSkillFactorGraph extends FactorGraph
 {

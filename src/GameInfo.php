@@ -1,4 +1,4 @@
-<?php namespace Moserware\Skills;
+<?php namespace DNW\Skills;
 
 /**
  * Parameters about the game for calculating the TrueSkill.

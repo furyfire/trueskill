@@ -1,9 +1,9 @@
-<?php namespace Moserware\Skills\Tests\Numerics;
+<?php namespace DNW\Skills\Tests\Numerics;
 
-use Moserware\Skills\Numerics\IdentityMatrix;
-use Moserware\Skills\Numerics\Matrix;
-use Moserware\Skills\Numerics\SquareMatrix;
-use Moserware\Skills\Tests\TestCase;
+use DNW\Skills\Numerics\IdentityMatrix;
+use DNW\Skills\Numerics\Matrix;
+use DNW\Skills\Numerics\SquareMatrix;
+use DNW\Skills\Tests\TestCase;
 
 class MatrixTest extends TestCase
 {

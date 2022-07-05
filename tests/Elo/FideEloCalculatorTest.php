@@ -1,9 +1,9 @@
-<?php namespace Moserware\Skills\Tests\Elo;
+<?php namespace DNW\Skills\Tests\Elo;
 
-use Moserware\Skills\Elo\FideEloCalculator;
-use Moserware\Skills\Elo\ProvisionalFideKFactor;
-use Moserware\Skills\PairwiseComparison;
-use Moserware\Skills\Tests\TestCase;
+use DNW\Skills\Elo\FideEloCalculator;
+use DNW\Skills\Elo\ProvisionalFideKFactor;
+use DNW\Skills\PairwiseComparison;
+use DNW\Skills\Tests\TestCase;
 
 class FideEloCalculatorTest extends TestCase
 {

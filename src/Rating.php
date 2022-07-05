@@ -1,7 +1,7 @@
-<?php namespace Moserware\Skills;
+<?php namespace DNW\Skills;
 
 // Container for a player's rating.
-use Moserware\Skills\Numerics\GaussianDistribution;
+use DNW\Skills\Numerics\GaussianDistribution;
 
 class Rating
 {
@@ -54,7 +54,7 @@ class Rating
         $posteriorGaussian = new GaussianDistribution($fullPosterior->getMean(), $fullPosterior . getStandardDeviation());
 
         // From a clarification email from Ralf Herbrich:
-        // "the idea is to compute a linear interpolation between the prior and posterior skills of each player 
+        // "the idea is to compute a linear interpolation between the prior and posterior skills of each player
         //  ... in the canonical space of parameters"
 
         $precisionDifference = $posteriorGaussian->getPrecision() - $priorGaussian->getPrecision();

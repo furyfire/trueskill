@@ -1,9 +1,9 @@
-<?php namespace Moserware\Skills\TrueSkill\Layers;
+<?php namespace DNW\Skills\TrueSkill\Layers;
 
-use Moserware\Skills\TrueSkill\DrawMargin;
-use Moserware\Skills\TrueSkill\TrueSkillFactorGraph;
-use Moserware\Skills\TrueSkill\Factors\GaussianGreaterThanFactor;
-use Moserware\Skills\TrueSkill\Factors\GaussianWithinFactor;
+use DNW\Skills\TrueSkill\DrawMargin;
+use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
+use DNW\Skills\TrueSkill\Factors\GaussianGreaterThanFactor;
+use DNW\Skills\TrueSkill\Factors\GaussianWithinFactor;
 
 class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
 {

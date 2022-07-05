@@ -1,4 +1,4 @@
-<?php namespace Moserware\Skills\FactorGraphs;
+<?php namespace DNW\Skills\FactorGraphs;
 
 /**
  * Helper class for computing the factor graph's normalization constant.

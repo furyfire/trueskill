@@ -1,19 +1,19 @@
-<?php namespace Moserware\Skills\TrueSkill;
+<?php namespace DNW\Skills\TrueSkill;
 
-use Moserware\Skills\GameInfo;
-use Moserware\Skills\Guard;
-use Moserware\Skills\ISupportPartialPlay;
-use Moserware\Skills\ISupportPartialUpdate;
-use Moserware\Skills\Numerics\BasicMath;
-use Moserware\Skills\Numerics\DiagonalMatrix;
-use Moserware\Skills\Numerics\Matrix;
-use Moserware\Skills\Numerics\Vector;
-use Moserware\Skills\PartialPlay;
-use Moserware\Skills\PlayersRange;
-use Moserware\Skills\RankSorter;
-use Moserware\Skills\SkillCalculator;
-use Moserware\Skills\SkillCalculatorSupportedOptions;
-use Moserware\Skills\TeamsRange;
+use DNW\Skills\GameInfo;
+use DNW\Skills\Guard;
+use DNW\Skills\ISupportPartialPlay;
+use DNW\Skills\ISupportPartialUpdate;
+use DNW\Skills\Numerics\BasicMath;
+use DNW\Skills\Numerics\DiagonalMatrix;
+use DNW\Skills\Numerics\Matrix;
+use DNW\Skills\Numerics\Vector;
+use DNW\Skills\PartialPlay;
+use DNW\Skills\PlayersRange;
+use DNW\Skills\RankSorter;
+use DNW\Skills\SkillCalculator;
+use DNW\Skills\SkillCalculatorSupportedOptions;
+use DNW\Skills\TeamsRange;
 
 /**
  * Calculates TrueSkill using a full factor graph.

@@ -1,10 +1,10 @@
-<?php namespace Moserware\Skills\Tests\Elo;
+<?php namespace DNW\Skills\Tests\Elo;
 
-use Moserware\Skills\Elo\EloRating;
-use Moserware\Skills\Elo\FideEloCalculator;
-use Moserware\Skills\GameInfo;
-use Moserware\Skills\PairwiseComparison;
-use Moserware\Skills\Tests\TestCase;
+use DNW\Skills\Elo\EloRating;
+use DNW\Skills\Elo\FideEloCalculator;
+use DNW\Skills\GameInfo;
+use DNW\Skills\PairwiseComparison;
+use DNW\Skills\Tests\TestCase;
 
 class EloAssert
 {

@@ -1,5 +1,5 @@
 <?php
-namespace Moserware\Skills\FactorGraphs;
+namespace DNW\Skills\FactorGraphs;
 
 class Variable
 {

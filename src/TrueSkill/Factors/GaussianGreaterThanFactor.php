@@ -1,9 +1,9 @@
-<?php namespace Moserware\Skills\TrueSkill\Factors;
+<?php namespace DNW\Skills\TrueSkill\Factors;
 
-use Moserware\Skills\Numerics\GaussianDistribution;
-use Moserware\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
-use Moserware\Skills\FactorGraphs\Message;
-use Moserware\Skills\FactorGraphs\Variable;
+use DNW\Skills\Numerics\GaussianDistribution;
+use DNW\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
+use DNW\Skills\FactorGraphs\Message;
+use DNW\Skills\FactorGraphs\Variable;
 
 /**
  * Factor representing a team difference that has exceeded the draw margin.

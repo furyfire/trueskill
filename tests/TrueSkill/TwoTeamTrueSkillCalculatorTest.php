@@ -1,7 +1,7 @@
-<?php namespace Moserware\Skills\Tests\TrueSkill;
+<?php namespace DNW\Skills\Tests\TrueSkill;
 
-use Moserware\Skills\Tests\TestCase;
-use Moserware\Skills\TrueSkill\TwoTeamTrueSkillCalculator;
+use DNW\Skills\Tests\TestCase;
+use DNW\Skills\TrueSkill\TwoTeamTrueSkillCalculator;
 
 class TwoTeamTrueSkillCalculatorTest extends TestCase
 {

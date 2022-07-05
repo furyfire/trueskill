@@ -1,19 +1,19 @@
-<?php namespace Moserware\Skills\TrueSkill;
+<?php namespace DNW\Skills\TrueSkill;
 
-use Moserware\Skills\GameInfo;
-use Moserware\Skills\Guard;
-use Moserware\Skills\Numerics\BasicMath;
-use Moserware\Skills\PairwiseComparison;
-use Moserware\Skills\RankSorter;
-use Moserware\Skills\Rating;
-use Moserware\Skills\RatingContainer;
-use Moserware\Skills\SkillCalculator;
-use Moserware\Skills\SkillCalculatorSupportedOptions;
+use DNW\Skills\GameInfo;
+use DNW\Skills\Guard;
+use DNW\Skills\Numerics\BasicMath;
+use DNW\Skills\PairwiseComparison;
+use DNW\Skills\RankSorter;
+use DNW\Skills\Rating;
+use DNW\Skills\RatingContainer;
+use DNW\Skills\SkillCalculator;
+use DNW\Skills\SkillCalculatorSupportedOptions;
 
-use Moserware\Skills\PlayersRange;
-use Moserware\Skills\TeamsRange;
+use DNW\Skills\PlayersRange;
+use DNW\Skills\TeamsRange;
 
-use Moserware\Skills\Team;
+use DNW\Skills\Team;
 
 /**
  * Calculates new ratings for only two teams where each team has 1 or more players.

@@ -1,8 +1,8 @@
-<?php namespace Moserware\Skills\TrueSkill\Layers;
+<?php namespace DNW\Skills\TrueSkill\Layers;
 
-use Moserware\Skills\FactorGraphs\Variable;
-use Moserware\Skills\TrueSkill\TrueSkillFactorGraph;
-use Moserware\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
+use DNW\Skills\FactorGraphs\Variable;
+use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
+use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
 
 class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorGraphLayer
 {
@@ -26,7 +26,7 @@ class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorG
             $newDifferencesFactor = $this->createTeamPerformanceToDifferenceFactor($strongerTeam, $weakerTeam, $currentDifference);
             $this->addLayerFactor($newDifferencesFactor);
 
-            // REVIEW: Does it make sense to have groups of one?            
+            // REVIEW: Does it make sense to have groups of one?
             $outputVariablesGroup[] = array($currentDifference);
         }
     }

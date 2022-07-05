@@ -1,4 +1,4 @@
-<?php namespace Moserware\Skills\FactorGraphs;
+<?php namespace DNW\Skills\FactorGraphs;
 
 class Message
 {

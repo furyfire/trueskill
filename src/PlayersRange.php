@@ -1,6 +1,6 @@
-<?php namespace Moserware\Skills;
+<?php namespace DNW\Skills;
 
-use Moserware\Skills\Numerics\Range;
+use DNW\Skills\Numerics\Range;
 
 class PlayersRange extends Range
 {

@@ -1,7 +1,7 @@
-<?php namespace Moserware\Skills\Tests\TrueSkill;
+<?php namespace DNW\Skills\Tests\TrueSkill;
 
-use Moserware\Skills\Tests\TestCase;
-use Moserware\Skills\TrueSkill\DrawMargin;
+use DNW\Skills\Tests\TestCase;
+use DNW\Skills\TrueSkill\DrawMargin;
 
 class DrawMarginTest extends TestCase
 {

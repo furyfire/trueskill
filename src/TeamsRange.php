@@ -1,6 +1,6 @@
-<?php namespace Moserware\Skills;
+<?php namespace DNW\Skills;
 
-use Moserware\Skills\Numerics\Range;
+use DNW\Skills\Numerics\Range;
 
 class TeamsRange extends Range
 {
@@ -8,7 +8,7 @@ class TeamsRange extends Range
     {
         parent::__construct($min, $max);
     }
-    
+
     protected static function create($min, $max)
     {
         return new TeamsRange($min, $max);

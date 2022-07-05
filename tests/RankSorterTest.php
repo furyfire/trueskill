@@ -1,6 +1,6 @@
-<?php namespace Moserware\Skills\Tests;
+<?php namespace DNW\Skills\Tests;
 
-use Moserware\Skills\RankSorter;
+use DNW\Skills\RankSorter;
 
 class RankSorterTest extends TestCase
 {

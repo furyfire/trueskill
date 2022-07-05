@@ -1,4 +1,4 @@
-<?php namespace Moserware\Skills\Elo;
+<?php namespace DNW\Skills\Elo;
 
 /**
  * Indicates someone who has played less than 30 games.

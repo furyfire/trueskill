@@ -1,4 +1,4 @@
-<?php namespace Moserware\Skills;
+<?php namespace DNW\Skills;
 
 /**
  * Helper class to sort ranks in non-decreasing order.
@@ -13,7 +13,7 @@ class RankSorter
      * @return array
      */
     public static function sort(array &$teams, array &$teamRanks)
-    {        
+    {
         array_multisort($teamRanks, $teams);
         return $teams;
     }
