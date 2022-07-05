@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\Tests\Numerics;
+<?php
+
+namespace DNW\Skills\Tests\Numerics;
 
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\Tests\TestCase;

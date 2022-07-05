@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills;
+<?php
+
+namespace DNW\Skills;
 
 class RatingContainer
 {

@@ -1,19 +1,19 @@
-<?php namespace DNW\Skills\TrueSkill;
+<?php
+
+namespace DNW\Skills\TrueSkill;
 
 use DNW\Skills\GameInfo;
 use DNW\Skills\Guard;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\PairwiseComparison;
+use DNW\Skills\PlayersRange;
 use DNW\Skills\RankSorter;
 use DNW\Skills\Rating;
 use DNW\Skills\RatingContainer;
 use DNW\Skills\SkillCalculator;
 use DNW\Skills\SkillCalculatorSupportedOptions;
-
-use DNW\Skills\PlayersRange;
-use DNW\Skills\TeamsRange;
-
 use DNW\Skills\Team;
+use DNW\Skills\TeamsRange;
 
 /**
  * Calculates new ratings for only two teams where each team has 1 or more players.
@@ -29,7 +29,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
 
     public function calculateNewRatings(GameInfo $gameInfo, array $teams, array $teamRanks)
     {
-        Guard::argumentNotNull($gameInfo, "gameInfo");
+        Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
         RankSorter::sort($teams, $teamRanks);
@@ -111,7 +111,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
             // non-draw case
             $v = TruncatedGaussianCorrectionFunctions::vExceedsMarginScaled($meanDelta, $drawMargin, $c);
             $w = TruncatedGaussianCorrectionFunctions::wExceedsMarginScaled($meanDelta, $drawMargin, $c);
-            $rankMultiplier = (int)$selfToOtherTeamComparison;
+            $rankMultiplier = (int) $selfToOtherTeamComparison;
         } else {
             // assume draw
             $v = TruncatedGaussianCorrectionFunctions::vWithinMarginScaled($meanDelta, $drawMargin, $c);
@@ -143,7 +143,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
      */
     public function calculateMatchQuality(GameInfo $gameInfo, array $teams)
     {
-        Guard::argumentNotNull($gameInfo, "gameInfo");
+        Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
         // We've verified that there's just two teams

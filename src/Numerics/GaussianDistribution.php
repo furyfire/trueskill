@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\Numerics;
+<?php
+
+namespace DNW\Skills\Numerics;
 
 /**
  * Computes Gaussian (bell curve) values.
@@ -9,12 +11,15 @@
 class GaussianDistribution
 {
     private $_mean;
+
     private $_standardDeviation;
 
     // precision and precisionMean are used because they make multiplying and dividing simpler
     // (the the accompanying math paper for more details)
     private $_precision;
+
     private $_precisionMean;
+
     private $_variance;
 
     public function __construct($mean = 0.0, $standardDeviation = 1.0)
@@ -76,6 +81,7 @@ class GaussianDistribution
         $result->_variance = $this->_variance;
         $result->_precision = $this->_precision;
         $result->_precisionMean = $this->_precisionMean;
+
         return $result;
     }
 
@@ -94,6 +100,7 @@ class GaussianDistribution
             $result->_standardDeviation = \INF;
             $result->_mean = \NAN;
         }
+
         return $result;
     }
 
@@ -129,6 +136,7 @@ class GaussianDistribution
         $meanDifference = $left->_mean - $right->_mean;
 
         $logSqrt2Pi = log(sqrt(2 * M_PI));
+
         return -$logSqrt2Pi - (log($varianceSum) / 2.0) - (BasicMath::square($meanDifference) / (2.0 * $varianceSum));
     }
 
@@ -165,6 +173,7 @@ class GaussianDistribution
         $multiplier = 1.0 / ($standardDeviation * sqrt(2 * M_PI));
         $expPart = exp((-1.0 * BasicMath::square($x - $mean)) / (2 * BasicMath::square($standardDeviation)));
         $result = $multiplier * $expPart;
+
         return $result;
     }
 
@@ -172,6 +181,7 @@ class GaussianDistribution
     {
         $invsqrt2 = -0.707106781186547524400844362104;
         $result = GaussianDistribution::errorFunctionCumulativeTo($invsqrt2 * $x);
+
         return 0.5 * $result;
     }
 
@@ -183,7 +193,7 @@ class GaussianDistribution
         $t = 2.0 / (2.0 + $z);
         $ty = 4 * $t - 2;
 
-        $coefficients = array(
+        $coefficients = [
             -1.3026537197817094,
             6.4196979235649026e-1,
             1.9476473204185836e-2,
@@ -211,7 +221,7 @@ class GaussianDistribution
             -1.523e-15,
             -9.4e-17,
             1.21e-16,
-            -2.8e-17);
+            -2.8e-17, ];
 
         $ncof = count($coefficients);
         $d = 0.0;
@@ -224,6 +234,7 @@ class GaussianDistribution
         }
 
         $ans = $t * exp(-$z * $z + 0.5 * ($coefficients[0] + $ty * $d) - $dd);
+
         return ($x >= 0.0) ? $ans : (2.0 - $ans);
     }
 
@@ -258,6 +269,6 @@ class GaussianDistribution
 
     public function __toString()
     {
-        return sprintf("mean=%.4f standardDeviation=%.4f", $this->_mean, $this->_standardDeviation);
+        return sprintf('mean=%.4f standardDeviation=%.4f', $this->_mean, $this->_standardDeviation);
     }
 }

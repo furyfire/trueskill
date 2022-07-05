@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\Tests\Numerics;
+<?php
+
+namespace DNW\Skills\Tests\Numerics;
 
 use DNW\Skills\Numerics\IdentityMatrix;
 use DNW\Skills\Numerics\Matrix;
@@ -48,7 +50,7 @@ class MatrixTest extends TestCase
 
     public function testFourByFourDeterminant()
     {
-        $a = new SquareMatrix( 1,  2,  3,  4,
+        $a = new SquareMatrix(1,  2,  3,  4,
                                5,  6,  7,  8,
                                9, 10, 11, 12,
                               13, 14, 15, 16);
@@ -66,7 +68,7 @@ class MatrixTest extends TestCase
 
     public function testEightByEightDeterminant()
     {
-        $a = new SquareMatrix( 1,  2,  3,  4,  5,  6,  7,  8,
+        $a = new SquareMatrix(1,  2,  3,  4,  5,  6,  7,  8,
                                9, 10, 11, 12, 13, 14, 15, 16,
                               17, 18, 19, 20, 21, 22, 23, 24,
                               25, 26, 27, 28, 29, 30, 31, 32,
@@ -134,11 +136,10 @@ class MatrixTest extends TestCase
         $a = new SquareMatrix(1, 2,
                               3, 4);
 
-        $b = new SquareMatrix( 4, -2,
-                              -3,  1);
+        $b = new SquareMatrix(4, -2,
+                              -3, 1);
 
         $this->assertTrue($b->equals($a->getAdjugate()));
-
 
         $c = new SquareMatrix(-3, 2, -5,
                               -1, 0, -2,
@@ -146,7 +147,7 @@ class MatrixTest extends TestCase
 
         $d = new SquareMatrix(-8, 18, -4,
                               -5, 12, -1,
-                               4, -6,  2);
+                               4, -6, 2);
 
         $this->assertTrue($d->equals($c->getAdjugate()));
     }
@@ -175,8 +176,7 @@ class MatrixTest extends TestCase
         $cInverse = $c->getInverse();
         $d = Matrix::scalarMultiply((1.0 / 22), new SquareMatrix(24, -12, -2,
                                                                   5,   3, -5,
-                                                                 -4,   2,  4));
-
+                                                                 -4, 2, 4));
 
         $this->assertTrue($d->equals($cInverse));
         $identity3x3 = new IdentityMatrix(3);

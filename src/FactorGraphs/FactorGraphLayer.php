@@ -1,10 +1,16 @@
-<?php namespace DNW\Skills\FactorGraphs;
+<?php
+
+namespace DNW\Skills\FactorGraphs;
+
 // edit this
 abstract class FactorGraphLayer
 {
-    private $_localFactors = array();
-    private $_outputVariablesGroups = array();
-    private $_inputVariablesGroups = array();
+    private $_localFactors = [];
+
+    private $_outputVariablesGroups = [];
+
+    private $_inputVariablesGroups = [];
+
     private $_parentFactorGraph;
 
     protected function __construct(FactorGraph $parentGraph)
@@ -54,7 +60,7 @@ abstract class FactorGraphLayer
         $this->_localFactors[] = $factor;
     }
 
-    public abstract function buildLayer();
+    abstract public function buildLayer();
 
     public function createPriorSchedule()
     {

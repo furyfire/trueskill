@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\Tests\TrueSkill;
+<?php
+
+namespace DNW\Skills\Tests\TrueSkill;
 
 use DNW\Skills\Tests\TestCase;
 use DNW\Skills\TrueSkill\TwoPlayerTrueSkillCalculator;

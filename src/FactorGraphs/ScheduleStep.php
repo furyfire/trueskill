@@ -1,8 +1,11 @@
-<?php namespace DNW\Skills\FactorGraphs;
+<?php
+
+namespace DNW\Skills\FactorGraphs;
 
 class ScheduleStep extends Schedule
 {
     private $_factor;
+
     private $_index;
 
     public function __construct($name, Factor $factor, $index)
@@ -16,6 +19,7 @@ class ScheduleStep extends Schedule
     {
         $currentFactor = $this->_factor;
         $delta = $currentFactor->updateMessageIndex($this->_index);
+
         return $delta;
     }
 }

@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\TrueSkill;
+<?php
+
+namespace DNW\Skills\TrueSkill;
 
 use DNW\Skills\Numerics\GaussianDistribution;
 
@@ -13,7 +15,7 @@ class TruncatedGaussianCorrectionFunctions
      * correction of a single-sided truncated Gaussian with unit variance."
      *
      * @param $teamPerformanceDifference
-     * @param number $drawMargin In the paper, it's referred to as just "ε".
+     * @param  number  $drawMargin In the paper, it's referred to as just "ε".
      * @param $c
      * @return float
      */
@@ -57,10 +59,12 @@ class TruncatedGaussianCorrectionFunctions
             if ($teamPerformanceDifference < 0.0) {
                 return 1.0;
             }
+
             return 0.0;
         }
 
         $vWin = self::vExceedsMargin($teamPerformanceDifference, $drawMargin);
+
         return $vWin * ($vWin + $teamPerformanceDifference - $drawMargin);
     }
 

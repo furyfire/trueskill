@@ -1,15 +1,17 @@
-<?php namespace DNW\Skills\TrueSkill;
+<?php
+
+namespace DNW\Skills\TrueSkill;
 
 use DNW\Skills\GameInfo;
 use DNW\Skills\Guard;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\PairwiseComparison;
+use DNW\Skills\PlayersRange;
 use DNW\Skills\RankSorter;
 use DNW\Skills\Rating;
 use DNW\Skills\RatingContainer;
 use DNW\Skills\SkillCalculator;
 use DNW\Skills\SkillCalculatorSupportedOptions;
-use DNW\Skills\PlayersRange;
 use DNW\Skills\TeamsRange;
 
 /**
@@ -30,7 +32,7 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
                                         array $teamRanks)
     {
         // Basic argument checking
-        Guard::argumentNotNull($gameInfo, "gameInfo");
+        Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
         // Make sure things are in order
@@ -83,8 +85,7 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
         $winningMean = $selfRating->getMean();
         $losingMean = $opponentRating->getMean();
 
-        switch ($comparison)
-        {
+        switch ($comparison) {
             case PairwiseComparison::WIN:
             case PairwiseComparison::DRAW:
                 // NOP
@@ -97,37 +98,34 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
 
         $meanDelta = $winningMean - $losingMean;
 
-        if ($comparison != PairwiseComparison::DRAW)
-        {
+        if ($comparison != PairwiseComparison::DRAW) {
             // non-draw case
             $v = TruncatedGaussianCorrectionFunctions::vExceedsMarginScaled($meanDelta, $drawMargin, $c);
             $w = TruncatedGaussianCorrectionFunctions::wExceedsMarginScaled($meanDelta, $drawMargin, $c);
             $rankMultiplier = (int) $comparison;
-        }
-        else
-        {
+        } else {
             $v = TruncatedGaussianCorrectionFunctions::vWithinMarginScaled($meanDelta, $drawMargin, $c);
             $w = TruncatedGaussianCorrectionFunctions::wWithinMarginScaled($meanDelta, $drawMargin, $c);
             $rankMultiplier = 1;
         }
 
-        $meanMultiplier = (BasicMath::square($selfRating->getStandardDeviation()) + BasicMath::square($gameInfo->getDynamicsFactor()))/$c;
+        $meanMultiplier = (BasicMath::square($selfRating->getStandardDeviation()) + BasicMath::square($gameInfo->getDynamicsFactor())) / $c;
 
         $varianceWithDynamics = BasicMath::square($selfRating->getStandardDeviation()) + BasicMath::square($gameInfo->getDynamicsFactor());
-        $stdDevMultiplier = $varianceWithDynamics/BasicMath::square($c);
+        $stdDevMultiplier = $varianceWithDynamics / BasicMath::square($c);
 
-        $newMean = $selfRating->getMean() + ($rankMultiplier*$meanMultiplier*$v);
-        $newStdDev = sqrt($varianceWithDynamics*(1 - $w*$stdDevMultiplier));
+        $newMean = $selfRating->getMean() + ($rankMultiplier * $meanMultiplier * $v);
+        $newStdDev = sqrt($varianceWithDynamics * (1 - $w * $stdDevMultiplier));
 
         return new Rating($newMean, $newStdDev);
     }
 
     /**
-     * {@inheritdoc }
+     * {@inheritdoc}
      */
     public function calculateMatchQuality(GameInfo $gameInfo, array $teams)
     {
-        Guard::argumentNotNull($gameInfo, "gameInfo");
+        Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
         $team1 = $teams[0];
@@ -146,18 +144,18 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
 
         // This is the square root part of the equation:
         $sqrtPart = sqrt(
-            (2*$betaSquared)
+            (2 * $betaSquared)
             /
-            (2*$betaSquared + $player1SigmaSquared + $player2SigmaSquared)
+            (2 * $betaSquared + $player1SigmaSquared + $player2SigmaSquared)
         );
 
         // This is the exponent part of the equation:
         $expPart = exp(
-            (-1*BasicMath::square($player1Rating->getMean() - $player2Rating->getMean()))
+            (-1 * BasicMath::square($player1Rating->getMean() - $player2Rating->getMean()))
             /
-            (2*(2*$betaSquared + $player1SigmaSquared + $player2SigmaSquared))
+            (2 * (2 * $betaSquared + $player1SigmaSquared + $player2SigmaSquared))
         );
 
-        return $sqrtPart*$expPart;
+        return $sqrtPart * $expPart;
     }
 }

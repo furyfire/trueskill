@@ -1,11 +1,13 @@
-<?php namespace DNW\Skills\TrueSkill\Layers;
+<?php
 
-use DNW\Skills\Numerics\BasicMath;
-use DNW\Skills\Rating;
+namespace DNW\Skills\TrueSkill\Layers;
+
 use DNW\Skills\FactorGraphs\ScheduleStep;
 use DNW\Skills\FactorGraphs\Variable;
-use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
+use DNW\Skills\Numerics\BasicMath;
+use DNW\Skills\Rating;
 use DNW\Skills\TrueSkill\Factors\GaussianPriorFactor;
+use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 // We intentionally have no Posterior schedule since the only purpose here is to
 // start the process.
@@ -24,7 +26,7 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
         $teams = $this->_teams;
         foreach ($teams as $currentTeam) {
             $localCurrentTeam = $currentTeam;
-            $currentTeamSkills = array();
+            $currentTeamSkills = [];
 
             $currentTeamAllPlayers = $localCurrentTeam->getAllPlayers();
             foreach ($currentTeamAllPlayers as $currentTeamPlayer) {
@@ -44,13 +46,14 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
     public function createPriorSchedule()
     {
         $localFactors = $this->getLocalFactors();
+
         return $this->scheduleSequence(
             array_map(
                 function ($prior) {
-                    return new ScheduleStep("Prior to Skill Step", $prior, 0);
+                    return new ScheduleStep('Prior to Skill Step', $prior, 0);
                 },
                 $localFactors),
-            "All priors");
+            'All priors');
     }
 
     private function createPriorFactor($player, Rating $priorRating, Variable $skillsVariable)
@@ -67,7 +70,8 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
     {
         $parentFactorGraph = $this->getParentFactorGraph();
         $variableFactory = $parentFactorGraph->getVariableFactory();
-        $skillOutputVariable = $variableFactory->createKeyedVariable($key, $key . "'s skill");
+        $skillOutputVariable = $variableFactory->createKeyedVariable($key, $key."'s skill");
+
         return $skillOutputVariable;
     }
 }

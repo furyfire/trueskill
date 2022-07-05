@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills;
+<?php
+
+namespace DNW\Skills;
 
 /**
  * Parameters about the game for calculating the TrueSkill.
@@ -6,15 +8,23 @@
 class GameInfo
 {
     const DEFAULT_BETA = 4.1666666666666666666666666666667; // Default initial mean / 6
+
     const DEFAULT_DRAW_PROBABILITY = 0.10;
+
     const DEFAULT_DYNAMICS_FACTOR = 0.083333333333333333333333333333333; // Default initial mean / 300
+
     const DEFAULT_INITIAL_MEAN = 25.0;
+
     const DEFAULT_INITIAL_STANDARD_DEVIATION = 8.3333333333333333333333333333333; // Default initial mean / 3
 
     private $_initialMean;
+
     private $_initialStandardDeviation;
+
     private $_beta;
+
     private $_dynamicsFactor;
+
     private $_drawProbability;
 
     public function __construct($initialMean = self::DEFAULT_INITIAL_MEAN,
@@ -29,7 +39,6 @@ class GameInfo
         $this->_dynamicsFactor = $dynamicsFactor;
         $this->_drawProbability = $drawProbability;
     }
-
 
     public function getInitialMean()
     {

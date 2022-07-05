@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\FactorGraphs;
+<?php
+
+namespace DNW\Skills\FactorGraphs;
 
 class FactorGraph
 {

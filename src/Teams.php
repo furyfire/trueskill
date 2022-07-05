@@ -1,11 +1,13 @@
-<?php namespace DNW\Skills;
+<?php
+
+namespace DNW\Skills;
 
 class Teams
 {
     public static function concat(/*variable arguments*/)
     {
         $args = func_get_args();
-        $result = array();
+        $result = [];
 
         foreach ($args as $currentTeam) {
             $localCurrentTeam = $currentTeam;

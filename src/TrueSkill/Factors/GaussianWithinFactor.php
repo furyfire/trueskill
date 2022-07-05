@@ -1,9 +1,11 @@
-<?php namespace DNW\Skills\TrueSkill\Factors;
+<?php
 
-use DNW\Skills\Numerics\GaussianDistribution;
-use DNW\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
+namespace DNW\Skills\TrueSkill\Factors;
+
 use DNW\Skills\FactorGraphs\Message;
 use DNW\Skills\FactorGraphs\Variable;
+use DNW\Skills\Numerics\GaussianDistribution;
+use DNW\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
 
 /**
  * Factor representing a team difference that has not exceeded the draw margin.
@@ -16,7 +18,7 @@ class GaussianWithinFactor extends GaussianFactor
 
     public function __construct($epsilon, Variable $variable)
     {
-        parent::__construct(sprintf("%s <= %.2f", $variable, $epsilon));
+        parent::__construct(sprintf('%s <= %.2f', $variable, $epsilon));
         $this->_epsilon = $epsilon;
         $this->createVariableToMessageBinding($variable);
     }
@@ -57,7 +59,7 @@ class GaussianWithinFactor extends GaussianFactor
 
         $denominator = 1.0 - TruncatedGaussianCorrectionFunctions::wWithinMargin($dOnSqrtC, $epsilonTimesSqrtC);
         $newPrecision = $c / $denominator;
-        $newPrecisionMean = (   $d +
+        $newPrecisionMean = ($d +
                                 $sqrtC *
                                 TruncatedGaussianCorrectionFunctions::vWithinMargin($dOnSqrtC, $epsilonTimesSqrtC)
                             ) / $denominator;

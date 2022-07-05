@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\TrueSkill\Factors;
+<?php
+
+namespace DNW\Skills\TrueSkill\Factors;
 
 use DNW\Skills\FactorGraphs\Factor;
 use DNW\Skills\FactorGraphs\Message;
@@ -14,8 +16,9 @@ abstract class GaussianFactor extends Factor
 
     /**
      * Sends the factor-graph message with and returns the log-normalization constant.
-     * @param Message $message
-     * @param Variable $variable
+     *
+     * @param  Message  $message
+     * @param  Variable  $variable
      * @return float|int
      */
     protected function sendMessageVariable(Message $message, Variable $variable)
@@ -24,6 +27,7 @@ abstract class GaussianFactor extends Factor
         $messageValue = $message->getValue();
         $logZ = GaussianDistribution::logProductNormalization($marginal, $messageValue);
         $variable->setValue(GaussianDistribution::multiply($marginal, $messageValue));
+
         return $logZ;
     }
 
@@ -33,7 +37,8 @@ abstract class GaussianFactor extends Factor
         $binding = parent::createVariableToMessageBindingWithMessage($variable,
             new Message(
                 $newDistribution,
-                sprintf("message from %s to %s", $this, $variable)));
+                sprintf('message from %s to %s', $this, $variable)));
+
         return $binding;
     }
 }

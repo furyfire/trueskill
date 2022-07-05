@@ -1,8 +1,11 @@
-<?php namespace DNW\Skills\FactorGraphs;
+<?php
+
+namespace DNW\Skills\FactorGraphs;
 
 class Message
 {
     private $_name;
+
     private $_value;
 
     public function __construct($value = null, $name = null)
@@ -23,6 +26,6 @@ class Message
 
     public function __toString()
     {
-        return (string)$this->_name;
+        return (string) $this->_name;
     }
 }

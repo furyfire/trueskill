@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills;
+<?php
+
+namespace DNW\Skills;
 
 class Team extends RatingContainer
 {
@@ -6,8 +8,7 @@ class Team extends RatingContainer
     {
         parent::__construct();
 
-        if(!is_null($player))
-        {
+        if (! is_null($player)) {
             $this->addPlayer($player, $rating);
         }
     }
@@ -15,6 +16,7 @@ class Team extends RatingContainer
     public function addPlayer(Player $player, Rating $rating)
     {
         $this->setRating($player, $rating);
+
         return $this;
     }
 }

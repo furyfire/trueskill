@@ -1,9 +1,11 @@
-<?php namespace DNW\Skills\TrueSkill\Factors;
+<?php
 
-use DNW\Skills\Numerics\GaussianDistribution;
-use DNW\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
+namespace DNW\Skills\TrueSkill\Factors;
+
 use DNW\Skills\FactorGraphs\Message;
 use DNW\Skills\FactorGraphs\Variable;
+use DNW\Skills\Numerics\GaussianDistribution;
+use DNW\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
 
 /**
  * Factor representing a team difference that has exceeded the draw margin.
@@ -16,7 +18,7 @@ class GaussianGreaterThanFactor extends GaussianFactor
 
     public function __construct($epsilon, Variable $variable)
     {
-        parent::__construct(\sprintf("%s > %.2f", $variable, $epsilon));
+        parent::__construct(\sprintf('%s > %.2f', $variable, $epsilon));
         $this->_epsilon = $epsilon;
         $this->createVariableToMessageBinding($variable);
     }
@@ -31,6 +33,7 @@ class GaussianGreaterThanFactor extends GaussianFactor
         $messages = $this->getMessages();
         $message = $messages[0]->getValue();
         $messageFromVariable = GaussianDistribution::divide($marginal, $message);
+
         return -GaussianDistribution::logProductNormalization($messageFromVariable, $message)
         +
         log(
@@ -39,7 +42,6 @@ class GaussianGreaterThanFactor extends GaussianFactor
                 $messageFromVariable->getStandardDeviation()
             )
         );
-
     }
 
     protected function updateMessageVariable(Message $message, Variable $variable)

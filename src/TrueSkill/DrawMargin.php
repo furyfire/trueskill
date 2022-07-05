@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\TrueSkill;
+<?php
+
+namespace DNW\Skills\TrueSkill;
 
 use DNW\Skills\Numerics\GaussianDistribution;
 

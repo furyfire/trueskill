@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills;
+<?php
+
+namespace DNW\Skills;
 
 /**
  * Indicates support for allowing partial play (where a player only plays a part of the time).

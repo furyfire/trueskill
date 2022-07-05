@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\TrueSkill\Factors;
+<?php
+
+namespace DNW\Skills\TrueSkill\Factors;
 
 use DNW\Skills\FactorGraphs\Message;
 use DNW\Skills\FactorGraphs\Variable;
@@ -15,10 +17,10 @@ class GaussianPriorFactor extends GaussianFactor
 
     public function __construct($mean, $variance, Variable $variable)
     {
-        parent::__construct(sprintf("Prior value going to %s", $variable));
+        parent::__construct(sprintf('Prior value going to %s', $variable));
         $this->_newMessage = new GaussianDistribution($mean, sqrt($variance));
         $newMessage = new Message(GaussianDistribution::fromPrecisionMean(0, 0),
-            sprintf("message from %s to %s", $this, $variable));
+            sprintf('message from %s to %s', $this, $variable));
 
         $this->createVariableToMessageBindingWithMessage($variable, $newMessage);
     }
@@ -34,6 +36,7 @@ class GaussianPriorFactor extends GaussianFactor
 
         $variable->setValue($newMarginal);
         $message->setValue($this->_newMessage);
+
         return GaussianDistribution::subtract($oldMarginal, $newMarginal);
     }
 }

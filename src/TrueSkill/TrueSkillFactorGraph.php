@@ -1,13 +1,15 @@
-<?php namespace DNW\Skills\TrueSkill;
+<?php
 
-use DNW\Skills\GameInfo;
-use DNW\Skills\Numerics\GaussianDistribution;
-use DNW\Skills\Rating;
-use DNW\Skills\RatingContainer;
+namespace DNW\Skills\TrueSkill;
+
 use DNW\Skills\FactorGraphs\FactorGraph;
 use DNW\Skills\FactorGraphs\FactorList;
 use DNW\Skills\FactorGraphs\ScheduleSequence;
 use DNW\Skills\FactorGraphs\VariableFactory;
+use DNW\Skills\GameInfo;
+use DNW\Skills\Numerics\GaussianDistribution;
+use DNW\Skills\Rating;
+use DNW\Skills\RatingContainer;
 use DNW\Skills\TrueSkill\Layers\IteratedTeamDifferencesInnerLayer;
 use DNW\Skills\TrueSkill\Layers\PlayerPerformancesToTeamPerformancesLayer;
 use DNW\Skills\TrueSkill\Layers\PlayerPriorValuesToSkillsLayer;
@@ -18,7 +20,9 @@ use DNW\Skills\TrueSkill\Layers\TeamPerformancesToTeamPerformanceDifferencesLaye
 class TrueSkillFactorGraph extends FactorGraph
 {
     private $_gameInfo;
+
     private $_layers;
+
     private $_priorLayer;
 
     public function __construct(GameInfo $gameInfo, array $teams, array $teamRanks)
@@ -31,15 +35,15 @@ class TrueSkillFactorGraph extends FactorGraph
             });
 
         $this->setVariableFactory($newFactory);
-        $this->_layers = array(
+        $this->_layers = [
             $this->_priorLayer,
             new PlayerSkillsToPerformancesLayer($this),
             new PlayerPerformancesToTeamPerformancesLayer($this),
             new IteratedTeamDifferencesInnerLayer(
                 $this,
                 new TeamPerformancesToTeamPerformanceDifferencesLayer($this),
-                new TeamDifferencesComparisonLayer($this, $teamRanks))
-        );
+                new TeamDifferencesComparisonLayer($this, $teamRanks)),
+        ];
     }
 
     public function getGameInfo()
@@ -83,12 +87,13 @@ class TrueSkillFactorGraph extends FactorGraph
         }
 
         $logZ = $factorList->getLogNormalization();
+
         return exp($logZ);
     }
 
     private function createFullSchedule()
     {
-        $fullSchedule = array();
+        $fullSchedule = [];
 
         $layers = $this->_layers;
         foreach ($layers as $currentLayer) {
@@ -107,7 +112,7 @@ class TrueSkillFactorGraph extends FactorGraph
             }
         }
 
-        return new ScheduleSequence("Full schedule", $fullSchedule);
+        return new ScheduleSequence('Full schedule', $fullSchedule);
     }
 
     public function getUpdatedRatings()

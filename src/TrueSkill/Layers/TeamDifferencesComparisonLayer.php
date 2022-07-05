@@ -1,13 +1,16 @@
-<?php namespace DNW\Skills\TrueSkill\Layers;
+<?php
+
+namespace DNW\Skills\TrueSkill\Layers;
 
 use DNW\Skills\TrueSkill\DrawMargin;
-use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 use DNW\Skills\TrueSkill\Factors\GaussianGreaterThanFactor;
 use DNW\Skills\TrueSkill\Factors\GaussianWithinFactor;
+use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
 {
     private $_epsilon;
+
     private $_teamRanks;
 
     public function __construct(TrueSkillFactorGraph $parentGraph, array $teamRanks)

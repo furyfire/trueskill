@@ -1,8 +1,10 @@
-<?php namespace DNW\Skills\TrueSkill\Factors;
+<?php
 
-use DNW\Skills\Guard;
+namespace DNW\Skills\TrueSkill\Factors;
+
 use DNW\Skills\FactorGraphs\Message;
 use DNW\Skills\FactorGraphs\Variable;
+use DNW\Skills\Guard;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\Numerics\GaussianDistribution;
 
@@ -13,18 +15,19 @@ use DNW\Skills\Numerics\GaussianDistribution;
  */
 class GaussianWeightedSumFactor extends GaussianFactor
 {
-    private $_variableIndexOrdersForWeights = array();
+    private $_variableIndexOrdersForWeights = [];
 
     // This following is used for convenience, for example, the first entry is [0, 1, 2]
     // corresponding to v[0] = a1*v[1] + a2*v[2]
     private $_weights;
+
     private $_weightsSquared;
 
     public function __construct(Variable $sumVariable, array $variablesToSum, array $variableWeights = null)
     {
         parent::__construct(self::createName($sumVariable, $variablesToSum, $variableWeights));
-        $this->_weights = array();
-        $this->_weightsSquared = array();
+        $this->_weights = [];
+        $this->_weightsSquared = [];
 
         // The first weights are a straightforward copy
         // v_0 = a_1*v_1 + a_2*v_2 + ... + a_n * v_n
@@ -40,7 +43,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         $variablesToSumLength = count($variablesToSum);
 
         // 0..n-1
-        $this->_variableIndexOrdersForWeights[0] = array();
+        $this->_variableIndexOrdersForWeights[0] = [];
         for ($i = 0; $i < ($variablesToSumLength + 1); $i++) {
             $this->_variableIndexOrdersForWeights[0][] = $i;
         }
@@ -178,6 +181,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
 
         // Return the difference in the new marginal
         $finalDiff = GaussianDistribution::subtract($newMarginal, $marginal0);
+
         return $finalDiff;
     }
 
@@ -186,10 +190,10 @@ class GaussianWeightedSumFactor extends GaussianFactor
         $allMessages = $this->getMessages();
         $allVariables = $this->getVariables();
 
-        Guard::argumentIsValidIndex($messageIndex, count($allMessages), "messageIndex");
+        Guard::argumentIsValidIndex($messageIndex, count($allMessages), 'messageIndex');
 
-        $updatedMessages = array();
-        $updatedVariables = array();
+        $updatedMessages = [];
+        $updatedVariables = [];
 
         $indicesToUse = $this->_variableIndexOrdersForWeights[$messageIndex];
 
@@ -211,7 +215,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
     private static function createName($sumVariable, $variablesToSum, $weights)
     {
         // TODO: Perf? Use PHP equivalent of StringBuilder? implode on arrays?
-        $result = (string)$sumVariable;
+        $result = (string) $sumVariable;
         $result .= ' = ';
 
         $totalVars = count($variablesToSum);
@@ -222,15 +226,15 @@ class GaussianWeightedSumFactor extends GaussianFactor
                 $result .= '-';
             }
 
-            $absValue = sprintf("%.2f", \abs($weights[$i])); // 0.00?
+            $absValue = sprintf('%.2f', \abs($weights[$i])); // 0.00?
             $result .= $absValue;
-            $result .= "*[";
-            $result .= (string)$variablesToSum[$i];
+            $result .= '*[';
+            $result .= (string) $variablesToSum[$i];
             $result .= ']';
 
             $isLast = ($i == ($totalVars - 1));
 
-            if (!$isLast) {
+            if (! $isLast) {
                 if ($weights[$i + 1] >= 0) {
                     $result .= ' + ';
                 } else {

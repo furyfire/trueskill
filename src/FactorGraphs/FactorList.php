@@ -1,11 +1,13 @@
-<?php namespace DNW\Skills\FactorGraphs;
+<?php
+
+namespace DNW\Skills\FactorGraphs;
 
 /**
  * Helper class for computing the factor graph's normalization constant.
  */
 class FactorList
 {
-    private $_list = array();
+    private $_list = [];
 
     public function getLogNormalization()
     {
@@ -45,6 +47,7 @@ class FactorList
     public function addFactor(Factor $factor)
     {
         $this->_list[] = $factor;
+
         return $factor;
     }
 }

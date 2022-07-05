@@ -1,20 +1,24 @@
-<?php namespace DNW\Skills\FactorGraphs;
+<?php
 
-use Exception;
+namespace DNW\Skills\FactorGraphs;
+
 use DNW\Skills\Guard;
 use DNW\Skills\HashMap;
+use Exception;
 
 abstract class Factor
 {
-    private $_messages = array();
+    private $_messages = [];
+
     private $_messageToVariableBinding;
 
     private $_name;
-    private $_variables = array();
+
+    private $_variables = [];
 
     protected function __construct($name)
     {
-        $this->_name = "Factor[" . $name . "]";
+        $this->_name = 'Factor['.$name.']';
         $this->_messageToVariableBinding = new HashMap();
     }
 
@@ -46,14 +50,17 @@ abstract class Factor
 
     /**
      * Update the message and marginal of the i-th variable that the factor is connected to
+     *
      * @param $messageIndex
+     *
      * @throws Exception
      */
     public function updateMessageIndex($messageIndex)
     {
-        Guard::argumentIsValidIndex($messageIndex, count($this->_messages), "messageIndex");
+        Guard::argumentIsValidIndex($messageIndex, count($this->_messages), 'messageIndex');
         $message = $this->_messages[$messageIndex];
         $variable = $this->_messageToVariableBinding->getValue($message);
+
         return $this->updateMessageVariable($message, $variable);
     }
 
@@ -75,28 +82,32 @@ abstract class Factor
 
     /**
      * Sends the ith message to the marginal and returns the log-normalization constant
+     *
      * @param $messageIndex
      * @return
+     *
      * @throws Exception
      */
     public function sendMessageIndex($messageIndex)
     {
-        Guard::argumentIsValidIndex($messageIndex, count($this->_messages), "messageIndex");
+        Guard::argumentIsValidIndex($messageIndex, count($this->_messages), 'messageIndex');
 
         $message = $this->_messages[$messageIndex];
         $variable = $this->_messageToVariableBinding->getValue($message);
+
         return $this->sendMessageVariable($message, $variable);
     }
 
-    protected abstract function sendMessageVariable(Message $message, Variable $variable);
+    abstract protected function sendMessageVariable(Message $message, Variable $variable);
 
-    public abstract function createVariableToMessageBinding(Variable $variable);
+    abstract public function createVariableToMessageBinding(Variable $variable);
 
     protected function createVariableToMessageBindingWithMessage(Variable $variable, Message $message)
     {
         $this->_messageToVariableBinding->setValue($message, $variable);
         $this->_messages[] = $message;
         $this->_variables[] = $variable;
+
         return $message;
     }
 

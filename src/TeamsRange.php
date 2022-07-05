@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills;
+<?php
+
+namespace DNW\Skills;
 
 use DNW\Skills\Numerics\Range;
 

@@ -1,8 +1,10 @@
-<?php namespace DNW\Skills\TrueSkill\Layers;
+<?php
+
+namespace DNW\Skills\TrueSkill\Layers;
 
 use DNW\Skills\FactorGraphs\Variable;
-use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
+use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorGraphLayer
 {
@@ -17,8 +19,7 @@ class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorG
         $inputVariablesGroupsCount = count($inputVariablesGroups);
         $outputVariablesGroup = &$this->getOutputVariablesGroups();
 
-        for ($i = 0; $i < $inputVariablesGroupsCount - 1; $i++)
-        {
+        for ($i = 0; $i < $inputVariablesGroupsCount - 1; $i++) {
             $strongerTeam = $inputVariablesGroups[$i][0];
             $weakerTeam = $inputVariablesGroups[$i + 1][0];
 
@@ -27,7 +28,7 @@ class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorG
             $this->addLayerFactor($newDifferencesFactor);
 
             // REVIEW: Does it make sense to have groups of one?
-            $outputVariablesGroup[] = array($currentDifference);
+            $outputVariablesGroup[] = [$currentDifference];
         }
     }
 
@@ -35,14 +36,16 @@ class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorG
                                                              Variable $weakerTeam,
                                                              Variable $output)
     {
-        $teams = array($strongerTeam, $weakerTeam);
-        $weights = array(1.0, -1.0);
+        $teams = [$strongerTeam, $weakerTeam];
+        $weights = [1.0, -1.0];
+
         return new GaussianWeightedSumFactor($output, $teams, $weights);
     }
 
     private function createOutputVariable()
     {
-        $outputVariable = $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable("Team performance difference");
+        $outputVariable = $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable('Team performance difference');
+
         return $outputVariable;
     }
 }

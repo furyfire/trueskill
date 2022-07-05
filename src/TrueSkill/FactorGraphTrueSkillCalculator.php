@@ -1,9 +1,9 @@
-<?php namespace DNW\Skills\TrueSkill;
+<?php
+
+namespace DNW\Skills\TrueSkill;
 
 use DNW\Skills\GameInfo;
 use DNW\Skills\Guard;
-use DNW\Skills\ISupportPartialPlay;
-use DNW\Skills\ISupportPartialUpdate;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\Numerics\DiagonalMatrix;
 use DNW\Skills\Numerics\Matrix;
@@ -29,7 +29,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
                                         array $teams,
                                         array $teamRanks)
     {
-        Guard::argumentNotNull($gameInfo, "gameInfo");
+        Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
         RankSorter::sort($teams, $teamRanks);
@@ -109,7 +109,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
     // Helper function that gets a list of values for all player ratings
     private static function getPlayerRatingValues(array $teamAssignmentsList, $playerRatingFunction)
     {
-        $playerRatingValues = array();
+        $playerRatingValues = [];
 
         foreach ($teamAssignmentsList as $currentTeam) {
             foreach ($currentTeam->getAllRatings() as $currentRating) {
@@ -138,7 +138,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         // | -0.75  0.75 |
         // |  0.00 -1.00 |
 
-        $playerAssignments = array();
+        $playerAssignments = [];
         $totalPreviousPlayers = 0;
 
         $teamAssignmentsListCount = count($teamAssignmentsList);
@@ -150,7 +150,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
 
             // Need to add in 0's for all the previous players, since they're not
             // on this team
-            $playerAssignments[$currentColumn] = ($totalPreviousPlayers > 0) ? \array_fill(0, $totalPreviousPlayers, 0) : array();
+            $playerAssignments[$currentColumn] = ($totalPreviousPlayers > 0) ? \array_fill(0, $totalPreviousPlayers, 0) : [];
 
             foreach ($currentTeam->getAllPlayers() as $currentPlayer) {
                 $playerAssignments[$currentColumn][] = PartialPlay::getPartialPlayPercentage($currentPlayer);

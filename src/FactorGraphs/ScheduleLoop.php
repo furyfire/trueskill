@@ -1,8 +1,11 @@
-<?php namespace DNW\Skills\FactorGraphs;
+<?php
+
+namespace DNW\Skills\FactorGraphs;
 
 class ScheduleLoop extends Schedule
 {
     private $_maxDelta;
+
     private $_scheduleToLoop;
 
     public function __construct($name, Schedule $scheduleToLoop, $maxDelta)

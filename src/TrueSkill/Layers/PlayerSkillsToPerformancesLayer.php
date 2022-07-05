@@ -1,10 +1,12 @@
-<?php namespace DNW\Skills\TrueSkill\Layers;
+<?php
 
-use DNW\Skills\FactorGraphs\ScheduleStep;
+namespace DNW\Skills\TrueSkill\Layers;
+
 use DNW\Skills\FactorGraphs\KeyedVariable;
+use DNW\Skills\FactorGraphs\ScheduleStep;
 use DNW\Skills\Numerics\BasicMath;
-use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 use DNW\Skills\TrueSkill\Factors\GaussianLikelihoodFactor;
+use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 {
@@ -19,7 +21,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
         $outputVariablesGroups = &$this->getOutputVariablesGroups();
 
         foreach ($inputVariablesGroups as $currentTeam) {
-            $currentTeamPlayerPerformances = array();
+            $currentTeamPlayerPerformances = [];
 
             foreach ($currentTeam as $playerSkillVariable) {
                 $localPlayerSkillVariable = $playerSkillVariable;
@@ -45,31 +47,34 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 
     private function createOutputVariable($key)
     {
-        $outputVariable = $this->getParentFactorGraph()->getVariableFactory()->createKeyedVariable($key, $key . "'s performance");
+        $outputVariable = $this->getParentFactorGraph()->getVariableFactory()->createKeyedVariable($key, $key."'s performance");
+
         return $outputVariable;
     }
 
     public function createPriorSchedule()
     {
         $localFactors = $this->getLocalFactors();
+
         return $this->scheduleSequence(
             array_map(
                 function ($likelihood) {
-                    return new ScheduleStep("Skill to Perf step", $likelihood, 0);
+                    return new ScheduleStep('Skill to Perf step', $likelihood, 0);
                 },
                 $localFactors),
-            "All skill to performance sending");
+            'All skill to performance sending');
     }
 
     public function createPosteriorSchedule()
     {
         $localFactors = $this->getLocalFactors();
+
         return $this->scheduleSequence(
             array_map(
                 function ($likelihood) {
-                    return new ScheduleStep("name", $likelihood, 1);
+                    return new ScheduleStep('name', $likelihood, 1);
                 },
                 $localFactors),
-            "All skill to performance sending");
+            'All skill to performance sending');
     }
 }

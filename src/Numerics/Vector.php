@@ -1,12 +1,14 @@
-<?php namespace DNW\Skills\Numerics;
+<?php
+
+namespace DNW\Skills\Numerics;
 
 class Vector extends Matrix
 {
     public function __construct(array $vectorValues)
     {
-        $columnValues = array();
+        $columnValues = [];
         foreach ($vectorValues as $currentVectorValue) {
-            $columnValues[] = array($currentVectorValue);
+            $columnValues[] = [$currentVectorValue];
         }
         parent::__construct(count($vectorValues), 1, $columnValues);
     }

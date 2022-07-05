@@ -1,9 +1,9 @@
-<?php namespace DNW\Skills\TrueSkill\Layers;
+<?php
 
-use DNW\Skills\PartialPlay;
-use DNW\Skills\FactorGraphs\ScheduleLoop;
-use DNW\Skills\FactorGraphs\ScheduleSequence;
+namespace DNW\Skills\TrueSkill\Layers;
+
 use DNW\Skills\FactorGraphs\ScheduleStep;
+use DNW\Skills\PartialPlay;
 use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
 use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
@@ -26,7 +26,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
 
             // REVIEW: Does it make sense to have groups of one?
             $outputVariablesGroups = &$this->getOutputVariablesGroups();
-            $outputVariablesGroups[] = array($teamPerformance);
+            $outputVariablesGroups[] = [$teamPerformance];
         }
     }
 
@@ -37,10 +37,11 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
         $sequence = $this->scheduleSequence(
             array_map(
                 function ($weightedSumFactor) {
-                    return new ScheduleStep("Perf to Team Perf Step", $weightedSumFactor, 0);
+                    return new ScheduleStep('Perf to Team Perf Step', $weightedSumFactor, 0);
                 },
                 $localFactors),
-            "all player perf to team perf schedule");
+            'all player perf to team perf schedule');
+
         return $sequence;
     }
 
@@ -49,6 +50,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
         $weights = array_map(
             function ($v) {
                 $player = $v->getKey();
+
                 return PartialPlay::getPartialPlayPercentage($player);
             },
             $teamMembers);
@@ -57,32 +59,33 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
             $sumVariable,
             $teamMembers,
             $weights);
-
     }
 
     public function createPosteriorSchedule()
     {
-        $allFactors = array();
+        $allFactors = [];
         $localFactors = $this->getLocalFactors();
         foreach ($localFactors as $currentFactor) {
             $localCurrentFactor = $currentFactor;
             $numberOfMessages = $localCurrentFactor->getNumberOfMessages();
             for ($currentIteration = 1; $currentIteration < $numberOfMessages; $currentIteration++) {
-                $allFactors[] = new ScheduleStep("team sum perf @" . $currentIteration,
+                $allFactors[] = new ScheduleStep('team sum perf @'.$currentIteration,
                     $localCurrentFactor, $currentIteration);
             }
         }
+
         return $this->scheduleSequence($allFactors, "all of the team's sum iterations");
     }
 
     private function createOutputVariable($team)
     {
         $memberNames = array_map(function ($currentPlayer) {
-            return (string)($currentPlayer->getKey());
+            return (string) ($currentPlayer->getKey());
         }, $team);
 
-        $teamMemberNames = \join(", ", $memberNames);
-        $outputVariable = $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable("Team[" . $teamMemberNames . "]'s performance");
+        $teamMemberNames = \implode(', ', $memberNames);
+        $outputVariable = $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable('Team['.$teamMemberNames."]'s performance");
+
         return $outputVariable;
     }
 }

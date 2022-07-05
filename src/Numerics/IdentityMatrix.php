@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\Numerics;
+<?php
+
+namespace DNW\Skills\Numerics;
 
 class IdentityMatrix extends DiagonalMatrix
 {

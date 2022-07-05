@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\TrueSkill\Layers;
+<?php
+
+namespace DNW\Skills\TrueSkill\Layers;
 
 use DNW\Skills\FactorGraphs\FactorGraphLayer;
 use DNW\Skills\TrueSkill\TrueSkillFactorGraph;

@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\Numerics;
+<?php
+
+namespace DNW\Skills\Numerics;
 
 // The whole purpose of this class is to make the code for the SkillCalculator(s)
 // look a little cleaner
@@ -8,13 +10,13 @@ use Exception;
 class Range
 {
     private $_min;
+
     private $_max;
 
     public function __construct($min, $max)
     {
-        if ($min > $max)
-        {
-            throw new Exception("min > max");
+        if ($min > $max) {
+            throw new Exception('min > max');
         }
 
         $this->_min = $min;
@@ -50,7 +52,7 @@ class Range
 
     public static function atLeast($minimumValue)
     {
-        return static::create($minimumValue, PHP_INT_MAX );
+        return static::create($minimumValue, PHP_INT_MAX);
     }
 
     public function isInRange($value)

@@ -1,4 +1,6 @@
-<?php namespace DNW\Skills\FactorGraphs;
+<?php
+
+namespace DNW\Skills\FactorGraphs;
 
 class VariableFactory
 {
@@ -14,6 +16,7 @@ class VariableFactory
     {
         $initializer = $this->_variablePriorInitializer;
         $newVar = new Variable($name, $initializer());
+
         return $newVar;
     }
 
@@ -21,6 +24,7 @@ class VariableFactory
     {
         $initializer = $this->_variablePriorInitializer;
         $newVar = new KeyedVariable($key, $name, $initializer());
+
         return $newVar;
     }
 }

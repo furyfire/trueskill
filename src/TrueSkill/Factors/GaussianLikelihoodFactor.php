@@ -1,10 +1,12 @@
-<?php namespace DNW\Skills\TrueSkill\Factors;
+<?php
 
-use Exception;
+namespace DNW\Skills\TrueSkill\Factors;
+
 use DNW\Skills\FactorGraphs\KeyedVariable;
 use DNW\Skills\FactorGraphs\Message;
 use DNW\Skills\FactorGraphs\Variable;
 use DNW\Skills\Numerics\GaussianDistribution;
+use Exception;
 
 /**
  * Connects two variables and adds uncertainty.
@@ -17,7 +19,7 @@ class GaussianLikelihoodFactor extends GaussianFactor
 
     public function __construct($betaSquared, Variable $variable1, Variable $variable2)
     {
-        parent::__construct(sprintf("Likelihood of %s going to %s", $variable2, $variable1));
+        parent::__construct(sprintf('Likelihood of %s going to %s', $variable2, $variable1));
         $this->_precision = 1.0 / $betaSquared;
         $this->createVariableToMessageBinding($variable1);
         $this->createVariableToMessageBinding($variable2);
