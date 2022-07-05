@@ -13,12 +13,9 @@ use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 // start the process.
 class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
 {
-    private $_teams;
-
-    public function __construct(TrueSkillFactorGraph $parentGraph, array $teams)
+    public function __construct(TrueSkillFactorGraph $parentGraph, private readonly array $_teams)
     {
         parent::__construct($parentGraph);
-        $this->_teams = $teams;
     }
 
     public function buildLayer()
@@ -33,7 +30,7 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
                 $localCurrentTeamPlayer = $currentTeamPlayer;
                 $currentTeamPlayerRating = $currentTeam->getRating($localCurrentTeamPlayer);
                 $playerSkill = $this->createSkillOutputVariable($localCurrentTeamPlayer);
-                $priorFactor = $this->createPriorFactor($localCurrentTeamPlayer, $currentTeamPlayerRating, $playerSkill);
+                $priorFactor = $this->createPriorFactor($currentTeamPlayerRating, $playerSkill);
                 $this->addLayerFactor($priorFactor);
                 $currentTeamSkills[] = $playerSkill;
             }
@@ -49,14 +46,12 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
 
         return $this->scheduleSequence(
             array_map(
-                function ($prior) {
-                    return new ScheduleStep('Prior to Skill Step', $prior, 0);
-                },
+                fn($prior) => new ScheduleStep('Prior to Skill Step', $prior, 0),
                 $localFactors),
             'All priors');
     }
 
-    private function createPriorFactor($player, Rating $priorRating, Variable $skillsVariable)
+    private function createPriorFactor(Rating $priorRating, Variable $skillsVariable)
     {
         return new GaussianPriorFactor(
             $priorRating->getMean(),
@@ -70,8 +65,7 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
     {
         $parentFactorGraph = $this->getParentFactorGraph();
         $variableFactory = $parentFactorGraph->getVariableFactory();
-        $skillOutputVariable = $variableFactory->createKeyedVariable($key, $key."'s skill");
 
-        return $skillOutputVariable;
+        return $variableFactory->createKeyedVariable($key, $key."'s skill");
     }
 }

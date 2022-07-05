@@ -71,15 +71,12 @@ class GaussianLikelihoodFactor extends GaussianFactor
         $messages = $this->getMessages();
         $vars = $this->getVariables();
 
-        switch ($messageIndex) {
-            case 0:
-                return $this->updateHelper($messages[0], $messages[1],
-                    $vars[0], $vars[1]);
-            case 1:
-                return $this->updateHelper($messages[1], $messages[0],
-                    $vars[1], $vars[0]);
-            default:
-                throw new Exception();
-        }
+        return match ($messageIndex) {
+            0 => $this->updateHelper($messages[0], $messages[1],
+                $vars[0], $vars[1]),
+            1 => $this->updateHelper($messages[1], $messages[0],
+                $vars[1], $vars[0]),
+            default => throw new Exception(),
+        };
     }
 }

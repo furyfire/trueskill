@@ -2,19 +2,16 @@
 
 namespace DNW\Skills\FactorGraphs;
 
-abstract class Schedule
+abstract class Schedule implements \Stringable
 {
-    private $_name;
-
-    protected function __construct($name)
+    protected function __construct(private $_name)
     {
-        $this->_name = $name;
     }
 
     abstract public function visit($depth = -1, $maxDepth = 0);
 
-    public function __toString()
+    public function __toString(): string
     {
-        return $this->_name;
+        return (string) $this->_name;
     }
 }

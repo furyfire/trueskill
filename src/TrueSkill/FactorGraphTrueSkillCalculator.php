@@ -38,7 +38,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         $factorGraph->buildGraph();
         $factorGraph->runSchedule();
 
-        $probabilityOfOutcome = $factorGraph->getProbabilityOfRanking();
+        $factorGraph->getProbabilityOfRanking();
 
         return $factorGraph->getUpdatedRatings();
     }
@@ -47,11 +47,11 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
     {
         // We need to create the A matrix which is the player team assigments.
         $teamAssignmentsList = $teams;
-        $skillsMatrix = $this->getPlayerCovarianceMatrix($teamAssignmentsList);
-        $meanVector = $this->getPlayerMeansVector($teamAssignmentsList);
+        $skillsMatrix = self::getPlayerCovarianceMatrix($teamAssignmentsList);
+        $meanVector = self::getPlayerMeansVector($teamAssignmentsList);
         $meanVectorTranspose = $meanVector->getTranspose();
 
-        $playerTeamAssignmentsMatrix = $this->createPlayerTeamAssignmentMatrix($teamAssignmentsList, $meanVector->getRowCount());
+        $playerTeamAssignmentsMatrix = self::createPlayerTeamAssignmentMatrix($teamAssignmentsList, $meanVector->getRowCount());
         $playerTeamAssignmentsMatrixTranspose = $playerTeamAssignmentsMatrix->getTranspose();
 
         $betaSquared = BasicMath::square($gameInfo->getBeta());
@@ -81,18 +81,14 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         $sqrtPartDenominator = $middle->getDeterminant();
         $sqrtPart = $sqrtPartNumerator / $sqrtPartDenominator;
 
-        $result = exp($expPart) * sqrt($sqrtPart);
-
-        return $result;
+        return exp($expPart) * sqrt($sqrtPart);
     }
 
     private static function getPlayerMeansVector(array $teamAssignmentsList)
     {
         // A simple vector of all the player means.
         return new Vector(self::getPlayerRatingValues($teamAssignmentsList,
-            function ($rating) {
-                return $rating->getMean();
-            }));
+            fn($rating) => $rating->getMean()));
     }
 
     private static function getPlayerCovarianceMatrix(array $teamAssignmentsList)
@@ -101,9 +97,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         // players.
         return new DiagonalMatrix(
             self::getPlayerRatingValues($teamAssignmentsList,
-                function ($rating) {
-                    return BasicMath::square($rating->getStandardDeviation());
-                }));
+                fn($rating) => BasicMath::square($rating->getStandardDeviation())));
     }
 
     // Helper function that gets a list of values for all player ratings
@@ -141,7 +135,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         $playerAssignments = [];
         $totalPreviousPlayers = 0;
 
-        $teamAssignmentsListCount = count($teamAssignmentsList);
+        $teamAssignmentsListCount = is_countable($teamAssignmentsList) ? count($teamAssignmentsList) : 0;
 
         $currentColumn = 0;
 
@@ -175,8 +169,6 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
             $currentColumn++;
         }
 
-        $playerTeamAssignmentsMatrix = Matrix::fromColumnValues($totalPlayers, $teamAssignmentsListCount - 1, $playerAssignments);
-
-        return $playerTeamAssignmentsMatrix;
+        return Matrix::fromColumnValues($totalPlayers, $teamAssignmentsListCount - 1, $playerAssignments);
     }
 }

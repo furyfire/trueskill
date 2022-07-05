@@ -9,21 +9,18 @@ namespace DNW\Skills;
  */
 class PairwiseComparison
 {
-    const WIN = 1;
+    final const WIN = 1;
 
-    const DRAW = 0;
+    final const DRAW = 0;
 
-    const LOSE = -1;
+    final const LOSE = -1;
 
     public static function getRankFromComparison($comparison)
     {
-        switch ($comparison) {
-            case PairwiseComparison::WIN:
-                return [1, 2];
-            case PairwiseComparison::LOSE:
-                return [2, 1];
-            default:
-                return [1, 1];
-        }
+        return match ($comparison) {
+            PairwiseComparison::WIN => [1, 2],
+            PairwiseComparison::LOSE => [2, 1],
+            default => [1, 1],
+        };
     }
 }

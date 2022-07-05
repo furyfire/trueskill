@@ -4,27 +4,21 @@ namespace DNW\Skills\FactorGraphs;
 
 class VariableFactory
 {
-    // using a Func<TValue> to encourage fresh copies in case it's overwritten
-    private $_variablePriorInitializer;
-
-    public function __construct($variablePriorInitializer)
+    public function __construct(private $_variablePriorInitializer)
     {
-        $this->_variablePriorInitializer = $variablePriorInitializer;
     }
 
     public function createBasicVariable($name)
     {
         $initializer = $this->_variablePriorInitializer;
-        $newVar = new Variable($name, $initializer());
 
-        return $newVar;
+        return new Variable($name, $initializer());
     }
 
     public function createKeyedVariable($key, $name)
     {
         $initializer = $this->_variablePriorInitializer;
-        $newVar = new KeyedVariable($key, $name, $initializer());
 
-        return $newVar;
+        return new KeyedVariable($key, $name, $initializer());
     }
 }

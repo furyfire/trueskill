@@ -5,17 +5,14 @@ namespace DNW\Skills\FactorGraphs;
 // edit this
 abstract class FactorGraphLayer
 {
-    private $_localFactors = [];
+    private array $_localFactors = [];
 
-    private $_outputVariablesGroups = [];
+    private array $_outputVariablesGroups = [];
 
     private $_inputVariablesGroups = [];
 
-    private $_parentFactorGraph;
-
-    protected function __construct(FactorGraph $parentGraph)
+    protected function __construct(private readonly FactorGraph $_parentFactorGraph)
     {
-        $this->_parentFactorGraph = $parentGraph;
     }
 
     protected function getInputVariablesGroups()

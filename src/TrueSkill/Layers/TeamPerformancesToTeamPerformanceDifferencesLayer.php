@@ -8,15 +8,10 @@ use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorGraphLayer
 {
-    public function __construct(TrueSkillFactorGraph $parentGraph)
-    {
-        parent::__construct($parentGraph);
-    }
-
     public function buildLayer()
     {
         $inputVariablesGroups = $this->getInputVariablesGroups();
-        $inputVariablesGroupsCount = count($inputVariablesGroups);
+        $inputVariablesGroupsCount = is_countable($inputVariablesGroups) ? count($inputVariablesGroups) : 0;
         $outputVariablesGroup = &$this->getOutputVariablesGroups();
 
         for ($i = 0; $i < $inputVariablesGroupsCount - 1; $i++) {
@@ -44,8 +39,6 @@ class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorG
 
     private function createOutputVariable()
     {
-        $outputVariable = $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable('Team performance difference');
-
-        return $outputVariable;
+        return $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable('Team performance difference');
     }
 }

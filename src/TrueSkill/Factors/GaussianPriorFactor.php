@@ -38,5 +38,6 @@ class GaussianPriorFactor extends GaussianFactor
         $message->setValue($this->_newMessage);
 
         return GaussianDistribution::subtract($oldMarginal, $newMarginal);
+
     }
 }

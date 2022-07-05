@@ -72,16 +72,12 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
 
         $totalPlayers = $selfTeam->count() + $otherTeam->count();
 
-        $meanGetter = function ($currentRating) {
-            return $currentRating->getMean();
-        };
+        $meanGetter = fn($currentRating) => $currentRating->getMean();
 
         $selfMeanSum = BasicMath::sum($selfTeam->getAllRatings(), $meanGetter);
         $otherTeamMeanSum = BasicMath::sum($otherTeam->getAllRatings(), $meanGetter);
 
-        $varianceGetter = function ($currentRating) {
-            return BasicMath::square($currentRating->getStandardDeviation());
-        };
+        $varianceGetter = fn($currentRating) => BasicMath::square($currentRating->getStandardDeviation());
 
         $c = sqrt(
             BasicMath::sum($selfTeam->getAllRatings(), $varianceGetter)
@@ -148,22 +144,18 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
 
         // We've verified that there's just two teams
         $team1Ratings = $teams[0]->getAllRatings();
-        $team1Count = count($team1Ratings);
+        $team1Count = is_countable($team1Ratings) ? count($team1Ratings) : 0;
 
         $team2Ratings = $teams[1]->getAllRatings();
-        $team2Count = count($team2Ratings);
+        $team2Count = is_countable($team2Ratings) ? count($team2Ratings) : 0;
 
         $totalPlayers = $team1Count + $team2Count;
 
         $betaSquared = BasicMath::square($gameInfo->getBeta());
 
-        $meanGetter = function ($currentRating) {
-            return $currentRating->getMean();
-        };
+        $meanGetter = fn($currentRating) => $currentRating->getMean();
 
-        $varianceGetter = function ($currentRating) {
-            return BasicMath::square($currentRating->getStandardDeviation());
-        };
+        $varianceGetter = fn($currentRating) => BasicMath::square($currentRating->getStandardDeviation());
 
         $team1MeanSum = BasicMath::sum($team1Ratings, $meanGetter);
         $team1StdDevSquared = BasicMath::sum($team1Ratings, $varianceGetter);

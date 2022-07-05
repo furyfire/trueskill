@@ -6,15 +6,15 @@ use DNW\Skills\Guard;
 use DNW\Skills\HashMap;
 use Exception;
 
-abstract class Factor
+abstract class Factor implements \Stringable
 {
-    private $_messages = [];
+    private array $_messages = [];
 
     private $_messageToVariableBinding;
 
     private $_name;
 
-    private $_variables = [];
+    private array $_variables = [];
 
     protected function __construct($name)
     {
@@ -111,7 +111,7 @@ abstract class Factor
         return $message;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->_name;
     }

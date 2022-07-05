@@ -19,20 +19,15 @@ use DNW\Skills\TrueSkill\Layers\TeamPerformancesToTeamPerformanceDifferencesLaye
 
 class TrueSkillFactorGraph extends FactorGraph
 {
-    private $_gameInfo;
-
     private $_layers;
 
     private $_priorLayer;
 
-    public function __construct(GameInfo $gameInfo, array $teams, array $teamRanks)
+    public function __construct(private readonly GameInfo $_gameInfo, array $teams, array $teamRanks)
     {
         $this->_priorLayer = new PlayerPriorValuesToSkillsLayer($this, $teams);
-        $this->_gameInfo = $gameInfo;
         $newFactory = new VariableFactory(
-            function () {
-                return GaussianDistribution::fromPrecisionMean(0, 0);
-            });
+            fn() => GaussianDistribution::fromPrecisionMean(0, 0));
 
         $this->setVariableFactory($newFactory);
         $this->_layers = [
@@ -70,7 +65,7 @@ class TrueSkillFactorGraph extends FactorGraph
     public function runSchedule()
     {
         $fullSchedule = $this->createFullSchedule();
-        $fullScheduleDelta = $fullSchedule->visit();
+        $fullSchedule->visit();
     }
 
     public function getProbabilityOfRanking()

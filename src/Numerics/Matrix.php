@@ -6,19 +6,10 @@ use Exception;
 
 class Matrix
 {
-    const ERROR_TOLERANCE = 0.0000000001;
+    public const ERROR_TOLERANCE = 0.0000000001;
 
-    private $_matrixRowData;
-
-    private $_rowCount;
-
-    private $_columnCount;
-
-    public function __construct($rows = 0, $columns = 0, $matrixData = null)
+    public function __construct(private $_rowCount = 0, private $_columnCount = 0, private $_matrixRowData = null)
     {
-        $this->_rowCount = $rows;
-        $this->_columnCount = $columns;
-        $this->_matrixRowData = $matrixData;
     }
 
     public static function fromColumnValues($rows, $columns, $columnValues)
@@ -37,9 +28,8 @@ class Matrix
         return $result;
     }
 
-    public static function fromRowsColumns()
+    public static function fromRowsColumns(...$args)
     {
-        $args = \func_get_args();
         $rows = $args[0];
         $cols = $args[1];
         $result = new Matrix($rows, $cols);
@@ -138,7 +128,7 @@ class Matrix
             $firstRowColValue = $this->_matrixRowData[0][$currentColumn];
             $cofactor = $this->getCofactor(0, $currentColumn);
             $itemToAdd = $firstRowColValue * $cofactor;
-            $result = $result + $itemToAdd;
+            $result += $itemToAdd;
         }
 
         return $result;
@@ -258,7 +248,7 @@ class Matrix
                     $leftValue = $left->getValue($currentRow, $vectorIndex);
                     $rightValue = $right->getValue($vectorIndex, $currentColumn);
                     $vectorIndexProduct = $leftValue * $rightValue;
-                    $productValue = $productValue + $vectorIndexProduct;
+                    $productValue += $vectorIndexProduct;
                 }
 
                 $resultMatrix[$currentRow][$currentColumn] = $productValue;

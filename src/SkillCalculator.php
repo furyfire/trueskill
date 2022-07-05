@@ -9,17 +9,8 @@ use Exception;
  */
 abstract class SkillCalculator
 {
-    private $_supportedOptions;
-
-    private $_playersPerTeamAllowed;
-
-    private $_totalTeamsAllowed;
-
-    protected function __construct($supportedOptions, TeamsRange $totalTeamsAllowed, PlayersRange $playerPerTeamAllowed)
+    protected function __construct(private $_supportedOptions, private readonly TeamsRange $_totalTeamsAllowed, private readonly PlayersRange $_playersPerTeamAllowed)
     {
-        $this->_supportedOptions = $supportedOptions;
-        $this->_totalTeamsAllowed = $totalTeamsAllowed;
-        $this->_playersPerTeamAllowed = $playerPerTeamAllowed;
     }
 
     /**
@@ -55,8 +46,6 @@ abstract class SkillCalculator
 
     /**
      * @param  array<\DNW\Skills\Team>  $teams
-     * @param  \DNW\Skills\TeamsRange  $totalTeams
-     * @param  \DNW\Skills\PlayersRange  $playersPerTeam
      * @return void
      * @throws \Exception
      */
@@ -79,9 +68,9 @@ abstract class SkillCalculator
 
 class SkillCalculatorSupportedOptions
 {
-    const NONE = 0x00;
+    final const NONE = 0x00;
 
-    const PARTIAL_PLAY = 0x01;
+    final const PARTIAL_PLAY = 0x01;
 
-    const PARTIAL_UPDATE = 0x02;
+    final const PARTIAL_UPDATE = 0x02;
 }

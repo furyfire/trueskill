@@ -4,12 +4,9 @@ namespace DNW\Skills\FactorGraphs;
 
 class ScheduleSequence extends Schedule
 {
-    private $_schedules;
-
-    public function __construct($name, array $schedules)
+    public function __construct($name, private readonly array $_schedules)
     {
         parent::__construct($name);
-        $this->_schedules = $schedules;
     }
 
     public function visit($depth = -1, $maxDepth = 0)

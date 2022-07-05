@@ -7,16 +7,15 @@ namespace DNW\Skills;
  */
 class HashMap
 {
-    private $_hashToValue = [];
+    private array $_hashToValue = [];
 
-    private $_hashToKey = [];
+    private array $_hashToKey = [];
 
     public function getValue($key)
     {
         $hash = self::getHash($key);
-        $hashValue = $this->_hashToValue[$hash];
 
-        return $hashValue;
+        return $this->_hashToValue[$hash];
     }
 
     public function setValue($key, $value)
@@ -30,16 +29,12 @@ class HashMap
 
     public function getAllKeys()
     {
-        $keys = array_values($this->_hashToKey);
-
-        return $keys;
+        return array_values($this->_hashToKey);
     }
 
     public function getAllValues()
     {
-        $values = array_values($this->_hashToValue);
-
-        return $values;
+        return array_values($this->_hashToValue);
     }
 
     public function count()

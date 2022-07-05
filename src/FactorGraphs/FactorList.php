@@ -7,7 +7,7 @@ namespace DNW\Skills\FactorGraphs;
  */
 class FactorList
 {
-    private $_list = [];
+    private array $_list = [];
 
     public function getLogNormalization()
     {
@@ -33,7 +33,7 @@ class FactorList
         $sumLogS = 0;
 
         foreach ($list as &$currentFactor) {
-            $sumLogS = $sumLogS + $currentFactor->getLogNormalization();
+            $sumLogS += $currentFactor->getLogNormalization();
         }
 
         return $sumLogZ + $sumLogS;

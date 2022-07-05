@@ -17,7 +17,7 @@ class DefaultVariable extends Variable
         return null;
     }
 
-    public function setValue($value)
+    public function setValue($value): never
     {
         throw new Exception();
     }

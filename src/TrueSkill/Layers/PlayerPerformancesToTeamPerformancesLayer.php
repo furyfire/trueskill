@@ -9,11 +9,6 @@ use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLayer
 {
-    public function __construct(TrueSkillFactorGraph $parentGraph)
-    {
-        parent::__construct($parentGraph);
-    }
-
     public function buildLayer()
     {
         $inputVariablesGroups = $this->getInputVariablesGroups();
@@ -34,15 +29,11 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
     {
         $localFactors = $this->getLocalFactors();
 
-        $sequence = $this->scheduleSequence(
+        return $this->scheduleSequence(
             array_map(
-                function ($weightedSumFactor) {
-                    return new ScheduleStep('Perf to Team Perf Step', $weightedSumFactor, 0);
-                },
+                fn($weightedSumFactor) => new ScheduleStep('Perf to Team Perf Step', $weightedSumFactor, 0),
                 $localFactors),
             'all player perf to team perf schedule');
-
-        return $sequence;
     }
 
     protected function createPlayerToTeamSumFactor($teamMembers, $sumVariable)
@@ -79,13 +70,10 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
 
     private function createOutputVariable($team)
     {
-        $memberNames = array_map(function ($currentPlayer) {
-            return (string) ($currentPlayer->getKey());
-        }, $team);
+        $memberNames = array_map(fn($currentPlayer) => (string) ($currentPlayer->getKey()), $team);
 
         $teamMemberNames = \implode(', ', $memberNames);
-        $outputVariable = $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable('Team['.$teamMemberNames."]'s performance");
 
-        return $outputVariable;
+        return $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable('Team['.$teamMemberNames."]'s performance");
     }
 }

@@ -5,28 +5,19 @@ namespace DNW\Skills;
 // Container for a player's rating.
 use DNW\Skills\Numerics\GaussianDistribution;
 
-class Rating
+class Rating implements \Stringable
 {
-    const CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER = 3;
-
-    private $_conservativeStandardDeviationMultiplier;
-
-    private $_mean;
-
-    private $_standardDeviation;
+    final const CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER = 3;
 
     /**
      * Constructs a rating.
      *
-     * @param  float  $mean The statistical mean value of the rating (also known as mu).
-     * @param  float  $standardDeviation The standard deviation of the rating (also known as s).
-     * @param  float|int  $conservativeStandardDeviationMultiplier optional The number of standardDeviations to subtract from the mean to achieve a conservative rating.
+     * @param float $_mean The statistical mean value of the rating (also known as mu).
+     * @param float $_standardDeviation The standard deviation of the rating (also known as s).
+     * @param float|int $_conservativeStandardDeviationMultiplier optional The number of standardDeviations to subtract from the mean to achieve a conservative rating.
      */
-    public function __construct($mean, $standardDeviation, $conservativeStandardDeviationMultiplier = self::CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER)
+    public function __construct(private $_mean, private $_standardDeviation, private $_conservativeStandardDeviationMultiplier = self::CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER)
     {
-        $this->_mean = $mean;
-        $this->_standardDeviation = $standardDeviation;
-        $this->_conservativeStandardDeviationMultiplier = $conservativeStandardDeviationMultiplier;
     }
 
     /**
@@ -76,7 +67,7 @@ class Rating
         return new Rating($partialPosteriorGaussion->getMean(), $partialPosteriorGaussion->getStandardDeviation(), $prior->_conservativeStandardDeviationMultiplier);
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return sprintf('mean=%.4f, standardDeviation=%.4f', $this->_mean, $this->_standardDeviation);
     }

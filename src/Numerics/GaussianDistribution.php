@@ -8,12 +8,8 @@ namespace DNW\Skills\Numerics;
  * @author     Jeff Moser <jeff@moserware.com>
  * @copyright  2010 Jeff Moser
  */
-class GaussianDistribution
+class GaussianDistribution implements \Stringable
 {
-    private $_mean;
-
-    private $_standardDeviation;
-
     // precision and precisionMean are used because they make multiplying and dividing simpler
     // (the the accompanying math paper for more details)
     private $_precision;
@@ -22,11 +18,9 @@ class GaussianDistribution
 
     private $_variance;
 
-    public function __construct($mean = 0.0, $standardDeviation = 1.0)
+    public function __construct(private $_mean = 0.0, private $_standardDeviation = 1.0)
     {
-        $this->_mean = $mean;
-        $this->_standardDeviation = $standardDeviation;
-        $this->_variance = BasicMath::square($standardDeviation);
+        $this->_variance = BasicMath::square($_standardDeviation);
 
         if ($this->_variance != 0) {
             $this->_precision = 1.0 / $this->_variance;
@@ -34,11 +28,7 @@ class GaussianDistribution
         } else {
             $this->_precision = \INF;
 
-            if ($this->_mean == 0) {
-                $this->_precisionMean = 0;
-            } else {
-                $this->_precisionMean = \INF;
-            }
+            $this->_precisionMean = $this->_mean == 0 ? 0 : \INF;
         }
     }
 
@@ -172,9 +162,8 @@ class GaussianDistribution
 
         $multiplier = 1.0 / ($standardDeviation * sqrt(2 * M_PI));
         $expPart = exp((-1.0 * BasicMath::square($x - $mean)) / (2 * BasicMath::square($standardDeviation)));
-        $result = $multiplier * $expPart;
 
-        return $result;
+        return $multiplier * $expPart;
     }
 
     public static function cumulativeTo($x, $mean = 0.0, $standardDeviation = 1.0)
@@ -267,7 +256,7 @@ class GaussianDistribution
         return $mean - sqrt(2) * $standardDeviation * GaussianDistribution::inverseErrorFunctionCumulativeTo(2 * $x);
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return sprintf('mean=%.4f standardDeviation=%.4f', $this->_mean, $this->_standardDeviation);
     }

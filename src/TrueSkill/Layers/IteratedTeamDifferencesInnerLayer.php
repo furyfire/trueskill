@@ -11,26 +11,18 @@ use Exception;
 // The whole purpose of this is to do a loop on the bottom
 class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 {
-    private $_TeamDifferencesComparisonLayer;
-
-    private $_TeamPerformancesToTeamPerformanceDifferencesLayer;
-
     public function __construct(TrueSkillFactorGraph $parentGraph,
-                                TeamPerformancesToTeamPerformanceDifferencesLayer $teamPerformancesToPerformanceDifferences,
-                                TeamDifferencesComparisonLayer $teamDifferencesComparisonLayer)
+                                private readonly TeamPerformancesToTeamPerformanceDifferencesLayer $_TeamPerformancesToTeamPerformanceDifferencesLayer,
+                                private readonly TeamDifferencesComparisonLayer $_TeamDifferencesComparisonLayer)
     {
         parent::__construct($parentGraph);
-        $this->_TeamPerformancesToTeamPerformanceDifferencesLayer = $teamPerformancesToPerformanceDifferences;
-        $this->_TeamDifferencesComparisonLayer = $teamDifferencesComparisonLayer;
     }
 
     public function getLocalFactors()
     {
-        $localFactors = array_merge($this->_TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors(),
+        return array_merge($this->_TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors(),
             $this->_TeamDifferencesComparisonLayer->getLocalFactors()
         );
-
-        return $localFactors;
     }
 
     public function buildLayer()
@@ -46,7 +38,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 
     public function createPriorSchedule()
     {
-        switch (count($this->getInputVariablesGroups())) {
+        switch (is_countable($this->getInputVariablesGroups()) ? count($this->getInputVariablesGroups()) : 0) {
             case 0:
             case 1:
                 throw new Exception('InvalidOperation');
@@ -59,15 +51,14 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         }
 
         // When dealing with differences, there are always (n-1) differences, so add in the 1
-        $totalTeamDifferences = count($this->_TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors());
-        $totalTeams = $totalTeamDifferences + 1;
+        $totalTeamDifferences = is_countable($this->_TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors()) ? count($this->_TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors()) : 0;
 
         $localFactors = $this->_TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
 
         $firstDifferencesFactor = $localFactors[0];
         $lastDifferencesFactor = $localFactors[$totalTeamDifferences - 1];
 
-        $innerSchedule = new ScheduleSequence(
+        return new ScheduleSequence(
             'inner schedule',
             [
                 $loop,
@@ -79,8 +70,6 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
                     $lastDifferencesFactor, 2),
             ]
         );
-
-        return $innerSchedule;
     }
 
     private function createTwoTeamInnerPriorLoopSchedule()
@@ -108,7 +97,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 
     private function createMultipleTeamInnerPriorLoopSchedule()
     {
-        $totalTeamDifferences = count($this->_TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors());
+        $totalTeamDifferences = is_countable($this->_TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors()) ? count($this->_TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors()) : 0;
 
         $forwardScheduleList = [];
 
@@ -173,11 +162,9 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 
         $initialMaxDelta = 0.0001;
 
-        $loop = new ScheduleLoop(
+        return new ScheduleLoop(
             sprintf('loop with max delta of %f', $initialMaxDelta),
             $forwardBackwardScheduleToLoop,
             $initialMaxDelta);
-
-        return $loop;
     }
 }

@@ -2,16 +2,10 @@
 
 namespace DNW\Skills\FactorGraphs;
 
-class Message
+class Message implements \Stringable
 {
-    private $_name;
-
-    private $_value;
-
-    public function __construct($value = null, $name = null)
+    public function __construct(private $_value = null, private $_name = null)
     {
-        $this->_name = $name;
-        $this->_value = $value;
     }
 
     public function getValue()
@@ -24,7 +18,7 @@ class Message
         $this->_value = $value;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return (string) $this->_name;
     }

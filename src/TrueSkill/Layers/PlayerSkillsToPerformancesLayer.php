@@ -10,11 +10,6 @@ use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 {
-    public function __construct(TrueSkillFactorGraph $parentGraph)
-    {
-        parent::__construct($parentGraph);
-    }
-
     public function buildLayer()
     {
         $inputVariablesGroups = $this->getInputVariablesGroups();
@@ -47,9 +42,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 
     private function createOutputVariable($key)
     {
-        $outputVariable = $this->getParentFactorGraph()->getVariableFactory()->createKeyedVariable($key, $key."'s performance");
-
-        return $outputVariable;
+        return $this->getParentFactorGraph()->getVariableFactory()->createKeyedVariable($key, $key."'s performance");
     }
 
     public function createPriorSchedule()
@@ -58,9 +51,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 
         return $this->scheduleSequence(
             array_map(
-                function ($likelihood) {
-                    return new ScheduleStep('Skill to Perf step', $likelihood, 0);
-                },
+                fn($likelihood) => new ScheduleStep('Skill to Perf step', $likelihood, 0),
                 $localFactors),
             'All skill to performance sending');
     }
@@ -71,9 +62,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 
         return $this->scheduleSequence(
             array_map(
-                function ($likelihood) {
-                    return new ScheduleStep('name', $likelihood, 1);
-                },
+                fn($likelihood) => new ScheduleStep('name', $likelihood, 1),
                 $localFactors),
             'All skill to performance sending');
     }

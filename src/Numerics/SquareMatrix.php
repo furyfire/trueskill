@@ -4,9 +4,8 @@ namespace DNW\Skills\Numerics;
 
 class SquareMatrix extends Matrix
 {
-    public function __construct()
+    public function __construct(...$allValues)
     {
-        $allValues = func_get_args();
         $rows = (int) sqrt(count($allValues));
         $cols = $rows;
 
