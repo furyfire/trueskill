@@ -53,12 +53,19 @@ abstract class SkillCalculator
         self::validateTeamCountAndPlayersCountPerTeamWithRanges($teamsOfPlayerToRatings, $this->_totalTeamsAllowed, $this->_playersPerTeamAllowed);
     }
 
+    /**
+     * @param  array<\DNW\Skills\Team>  $teams
+     * @param  \DNW\Skills\TeamsRange  $totalTeams
+     * @param  \DNW\Skills\PlayersRange  $playersPerTeam
+     * @return void
+     * @throws \Exception
+     */
     private static function validateTeamCountAndPlayersCountPerTeamWithRanges(array $teams, TeamsRange $totalTeams, PlayersRange $playersPerTeam)
     {
         $countOfTeams = 0;
 
         foreach ($teams as $currentTeam) {
-            if (! $playersPerTeam->isInRange(count($currentTeam))) {
+            if (! $playersPerTeam->isInRange($currentTeam->count())) {
                 throw new Exception('Player count is not in range');
             }
             $countOfTeams++;
