@@ -41,17 +41,21 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
 
         $results = new RatingContainer();
 
-        self::updatePlayerRatings($gameInfo,
+        self::updatePlayerRatings(
+            $gameInfo,
             $results,
             $team1,
             $team2,
-            $wasDraw ? PairwiseComparison::DRAW : PairwiseComparison::WIN);
+            $wasDraw ? PairwiseComparison::DRAW : PairwiseComparison::WIN
+        );
 
-        self::updatePlayerRatings($gameInfo,
+        self::updatePlayerRatings(
+            $gameInfo,
             $results,
             $team2,
             $team1,
-            $wasDraw ? PairwiseComparison::DRAW : PairwiseComparison::LOSE);
+            $wasDraw ? PairwiseComparison::DRAW : PairwiseComparison::LOSE
+        );
 
         return $results;
     }

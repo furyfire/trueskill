@@ -11,10 +11,11 @@ use Exception;
 // The whole purpose of this is to do a loop on the bottom
 class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 {
-    public function __construct(TrueSkillFactorGraph $parentGraph,
-                                private readonly TeamPerformancesToTeamPerformanceDifferencesLayer $_TeamPerformancesToTeamPerformanceDifferencesLayer,
-                                private readonly TeamDifferencesComparisonLayer $_TeamDifferencesComparisonLayer)
-    {
+    public function __construct(
+        TrueSkillFactorGraph $parentGraph,
+        private readonly TeamPerformancesToTeamPerformanceDifferencesLayer $_TeamPerformancesToTeamPerformanceDifferencesLayer,
+        private readonly TeamDifferencesComparisonLayer $_TeamDifferencesComparisonLayer
+    ) {
         parent::__construct($parentGraph);
     }
 
@@ -142,13 +143,16 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
                 [
                     new ScheduleStep(
                         sprintf('teamPerformanceToPerformanceDifferenceFactors[totalTeamDifferences - 1 - %d] @ 0', $i),
-                        $differencesFactor, 0),
+                        $differencesFactor, 0
+                    ),
                     new ScheduleStep(
                         sprintf('greaterThanOrWithinResultFactors[totalTeamDifferences - 1 - %d] @ 0', $i),
-                        $comparisonFactor, 0),
+                        $comparisonFactor, 0
+                    ),
                     new ScheduleStep(
                         sprintf('teamPerformanceToPerformanceDifferenceFactors[totalTeamDifferences - 1 - %d] @ 1', $i),
-                        $performancesToDifferencesFactor, 1),
+                        $performancesToDifferencesFactor, 1
+                    ),
                 ]);
             $backwardScheduleList[] = $currentBackwardSchedulePiece;
         }
@@ -158,13 +162,15 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         $forwardBackwardScheduleToLoop =
             new ScheduleSequence(
                 'forward Backward Schedule To Loop',
-                [$forwardSchedule, $backwardSchedule]);
+                [$forwardSchedule, $backwardSchedule]
+            );
 
         $initialMaxDelta = 0.0001;
 
         return new ScheduleLoop(
             sprintf('loop with max delta of %f', $initialMaxDelta),
             $forwardBackwardScheduleToLoop,
-            $initialMaxDelta);
+            $initialMaxDelta
+        );
     }
 }

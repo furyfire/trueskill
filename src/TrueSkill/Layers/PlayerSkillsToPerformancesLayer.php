@@ -40,9 +40,9 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
         );
     }
 
-    private function createOutputVariable($key)
+    private function createOutputVariable($key): KeyedVariable
     {
-        return $this->getParentFactorGraph()->getVariableFactory()->createKeyedVariable($key, $key."'s performance");
+        return $this->getParentFactorGraph()->getVariableFactory()->createKeyedVariable($key, $key . "'s performance");
     }
 
     public function createPriorSchedule(): ScheduleSequence
@@ -52,8 +52,10 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
         return $this->scheduleSequence(
             array_map(
                 fn ($likelihood) => new ScheduleStep('Skill to Perf step', $likelihood, 0),
-                $localFactors),
-            'All skill to performance sending');
+                $localFactors
+            ),
+            'All skill to performance sending'
+        );
     }
 
     public function createPosteriorSchedule(): ScheduleSequence
@@ -63,7 +65,9 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
         return $this->scheduleSequence(
             array_map(
                 fn ($likelihood) => new ScheduleStep('name', $likelihood, 1),
-                $localFactors),
-            'All skill to performance sending');
+                $localFactors
+            ),
+            'All skill to performance sending'
+        );
     }
 }

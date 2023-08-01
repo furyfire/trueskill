@@ -9,21 +9,25 @@ use Exception;
  */
 abstract class SkillCalculator
 {
-    protected function __construct(private $_supportedOptions, private readonly TeamsRange $_totalTeamsAllowed, private readonly PlayersRange $_playersPerTeamAllowed)
-    {
+    protected function __construct(
+        private $_supportedOptions,
+        private readonly TeamsRange $_totalTeamsAllowed,
+        private readonly PlayersRange $_playersPerTeamAllowed
+    ) {
     }
 
     /**
      * Calculates new ratings based on the prior ratings and team ranks.
      *
-     * @param  GameInfo  $gameInfo Parameters for the game.
-     * @param  array  $teamsOfPlayerToRatings A mapping of team players and their ratings.
-     * @param  array  $teamRanks The ranks of the teams where 1 is first place. For a tie, repeat the number (e.g. 1, 2, 2).
+     * @param GameInfo $gameInfo Parameters for the game.
+     * @param array $teamsOfPlayerToRatings A mapping of team players and their ratings.
+     * @param array $teamRanks The ranks of the teams where 1 is first place. For a tie, repeat the number (e.g. 1, 2, 2).
      * @return All the players and their new ratings.
      */
-    abstract public function calculateNewRatings(GameInfo $gameInfo,
-                                                 array $teamsOfPlayerToRatings,
-                                                 array $teamRanks);
+    abstract public function calculateNewRatings(
+        GameInfo $gameInfo,
+        array $teamsOfPlayerToRatings,
+        array $teamRanks);
 
     /**
      * Calculates the match quality as the likelihood of all teams drawing.
@@ -66,11 +70,3 @@ abstract class SkillCalculator
     }
 }
 
-class SkillCalculatorSupportedOptions
-{
-    final const NONE = 0x00;
-
-    final const PARTIAL_PLAY = 0x01;
-
-    final const PARTIAL_UPDATE = 0x02;
-}

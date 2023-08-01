@@ -7,42 +7,42 @@ namespace DNW\Skills;
  */
 class HashMap
 {
-    private array $_hashToValue = [];
+    private array $hashToValue = [];
 
-    private array $_hashToKey = [];
+    private array $hashToKey = [];
 
     public function getValue(string|object $key): mixed
     {
         $hash = self::getHash($key);
 
-        return $this->_hashToValue[$hash];
+        return $this->hashToValue[$hash];
     }
 
     public function setValue(string|object $key, mixed $value): self
     {
         $hash = self::getHash($key);
-        $this->_hashToKey[$hash] = $key;
-        $this->_hashToValue[$hash] = $value;
+        $this->hashToKey[$hash] = $key;
+        $this->hashToValue[$hash] = $value;
 
         return $this;
     }
 
     public function getAllKeys(): array
     {
-        return array_values($this->_hashToKey);
+        return array_values($this->hashToKey);
     }
 
     public function getAllValues(): array
     {
-        return array_values($this->_hashToValue);
+        return array_values($this->hashToValue);
     }
 
     public function count(): int
     {
-        return count($this->_hashToKey);
+        return count($this->hashToKey);
     }
 
-    private static function getHash(string|Object $key): string
+    private static function getHash(string|object $key): string
     {
         if (is_object($key)) {
             return spl_object_hash($key);
