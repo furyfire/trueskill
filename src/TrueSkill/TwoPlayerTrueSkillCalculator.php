@@ -29,7 +29,7 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
 
     public function calculateNewRatings(GameInfo $gameInfo,
                                         array $teams,
-                                        array $teamRanks)
+                                        array $teamRanks): RatingContainer
     {
         // Basic argument checking
         Guard::argumentNotNull($gameInfo, 'gameInfo');

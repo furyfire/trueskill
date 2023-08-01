@@ -6,7 +6,7 @@ use DNW\Skills\Numerics\Range;
 
 class PlayersRange extends Range
 {
-    protected static function create($min, $max)
+    protected static function create(int $min, int $max): self
     {
         return new PlayersRange($min, $max);
     }

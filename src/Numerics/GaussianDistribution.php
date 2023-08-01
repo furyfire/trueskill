@@ -18,7 +18,7 @@ class GaussianDistribution implements \Stringable
 
     private $_variance;
 
-    public function __construct(private $_mean = 0.0, private $_standardDeviation = 1.0)
+    public function __construct(private float $_mean = 0.0, private float $_standardDeviation = 1.0)
     {
         $this->_variance = BasicMath::square($_standardDeviation);
 
@@ -32,32 +32,32 @@ class GaussianDistribution implements \Stringable
         }
     }
 
-    public function getMean()
+    public function getMean(): float
     {
         return $this->_mean;
     }
 
-    public function getVariance()
+    public function getVariance(): float
     {
         return $this->_variance;
     }
 
-    public function getStandardDeviation()
+    public function getStandardDeviation(): float
     {
         return $this->_standardDeviation;
     }
 
-    public function getPrecision()
+    public function getPrecision(): float
     {
         return $this->_precision;
     }
 
-    public function getPrecisionMean()
+    public function getPrecisionMean(): float
     {
         return $this->_precisionMean;
     }
 
-    public function getNormalizationConstant()
+    public function getNormalizationConstant(): float
     {
         // Great derivation of this is at http://www.astro.psu.edu/~mce/A451_2/A451/downloads/notes0.pdf
         return 1.0 / (sqrt(2 * M_PI) * $this->_standardDeviation);
@@ -75,7 +75,7 @@ class GaussianDistribution implements \Stringable
         return $result;
     }
 
-    public static function fromPrecisionMean($precisionMean, $precision)
+    public static function fromPrecisionMean(float $precisionMean, float $precision): self
     {
         $result = new GaussianDistribution();
         $result->_precision = $precision;
@@ -96,13 +96,13 @@ class GaussianDistribution implements \Stringable
 
     // For details, see http://www.tina-vision.net/tina-knoppix/tina-memo/2003-003.pdf
     // for multiplication, the precision mean ones are easier to write :)
-    public static function multiply(GaussianDistribution $left, GaussianDistribution $right)
+    public static function multiply(GaussianDistribution $left, GaussianDistribution $right): self
     {
         return GaussianDistribution::fromPrecisionMean($left->_precisionMean + $right->_precisionMean, $left->_precision + $right->_precision);
     }
 
     // Computes the absolute difference between two Gaussians
-    public static function absoluteDifference(GaussianDistribution $left, GaussianDistribution $right)
+    public static function absoluteDifference(GaussianDistribution $left, GaussianDistribution $right): float
     {
         return max(
             abs($left->_precisionMean - $right->_precisionMean),
@@ -111,12 +111,12 @@ class GaussianDistribution implements \Stringable
     }
 
     // Computes the absolute difference between two Gaussians
-    public static function subtract(GaussianDistribution $left, GaussianDistribution $right)
+    public static function subtract(GaussianDistribution $left, GaussianDistribution $right): float
     {
         return GaussianDistribution::absoluteDifference($left, $right);
     }
 
-    public static function logProductNormalization(GaussianDistribution $left, GaussianDistribution $right)
+    public static function logProductNormalization(GaussianDistribution $left, GaussianDistribution $right): float
     {
         if (($left->_precision == 0) || ($right->_precision == 0)) {
             return 0;
@@ -130,7 +130,7 @@ class GaussianDistribution implements \Stringable
         return -$logSqrt2Pi - (log($varianceSum) / 2.0) - (BasicMath::square($meanDifference) / (2.0 * $varianceSum));
     }
 
-    public static function divide(GaussianDistribution $numerator, GaussianDistribution $denominator)
+    public static function divide(GaussianDistribution $numerator, GaussianDistribution $denominator): self
     {
         return GaussianDistribution::fromPrecisionMean(
             $numerator->_precisionMean - $denominator->_precisionMean,
@@ -138,7 +138,7 @@ class GaussianDistribution implements \Stringable
         );
     }
 
-    public static function logRatioNormalization(GaussianDistribution $numerator, GaussianDistribution $denominator)
+    public static function logRatioNormalization(GaussianDistribution $numerator, GaussianDistribution $denominator): float
     {
         if (($numerator->_precision == 0) || ($denominator->_precision == 0)) {
             return 0;
@@ -153,7 +153,7 @@ class GaussianDistribution implements \Stringable
         BasicMath::square($meanDifference) / (2 * $varianceDifference);
     }
 
-    public static function at($x, $mean = 0.0, $standardDeviation = 1.0)
+    public static function at(float $x, float $mean = 0.0, float $standardDeviation = 1.0): float
     {
         // See http://mathworld.wolfram.com/NormalDistribution.html
         //                1              -(x-mean)^2 / (2*stdDev^2)
@@ -166,7 +166,7 @@ class GaussianDistribution implements \Stringable
         return $multiplier * $expPart;
     }
 
-    public static function cumulativeTo($x, $mean = 0.0, $standardDeviation = 1.0)
+    public static function cumulativeTo(float $x, float $mean = 0.0, float $standardDeviation = 1.0): float
     {
         $invsqrt2 = -0.707106781186547524400844362104;
         $result = GaussianDistribution::errorFunctionCumulativeTo($invsqrt2 * $x);
@@ -174,7 +174,7 @@ class GaussianDistribution implements \Stringable
         return 0.5 * $result;
     }
 
-    private static function errorFunctionCumulativeTo($x)
+    private static function errorFunctionCumulativeTo($x): float
     {
         // Derived from page 265 of Numerical Recipes 3rd Edition
         $z = abs($x);
@@ -227,7 +227,7 @@ class GaussianDistribution implements \Stringable
         return ($x >= 0.0) ? $ans : (2.0 - $ans);
     }
 
-    private static function inverseErrorFunctionCumulativeTo($p)
+    private static function inverseErrorFunctionCumulativeTo(float $p): float
     {
         // From page 265 of numerical recipes
 
@@ -250,7 +250,7 @@ class GaussianDistribution implements \Stringable
         return ($p < 1.0) ? $x : -$x;
     }
 
-    public static function inverseCumulativeTo($x, $mean = 0.0, $standardDeviation = 1.0)
+    public static function inverseCumulativeTo(float $x, float $mean = 0.0, float $standardDeviation = 1.0): float
     {
         // From numerical recipes, page 320
         return $mean - sqrt(2) * $standardDeviation * GaussianDistribution::inverseErrorFunctionCumulativeTo(2 * $x);

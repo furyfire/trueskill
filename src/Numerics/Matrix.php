@@ -8,11 +8,11 @@ class Matrix
 {
     public const ERROR_TOLERANCE = 0.0000000001;
 
-    public function __construct(private $_rowCount = 0, private $_columnCount = 0, private $_matrixRowData = null)
+    public function __construct(private int $_rowCount = 0, private int $_columnCount = 0, private $_matrixRowData = null)
     {
     }
 
-    public static function fromColumnValues($rows, $columns, $columnValues)
+    public static function fromColumnValues(int $rows, int $columns, array $columnValues): self
     {
         $data = [];
         $result = new Matrix($rows, $columns, $data);
@@ -28,7 +28,7 @@ class Matrix
         return $result;
     }
 
-    public static function fromRowsColumns(...$args)
+    public static function fromRowsColumns(...$args): Matrix
     {
         $rows = $args[0];
         $cols = $args[1];
@@ -44,27 +44,27 @@ class Matrix
         return $result;
     }
 
-    public function getRowCount()
+    public function getRowCount(): int
     {
         return $this->_rowCount;
     }
 
-    public function getColumnCount()
+    public function getColumnCount(): int
     {
         return $this->_columnCount;
     }
 
-    public function getValue($row, $col)
+    public function getValue(int $row, int $col): float|int
     {
         return $this->_matrixRowData[$row][$col];
     }
 
-    public function setValue($row, $col, $value)
+    public function setValue(int $row, int $col, float|int $value)
     {
         $this->_matrixRowData[$row][$col] = $value;
     }
 
-    public function getTranspose()
+    public function getTranspose(): self
     {
         // Just flip everything
         $transposeMatrix = [];
@@ -84,12 +84,12 @@ class Matrix
         return new Matrix($this->_columnCount, $this->_rowCount, $transposeMatrix);
     }
 
-    private function isSquare()
+    private function isSquare(): bool
     {
         return ($this->_rowCount == $this->_columnCount) && ($this->_rowCount > 0);
     }
 
-    public function getDeterminant()
+    public function getDeterminant(): float
     {
         // Basic argument checking
         if (! $this->isSquare()) {
@@ -134,7 +134,7 @@ class Matrix
         return $result;
     }
 
-    public function getAdjugate()
+    public function getAdjugate(): SquareMatrix|self
     {
         if (! $this->isSquare()) {
             throw new Exception('Matrix must be square!');
@@ -171,7 +171,7 @@ class Matrix
         return new Matrix($this->_columnCount, $this->_rowCount, $result);
     }
 
-    public function getInverse()
+    public function getInverse(): Matrix|SquareMatrix
     {
         if (($this->_rowCount == 1) && ($this->_columnCount == 1)) {
             return new SquareMatrix(1.0 / $this->_matrixRowData[0][0]);
@@ -185,7 +185,7 @@ class Matrix
         return self::scalarMultiply($determinantInverse, $adjugate);
     }
 
-    public static function scalarMultiply($scalarValue, $matrix)
+    public static function scalarMultiply(float|int $scalarValue, Matrix $matrix): Matrix
     {
         $rows = $matrix->getRowCount();
         $columns = $matrix->getColumnCount();
@@ -200,7 +200,7 @@ class Matrix
         return new Matrix($rows, $columns, $newValues);
     }
 
-    public static function add($left, $right)
+    public static function add(Matrix $left, Matrix $right): Matrix
     {
         if (
             ($left->getRowCount() != $right->getRowCount())
@@ -226,7 +226,7 @@ class Matrix
         return new Matrix($left->getRowCount(), $right->getColumnCount(), $resultMatrix);
     }
 
-    public static function multiply($left, $right)
+    public static function multiply(Matrix $left, Matrix $right): Matrix
     {
         // Just your standard matrix multiplication.
         // See http://en.wikipedia.org/wiki/Matrix_multiplication for details
@@ -258,7 +258,7 @@ class Matrix
         return new Matrix($resultRows, $resultColumns, $resultMatrix);
     }
 
-    private function getMinorMatrix($rowToRemove, $columnToRemove)
+    private function getMinorMatrix(int $rowToRemove, int $columnToRemove): Matrix
     {
         // See http://en.wikipedia.org/wiki/Minor_(linear_algebra)
 

@@ -16,7 +16,7 @@ class BasicMath
      * @param  number  $x Value to square (x)
      * @return number The squared value (x^2)
      */
-    public static function square($x)
+    public static function square($x): float|int
     {
         return $x * $x;
     }
@@ -28,7 +28,7 @@ class BasicMath
      * @param  callable  $callback The function to apply to each array element before summing.
      * @return number The sum.
      */
-    public static function sum(array $itemsToSum, $callback)
+    public static function sum(array $itemsToSum, \Closure $callback): float|int
     {
         $mappedItems = array_map($callback, $itemsToSum);
 

@@ -6,6 +6,7 @@ use DNW\Skills\FactorGraphs\KeyedVariable;
 use DNW\Skills\FactorGraphs\ScheduleStep;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\TrueSkill\Factors\GaussianLikelihoodFactor;
+use DNW\Skills\FactorGraphs\ScheduleSequence;
 
 class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 {
@@ -30,7 +31,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
         }
     }
 
-    private function createLikelihood(KeyedVariable $playerSkill, KeyedVariable $playerPerformance)
+    private function createLikelihood(KeyedVariable $playerSkill, KeyedVariable $playerPerformance): GaussianLikelihoodFactor
     {
         return new GaussianLikelihoodFactor(
             BasicMath::square($this->getParentFactorGraph()->getGameInfo()->getBeta()),
@@ -44,7 +45,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
         return $this->getParentFactorGraph()->getVariableFactory()->createKeyedVariable($key, $key."'s performance");
     }
 
-    public function createPriorSchedule()
+    public function createPriorSchedule(): ScheduleSequence
     {
         $localFactors = $this->getLocalFactors();
 
@@ -55,7 +56,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
             'All skill to performance sending');
     }
 
-    public function createPosteriorSchedule()
+    public function createPosteriorSchedule(): ScheduleSequence
     {
         $localFactors = $this->getLocalFactors();
 

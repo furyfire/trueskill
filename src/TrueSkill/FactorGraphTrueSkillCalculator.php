@@ -14,6 +14,7 @@ use DNW\Skills\RankSorter;
 use DNW\Skills\SkillCalculator;
 use DNW\Skills\SkillCalculatorSupportedOptions;
 use DNW\Skills\TeamsRange;
+use DNW\Skills\RatingContainer;
 
 /**
  * Calculates TrueSkill using a full factor graph.
@@ -27,7 +28,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
 
     public function calculateNewRatings(GameInfo $gameInfo,
                                         array $teams,
-                                        array $teamRanks)
+                                        array $teamRanks): RatingContainer
     {
         Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);

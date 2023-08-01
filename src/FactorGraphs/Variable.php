@@ -4,22 +4,22 @@ namespace DNW\Skills\FactorGraphs;
 
 class Variable implements \Stringable
 {
-    private $_name;
+    private string $_name;
 
-    private $_value;
+    private mixed $_value;
 
-    public function __construct($name, private $_prior)
+    public function __construct(string $name, private mixed $_prior)
     {
         $this->_name = 'Variable['.$name.']';
         $this->resetToPrior();
     }
 
-    public function getValue()
+    public function getValue(): mixed
     {
         return $this->_value;
     }
 
-    public function setValue($value)
+    public function setValue(mixed $value): void
     {
         $this->_value = $value;
     }

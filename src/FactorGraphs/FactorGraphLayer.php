@@ -2,7 +2,6 @@
 
 namespace DNW\Skills\FactorGraphs;
 
-// edit this
 abstract class FactorGraphLayer
 {
     private array $_localFactors = [];
@@ -47,7 +46,7 @@ abstract class FactorGraphLayer
         $this->_inputVariablesGroups = $value;
     }
 
-    protected function scheduleSequence(array $itemsToSequence, $name)
+    protected function scheduleSequence(array $itemsToSequence, $name): ScheduleSequence
     {
         return new ScheduleSequence($name, $itemsToSequence);
     }

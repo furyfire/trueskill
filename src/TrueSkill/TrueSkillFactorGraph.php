@@ -110,7 +110,7 @@ class TrueSkillFactorGraph extends FactorGraph
         return new ScheduleSequence('Full schedule', $fullSchedule);
     }
 
-    public function getUpdatedRatings()
+    public function getUpdatedRatings(): RatingContainer
     {
         $result = new RatingContainer();
 

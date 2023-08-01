@@ -8,7 +8,7 @@ abstract class Schedule implements \Stringable
     {
     }
 
-    abstract public function visit($depth = -1, $maxDepth = 0);
+    abstract public function visit(int $depth = -1, int $maxDepth = 0);
 
     public function __toString(): string
     {

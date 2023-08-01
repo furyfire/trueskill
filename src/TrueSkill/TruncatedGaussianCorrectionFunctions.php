@@ -17,9 +17,8 @@ class TruncatedGaussianCorrectionFunctions
      * @param $teamPerformanceDifference
      * @param  number  $drawMargin In the paper, it's referred to as just "ε".
      * @param $c
-     * @return float
      */
-    public static function vExceedsMarginScaled($teamPerformanceDifference, $drawMargin, $c)
+    public static function vExceedsMarginScaled($teamPerformanceDifference, float|int $drawMargin, $c): float
     {
         return self::vExceedsMargin($teamPerformanceDifference / $c, $drawMargin / $c);
     }
@@ -44,14 +43,13 @@ class TruncatedGaussianCorrectionFunctions
      * @param $teamPerformanceDifference
      * @param $drawMargin
      * @param $c
-     * @return float
      */
-    public static function wExceedsMarginScaled($teamPerformanceDifference, $drawMargin, $c)
+    public static function wExceedsMarginScaled($teamPerformanceDifference, float|int $drawMargin, $c): float
     {
         return self::wExceedsMargin($teamPerformanceDifference / $c, $drawMargin / $c);
     }
 
-    public static function wExceedsMargin($teamPerformanceDifference, $drawMargin)
+    public static function wExceedsMargin($teamPerformanceDifference, $drawMargin): float
     {
         $denominator = GaussianDistribution::cumulativeTo($teamPerformanceDifference - $drawMargin);
 
@@ -69,13 +67,13 @@ class TruncatedGaussianCorrectionFunctions
     }
 
     // the additive correction of a double-sided truncated Gaussian with unit variance
-    public static function vWithinMarginScaled($teamPerformanceDifference, $drawMargin, $c)
+    public static function vWithinMarginScaled($teamPerformanceDifference, float|int $drawMargin, $c): float
     {
         return self::vWithinMargin($teamPerformanceDifference / $c, $drawMargin / $c);
     }
 
     // from F#:
-    public static function vWithinMargin($teamPerformanceDifference, $drawMargin)
+    public static function vWithinMargin($teamPerformanceDifference, $drawMargin): float
     {
         $teamPerformanceDifferenceAbsoluteValue = abs($teamPerformanceDifference);
         $denominator =
@@ -101,13 +99,13 @@ class TruncatedGaussianCorrectionFunctions
     }
 
     // the multiplicative correction of a double-sided truncated Gaussian with unit variance
-    public static function wWithinMarginScaled($teamPerformanceDifference, $drawMargin, $c)
+    public static function wWithinMarginScaled($teamPerformanceDifference, float|int $drawMargin, $c): float
     {
         return self::wWithinMargin($teamPerformanceDifference / $c, $drawMargin / $c);
     }
 
     // From F#:
-    public static function wWithinMargin($teamPerformanceDifference, $drawMargin)
+    public static function wWithinMargin($teamPerformanceDifference, float|int $drawMargin)
     {
         $teamPerformanceDifferenceAbsoluteValue = abs($teamPerformanceDifference);
         $denominator = GaussianDistribution::cumulativeTo($drawMargin - $teamPerformanceDifferenceAbsoluteValue)
