@@ -7,7 +7,7 @@ use DNW\Skills\TrueSkill\FactorGraphTrueSkillCalculator;
 
 class FactorGraphTeamTrueSkillCalculatorTest extends TestCase
 {
-    public function testFactorGraphTrueSkillCalculator()
+    public function testFactorGraphTrueSkillCalculator(): void
     {
         $calculator = new FactorGraphTrueSkillCalculator();
 

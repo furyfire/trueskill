@@ -27,7 +27,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
         parent::__construct(SkillCalculatorSupportedOptions::NONE, TeamsRange::exactly(2), PlayersRange::atLeast(1));
     }
 
-    public function calculateNewRatings(GameInfo $gameInfo, array $teams, array $teamRanks)
+    public function calculateNewRatings(GameInfo $gameInfo, array $teams, array $teamRanks): RatingContainer
     {
         Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
@@ -60,7 +60,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
                                                 RatingContainer $newPlayerRatings,
                                                 Team $selfTeam,
                                                 Team $otherTeam,
-                                                $selfToOtherTeamComparison)
+                                                PairwiseComparison $selfToOtherTeamComparison): void
     {
         $drawMargin = DrawMargin::getDrawMarginFromDrawProbability(
             $gameInfo->getDrawProbability(),
@@ -107,7 +107,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
             // non-draw case
             $v = TruncatedGaussianCorrectionFunctions::vExceedsMarginScaled($meanDelta, $drawMargin, $c);
             $w = TruncatedGaussianCorrectionFunctions::wExceedsMarginScaled($meanDelta, $drawMargin, $c);
-            $rankMultiplier = (int) $selfToOtherTeamComparison;
+            $rankMultiplier = $selfToOtherTeamComparison->value;
         } else {
             // assume draw
             $v = TruncatedGaussianCorrectionFunctions::vWithinMarginScaled($meanDelta, $drawMargin, $c);
@@ -137,7 +137,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
     /**
      * {@inheritdoc}
      */
-    public function calculateMatchQuality(GameInfo $gameInfo, array $teams)
+    public function calculateMatchQuality(GameInfo $gameInfo, array $teams): float
     {
         Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);

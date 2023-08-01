@@ -9,7 +9,7 @@ use DNW\Skills\Tests\TestCase;
 
 class MatrixTest extends TestCase
 {
-    public function testTwoByTwoDeterminant()
+    public function testTwoByTwoDeterminant(): void
     {
         $a = new SquareMatrix(1, 2,
                               3, 4);
@@ -32,7 +32,7 @@ class MatrixTest extends TestCase
         $this->assertEquals(12 * 21 - 15 * 17, $d->getDeterminant());
     }
 
-    public function testThreeByThreeDeterminant()
+    public function testThreeByThreeDeterminant(): void
     {
         $a = new SquareMatrix(1, 2, 3,
                               4, 5, 6,
@@ -48,7 +48,7 @@ class MatrixTest extends TestCase
         $this->assertEquals(-90, $pi->getDeterminant());
     }
 
-    public function testFourByFourDeterminant()
+    public function testFourByFourDeterminant(): void
     {
         $a = new SquareMatrix(1,  2,  3,  4,
                                5,  6,  7,  8,
@@ -66,7 +66,7 @@ class MatrixTest extends TestCase
         $this->assertEquals(98, $pi->getDeterminant());
     }
 
-    public function testEightByEightDeterminant()
+    public function testEightByEightDeterminant(): void
     {
         $a = new SquareMatrix(1,  2,  3,  4,  5,  6,  7,  8,
                                9, 10, 11, 12, 13, 14, 15, 16,
@@ -92,7 +92,7 @@ class MatrixTest extends TestCase
         $this->assertEquals(1378143, $pi->getDeterminant());
     }
 
-    public function testEquals()
+    public function testEquals(): void
     {
         $a = new SquareMatrix(1, 2,
                               3, 4);
@@ -130,7 +130,7 @@ class MatrixTest extends TestCase
         $this->assertTrue($g->equals($h));
     }
 
-    public function testAdjugate()
+    public function testAdjugate(): void
     {
         // From Wikipedia: http://en.wikipedia.org/wiki/Adjugate_matrix
         $a = new SquareMatrix(1, 2,
@@ -152,7 +152,7 @@ class MatrixTest extends TestCase
         $this->assertTrue($d->equals($c->getAdjugate()));
     }
 
-    public function testInverse()
+    public function testInverse(): void
     {
         // see http://www.mathwords.com/i/inverse_of_a_matrix.htm
         $a = new SquareMatrix(4, 3,
