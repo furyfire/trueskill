@@ -26,9 +26,12 @@ abstract class GaussianFactor extends Factor
     {
         $newDistribution = GaussianDistribution::fromPrecisionMean(0, 0);
 
-        return parent::createVariableToMessageBindingWithMessage($variable,
+        return parent::createVariableToMessageBindingWithMessage(
+            $variable,
             new Message(
                 $newDistribution,
-                sprintf('message from %s to %s', $this, $variable)));
+                sprintf('message from %s to %s', $this, $variable)
+            )
+        );
     }
 }

@@ -14,30 +14,34 @@ use DNW\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
  */
 class GaussianWithinFactor extends GaussianFactor
 {
-    private $_epsilon;
+    private $epsilon;
 
     public function __construct($epsilon, Variable $variable)
     {
         parent::__construct(sprintf('%s <= %.2f', $variable, $epsilon));
-        $this->_epsilon = $epsilon;
+        $this->epsilon = $epsilon;
         $this->createVariableToMessageBinding($variable);
     }
 
     public function getLogNormalization()
     {
-        /** @var Variable[] $variables */
+        /**
+ * @var Variable[] $variables
+*/
         $variables = $this->getVariables();
         $marginal = $variables[0]->getValue();
 
-        /** @var Message[] $messages */
+        /**
+ * @var Message[] $messages
+*/
         $messages = $this->getMessages();
         $message = $messages[0]->getValue();
         $messageFromVariable = GaussianDistribution::divide($marginal, $message);
         $mean = $messageFromVariable->getMean();
         $std = $messageFromVariable->getStandardDeviation();
-        $z = GaussianDistribution::cumulativeTo(($this->_epsilon - $mean) / $std)
+        $z = GaussianDistribution::cumulativeTo(($this->epsilon - $mean) / $std)
             -
-            GaussianDistribution::cumulativeTo((-$this->_epsilon - $mean) / $std);
+            GaussianDistribution::cumulativeTo((-$this->epsilon - $mean) / $std);
 
         return -GaussianDistribution::logProductNormalization($messageFromVariable, $message) + log($z);
     }
@@ -54,7 +58,7 @@ class GaussianWithinFactor extends GaussianFactor
         $sqrtC = sqrt($c);
         $dOnSqrtC = $d / $sqrtC;
 
-        $epsilonTimesSqrtC = $this->_epsilon * $sqrtC;
+        $epsilonTimesSqrtC = $this->epsilon * $sqrtC;
         $d = $messageFromVariable->getPrecisionMean();
 
         $denominator = 1.0 - TruncatedGaussianCorrectionFunctions::wWithinMargin($dOnSqrtC, $epsilonTimesSqrtC);

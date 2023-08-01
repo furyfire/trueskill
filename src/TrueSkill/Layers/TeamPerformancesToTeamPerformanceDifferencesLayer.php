@@ -26,10 +26,11 @@ class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorG
         }
     }
 
-    private function createTeamPerformanceToDifferenceFactor(Variable $strongerTeam,
-                                                             Variable $weakerTeam,
-                                                             Variable $output)
-    {
+    private function createTeamPerformanceToDifferenceFactor(
+        Variable $strongerTeam,
+        Variable $weakerTeam,
+        Variable $output
+    ) {
         $teams = [$strongerTeam, $weakerTeam];
         $weights = [1.0, -1.0];
 

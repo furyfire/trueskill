@@ -15,7 +15,8 @@ class TruncatedGaussianCorrectionFunctions
      * correction of a single-sided truncated Gaussian with unit variance."
      *
      * @param $teamPerformanceDifference
-     * @param $drawMargin In the paper, it's referred to as just "ε".
+     * @param $drawMargin                In the paper, it's referred to as just
+     *                                   "ε".
      * @param $c
      */
     public static function vExceedsMarginScaled(float $teamPerformanceDifference, float $drawMargin, float $c): float
@@ -123,7 +124,8 @@ class TruncatedGaussianCorrectionFunctions
             ($drawMargin - $teamPerformanceDifferenceAbsoluteValue)
             *
             GaussianDistribution::at(
-                $drawMargin - $teamPerformanceDifferenceAbsoluteValue)
+                $drawMargin - $teamPerformanceDifferenceAbsoluteValue
+            )
             - (-$drawMargin - $teamPerformanceDifferenceAbsoluteValue)
             *
             GaussianDistribution::at(-$drawMargin - $teamPerformanceDifferenceAbsoluteValue)) / $denominator;

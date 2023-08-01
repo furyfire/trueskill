@@ -9,13 +9,13 @@ use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
 {
-    private $_epsilon;
+    private $epsilon;
 
-    public function __construct(TrueSkillFactorGraph $parentGraph, private readonly array $_teamRanks)
+    public function __construct(TrueSkillFactorGraph $parentGraph, private readonly array $teamRanks)
     {
         parent::__construct($parentGraph);
         $gameInfo = $this->getParentFactorGraph()->getGameInfo();
-        $this->_epsilon = DrawMargin::getDrawMarginFromDrawProbability($gameInfo->getDrawProbability(), $gameInfo->getBeta());
+        $this->epsilon = DrawMargin::getDrawMarginFromDrawProbability($gameInfo->getDrawProbability(), $gameInfo->getBeta());
     }
 
     public function buildLayer()
@@ -24,13 +24,13 @@ class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
         $inputVarGroupsCount = is_countable($inputVarGroups) ? count($inputVarGroups) : 0;
 
         for ($i = 0; $i < $inputVarGroupsCount; $i++) {
-            $isDraw = ($this->_teamRanks[$i] == $this->_teamRanks[$i + 1]);
+            $isDraw = ($this->teamRanks[$i] == $this->teamRanks[$i + 1]);
             $teamDifference = $inputVarGroups[$i][0];
 
             $factor =
                 $isDraw
-                    ? new GaussianWithinFactor($this->_epsilon, $teamDifference)
-                    : new GaussianGreaterThanFactor($this->_epsilon, $teamDifference);
+                    ? new GaussianWithinFactor($this->epsilon, $teamDifference)
+                    : new GaussianGreaterThanFactor($this->epsilon, $teamDifference);
 
             $this->addLayerFactor($factor);
         }

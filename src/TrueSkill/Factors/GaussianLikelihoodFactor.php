@@ -15,21 +15,25 @@ use Exception;
  */
 class GaussianLikelihoodFactor extends GaussianFactor
 {
-    private $_precision;
+    private $precision;
 
     public function __construct($betaSquared, Variable $variable1, Variable $variable2)
     {
         parent::__construct(sprintf('Likelihood of %s going to %s', $variable2, $variable1));
-        $this->_precision = 1.0 / $betaSquared;
+        $this->precision = 1.0 / $betaSquared;
         $this->createVariableToMessageBinding($variable1);
         $this->createVariableToMessageBinding($variable2);
     }
 
     public function getLogNormalization(): float
     {
-        /** @var KeyedVariable[]|mixed $vars */
+        /**
+ * @var KeyedVariable[]|mixed $vars
+*/
         $vars = $this->getVariables();
-        /** @var Message[] $messages */
+        /**
+ * @var Message[] $messages
+*/
         $messages = $this->getMessages();
 
         return GaussianDistribution::logRatioNormalization(
@@ -46,7 +50,7 @@ class GaussianLikelihoodFactor extends GaussianFactor
         $marginal1 = clone $variable1->getValue();
         $marginal2 = clone $variable2->getValue();
 
-        $a = $this->_precision / ($this->_precision + $marginal2->getPrecision() - $message2Value->getPrecision());
+        $a = $this->precision / ($this->precision + $marginal2->getPrecision() - $message2Value->getPrecision());
 
         $newMessage = GaussianDistribution::fromPrecisionMean(
             $a * ($marginal2->getPrecisionMean() - $message2Value->getPrecisionMean()),
@@ -72,10 +76,16 @@ class GaussianLikelihoodFactor extends GaussianFactor
         $vars = $this->getVariables();
 
         return match ($messageIndex) {
-            0 => $this->updateHelper($messages[0], $messages[1],
-                $vars[0], $vars[1]),
-            1 => $this->updateHelper($messages[1], $messages[0],
-                $vars[1], $vars[0]),
+            0 => $this->updateHelper(
+                $messages[0],
+                $messages[1],
+                $vars[0], $vars[1]
+            ),
+            1 => $this->updateHelper(
+                $messages[1],
+                $messages[0],
+                $vars[1], $vars[0]
+            ),
             default => throw new Exception(),
         };
     }

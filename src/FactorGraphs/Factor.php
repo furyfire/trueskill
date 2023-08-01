@@ -8,18 +8,18 @@ use Exception;
 
 abstract class Factor implements \Stringable
 {
-    private array $_messages = [];
+    private array $messages = [];
 
-    private $_messageToVariableBinding;
+    private $messageToVariableBinding;
 
-    private string $_name;
+    private string $name;
 
-    private array $_variables = [];
+    private array $variables = [];
 
     protected function __construct(string $name)
     {
-        $this->_name = 'Factor['.$name.']';
-        $this->_messageToVariableBinding = new HashMap();
+        $this->name = 'Factor[' . $name . ']';
+        $this->messageToVariableBinding = new HashMap();
     }
 
     /**
@@ -35,17 +35,17 @@ abstract class Factor implements \Stringable
      */
     public function getNumberOfMessages(): int
     {
-        return count($this->_messages);
+        return count($this->messages);
     }
 
     protected function getVariables(): array
     {
-        return $this->_variables;
+        return $this->variables;
     }
 
     protected function getMessages(): array
     {
-        return $this->_messages;
+        return $this->messages;
     }
 
     /**
@@ -57,9 +57,9 @@ abstract class Factor implements \Stringable
      */
     public function updateMessageIndex(int $messageIndex)
     {
-        Guard::argumentIsValidIndex($messageIndex, count($this->_messages), 'messageIndex');
-        $message = $this->_messages[$messageIndex];
-        $variable = $this->_messageToVariableBinding->getValue($message);
+        Guard::argumentIsValidIndex($messageIndex, count($this->messages), 'messageIndex');
+        $message = $this->messages[$messageIndex];
+        $variable = $this->messageToVariableBinding->getValue($message);
 
         return $this->updateMessageVariable($message, $variable);
     }
@@ -74,7 +74,7 @@ abstract class Factor implements \Stringable
      */
     public function resetMarginals()
     {
-        $allValues = $this->_messageToVariableBinding->getAllValues();
+        $allValues = $this->messageToVariableBinding->getAllValues();
         foreach ($allValues as $currentVariable) {
             $currentVariable->resetToPrior();
         }
@@ -83,17 +83,17 @@ abstract class Factor implements \Stringable
     /**
      * Sends the ith message to the marginal and returns the log-normalization constant
      *
-     * @param $messageIndex
+     * @param  $messageIndex
      * @return
      *
      * @throws Exception
      */
     public function sendMessageIndex($messageIndex)
     {
-        Guard::argumentIsValidIndex($messageIndex, count($this->_messages), 'messageIndex');
+        Guard::argumentIsValidIndex($messageIndex, count($this->messages), 'messageIndex');
 
-        $message = $this->_messages[$messageIndex];
-        $variable = $this->_messageToVariableBinding->getValue($message);
+        $message = $this->messages[$messageIndex];
+        $variable = $this->messageToVariableBinding->getValue($message);
 
         return $this->sendMessageVariable($message, $variable);
     }
@@ -104,15 +104,15 @@ abstract class Factor implements \Stringable
 
     protected function createVariableToMessageBindingWithMessage(Variable $variable, Message $message): Message
     {
-        $this->_messageToVariableBinding->setValue($message, $variable);
-        $this->_messages[] = $message;
-        $this->_variables[] = $variable;
+        $this->messageToVariableBinding->setValue($message, $variable);
+        $this->messages[] = $message;
+        $this->variables[] = $variable;
 
         return $message;
     }
 
     public function __toString(): string
     {
-        return $this->_name;
+        return $this->name;
     }
 }

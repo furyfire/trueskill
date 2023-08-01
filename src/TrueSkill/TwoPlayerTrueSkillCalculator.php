@@ -27,10 +27,11 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
         parent::__construct(SkillCalculatorSupportedOptions::NONE, TeamsRange::exactly(2), PlayersRange::exactly(1));
     }
 
-    public function calculateNewRatings(GameInfo $gameInfo,
-                                        array $teams,
-                                        array $teamRanks): RatingContainer
-    {
+    public function calculateNewRatings(
+        GameInfo $gameInfo,
+        array $teams,
+        array $teamRanks
+    ): RatingContainer {
         // Basic argument checking
         Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
@@ -51,17 +52,27 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
 
         $results = new RatingContainer();
 
-        $results->setRating($winner, self::calculateNewRating($gameInfo,
-                                                              $winnerPreviousRating,
-                                                              $loserPreviousRating,
-                                                              $wasDraw ? PairwiseComparison::DRAW
-                                                                       : PairwiseComparison::WIN));
+        $results->setRating(
+            $winner,
+            self::calculateNewRating(
+                $gameInfo,
+                $winnerPreviousRating,
+                $loserPreviousRating,
+                $wasDraw ? PairwiseComparison::DRAW
+                : PairwiseComparison::WIN
+            )
+        );
 
-        $results->setRating($loser, self::calculateNewRating($gameInfo,
-                                                             $loserPreviousRating,
-                                                             $winnerPreviousRating,
-                                                             $wasDraw ? PairwiseComparison::DRAW
-                                                                      : PairwiseComparison::LOSE));
+        $results->setRating(
+            $loser,
+            self::calculateNewRating(
+                $gameInfo,
+                $loserPreviousRating,
+                $winnerPreviousRating,
+                $wasDraw ? PairwiseComparison::DRAW
+                : PairwiseComparison::LOSE
+            )
+        );
 
         // And we're done!
         return $results;

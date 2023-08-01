@@ -26,10 +26,11 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         parent::__construct(SkillCalculatorSupportedOptions::PARTIAL_PLAY | SkillCalculatorSupportedOptions::PARTIAL_UPDATE, TeamsRange::atLeast(2), PlayersRange::atLeast(1));
     }
 
-    public function calculateNewRatings(GameInfo $gameInfo,
-                                        array $teams,
-                                        array $teamRanks): RatingContainer
-    {
+    public function calculateNewRatings(
+        GameInfo $gameInfo,
+        array $teams,
+        array $teamRanks
+    ): RatingContainer {
         Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
@@ -88,8 +89,12 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
     private static function getPlayerMeansVector(array $teamAssignmentsList)
     {
         // A simple vector of all the player means.
-        return new Vector(self::getPlayerRatingValues($teamAssignmentsList,
-            fn ($rating) => $rating->getMean()));
+        return new Vector(
+            self::getPlayerRatingValues(
+                $teamAssignmentsList,
+                fn ($rating) => $rating->getMean()
+            )
+        );
     }
 
     private static function getPlayerCovarianceMatrix(array $teamAssignmentsList)
@@ -97,8 +102,11 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         // This is a square matrix whose diagonal values represent the variance (square of standard deviation) of all
         // players.
         return new DiagonalMatrix(
-            self::getPlayerRatingValues($teamAssignmentsList,
-                fn ($rating) => BasicMath::square($rating->getStandardDeviation())));
+            self::getPlayerRatingValues(
+                $teamAssignmentsList,
+                fn ($rating) => BasicMath::square($rating->getStandardDeviation())
+            )
+        );
     }
 
     // Helper function that gets a list of values for all player ratings

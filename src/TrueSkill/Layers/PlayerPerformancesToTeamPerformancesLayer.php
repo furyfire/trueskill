@@ -32,11 +32,13 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
         return $this->scheduleSequence(
             array_map(
                 fn ($weightedSumFactor) => new ScheduleStep('Perf to Team Perf Step', $weightedSumFactor, 0),
-                $localFactors),
-            'all player perf to team perf schedule');
+                $localFactors
+            ),
+            'all player perf to team perf schedule'
+        );
     }
 
-    protected function createPlayerToTeamSumFactor($teamMembers, $sumVariable): GaussianWeightedSumFactor 
+    protected function createPlayerToTeamSumFactor($teamMembers, $sumVariable): GaussianWeightedSumFactor
     {
         $weights = array_map(
             function ($v) {
@@ -44,12 +46,14 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
 
                 return PartialPlay::getPartialPlayPercentage($player);
             },
-            $teamMembers);
+            $teamMembers
+        );
 
         return new GaussianWeightedSumFactor(
             $sumVariable,
             $teamMembers,
-            $weights);
+            $weights
+        );
     }
 
     public function createPosteriorSchedule(): ScheduleSequence
@@ -60,8 +64,11 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
             $localCurrentFactor = $currentFactor;
             $numberOfMessages = $localCurrentFactor->getNumberOfMessages();
             for ($currentIteration = 1; $currentIteration < $numberOfMessages; $currentIteration++) {
-                $allFactors[] = new ScheduleStep('team sum perf @'.$currentIteration,
-                    $localCurrentFactor, $currentIteration);
+                $allFactors[] = new ScheduleStep(
+                    'team sum perf @' . $currentIteration,
+                    $localCurrentFactor,
+                    $currentIteration
+                );
             }
         }
 
@@ -74,6 +81,6 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
 
         $teamMemberNames = \implode(', ', $memberNames);
 
-        return $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable('Team['.$teamMemberNames."]'s performance");
+        return $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable('Team[' . $teamMemberNames . "]'s performance");
     }
 }

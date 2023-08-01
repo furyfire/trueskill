@@ -15,13 +15,13 @@ use DNW\Skills\Numerics\GaussianDistribution;
  */
 class GaussianWeightedSumFactor extends GaussianFactor
 {
-    private array $_variableIndexOrdersForWeights = [];
+    private array $variableIndexOrdersForWeights = [];
 
     // This following is used for convenience, for example, the first entry is [0, 1, 2]
     // corresponding to v[0] = a1*v[1] + a2*v[2]
-    private array $_weights = [];
+    private array $weights = [];
 
-    private array $_weightsSquared = [];
+    private array $weightsSquared = [];
 
     public function __construct(Variable $sumVariable, array $variablesToSum, array $variableWeights = null)
     {
@@ -30,20 +30,20 @@ class GaussianWeightedSumFactor extends GaussianFactor
         // The first weights are a straightforward copy
         // v_0 = a_1*v_1 + a_2*v_2 + ... + a_n * v_n
         $variableWeightsLength = count((array) $variableWeights);
-        $this->_weights[0] = array_fill(0, count((array) $variableWeights), 0);
+        $this->weights[0] = array_fill(0, count((array) $variableWeights), 0);
 
         for ($i = 0; $i < $variableWeightsLength; $i++) {
             $weight = &$variableWeights[$i];
-            $this->_weights[0][$i] = $weight;
-            $this->_weightsSquared[0][$i] = BasicMath::square($weight);
+            $this->weights[0][$i] = $weight;
+            $this->weightsSquared[0][$i] = BasicMath::square($weight);
         }
 
         $variablesToSumLength = count($variablesToSum);
 
         // 0..n-1
-        $this->_variableIndexOrdersForWeights[0] = [];
+        $this->variableIndexOrdersForWeights[0] = [];
         for ($i = 0; $i < ($variablesToSumLength + 1); $i++) {
-            $this->_variableIndexOrdersForWeights[0][] = $i;
+            $this->variableIndexOrdersForWeights[0][] = $i;
         }
 
         $variableWeightsLength = count((array) $variableWeights);
@@ -66,9 +66,11 @@ class GaussianWeightedSumFactor extends GaussianFactor
             // This is helpful since we skip over one of the spots
             $currentDestinationWeightIndex = 0;
 
-            for ($currentWeightSourceIndex = 0;
+            for (
+                $currentWeightSourceIndex = 0;
                  $currentWeightSourceIndex < $variableWeightsLength;
-                 $currentWeightSourceIndex++) {
+                 $currentWeightSourceIndex++
+            ) {
                 if ($currentWeightSourceIndex === $weightsIndex - 1) {
                     continue;
                 }
@@ -97,10 +99,10 @@ class GaussianWeightedSumFactor extends GaussianFactor
             $currentWeights[$currentDestinationWeightIndex] = $finalWeight;
             $currentWeightsSquared[$currentDestinationWeightIndex] = BasicMath::square($finalWeight);
             $variableIndices[count((array) $variableWeights)] = 0;
-            $this->_variableIndexOrdersForWeights[] = $variableIndices;
+            $this->variableIndexOrdersForWeights[] = $variableIndices;
 
-            $this->_weights[$weightsIndex] = $currentWeights;
-            $this->_weightsSquared[$weightsIndex] = $currentWeightsSquared;
+            $this->weights[$weightsIndex] = $currentWeights;
+            $this->weightsSquared[$weightsIndex] = $currentWeightsSquared;
         }
 
         $this->createVariableToMessageBinding($sumVariable);
@@ -192,7 +194,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         $updatedMessages = [];
         $updatedVariables = [];
 
-        $indicesToUse = $this->_variableIndexOrdersForWeights[$messageIndex];
+        $indicesToUse = $this->variableIndexOrdersForWeights[$messageIndex];
 
         // The tricky part here is that we have to put the messages and variables in the same
         // order as the weights. Thankfully, the weights and messages share the same index numbers,
@@ -203,10 +205,12 @@ class GaussianWeightedSumFactor extends GaussianFactor
             $updatedVariables[] = $allVariables[$indicesToUse[$i]];
         }
 
-        return $this->updateHelper($this->_weights[$messageIndex],
-            $this->_weightsSquared[$messageIndex],
+        return $this->updateHelper(
+            $this->weights[$messageIndex],
+            $this->weightsSquared[$messageIndex],
             $updatedMessages,
-            $updatedVariables);
+            $updatedVariables
+        );
     }
 
     private static function createName($sumVariable, $variablesToSum, $weights)

@@ -12,9 +12,9 @@ class Rating implements \Stringable
     /**
      * Constructs a rating.
      *
-     * @param  float  $_mean The statistical mean value of the rating (also known as mu).
-     * @param  float  $_standardDeviation The standard deviation of the rating (also known as s).
-     * @param  float|int  $_conservativeStandardDeviationMultiplier optional The number of standardDeviations to subtract from the mean to achieve a conservative rating.
+     * @param float     $_mean                                    The statistical mean value of the rating (also known as mu).
+     * @param float     $_standardDeviation                       The standard deviation of the rating (also known as s).
+     * @param float|int $_conservativeStandardDeviationMultiplier optional The number of standardDeviations to subtract from the mean to achieve a conservative rating.
      */
     public function __construct(private $_mean, private $_standardDeviation, private $_conservativeStandardDeviationMultiplier = self::CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER)
     {
@@ -47,7 +47,7 @@ class Rating implements \Stringable
     public function getPartialUpdate(Rating $prior, Rating $fullPosterior, $updatePercentage)
     {
         $priorGaussian = new GaussianDistribution($prior->getMean(), $prior->getStandardDeviation());
-        $posteriorGaussian = new GaussianDistribution($fullPosterior->getMean(), $fullPosterior.getStandardDeviation());
+        $posteriorGaussian = new GaussianDistribution($fullPosterior->getMean(), $fullPosterior . getStandardDeviation());
 
         // From a clarification email from Ralf Herbrich:
         // "the idea is to compute a linear interpolation between the prior and posterior skills of each player
@@ -56,7 +56,7 @@ class Rating implements \Stringable
         $precisionDifference = $posteriorGaussian->getPrecision() - $priorGaussian->getPrecision();
         $partialPrecisionDifference = $updatePercentage * $precisionDifference;
 
-        $precisionMeanDifference = $posteriorGaussian->getPrecisionMean() - $priorGaussian.getPrecisionMean();
+        $precisionMeanDifference = $posteriorGaussian->getPrecisionMean() - $priorGaussian . getPrecisionMean();
         $partialPrecisionMeanDifference = $updatePercentage * $precisionMeanDifference;
 
         $partialPosteriorGaussion = GaussianDistribution::fromPrecisionMean(

@@ -47,8 +47,10 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
         return $this->scheduleSequence(
             array_map(
                 fn ($prior) => new ScheduleStep('Prior to Skill Step', $prior, 0),
-                $localFactors),
-            'All priors');
+                $localFactors
+            ),
+            'All priors'
+        );
     }
 
     private function createPriorFactor(Rating $priorRating, Variable $skillsVariable)
@@ -66,6 +68,6 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
         $parentFactorGraph = $this->getParentFactorGraph();
         $variableFactory = $parentFactorGraph->getVariableFactory();
 
-        return $variableFactory->createKeyedVariable($key, $key."'s skill");
+        return $variableFactory->createKeyedVariable($key, $key . "'s skill");
     }
 }

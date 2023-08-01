@@ -18,14 +18,15 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
     /**
      * Constructs a player.
      *
-     * @param  mixed  $_Id The identifier for the player, such as a name.
-     * @param  number  $partialPlayPercentage The weight percentage to give this player when calculating a new rank.
-     * @param  number  $partialUpdatePercentage Indicated how much of a skill update a player should receive where 0 represents no update and 1.0 represents 100% of the update.
+     * @param mixed  $_Id                     The identifier for the player, such as a name.
+     * @param number $partialPlayPercentage   The weight percentage to give this player when calculating a new rank.
+     * @param number $partialUpdatePercentage Indicated how much of a skill update a player should receive where 0 represents no update and 1.0 represents 100% of the update.
      */
-    public function __construct(private $_Id,
-                                $partialPlayPercentage = self::DEFAULT_PARTIAL_PLAY_PERCENTAGE,
-                                $partialUpdatePercentage = self::DEFAULT_PARTIAL_UPDATE_PERCENTAGE)
-    {
+    public function __construct(
+        private $_Id,
+        $partialPlayPercentage = self::DEFAULT_PARTIAL_PLAY_PERCENTAGE,
+        $partialUpdatePercentage = self::DEFAULT_PARTIAL_UPDATE_PERCENTAGE
+    ) {
         // If they don't want to give a player an id, that's ok...
         Guard::argumentInRangeInclusive($partialPlayPercentage, 0.0, 1.0, 'partialPlayPercentage');
         Guard::argumentInRangeInclusive($partialUpdatePercentage, 0, 1.0, 'partialUpdatePercentage');

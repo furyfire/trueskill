@@ -4,15 +4,15 @@ namespace DNW\Skills\FactorGraphs;
 
 class FactorGraph
 {
-    private $_variableFactory;
+    private $variableFactory;
 
     public function getVariableFactory()
     {
-        return $this->_variableFactory;
+        return $this->variableFactory;
     }
 
     public function setVariableFactory(VariableFactory $factory)
     {
-        $this->_variableFactory = $factory;
+        $this->variableFactory = $factory;
     }
 }

@@ -5,8 +5,8 @@ namespace DNW\Skills\Numerics;
 /**
  * Computes Gaussian (bell curve) values.
  *
- * @author     Jeff Moser <jeff@moserware.com>
- * @copyright  2010 Jeff Moser
+ * @author    Jeff Moser <jeff@moserware.com>
+ * @copyright 2010 Jeff Moser
  */
 class GaussianDistribution implements \Stringable
 {

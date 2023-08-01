@@ -70,12 +70,16 @@ class Matrix
         $transposeMatrix = [];
 
         $rowMatrixData = $this->_matrixRowData;
-        for ($currentRowTransposeMatrix = 0;
+        for (
+            $currentRowTransposeMatrix = 0;
              $currentRowTransposeMatrix < $this->_columnCount;
-             $currentRowTransposeMatrix++) {
-            for ($currentColumnTransposeMatrix = 0;
+             $currentRowTransposeMatrix++
+        ) {
+            for (
+                $currentColumnTransposeMatrix = 0;
                  $currentColumnTransposeMatrix < $this->_rowCount;
-                 $currentColumnTransposeMatrix++) {
+                 $currentColumnTransposeMatrix++
+            ) {
                 $transposeMatrix[$currentRowTransposeMatrix][$currentColumnTransposeMatrix] =
                     $rowMatrixData[$currentColumnTransposeMatrix][$currentRowTransposeMatrix];
             }
@@ -155,8 +159,12 @@ class Matrix
             $c = $this->_matrixRowData[1][0];
             $d = $this->_matrixRowData[1][1];
 
-            return new SquareMatrix($d, -$b,
-                -$c, $a);
+            return new SquareMatrix(
+                $d,
+                -$b,
+                -$c,
+                $a
+            );
         }
 
         // The idea is that it's the transpose of the cofactors
@@ -204,8 +212,8 @@ class Matrix
     {
         if (
             ($left->getRowCount() != $right->getRowCount())
-            ||
-            ($left->getColumnCount() != $right->getColumnCount())
+
+            || ($left->getColumnCount() != $right->getColumnCount())
         ) {
             throw new Exception('Matrices must be of the same size');
         }
@@ -318,8 +326,10 @@ class Matrix
         for ($currentRow = 0; $currentRow < $this->_rowCount; $currentRow++) {
             for ($currentColumn = 0; $currentColumn < $this->_columnCount; $currentColumn++) {
                 $delta =
-                    abs($this->_matrixRowData[$currentRow][$currentColumn] -
-                        $otherMatrix->getValue($currentRow, $currentColumn));
+                    abs(
+                        $this->_matrixRowData[$currentRow][$currentColumn] -
+                        $otherMatrix->getValue($currentRow, $currentColumn)
+                    );
 
                 if ($delta > self::ERROR_TOLERANCE) {
                     return false;

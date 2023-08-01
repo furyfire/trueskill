@@ -19,38 +19,40 @@ use DNW\Skills\TrueSkill\Layers\TeamPerformancesToTeamPerformanceDifferencesLaye
 
 class TrueSkillFactorGraph extends FactorGraph
 {
-    private $_layers;
+    private $layers;
 
-    private $_priorLayer;
+    private $priorLayer;
 
-    public function __construct(private readonly GameInfo $_gameInfo, array $teams, array $teamRanks)
+    public function __construct(private readonly GameInfo $gameInfo, array $teams, array $teamRanks)
     {
-        $this->_priorLayer = new PlayerPriorValuesToSkillsLayer($this, $teams);
+        $this->priorLayer = new PlayerPriorValuesToSkillsLayer($this, $teams);
         $newFactory = new VariableFactory(
-            fn () => GaussianDistribution::fromPrecisionMean(0, 0));
+            fn () => GaussianDistribution::fromPrecisionMean(0, 0)
+        );
 
         $this->setVariableFactory($newFactory);
-        $this->_layers = [
-            $this->_priorLayer,
+        $this->layers = [
+            $this->priorLayer,
             new PlayerSkillsToPerformancesLayer($this),
             new PlayerPerformancesToTeamPerformancesLayer($this),
             new IteratedTeamDifferencesInnerLayer(
                 $this,
                 new TeamPerformancesToTeamPerformanceDifferencesLayer($this),
-                new TeamDifferencesComparisonLayer($this, $teamRanks)),
+                new TeamDifferencesComparisonLayer($this, $teamRanks)
+            ),
         ];
     }
 
     public function getGameInfo()
     {
-        return $this->_gameInfo;
+        return $this->gameInfo;
     }
 
     public function buildGraph(): void
     {
         $lastOutput = null;
 
-        $layers = $this->_layers;
+        $layers = $this->layers;
         foreach ($layers as $currentLayer) {
             if ($lastOutput != null) {
                 $currentLayer->setInputVariablesGroups($lastOutput);
@@ -72,7 +74,7 @@ class TrueSkillFactorGraph extends FactorGraph
     {
         $factorList = new FactorList();
 
-        $layers = $this->_layers;
+        $layers = $this->layers;
         foreach ($layers as $currentLayer) {
             $localFactors = $currentLayer->getLocalFactors();
             foreach ($localFactors as $currentFactor) {
@@ -90,7 +92,7 @@ class TrueSkillFactorGraph extends FactorGraph
     {
         $fullSchedule = [];
 
-        $layers = $this->_layers;
+        $layers = $this->layers;
         foreach ($layers as $currentLayer) {
             $currentPriorSchedule = $currentLayer->createPriorSchedule();
             if ($currentPriorSchedule != null) {
@@ -98,7 +100,7 @@ class TrueSkillFactorGraph extends FactorGraph
             }
         }
 
-        $allLayersReverse = array_reverse($this->_layers);
+        $allLayersReverse = array_reverse($this->layers);
 
         foreach ($allLayersReverse as $currentLayer) {
             $currentPosteriorSchedule = $currentLayer->createPosteriorSchedule();
@@ -114,12 +116,14 @@ class TrueSkillFactorGraph extends FactorGraph
     {
         $result = new RatingContainer();
 
-        $priorLayerOutputVariablesGroups = $this->_priorLayer->getOutputVariablesGroups();
+        $priorLayerOutputVariablesGroups = $this->priorLayer->getOutputVariablesGroups();
         foreach ($priorLayerOutputVariablesGroups as $currentTeam) {
             foreach ($currentTeam as $currentPlayer) {
                 $localCurrentPlayer = $currentPlayer->getKey();
-                $newRating = new Rating($currentPlayer->getValue()->getMean(),
-                    $currentPlayer->getValue()->getStandardDeviation());
+                $newRating = new Rating(
+                    $currentPlayer->getValue()->getMean(),
+                    $currentPlayer->getValue()->getStandardDeviation()
+                );
 
                 $result->setRating($localCurrentPlayer, $newRating);
             }

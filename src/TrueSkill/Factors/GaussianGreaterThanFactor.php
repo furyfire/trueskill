@@ -14,22 +14,26 @@ use DNW\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
  */
 class GaussianGreaterThanFactor extends GaussianFactor
 {
-    private $_epsilon;
+    private $epsilon;
 
     public function __construct($epsilon, Variable $variable)
     {
         parent::__construct(\sprintf('%s > %.2f', $variable, $epsilon));
-        $this->_epsilon = $epsilon;
+        $this->epsilon = $epsilon;
         $this->createVariableToMessageBinding($variable);
     }
 
     public function getLogNormalization()
     {
-        /** @var Variable[] $vars */
+        /**
+ * @var Variable[] $vars
+*/
         $vars = $this->getVariables();
         $marginal = $vars[0]->getValue();
 
-        /** @var Message[] $messages */
+        /**
+ * @var Message[] $messages
+*/
         $messages = $this->getMessages();
         $message = $messages[0]->getValue();
         $messageFromVariable = GaussianDistribution::divide($marginal, $message);
@@ -38,7 +42,7 @@ class GaussianGreaterThanFactor extends GaussianFactor
         +
         log(
             GaussianDistribution::cumulativeTo(
-                ($messageFromVariable->getMean() - $this->_epsilon) /
+                ($messageFromVariable->getMean() - $this->epsilon) /
                 $messageFromVariable->getStandardDeviation()
             )
         );
@@ -57,7 +61,7 @@ class GaussianGreaterThanFactor extends GaussianFactor
 
         $dOnSqrtC = $d / $sqrtC;
 
-        $epsilsonTimesSqrtC = $this->_epsilon * $sqrtC;
+        $epsilsonTimesSqrtC = $this->epsilon * $sqrtC;
         $d = $messageFromVar->getPrecisionMean();
 
         $denom = 1.0 - TruncatedGaussianCorrectionFunctions::wExceedsMargin($dOnSqrtC, $epsilsonTimesSqrtC);
