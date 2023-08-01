@@ -6,7 +6,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
 
 final class DrawMargin
 {
-    public static function getDrawMarginFromDrawProbability($drawProbability, $beta)
+    public static function getDrawMarginFromDrawProbability(float $drawProbability, float $beta): float
     {
         // Derived from TrueSkill technical report (MSR-TR-2006-80), page 6
 

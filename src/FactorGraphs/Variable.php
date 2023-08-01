@@ -24,7 +24,7 @@ class Variable implements \Stringable
         $this->_value = $value;
     }
 
-    public function resetToPrior()
+    public function resetToPrior(): void
     {
         $this->_value = $this->_prior;
     }

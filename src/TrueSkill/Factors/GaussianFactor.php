@@ -22,7 +22,7 @@ abstract class GaussianFactor extends Factor
         return $logZ;
     }
 
-    public function createVariableToMessageBinding(Variable $variable)
+    public function createVariableToMessageBinding(Variable $variable): Message
     {
         $newDistribution = GaussianDistribution::fromPrecisionMean(0, 0);
 

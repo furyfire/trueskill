@@ -8,14 +8,14 @@ class VariableFactory
     {
     }
 
-    public function createBasicVariable($name)
+    public function createBasicVariable(string $name): Variable
     {
         $initializer = $this->_variablePriorInitializer;
 
         return new Variable($name, $initializer());
     }
 
-    public function createKeyedVariable($key, $name)
+    public function createKeyedVariable(mixed $key, string $name): KeyedVariable
     {
         $initializer = $this->_variablePriorInitializer;
 

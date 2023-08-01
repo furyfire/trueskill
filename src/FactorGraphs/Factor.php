@@ -102,7 +102,7 @@ abstract class Factor implements \Stringable
 
     abstract public function createVariableToMessageBinding(Variable $variable);
 
-    protected function createVariableToMessageBindingWithMessage(Variable $variable, Message $message)
+    protected function createVariableToMessageBindingWithMessage(Variable $variable, Message $message): Message
     {
         $this->_messageToVariableBinding->setValue($message, $variable);
         $this->_messages[] = $message;
