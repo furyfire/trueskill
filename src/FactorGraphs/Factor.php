@@ -12,11 +12,11 @@ abstract class Factor implements \Stringable
 
     private $_messageToVariableBinding;
 
-    private $_name;
+    private string $_name;
 
     private array $_variables = [];
 
-    protected function __construct($name)
+    protected function __construct(string $name)
     {
         $this->_name = 'Factor['.$name.']';
         $this->_messageToVariableBinding = new HashMap();
@@ -33,17 +33,17 @@ abstract class Factor implements \Stringable
     /**
      * @return int The number of messages that the factor has
      */
-    public function getNumberOfMessages()
+    public function getNumberOfMessages(): int
     {
         return count($this->_messages);
     }
 
-    protected function getVariables()
+    protected function getVariables(): array
     {
         return $this->_variables;
     }
 
-    protected function getMessages()
+    protected function getMessages(): array
     {
         return $this->_messages;
     }
@@ -55,7 +55,7 @@ abstract class Factor implements \Stringable
      *
      * @throws Exception
      */
-    public function updateMessageIndex($messageIndex)
+    public function updateMessageIndex(int $messageIndex)
     {
         Guard::argumentIsValidIndex($messageIndex, count($this->_messages), 'messageIndex');
         $message = $this->_messages[$messageIndex];

@@ -28,30 +28,28 @@ abstract class FactorGraphLayer
 
     /**
      * This reference is still needed
-     *
-     * @return array
      */
-    public function &getOutputVariablesGroups()
+    public function &getOutputVariablesGroups(): array
     {
         return $this->_outputVariablesGroups;
     }
 
-    public function getLocalFactors()
+    public function getLocalFactors(): array
     {
         return $this->_localFactors;
     }
 
-    public function setInputVariablesGroups($value)
+    public function setInputVariablesGroups(array $value): void
     {
         $this->_inputVariablesGroups = $value;
     }
 
-    protected function scheduleSequence(array $itemsToSequence, $name): ScheduleSequence
+    protected function scheduleSequence(array $itemsToSequence, string $name): ScheduleSequence
     {
         return new ScheduleSequence($name, $itemsToSequence);
     }
 
-    protected function addLayerFactor(Factor $factor)
+    protected function addLayerFactor(Factor $factor): void
     {
         $this->_localFactors[] = $factor;
     }

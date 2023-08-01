@@ -13,7 +13,7 @@ class Team extends RatingContainer
         }
     }
 
-    public function addPlayer(Player $player, Rating $rating)
+    public function addPlayer(Player $player, Rating $rating): self
     {
         $this->setRating($player, $rating);
 

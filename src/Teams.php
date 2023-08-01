@@ -4,7 +4,7 @@ namespace DNW\Skills;
 
 class Teams
 {
-    public static function concat(...$args/*variable arguments*/)
+    public static function concat(Team ...$args/*variable arguments*/): array
     {
         $result = [];
 
