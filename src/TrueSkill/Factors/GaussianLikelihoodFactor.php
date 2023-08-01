@@ -25,7 +25,7 @@ class GaussianLikelihoodFactor extends GaussianFactor
         $this->createVariableToMessageBinding($variable2);
     }
 
-    public function getLogNormalization()
+    public function getLogNormalization(): float
     {
         /** @var KeyedVariable[]|mixed $vars */
         $vars = $this->getVariables();

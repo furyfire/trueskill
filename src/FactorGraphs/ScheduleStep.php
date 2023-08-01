@@ -9,7 +9,7 @@ class ScheduleStep extends Schedule
         parent::__construct($name);
     }
 
-    public function visit($depth = -1, $maxDepth = 0)
+    public function visit(int $depth = -1, int $maxDepth = 0)
     {
         $currentFactor = $this->_factor;
 

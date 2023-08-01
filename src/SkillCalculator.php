@@ -30,11 +30,11 @@ abstract class SkillCalculator
      *
      * @param  GameInfo  $gameInfo Parameters for the game.
      * @param  array  $teamsOfPlayerToRatings A mapping of team players and their ratings.
-     * @return The quality of the match between the teams as a percentage (0% = bad, 100% = well matched).
+     * @return float The quality of the match between the teams as a percentage (0% = bad, 100% = well matched).
      */
-    abstract public function calculateMatchQuality(GameInfo $gameInfo, array $teamsOfPlayerToRatings);
+    abstract public function calculateMatchQuality(GameInfo $gameInfo, array $teamsOfPlayerToRatings): float;
 
-    public function isSupported($option)
+    public function isSupported($option): bool
     {
         return ($this->_supportedOptions & $option) == $option;
     }
@@ -46,11 +46,10 @@ abstract class SkillCalculator
 
     /**
      * @param  array<\DNW\Skills\Team>  $teams
-     * @return void
      *
      * @throws \Exception
      */
-    private static function validateTeamCountAndPlayersCountPerTeamWithRanges(array $teams, TeamsRange $totalTeams, PlayersRange $playersPerTeam)
+    private static function validateTeamCountAndPlayersCountPerTeamWithRanges(array $teams, TeamsRange $totalTeams, PlayersRange $playersPerTeam): void
     {
         $countOfTeams = 0;
 

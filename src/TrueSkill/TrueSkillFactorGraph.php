@@ -46,7 +46,7 @@ class TrueSkillFactorGraph extends FactorGraph
         return $this->_gameInfo;
     }
 
-    public function buildGraph()
+    public function buildGraph(): void
     {
         $lastOutput = null;
 
@@ -62,13 +62,13 @@ class TrueSkillFactorGraph extends FactorGraph
         }
     }
 
-    public function runSchedule()
+    public function runSchedule(): void
     {
         $fullSchedule = $this->createFullSchedule();
         $fullSchedule->visit();
     }
 
-    public function getProbabilityOfRanking()
+    public function getProbabilityOfRanking(): float
     {
         $factorList = new FactorList();
 
@@ -86,7 +86,7 @@ class TrueSkillFactorGraph extends FactorGraph
         return exp($logZ);
     }
 
-    private function createFullSchedule()
+    private function createFullSchedule(): ScheduleSequence
     {
         $fullSchedule = [];
 

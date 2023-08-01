@@ -44,7 +44,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         return $factorGraph->getUpdatedRatings();
     }
 
-    public function calculateMatchQuality(GameInfo $gameInfo, array $teams)
+    public function calculateMatchQuality(GameInfo $gameInfo, array $teams): float
     {
         // We need to create the A matrix which is the player team assigments.
         $teamAssignmentsList = $teams;

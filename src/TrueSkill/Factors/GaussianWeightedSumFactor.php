@@ -127,7 +127,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         return $result;
     }
 
-    private function updateHelper(array $weights, array $weightsSquared, array $messages, array $variables)
+    private function updateHelper(array $weights, array $weightsSquared, array $messages, array $variables): float
     {
         // Potentially look at http://mathworld.wolfram.com/NormalSumDistribution.html for clues as
         // to what it's doing
@@ -182,7 +182,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         return $finalDiff;
     }
 
-    public function updateMessageIndex($messageIndex)
+    public function updateMessageIndex(int $messageIndex): float
     {
         $allMessages = $this->getMessages();
         $allVariables = $this->getVariables();
