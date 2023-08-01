@@ -13,12 +13,12 @@ use DNW\Skills\Numerics\GaussianDistribution;
  */
 class GaussianPriorFactor extends GaussianFactor
 {
-    private $_newMessage;
+    private $newMessage;
 
     public function __construct(float $mean, float $variance, Variable $variable)
     {
         parent::__construct(sprintf('Prior value going to %s', $variable));
-        $this->_newMessage = new GaussianDistribution($mean, sqrt($variance));
+        $this->newMessage = new GaussianDistribution($mean, sqrt($variance));
         $newMessage = new Message(
             GaussianDistribution::fromPrecisionMean(0, 0),
             sprintf('message from %s to %s', $this, $variable)
@@ -32,12 +32,12 @@ class GaussianPriorFactor extends GaussianFactor
         $oldMarginal = clone $variable->getValue();
         $oldMessage = $message;
         $newMarginal = GaussianDistribution::fromPrecisionMean(
-            $oldMarginal->getPrecisionMean() + $this->_newMessage->getPrecisionMean() - $oldMessage->getValue()->getPrecisionMean(),
-            $oldMarginal->getPrecision() + $this->_newMessage->getPrecision() - $oldMessage->getValue()->getPrecision()
+            $oldMarginal->getPrecisionMean() + $this->newMessage->getPrecisionMean() - $oldMessage->getValue()->getPrecisionMean(),
+            $oldMarginal->getPrecision() + $this->newMessage->getPrecision() - $oldMessage->getValue()->getPrecision()
         );
 
         $variable->setValue($newMarginal);
-        $message->setValue($this->_newMessage);
+        $message->setValue($this->newMessage);
 
         return GaussianDistribution::subtract($oldMarginal, $newMarginal);
     }

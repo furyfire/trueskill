@@ -9,28 +9,21 @@ use Exception;
 
 class Range
 {
-    private int $_min;
-
-    private int $_max;
-
-    public function __construct(int $min, int $max)
+    public function __construct(private int $min, private int $max)
     {
         if ($min > $max) {
             throw new Exception('min > max');
         }
-
-        $this->_min = $min;
-        $this->_max = $max;
     }
 
     public function getMin(): int
     {
-        return $this->_min;
+        return $this->min;
     }
 
     public function getMax(): int
     {
-        return $this->_max;
+        return $this->max;
     }
 
     protected static function create(int $min, int $max): self
@@ -57,6 +50,6 @@ class Range
 
     public function isInRange(int $value): bool
     {
-        return ($this->_min <= $value) && ($value <= $this->_max);
+        return ($this->min <= $value) && ($value <= $this->max);
     }
 }

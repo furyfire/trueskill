@@ -7,21 +7,21 @@ namespace DNW\Skills\FactorGraphs;
  */
 class FactorList
 {
-    private array $_list = [];
+    private array $list = [];
 
     public function getLogNormalization()
     {
-        $list = $this->_list;
+        $list = $this->list;
         foreach ($list as &$currentFactor) {
             $currentFactor->resetMarginals();
         }
 
         $sumLogZ = 0.0;
 
-        $listCount = count($this->_list);
+        $listCount = count($this->list);
 
         for ($i = 0; $i < $listCount; $i++) {
-            $f = $this->_list[$i];
+            $f = $this->list[$i];
 
             $numberOfMessages = $f->getNumberOfMessages();
 
@@ -41,12 +41,12 @@ class FactorList
 
     public function count()
     {
-        return count($this->_list);
+        return count($this->list);
     }
 
     public function addFactor(Factor $factor)
     {
-        $this->_list[] = $factor;
+        $this->list[] = $factor;
 
         return $factor;
     }

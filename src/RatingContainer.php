@@ -4,35 +4,35 @@ namespace DNW\Skills;
 
 class RatingContainer
 {
-    private HashMap $_playerToRating;
+    private HashMap $playerToRating;
 
     public function __construct()
     {
-        $this->_playerToRating = new HashMap();
+        $this->playerToRating = new HashMap();
     }
 
     public function getRating(Player $player): mixed
     {
-        return $this->_playerToRating->getValue($player);
+        return $this->playerToRating->getValue($player);
     }
 
     public function setRating(Player $player, Rating $rating): HashMap
     {
-        return $this->_playerToRating->setValue($player, $rating);
+        return $this->playerToRating->setValue($player, $rating);
     }
 
     public function getAllPlayers(): array
     {
-        return $this->_playerToRating->getAllKeys();
+        return $this->playerToRating->getAllKeys();
     }
 
     public function getAllRatings(): array
     {
-        return $this->_playerToRating->getAllValues();
+        return $this->playerToRating->getAllValues();
     }
 
     public function count(): int
     {
-        return $this->_playerToRating->count();
+        return $this->playerToRating->count();
     }
 }

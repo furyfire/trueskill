@@ -4,26 +4,26 @@ namespace DNW\Skills\FactorGraphs;
 
 abstract class FactorGraphLayer
 {
-    private array $_localFactors = [];
+    private array $localFactors = [];
 
-    private array $_outputVariablesGroups = [];
+    private array $outputVariablesGroups = [];
 
-    private $_inputVariablesGroups = [];
+    private $inputVariablesGroups = [];
 
-    protected function __construct(private readonly FactorGraph $_parentFactorGraph)
+    protected function __construct(private readonly FactorGraph $parentFactorGraph)
     {
     }
 
     protected function getInputVariablesGroups()
     {
-        return $this->_inputVariablesGroups;
+        return $this->inputVariablesGroups;
     }
 
     // HACK
 
     public function getParentFactorGraph()
     {
-        return $this->_parentFactorGraph;
+        return $this->parentFactorGraph;
     }
 
     /**
@@ -31,17 +31,17 @@ abstract class FactorGraphLayer
      */
     public function &getOutputVariablesGroups(): array
     {
-        return $this->_outputVariablesGroups;
+        return $this->outputVariablesGroups;
     }
 
     public function getLocalFactors(): array
     {
-        return $this->_localFactors;
+        return $this->localFactors;
     }
 
     public function setInputVariablesGroups(array $value): void
     {
-        $this->_inputVariablesGroups = $value;
+        $this->inputVariablesGroups = $value;
     }
 
     protected function scheduleSequence(array $itemsToSequence, string $name): ScheduleSequence
@@ -51,7 +51,7 @@ abstract class FactorGraphLayer
 
     protected function addLayerFactor(Factor $factor): void
     {
-        $this->_localFactors[] = $factor;
+        $this->localFactors[] = $factor;
     }
 
     abstract public function buildLayer();

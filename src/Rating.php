@@ -7,7 +7,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
 
 class Rating implements \Stringable
 {
-    final const CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER = 3;
+    private const CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER = 3;
 
     /**
      * Constructs a rating.

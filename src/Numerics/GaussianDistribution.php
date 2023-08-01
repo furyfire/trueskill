@@ -12,65 +12,65 @@ class GaussianDistribution implements \Stringable
 {
     // precision and precisionMean are used because they make multiplying and dividing simpler
     // (the the accompanying math paper for more details)
-    private $_precision;
+    private $precision;
 
-    private $_precisionMean;
+    private $precisionMean;
 
-    private $_variance;
+    private $variance;
 
-    public function __construct(private float $_mean = 0.0, private float $_standardDeviation = 1.0)
+    public function __construct(private float $mean = 0.0, private float $standardDeviation = 1.0)
     {
-        $this->_variance = BasicMath::square($_standardDeviation);
+        $this->variance = BasicMath::square($standardDeviation);
 
-        if ($this->_variance != 0) {
-            $this->_precision = 1.0 / $this->_variance;
-            $this->_precisionMean = $this->_precision * $this->_mean;
+        if ($this->variance != 0) {
+            $this->precision = 1.0 / $this->variance;
+            $this->precisionMean = $this->precision * $this->mean;
         } else {
-            $this->_precision = \INF;
+            $this->precision = \INF;
 
-            $this->_precisionMean = $this->_mean == 0 ? 0 : \INF;
+            $this->precisionMean = $this->mean == 0 ? 0 : \INF;
         }
     }
 
     public function getMean(): float
     {
-        return $this->_mean;
+        return $this->mean;
     }
 
     public function getVariance(): float
     {
-        return $this->_variance;
+        return $this->variance;
     }
 
     public function getStandardDeviation(): float
     {
-        return $this->_standardDeviation;
+        return $this->standardDeviation;
     }
 
     public function getPrecision(): float
     {
-        return $this->_precision;
+        return $this->precision;
     }
 
     public function getPrecisionMean(): float
     {
-        return $this->_precisionMean;
+        return $this->precisionMean;
     }
 
     public function getNormalizationConstant(): float
     {
         // Great derivation of this is at http://www.astro.psu.edu/~mce/A451_2/A451/downloads/notes0.pdf
-        return 1.0 / (sqrt(2 * M_PI) * $this->_standardDeviation);
+        return 1.0 / (sqrt(2 * M_PI) * $this->standardDeviation);
     }
 
     public function __clone()
     {
         $result = new GaussianDistribution();
-        $result->_mean = $this->_mean;
-        $result->_standardDeviation = $this->_standardDeviation;
-        $result->_variance = $this->_variance;
-        $result->_precision = $this->_precision;
-        $result->_precisionMean = $this->_precisionMean;
+        $result->mean = $this->mean;
+        $result->standardDeviation = $this->standardDeviation;
+        $result->variance = $this->variance;
+        $result->precision = $this->precision;
+        $result->precisionMean = $this->precisionMean;
 
         return $result;
     }
@@ -78,17 +78,17 @@ class GaussianDistribution implements \Stringable
     public static function fromPrecisionMean(float $precisionMean, float $precision): self
     {
         $result = new GaussianDistribution();
-        $result->_precision = $precision;
-        $result->_precisionMean = $precisionMean;
+        $result->precision = $precision;
+        $result->precisionMean = $precisionMean;
 
         if ($precision != 0) {
-            $result->_variance = 1.0 / $precision;
-            $result->_standardDeviation = sqrt($result->_variance);
-            $result->_mean = $result->_precisionMean / $result->_precision;
+            $result->variance = 1.0 / $precision;
+            $result->standardDeviation = sqrt($result->variance);
+            $result->mean = $result->precisionMean / $result->precision;
         } else {
-            $result->_variance = \INF;
-            $result->_standardDeviation = \INF;
-            $result->_mean = \NAN;
+            $result->variance = \INF;
+            $result->standardDeviation = \INF;
+            $result->mean = \NAN;
         }
 
         return $result;
@@ -98,15 +98,15 @@ class GaussianDistribution implements \Stringable
     // for multiplication, the precision mean ones are easier to write :)
     public static function multiply(GaussianDistribution $left, GaussianDistribution $right): self
     {
-        return GaussianDistribution::fromPrecisionMean($left->_precisionMean + $right->_precisionMean, $left->_precision + $right->_precision);
+        return GaussianDistribution::fromPrecisionMean($left->precisionMean + $right->precisionMean, $left->precision + $right->precision);
     }
 
     // Computes the absolute difference between two Gaussians
     public static function absoluteDifference(GaussianDistribution $left, GaussianDistribution $right): float
     {
         return max(
-            abs($left->_precisionMean - $right->_precisionMean),
-            sqrt(abs($left->_precision - $right->_precision))
+            abs($left->precisionMean - $right->precisionMean),
+            sqrt(abs($left->precision - $right->precision))
         );
     }
 
@@ -118,12 +118,12 @@ class GaussianDistribution implements \Stringable
 
     public static function logProductNormalization(GaussianDistribution $left, GaussianDistribution $right): float
     {
-        if (($left->_precision == 0) || ($right->_precision == 0)) {
+        if (($left->precision == 0) || ($right->precision == 0)) {
             return 0;
         }
 
-        $varianceSum = $left->_variance + $right->_variance;
-        $meanDifference = $left->_mean - $right->_mean;
+        $varianceSum = $left->variance + $right->variance;
+        $meanDifference = $left->mean - $right->mean;
 
         $logSqrt2Pi = log(sqrt(2 * M_PI));
 
@@ -133,23 +133,23 @@ class GaussianDistribution implements \Stringable
     public static function divide(GaussianDistribution $numerator, GaussianDistribution $denominator): self
     {
         return GaussianDistribution::fromPrecisionMean(
-            $numerator->_precisionMean - $denominator->_precisionMean,
-            $numerator->_precision - $denominator->_precision
+            $numerator->precisionMean - $denominator->precisionMean,
+            $numerator->precision - $denominator->precision
         );
     }
 
     public static function logRatioNormalization(GaussianDistribution $numerator, GaussianDistribution $denominator): float
     {
-        if (($numerator->_precision == 0) || ($denominator->_precision == 0)) {
+        if (($numerator->precision == 0) || ($denominator->precision == 0)) {
             return 0;
         }
 
-        $varianceDifference = $denominator->_variance - $numerator->_variance;
-        $meanDifference = $numerator->_mean - $denominator->_mean;
+        $varianceDifference = $denominator->variance - $numerator->variance;
+        $meanDifference = $numerator->mean - $denominator->mean;
 
         $logSqrt2Pi = log(sqrt(2 * M_PI));
 
-        return log($denominator->_variance) + $logSqrt2Pi - log($varianceDifference) / 2.0 +
+        return log($denominator->variance) + $logSqrt2Pi - log($varianceDifference) / 2.0 +
         BasicMath::square($meanDifference) / (2 * $varianceDifference);
     }
 
@@ -258,6 +258,6 @@ class GaussianDistribution implements \Stringable
 
     public function __toString(): string
     {
-        return sprintf('mean=%.4f standardDeviation=%.4f', $this->_mean, $this->_standardDeviation);
+        return sprintf('mean=%.4f standardDeviation=%.4f', $this->mean, $this->standardDeviation);
     }
 }
