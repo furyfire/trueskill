@@ -26,7 +26,9 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
     {
         parent::__construct(SkillCalculatorSupportedOptions::PARTIAL_PLAY | SkillCalculatorSupportedOptions::PARTIAL_UPDATE, TeamsRange::atLeast(2), PlayersRange::atLeast(1));
     }
-
+    /**
+     * {@inheritdoc}
+     */
     public function calculateNewRatings(
         GameInfo $gameInfo,
         array $teams,
@@ -45,7 +47,9 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
 
         return $factorGraph->getUpdatedRatings();
     }
-
+    /**
+     * {@inheritdoc}
+     */
     public function calculateMatchQuality(GameInfo $gameInfo, array $teams): float
     {
         // We need to create the A matrix which is the player team assigments.

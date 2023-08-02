@@ -217,7 +217,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         $result = (string) $sumVariable;
         $result .= ' = ';
 
-        $totalVars = is_countable($variablesToSum) ? count($variablesToSum) : 0;
+        $totalVars = count($variablesToSum);
         for ($i = 0; $i < $totalVars; $i++) {
             $isFirst = ($i == 0);
 

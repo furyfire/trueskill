@@ -26,7 +26,9 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
     {
         parent::__construct(SkillCalculatorSupportedOptions::NONE, TeamsRange::exactly(2), PlayersRange::atLeast(1));
     }
-
+    /**
+     * {@inheritdoc}
+     */
     public function calculateNewRatings(GameInfo $gameInfo, array $teams, array $teamRanks): RatingContainer
     {
         Guard::argumentNotNull($gameInfo, 'gameInfo');
@@ -149,10 +151,10 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
 
         // We've verified that there's just two teams
         $team1Ratings = $teams[0]->getAllRatings();
-        $team1Count = is_countable($team1Ratings) ? count($team1Ratings) : 0;
+        $team1Count = count($team1Ratings);
 
         $team2Ratings = $teams[1]->getAllRatings();
-        $team2Count = is_countable($team2Ratings) ? count($team2Ratings) : 0;
+        $team2Count = count($team2Ratings);
 
         $totalPlayers = $team1Count + $team2Count;
 

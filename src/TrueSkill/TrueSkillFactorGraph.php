@@ -27,6 +27,11 @@ class TrueSkillFactorGraph extends FactorGraph
 
     private PlayerPriorValuesToSkillsLayer $priorLayer;
 
+    /**
+     * @param  GameInfo $gameInfo               Parameters for the game.
+     * @param  Team[]   $teamsOfPlayerToRatings A mapping of team players and their ratings.
+     * @param  int[]    $teamRanks              The ranks of the teams where 1 is first place. For a tie, repeat the number (e.g. 1, 2, 2).
+     */
     public function __construct(private readonly GameInfo $gameInfo, array $teams, array $teamRanks)
     {
         $this->priorLayer = new PlayerPriorValuesToSkillsLayer($this, $teams);

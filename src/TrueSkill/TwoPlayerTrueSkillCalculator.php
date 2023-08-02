@@ -13,6 +13,7 @@ use DNW\Skills\RatingContainer;
 use DNW\Skills\SkillCalculator;
 use DNW\Skills\SkillCalculatorSupportedOptions;
 use DNW\Skills\TeamsRange;
+use DNW\Skills\Team;
 
 /**
  * Calculates the new ratings for only two players.
@@ -27,6 +28,9 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
         parent::__construct(SkillCalculatorSupportedOptions::NONE, TeamsRange::exactly(2), PlayersRange::exactly(1));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function calculateNewRatings(
         GameInfo $gameInfo,
         array $teams,
