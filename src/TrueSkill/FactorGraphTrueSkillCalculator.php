@@ -109,7 +109,11 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         );
     }
 
-    // Helper function that gets a list of values for all player ratings
+    
+    /**
+     * Helper function that gets a list of values for all player ratings
+     * @return int[]
+     */
     private static function getPlayerRatingValues(array $teamAssignmentsList, \Closure $playerRatingFunction): array
     {
         $playerRatingValues = [];
@@ -123,7 +127,10 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         return $playerRatingValues;
     }
 
-    private static function createPlayerTeamAssignmentMatrix($teamAssignmentsList, $totalPlayers)
+    /**
+     * @param Team[] $teamAssignmentsList
+     */
+    private static function createPlayerTeamAssignmentMatrix(array $teamAssignmentsList, int $totalPlayers): Matrix
     {
         // The team assignment matrix is often referred to as the "A" matrix. It's a matrix whose rows represent the players
         // and the columns represent teams. At Matrix[row, column] represents that player[row] is on team[col]

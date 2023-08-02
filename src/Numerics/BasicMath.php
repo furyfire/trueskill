@@ -25,7 +25,7 @@ class BasicMath
      * Sums the items in $itemsToSum
      *
      * @param  array    $itemsToSum The items to sum,
-     * @param  callable $callback   The function to apply to each array element before summing.
+     * @param  \Closure $callback   The function to apply to each array element before summing.
      * @return number The sum.
      */
     public static function sum(array $itemsToSum, \Closure $callback): float|int

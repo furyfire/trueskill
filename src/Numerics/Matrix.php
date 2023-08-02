@@ -57,7 +57,7 @@ class Matrix
         return $this->matrixRowData[$row][$col];
     }
 
-    public function setValue(int $row, int $col, float|int $value)
+    public function setValue(int $row, int $col, float|int $value): void
     {
         $this->matrixRowData[$row][$col] = $value;
     }

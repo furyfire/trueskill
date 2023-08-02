@@ -39,12 +39,12 @@ abstract class SkillCalculator
      */
     abstract public function calculateMatchQuality(GameInfo $gameInfo, array $teamsOfPlayerToRatings): float;
 
-    public function isSupported($option): bool
+    public function isSupported(SkillCalculatorSupportedOptions $option): bool
     {
-        return ($this->supportedOptions & $option) == $option;
+        return (bool)($this->supportedOptions & $option->value) == $option;
     }
 
-    protected function validateTeamCountAndPlayersCountPerTeam(array $teamsOfPlayerToRatings)
+    protected function validateTeamCountAndPlayersCountPerTeam(array $teamsOfPlayerToRatings): void
     {
         self::validateTeamCountAndPlayersCountPerTeamWithRanges($teamsOfPlayerToRatings, $this->totalTeamsAllowed, $this->playersPerTeamAllowed);
     }
