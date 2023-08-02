@@ -121,8 +121,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         $result = 0.0;
 
         // We start at 1 since offset 0 has the sum
-        $varCount = is_countable($vars) ? count($vars) : 0;
-        for ($i = 1; $i < $varCount; $i++) {
+        for ($i = 1; $i < count($vars); $i++) {
             $result += GaussianDistribution::logRatioNormalization($vars[$i]->getValue(), $messages[$i]->getValue());
         }
 
@@ -189,7 +188,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         $allMessages = $this->getMessages();
         $allVariables = $this->getVariables();
 
-        Guard::argumentIsValidIndex($messageIndex, is_countable($allMessages) ? count($allMessages) : 0, 'messageIndex');
+        Guard::argumentIsValidIndex($messageIndex, count($allMessages), 'messageIndex');
 
         $updatedMessages = [];
         $updatedVariables = [];

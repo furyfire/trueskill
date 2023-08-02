@@ -4,7 +4,7 @@ namespace DNW\Skills\FactorGraphs;
 
 class VariableFactory
 {
-    public function __construct(private $variablePriorInitializer)
+    public function __construct(private \Closure $variablePriorInitializer)
     {
     }
 

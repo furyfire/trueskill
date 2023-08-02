@@ -44,11 +44,17 @@ abstract class Factor implements \Stringable
         return count($this->messages);
     }
 
+    /**
+     * @return Variable[]
+     */
     protected function getVariables(): array
     {
         return $this->variables;
     }
 
+    /**
+     * @return Message[]
+     */
     protected function getMessages(): array
     {
         return $this->messages;
@@ -61,7 +67,7 @@ abstract class Factor implements \Stringable
      *
      * @throws Exception
      */
-    public function updateMessageIndex(int $messageIndex)
+    public function updateMessageIndex(int $messageIndex): float
     {
         Guard::argumentIsValidIndex($messageIndex, count($this->messages), 'messageIndex');
         $message = $this->messages[$messageIndex];
@@ -78,7 +84,7 @@ abstract class Factor implements \Stringable
     /**
      * Resets the marginal of the variables a factor is connected to
      */
-    public function resetMarginals()
+    public function resetMarginals(): void
     {
         $allValues = $this->messageToVariableBinding->getAllValues();
         foreach ($allValues as $currentVariable) {
@@ -102,7 +108,7 @@ abstract class Factor implements \Stringable
 
     abstract protected function sendMessageVariable(Message $message, Variable $variable): float|int;
 
-    abstract public function createVariableToMessageBinding(Variable $variable);
+    abstract public function createVariableToMessageBinding(Variable $variable): Message;
 
     protected function createVariableToMessageBindingWithMessage(Variable $variable, Message $message): Message
     {

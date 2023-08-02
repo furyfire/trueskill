@@ -26,7 +26,7 @@ class Range
         return $this->max;
     }
 
-    protected static function create(int $min, int $max): self
+    protected static function create(int $min, int $max): static
     {
         return new Range($min, $max);
     }

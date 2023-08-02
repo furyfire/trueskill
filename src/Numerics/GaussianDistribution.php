@@ -12,11 +12,11 @@ class GaussianDistribution implements \Stringable
 {
     // precision and precisionMean are used because they make multiplying and dividing simpler
     // (the the accompanying math paper for more details)
-    private $precision;
+    private float $precision;
 
-    private $precisionMean;
+    private float $precisionMean;
 
-    private $variance;
+    private float $variance;
 
     public function __construct(private float $mean = 0.0, private float $standardDeviation = 1.0)
     {

@@ -26,32 +26,32 @@ class GameInfo
     ) {
     }
 
-    public function getInitialMean()
+    public function getInitialMean(): float
     {
         return $this->initialMean;
     }
 
-    public function getInitialStandardDeviation()
+    public function getInitialStandardDeviation(): float
     {
         return $this->initialStandardDeviation;
     }
 
-    public function getBeta()
+    public function getBeta(): float
     {
         return $this->beta;
     }
 
-    public function getDynamicsFactor()
+    public function getDynamicsFactor(): float
     {
         return $this->dynamicsFactor;
     }
 
-    public function getDrawProbability()
+    public function getDrawProbability(): float
     {
         return $this->drawProbability;
     }
 
-    public function getDefaultRating()
+    public function getDefaultRating(): Rating
     {
         return new Rating($this->initialMean, $this->initialStandardDeviation);
     }

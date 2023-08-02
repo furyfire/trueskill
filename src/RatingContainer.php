@@ -21,11 +21,17 @@ class RatingContainer
         return $this->playerToRating->setValue($player, $rating);
     }
 
+    /**
+     * @return Player[]
+     */
     public function getAllPlayers(): array
     {
         return $this->playerToRating->getAllKeys();
     }
 
+    /**
+     * @return Rating[]
+     */
     public function getAllRatings(): array
     {
         return $this->playerToRating->getAllValues();
