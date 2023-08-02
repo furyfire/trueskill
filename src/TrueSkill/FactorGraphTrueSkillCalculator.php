@@ -13,6 +13,7 @@ use DNW\Skills\PlayersRange;
 use DNW\Skills\RankSorter;
 use DNW\Skills\SkillCalculator;
 use DNW\Skills\SkillCalculatorSupportedOptions;
+use DNW\Skills\Team;
 use DNW\Skills\TeamsRange;
 use DNW\Skills\RatingContainer;
 
@@ -151,11 +152,9 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         $playerAssignments = [];
         $totalPreviousPlayers = 0;
 
-        $teamAssignmentsListCount = is_countable($teamAssignmentsList) ? count($teamAssignmentsList) : 0;
-
         $currentColumn = 0;
 
-        for ($i = 0; $i < $teamAssignmentsListCount - 1; $i++) {
+        for ($i = 0; $i < count($teamAssignmentsList) - 1; $i++) {
             $currentTeam = $teamAssignmentsList[$i];
 
             // Need to add in 0's for all the previous players, since they're not
@@ -185,6 +184,6 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
             $currentColumn++;
         }
 
-        return Matrix::fromColumnValues($totalPlayers, $teamAssignmentsListCount - 1, $playerAssignments);
+        return Matrix::fromColumnValues($totalPlayers, count($teamAssignmentsList) - 1, $playerAssignments);
     }
 }

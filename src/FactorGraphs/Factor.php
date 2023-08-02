@@ -8,12 +8,18 @@ use Exception;
 
 abstract class Factor implements \Stringable
 {
+    /**
+     * @var Message[] $messages
+     */
     private array $messages = [];
 
     private HashMap $messageToVariableBinding;
 
     private string $name;
 
+    /**
+     * @var Variable[] $variables
+     */
     private array $variables = [];
 
     protected function __construct(string $name)
@@ -64,7 +70,7 @@ abstract class Factor implements \Stringable
         return $this->updateMessageVariable($message, $variable);
     }
 
-    protected function updateMessageVariable(Message $message, Variable $variable)
+    protected function updateMessageVariable(Message $message, Variable $variable): float
     {
         throw new Exception();
     }
@@ -82,13 +88,9 @@ abstract class Factor implements \Stringable
 
     /**
      * Sends the ith message to the marginal and returns the log-normalization constant
-     *
-     * @param  $messageIndex
-     * @return
-     *
      * @throws Exception
      */
-    public function sendMessageIndex($messageIndex)
+    public function sendMessageIndex(int $messageIndex): float|int
     {
         Guard::argumentIsValidIndex($messageIndex, count($this->messages), 'messageIndex');
 
@@ -98,7 +100,7 @@ abstract class Factor implements \Stringable
         return $this->sendMessageVariable($message, $variable);
     }
 
-    abstract protected function sendMessageVariable(Message $message, Variable $variable);
+    abstract protected function sendMessageVariable(Message $message, Variable $variable): float|int;
 
     abstract public function createVariableToMessageBinding(Variable $variable);
 

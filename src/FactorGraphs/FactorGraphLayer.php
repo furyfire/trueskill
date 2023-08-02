@@ -4,6 +4,9 @@ namespace DNW\Skills\FactorGraphs;
 
 abstract class FactorGraphLayer
 {
+    /**
+     * @var Factor[] $localFactors
+     */
     private array $localFactors = [];
 
     private array $outputVariablesGroups = [];
@@ -34,6 +37,9 @@ abstract class FactorGraphLayer
         return $this->outputVariablesGroups;
     }
 
+    /**
+     * @return Factor[]
+     */
     public function getLocalFactors(): array
     {
         return $this->localFactors;
