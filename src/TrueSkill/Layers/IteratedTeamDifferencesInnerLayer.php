@@ -53,7 +53,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         }
 
         // When dealing with differences, there are always (n-1) differences, so add in the 1
-        $totalTeamDifferences = is_countable($this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors()) ? count($this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors()) : 0;
+        $totalTeamDifferences = count($this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors());
 
         $localFactors = $this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
 

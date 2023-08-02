@@ -63,18 +63,6 @@ class GaussianDistribution implements \Stringable
         return 1.0 / (sqrt(2 * M_PI) * $this->standardDeviation);
     }
 
-    public function __clone()
-    {
-        $result = new GaussianDistribution();
-        $result->mean = $this->mean;
-        $result->standardDeviation = $this->standardDeviation;
-        $result->variance = $this->variance;
-        $result->precision = $this->precision;
-        $result->precisionMean = $this->precisionMean;
-
-        return $result;
-    }
-
     public static function fromPrecisionMean(float $precisionMean, float $precision): self
     {
         $result = new GaussianDistribution();
@@ -174,7 +162,7 @@ class GaussianDistribution implements \Stringable
         return 0.5 * $result;
     }
 
-    private static function errorFunctionCumulativeTo($x): float
+    private static function errorFunctionCumulativeTo(float $x): float
     {
         // Derived from page 265 of Numerical Recipes 3rd Edition
         $z = abs($x);

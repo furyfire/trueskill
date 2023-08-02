@@ -4,7 +4,7 @@ namespace DNW\Skills\FactorGraphs;
 
 class ScheduleLoop extends Schedule
 {
-    public function __construct($name, private readonly Schedule $scheduleToLoop, private $maxDelta)
+    public function __construct(string $name, private readonly Schedule $scheduleToLoop, private float $maxDelta)
     {
         parent::__construct($name);
     }

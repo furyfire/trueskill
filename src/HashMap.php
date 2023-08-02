@@ -7,8 +7,14 @@ namespace DNW\Skills;
  */
 class HashMap
 {
+    /**
+     * @var mixed[] $hashToValue
+     */
     private array $hashToValue = [];
 
+    /**
+     * @var mixed[] $hashToKey
+     */
     private array $hashToKey = [];
 
     public function getValue(string|object $key): mixed
@@ -27,11 +33,17 @@ class HashMap
         return $this;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getAllKeys(): array
     {
         return array_values($this->hashToKey);
     }
 
+    /**
+     * @return mixed[]
+     */
     public function getAllValues(): array
     {
         return array_values($this->hashToValue);
