@@ -11,7 +11,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
 /**
  * Factor that sums together multiple Gaussians.
  *
- * See the accompanying math paper for more details.s
+ * See the accompanying math paper for more details.
  */
 class GaussianWeightedSumFactor extends GaussianFactor
 {
@@ -213,7 +213,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         );
     }
 
-    private static function createName($sumVariable, $variablesToSum, $weights)
+    private static function createName(string $sumVariable, array $variablesToSum, array $weights): string
     {
         // TODO: Perf? Use PHP equivalent of StringBuilder? implode on arrays?
         $result = (string) $sumVariable;

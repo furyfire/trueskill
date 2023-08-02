@@ -10,7 +10,7 @@ abstract class Factor implements \Stringable
 {
     private array $messages = [];
 
-    private $messageToVariableBinding;
+    private HashMap $messageToVariableBinding;
 
     private string $name;
 

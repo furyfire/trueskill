@@ -4,7 +4,7 @@ namespace DNW\Skills\FactorGraphs;
 
 abstract class Schedule implements \Stringable
 {
-    protected function __construct(private $_name)
+    protected function __construct(private string $name)
     {
     }
 
@@ -12,6 +12,6 @@ abstract class Schedule implements \Stringable
 
     public function __toString(): string
     {
-        return (string) $this->_name;
+        return (string) $this->name;
     }
 }

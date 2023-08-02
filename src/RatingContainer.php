@@ -11,7 +11,7 @@ class RatingContainer
         $this->playerToRating = new HashMap();
     }
 
-    public function getRating(Player $player): mixed
+    public function getRating(Player $player): Rating
     {
         return $this->playerToRating->getValue($player);
     }

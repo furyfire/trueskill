@@ -9,7 +9,7 @@ use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
 {
-    private $epsilon;
+    private float $epsilon;
 
     public function __construct(TrueSkillFactorGraph $parentGraph, private readonly array $teamRanks)
     {
@@ -18,7 +18,7 @@ class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
         $this->epsilon = DrawMargin::getDrawMarginFromDrawProbability($gameInfo->getDrawProbability(), $gameInfo->getBeta());
     }
 
-    public function buildLayer()
+    public function buildLayer(): void
     {
         $inputVarGroups = $this->getInputVariablesGroups();
         $inputVarGroupsCount = is_countable($inputVarGroups) ? count($inputVarGroups) : 0;

@@ -18,41 +18,41 @@ class GameInfo
     private const DEFAULT_INITIAL_STANDARD_DEVIATION = 8.3333333333333333333333333333333;
 
     public function __construct(
-        private $_initialMean = self::DEFAULT_INITIAL_MEAN,
-        private $_initialStandardDeviation = self::DEFAULT_INITIAL_STANDARD_DEVIATION,
-        private $_beta = self::DEFAULT_BETA,
-        private $_dynamicsFactor = self::DEFAULT_DYNAMICS_FACTOR,
-        private $_drawProbability = self::DEFAULT_DRAW_PROBABILITY
+        private float $initialMean = self::DEFAULT_INITIAL_MEAN,
+        private float $initialStandardDeviation = self::DEFAULT_INITIAL_STANDARD_DEVIATION,
+        private float $beta = self::DEFAULT_BETA,
+        private float $dynamicsFactor = self::DEFAULT_DYNAMICS_FACTOR,
+        private float $drawProbability = self::DEFAULT_DRAW_PROBABILITY
     ) {
     }
 
     public function getInitialMean()
     {
-        return $this->_initialMean;
+        return $this->initialMean;
     }
 
     public function getInitialStandardDeviation()
     {
-        return $this->_initialStandardDeviation;
+        return $this->initialStandardDeviation;
     }
 
     public function getBeta()
     {
-        return $this->_beta;
+        return $this->beta;
     }
 
     public function getDynamicsFactor()
     {
-        return $this->_dynamicsFactor;
+        return $this->dynamicsFactor;
     }
 
     public function getDrawProbability()
     {
-        return $this->_drawProbability;
+        return $this->drawProbability;
     }
 
     public function getDefaultRating()
     {
-        return new Rating($this->_initialMean, $this->_initialStandardDeviation);
+        return new Rating($this->initialMean, $this->initialStandardDeviation);
     }
 }

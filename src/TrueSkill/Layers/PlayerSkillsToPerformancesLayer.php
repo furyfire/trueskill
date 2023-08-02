@@ -10,7 +10,7 @@ use DNW\Skills\FactorGraphs\ScheduleSequence;
 
 class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 {
-    public function buildLayer()
+    public function buildLayer(): void
     {
         $inputVariablesGroups = $this->getInputVariablesGroups();
         $outputVariablesGroups = &$this->getOutputVariablesGroups();

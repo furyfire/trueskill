@@ -16,14 +16,14 @@ class Rating implements \Stringable
      * @param float     $_standardDeviation                       The standard deviation of the rating (also known as s).
      * @param float|int $_conservativeStandardDeviationMultiplier optional The number of standardDeviations to subtract from the mean to achieve a conservative rating.
      */
-    public function __construct(private $_mean, private $_standardDeviation, private $_conservativeStandardDeviationMultiplier = self::CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER)
+    public function __construct(private float $_mean, private float $_standardDeviation, private float|int $_conservativeStandardDeviationMultiplier = self::CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER)
     {
     }
 
     /**
-     * The statistical mean value of the rating (also known as �).
+     * The statistical mean value of the rating (also known as mu).
      */
-    public function getMean()
+    public function getMean(): float
     {
         return $this->_mean;
     }
@@ -31,7 +31,7 @@ class Rating implements \Stringable
     /**
      * The standard deviation (the spread) of the rating. This is also known as s.
      */
-    public function getStandardDeviation()
+    public function getStandardDeviation(): float
     {
         return $this->_standardDeviation;
     }
@@ -39,12 +39,12 @@ class Rating implements \Stringable
     /**
      * A conservative estimate of skill based on the mean and standard deviation.
      */
-    public function getConservativeRating()
+    public function getConservativeRating(): float
     {
         return $this->_mean - $this->_conservativeStandardDeviationMultiplier * $this->_standardDeviation;
     }
 
-    public function getPartialUpdate(Rating $prior, Rating $fullPosterior, $updatePercentage)
+    public function getPartialUpdate(Rating $prior, Rating $fullPosterior, $updatePercentage): Rating
     {
         $priorGaussian = new GaussianDistribution($prior->getMean(), $prior->getStandardDeviation());
         $posteriorGaussian = new GaussianDistribution($fullPosterior->getMean(), $fullPosterior . getStandardDeviation());
@@ -56,7 +56,7 @@ class Rating implements \Stringable
         $precisionDifference = $posteriorGaussian->getPrecision() - $priorGaussian->getPrecision();
         $partialPrecisionDifference = $updatePercentage * $precisionDifference;
 
-        $precisionMeanDifference = $posteriorGaussian->getPrecisionMean() - $priorGaussian . getPrecisionMean();
+        $precisionMeanDifference = $posteriorGaussian->getPrecisionMean() - $priorGaussian->getPrecisionMean();
         $partialPrecisionMeanDifference = $updatePercentage * $precisionMeanDifference;
 
         $partialPosteriorGaussion = GaussianDistribution::fromPrecisionMean(

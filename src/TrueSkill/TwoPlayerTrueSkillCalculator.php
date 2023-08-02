@@ -78,7 +78,7 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
         return $results;
     }
 
-    private static function calculateNewRating(GameInfo $gameInfo, Rating $selfRating, Rating $opponentRating, $comparison)
+    private static function calculateNewRating(GameInfo $gameInfo, Rating $selfRating, Rating $opponentRating, $comparison): Rating
     {
         $drawMargin = DrawMargin::getDrawMarginFromDrawProbability(
             $gameInfo->getDrawProbability(),
