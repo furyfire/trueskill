@@ -14,16 +14,16 @@ use DNW\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
  */
 class GaussianWithinFactor extends GaussianFactor
 {
-    private $epsilon;
+    private float $epsilon;
 
-    public function __construct($epsilon, Variable $variable)
+    public function __construct(float $epsilon, Variable $variable)
     {
         parent::__construct(sprintf('%s <= %.2f', $variable, $epsilon));
         $this->epsilon = $epsilon;
         $this->createVariableToMessageBinding($variable);
     }
 
-    public function getLogNormalization()
+    public function getLogNormalization(): float
     {
         /**
  * @var Variable[] $variables
@@ -46,7 +46,7 @@ class GaussianWithinFactor extends GaussianFactor
         return -GaussianDistribution::logProductNormalization($messageFromVariable, $message) + log($z);
     }
 
-    protected function updateMessageVariable(Message $message, Variable $variable)
+    protected function updateMessageVariable(Message $message, Variable $variable): float
     {
         $oldMarginal = clone $variable->getValue();
         $oldMessage = clone $message->getValue();

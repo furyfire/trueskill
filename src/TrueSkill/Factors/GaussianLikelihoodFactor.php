@@ -15,9 +15,9 @@ use Exception;
  */
 class GaussianLikelihoodFactor extends GaussianFactor
 {
-    private $precision;
+    private float $precision;
 
-    public function __construct($betaSquared, Variable $variable1, Variable $variable2)
+    public function __construct(float $betaSquared, Variable $variable1, Variable $variable2)
     {
         parent::__construct(sprintf('Likelihood of %s going to %s', $variable2, $variable1));
         $this->precision = 1.0 / $betaSquared;
@@ -42,7 +42,7 @@ class GaussianLikelihoodFactor extends GaussianFactor
         );
     }
 
-    private function updateHelper(Message $message1, Message $message2, Variable $variable1, Variable $variable2)
+    private function updateHelper(Message $message1, Message $message2, Variable $variable1, Variable $variable2): float
     {
         $message1Value = clone $message1->getValue();
         $message2Value = clone $message2->getValue();
@@ -70,7 +70,7 @@ class GaussianLikelihoodFactor extends GaussianFactor
         return GaussianDistribution::subtract($newMarginal, $marginal1);
     }
 
-    public function updateMessageIndex($messageIndex)
+    public function updateMessageIndex($messageIndex): float
     {
         $messages = $this->getMessages();
         $vars = $this->getVariables();

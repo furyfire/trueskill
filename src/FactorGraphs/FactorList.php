@@ -7,9 +7,12 @@ namespace DNW\Skills\FactorGraphs;
  */
 class FactorList
 {
+    /**
+     * @var Factor[] $list
+     */
     private array $list = [];
 
-    public function getLogNormalization()
+    public function getLogNormalization(): float
     {
         $list = $this->list;
         foreach ($list as &$currentFactor) {
@@ -39,12 +42,12 @@ class FactorList
         return $sumLogZ + $sumLogS;
     }
 
-    public function count()
+    public function count(): int
     {
         return count($this->list);
     }
 
-    public function addFactor(Factor $factor)
+    public function addFactor(Factor $factor): Factor
     {
         $this->list[] = $factor;
 

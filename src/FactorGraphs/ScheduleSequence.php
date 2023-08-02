@@ -4,12 +4,12 @@ namespace DNW\Skills\FactorGraphs;
 
 class ScheduleSequence extends Schedule
 {
-    public function __construct($name, private readonly array $schedules)
+    public function __construct(string $name, private readonly array $schedules)
     {
         parent::__construct($name);
     }
 
-    public function visit($depth = -1, $maxDepth = 0)
+    public function visit(int $depth = -1, int $maxDepth = 0): float
     {
         $maxDelta = 0;
 

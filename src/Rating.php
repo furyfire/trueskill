@@ -44,10 +44,10 @@ class Rating implements \Stringable
         return $this->mean - $this->conservativeStandardDeviationMultiplier * $this->standardDeviation;
     }
 
-    public function getPartialUpdate(Rating $prior, Rating $fullPosterior, $updatePercentage): Rating
+    public function getPartialUpdate(Rating $prior, Rating $fullPosterior, float $updatePercentage): Rating
     {
         $priorGaussian = new GaussianDistribution($prior->getMean(), $prior->getStandardDeviation());
-        $posteriorGaussian = new GaussianDistribution($fullPosterior->getMean(), $fullPosterior . getStandardDeviation());
+        $posteriorGaussian = new GaussianDistribution($fullPosterior->getMean(), $fullPosterior->getStandardDeviation());
 
         // From a clarification email from Ralf Herbrich:
         // "the idea is to compute a linear interpolation between the prior and posterior skills of each player

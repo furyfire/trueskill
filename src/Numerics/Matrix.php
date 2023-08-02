@@ -298,7 +298,7 @@ class Matrix
         return new Matrix($this->rowCount - 1, $this->columnCount - 1, $result);
     }
 
-    public function getCofactor($rowToRemove, $columnToRemove)
+    public function getCofactor(int $rowToRemove, int $columnToRemove): float
     {
         // See http://en.wikipedia.org/wiki/Cofactor_(linear_algebra) for details
         // REVIEW: should things be reversed since I'm 0 indexed?
@@ -312,7 +312,7 @@ class Matrix
         }
     }
 
-    public function equals($otherMatrix)
+    public function equals(Matrix $otherMatrix): bool
     {
         // If one is null, but not both, return false.
         if ($otherMatrix == null) {

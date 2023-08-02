@@ -33,17 +33,17 @@ class Range
 
     // REVIEW: It's probably bad form to have access statics via a derived class, but the syntax looks better :-)
 
-    public static function inclusive(int $min, int $max): self
+    public static function inclusive(int $min, int $max): static
     {
         return static::create($min, $max);
     }
 
-    public static function exactly(int $value): self
+    public static function exactly(int $value): static
     {
         return static::create($value, $value);
     }
 
-    public static function atLeast(int $minimumValue): self
+    public static function atLeast(int $minimumValue): static
     {
         return static::create($minimumValue, PHP_INT_MAX);
     }

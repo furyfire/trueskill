@@ -4,6 +4,7 @@ namespace DNW\Skills\TrueSkill\Layers;
 
 use DNW\Skills\FactorGraphs\ScheduleStep;
 use DNW\Skills\FactorGraphs\Variable;
+use DNW\Skills\FactorGraphs\KeyedVariable;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\Rating;
 use DNW\Skills\TrueSkill\Factors\GaussianPriorFactor;
@@ -63,7 +64,7 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
         );
     }
 
-    private function createSkillOutputVariable($key)
+    private function createSkillOutputVariable(mixed $key) : KeyedVariable
     {
         $parentFactorGraph = $this->getParentFactorGraph();
         $variableFactory = $parentFactorGraph->getVariableFactory();

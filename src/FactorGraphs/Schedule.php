@@ -8,10 +8,10 @@ abstract class Schedule implements \Stringable
     {
     }
 
-    abstract public function visit(int $depth = -1, int $maxDepth = 0);
+    abstract public function visit(int $depth = -1, int $maxDepth = 0): float;
 
     public function __toString(): string
     {
-        return (string) $this->name;
+        return $this->name;
     }
 }

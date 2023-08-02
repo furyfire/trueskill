@@ -19,9 +19,12 @@ use DNW\Skills\TrueSkill\Layers\TeamPerformancesToTeamPerformanceDifferencesLaye
 
 class TrueSkillFactorGraph extends FactorGraph
 {
-    private $layers;
+    /**
+     * @var FactorGraphLayer[] $layers
+     */
+    private array $layers;
 
-    private $priorLayer;
+    private PlayerPriorValuesToSkillsLayer $priorLayer;
 
     public function __construct(private readonly GameInfo $gameInfo, array $teams, array $teamRanks)
     {
@@ -43,7 +46,7 @@ class TrueSkillFactorGraph extends FactorGraph
         ];
     }
 
-    public function getGameInfo()
+    public function getGameInfo(): GameInfo
     {
         return $this->gameInfo;
     }

@@ -40,7 +40,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
         );
     }
 
-    private function createOutputVariable($key): KeyedVariable
+    private function createOutputVariable(mixed $key): KeyedVariable
     {
         return $this->getParentFactorGraph()->getVariableFactory()->createKeyedVariable($key, $key . "'s performance");
     }

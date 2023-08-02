@@ -9,7 +9,7 @@ class ScheduleLoop extends Schedule
         parent::__construct($name);
     }
 
-    public function visit(int $depth = -1, int $maxDepth = 0)
+    public function visit(int $depth = -1, int $maxDepth = 0): float
     {
         $totalIterations = 1;
         $delta = $this->scheduleToLoop->visit($depth + 1, $maxDepth);
