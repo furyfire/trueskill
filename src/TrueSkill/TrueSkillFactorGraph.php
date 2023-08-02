@@ -10,6 +10,7 @@ use DNW\Skills\GameInfo;
 use DNW\Skills\Numerics\GaussianDistribution;
 use DNW\Skills\Rating;
 use DNW\Skills\RatingContainer;
+use DNW\Skills\FactorGraphs\FactorGraphLayer;
 use DNW\Skills\TrueSkill\Layers\IteratedTeamDifferencesInnerLayer;
 use DNW\Skills\TrueSkill\Layers\PlayerPerformancesToTeamPerformancesLayer;
 use DNW\Skills\TrueSkill\Layers\PlayerPriorValuesToSkillsLayer;

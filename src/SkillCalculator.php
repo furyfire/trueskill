@@ -10,7 +10,7 @@ use Exception;
 abstract class SkillCalculator
 {
     protected function __construct(
-        private $supportedOptions,
+        private int $supportedOptions,
         private readonly TeamsRange $totalTeamsAllowed,
         private readonly PlayersRange $playersPerTeamAllowed
     ) {
@@ -22,13 +22,13 @@ abstract class SkillCalculator
      * @param  GameInfo $gameInfo               Parameters for the game.
      * @param  array    $teamsOfPlayerToRatings A mapping of team players and their ratings.
      * @param  array    $teamRanks              The ranks of the teams where 1 is first place. For a tie, repeat the number (e.g. 1, 2, 2).
-     * @return All the players and their new ratings.
+     * @return RatingContainer All the players and their new ratings.
      */
     abstract public function calculateNewRatings(
         GameInfo $gameInfo,
         array $teamsOfPlayerToRatings,
         array $teamRanks
-    );
+    ): RatingContainer;
 
     /**
      * Calculates the match quality as the likelihood of all teams drawing.

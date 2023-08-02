@@ -8,7 +8,7 @@ class Matrix
 {
     public const ERROR_TOLERANCE = 0.0000000001;
 
-    public function __construct(private int $rowCount = 0, private int $columnCount = 0, private $matrixRowData = null)
+    public function __construct(private int $rowCount = 0, private int $columnCount = 0, private array $matrixRowData = array())
     {
     }
 
@@ -28,12 +28,10 @@ class Matrix
         return $result;
     }
 
-    public static function fromRowsColumns(...$args): Matrix
+    public static function fromRowsColumns(int $rows, int $cols, float|int ...$args): Matrix
     {
-        $rows = $args[0];
-        $cols = $args[1];
         $result = new Matrix($rows, $cols);
-        $currentIndex = 2;
+        $currentIndex = 0;
 
         for ($currentRow = 0; $currentRow < $rows; $currentRow++) {
             for ($currentCol = 0; $currentCol < $cols; $currentCol++) {

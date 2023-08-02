@@ -6,10 +6,11 @@ use DNW\Skills\FactorGraphs\ScheduleStep;
 use DNW\Skills\FactorGraphs\ScheduleSequence;
 use DNW\Skills\PartialPlay;
 use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
+use DNW\Skills\FactorGraphs\Variable; 
 
 class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLayer
 {
-    public function buildLayer()
+    public function buildLayer(): void
     {
         $inputVariablesGroups = $this->getInputVariablesGroups();
         foreach ($inputVariablesGroups as $currentTeam) {
@@ -38,7 +39,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
         );
     }
 
-    protected function createPlayerToTeamSumFactor($teamMembers, $sumVariable): GaussianWeightedSumFactor
+    protected function createPlayerToTeamSumFactor(array $teamMembers, Variable $sumVariable): GaussianWeightedSumFactor
     {
         $weights = array_map(
             function ($v) {
@@ -75,7 +76,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
         return $this->scheduleSequence($allFactors, "all of the team's sum iterations");
     }
 
-    private function createOutputVariable($team)
+    private function createOutputVariable(array $team): Variable
     {
         $memberNames = array_map(fn ($currentPlayer) => (string) ($currentPlayer->getKey()), $team);
 

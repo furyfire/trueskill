@@ -7,7 +7,7 @@ use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
 
 class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorGraphLayer
 {
-    public function buildLayer()
+    public function buildLayer(): void
     {
         $inputVariablesGroups = $this->getInputVariablesGroups();
         $inputVariablesGroupsCount = is_countable($inputVariablesGroups) ? count($inputVariablesGroups) : 0;
@@ -30,14 +30,14 @@ class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorG
         Variable $strongerTeam,
         Variable $weakerTeam,
         Variable $output
-    ) {
+    ): GaussianWeightedSumFactor {
         $teams = [$strongerTeam, $weakerTeam];
         $weights = [1.0, -1.0];
 
         return new GaussianWeightedSumFactor($output, $teams, $weights);
     }
 
-    private function createOutputVariable()
+    private function createOutputVariable(): Variable
     {
         return $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable('Team performance difference');
     }

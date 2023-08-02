@@ -70,7 +70,7 @@ class GaussianLikelihoodFactor extends GaussianFactor
         return GaussianDistribution::subtract($newMarginal, $marginal1);
     }
 
-    public function updateMessageIndex($messageIndex): float
+    public function updateMessageIndex(int $messageIndex): float
     {
         $messages = $this->getMessages();
         $vars = $this->getVariables();

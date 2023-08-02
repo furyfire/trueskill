@@ -4,8 +4,9 @@ namespace DNW\Skills\FactorGraphs;
 
 class Message implements \Stringable
 {
-    public function __construct(private $value = null, private $name = null)
+    public function __construct(private ?object $value = null, private ?string $name = null)
     {
+
     }
 
     public function getValue()

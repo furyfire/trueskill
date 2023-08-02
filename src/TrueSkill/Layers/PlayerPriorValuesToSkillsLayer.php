@@ -9,6 +9,7 @@ use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\Rating;
 use DNW\Skills\TrueSkill\Factors\GaussianPriorFactor;
 use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
+use DNW\Skills\FactorGraphs\ScheduleSequence;
 
 // We intentionally have no Posterior schedule since the only purpose here is to
 // start the process.
@@ -19,7 +20,7 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
         parent::__construct($parentGraph);
     }
 
-    public function buildLayer()
+    public function buildLayer(): void
     {
         $teams = $this->teams;
         foreach ($teams as $currentTeam) {
@@ -41,7 +42,7 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
         }
     }
 
-    public function createPriorSchedule()
+    public function createPriorSchedule(): ScheduleSequence
     {
         $localFactors = $this->getLocalFactors();
 
@@ -54,7 +55,7 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
         );
     }
 
-    private function createPriorFactor(Rating $priorRating, Variable $skillsVariable)
+    private function createPriorFactor(Rating $priorRating, Variable $skillsVariable): GaussianPriorFactor
     {
         return new GaussianPriorFactor(
             $priorRating->getMean(),

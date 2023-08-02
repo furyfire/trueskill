@@ -11,21 +11,21 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
 
     private const DEFAULT_PARTIAL_UPDATE_PERCENTAGE = 1.0;
 
-    private $PartialPlayPercentage;
+    private float $PartialPlayPercentage;
 
-    private $PartialUpdatePercentage;
+    private float $PartialUpdatePercentage;
 
     /**
      * Constructs a player.
      *
      * @param mixed  $Id                      The identifier for the player, such as a name.
-     * @param number $partialPlayPercentage   The weight percentage to give this player when calculating a new rank.
-     * @param number $partialUpdatePercentage Indicated how much of a skill update a player should receive where 0 represents no update and 1.0 represents 100% of the update.
+     * @param float $partialPlayPercentage   The weight percentage to give this player when calculating a new rank.
+     * @param float $partialUpdatePercentage Indicated how much of a skill update a player should receive where 0 represents no update and 1.0 represents 100% of the update.
      */
     public function __construct(
-        private $Id,
-        $partialPlayPercentage = self::DEFAULT_PARTIAL_PLAY_PERCENTAGE,
-        $partialUpdatePercentage = self::DEFAULT_PARTIAL_UPDATE_PERCENTAGE
+        private mixed $Id,
+        float $partialPlayPercentage = self::DEFAULT_PARTIAL_PLAY_PERCENTAGE,
+        float $partialUpdatePercentage = self::DEFAULT_PARTIAL_UPDATE_PERCENTAGE
     ) {
         // If they don't want to give a player an id, that's ok...
         Guard::argumentInRangeInclusive($partialPlayPercentage, 0.0, 1.0, 'partialPlayPercentage');
@@ -37,7 +37,7 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
     /**
      * The identifier for the player, such as a name.
      */
-    public function getId()
+    public function getId(): mixed
     {
         return $this->Id;
     }
@@ -45,7 +45,7 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
     /**
      * Indicates the percent of the time the player should be weighted where 0.0 indicates the player didn't play and 1.0 indicates the player played 100% of the time.
      */
-    public function getPartialPlayPercentage()
+    public function getPartialPlayPercentage(): float
     {
         return $this->PartialPlayPercentage;
     }
@@ -53,7 +53,7 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
     /**
      * Indicated how much of a skill update a player should receive where 0.0 represents no update and 1.0 represents 100% of the update.
      */
-    public function getPartialUpdatePercentage()
+    public function getPartialUpdatePercentage(): float
     {
         return $this->PartialUpdatePercentage;
     }

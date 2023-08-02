@@ -21,7 +21,7 @@ abstract class FactorGraphLayer
 
     // HACK
 
-    public function getParentFactorGraph()
+    public function getParentFactorGraph(): FactorGraph
     {
         return $this->parentFactorGraph;
     }
