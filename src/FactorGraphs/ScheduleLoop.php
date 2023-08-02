@@ -4,7 +4,7 @@ namespace DNW\Skills\FactorGraphs;
 
 class ScheduleLoop extends Schedule
 {
-    public function __construct($name, private readonly Schedule $_scheduleToLoop, private $_maxDelta)
+    public function __construct($name, private readonly Schedule $scheduleToLoop, private $maxDelta)
     {
         parent::__construct($name);
     }
@@ -12,9 +12,9 @@ class ScheduleLoop extends Schedule
     public function visit(int $depth = -1, int $maxDepth = 0)
     {
         $totalIterations = 1;
-        $delta = $this->_scheduleToLoop->visit($depth + 1, $maxDepth);
-        while ($delta > $this->_maxDelta) {
-            $delta = $this->_scheduleToLoop->visit($depth + 1, $maxDepth);
+        $delta = $this->scheduleToLoop->visit($depth + 1, $maxDepth);
+        while ($delta > $this->maxDelta) {
+            $delta = $this->scheduleToLoop->visit($depth + 1, $maxDepth);
             $totalIterations++;
         }
 

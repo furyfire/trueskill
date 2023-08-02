@@ -10,9 +10,9 @@ use Exception;
 abstract class SkillCalculator
 {
     protected function __construct(
-        private $_supportedOptions,
-        private readonly TeamsRange $_totalTeamsAllowed,
-        private readonly PlayersRange $_playersPerTeamAllowed
+        private $supportedOptions,
+        private readonly TeamsRange $totalTeamsAllowed,
+        private readonly PlayersRange $playersPerTeamAllowed
     ) {
     }
 
@@ -41,12 +41,12 @@ abstract class SkillCalculator
 
     public function isSupported($option): bool
     {
-        return ($this->_supportedOptions & $option) == $option;
+        return ($this->supportedOptions & $option) == $option;
     }
 
     protected function validateTeamCountAndPlayersCountPerTeam(array $teamsOfPlayerToRatings)
     {
-        self::validateTeamCountAndPlayersCountPerTeamWithRanges($teamsOfPlayerToRatings, $this->_totalTeamsAllowed, $this->_playersPerTeamAllowed);
+        self::validateTeamCountAndPlayersCountPerTeamWithRanges($teamsOfPlayerToRatings, $this->totalTeamsAllowed, $this->playersPerTeamAllowed);
     }
 
     /**

@@ -8,7 +8,7 @@ class Matrix
 {
     public const ERROR_TOLERANCE = 0.0000000001;
 
-    public function __construct(private int $_rowCount = 0, private int $_columnCount = 0, private $_matrixRowData = null)
+    public function __construct(private int $rowCount = 0, private int $columnCount = 0, private $matrixRowData = null)
     {
     }
 
@@ -46,22 +46,22 @@ class Matrix
 
     public function getRowCount(): int
     {
-        return $this->_rowCount;
+        return $this->rowCount;
     }
 
     public function getColumnCount(): int
     {
-        return $this->_columnCount;
+        return $this->columnCount;
     }
 
     public function getValue(int $row, int $col): float|int
     {
-        return $this->_matrixRowData[$row][$col];
+        return $this->matrixRowData[$row][$col];
     }
 
     public function setValue(int $row, int $col, float|int $value)
     {
-        $this->_matrixRowData[$row][$col] = $value;
+        $this->matrixRowData[$row][$col] = $value;
     }
 
     public function getTranspose(): self
@@ -69,15 +69,15 @@ class Matrix
         // Just flip everything
         $transposeMatrix = [];
 
-        $rowMatrixData = $this->_matrixRowData;
+        $rowMatrixData = $this->matrixRowData;
         for (
             $currentRowTransposeMatrix = 0;
-             $currentRowTransposeMatrix < $this->_columnCount;
+             $currentRowTransposeMatrix < $this->columnCount;
              $currentRowTransposeMatrix++
         ) {
             for (
                 $currentColumnTransposeMatrix = 0;
-                 $currentColumnTransposeMatrix < $this->_rowCount;
+                 $currentColumnTransposeMatrix < $this->rowCount;
                  $currentColumnTransposeMatrix++
             ) {
                 $transposeMatrix[$currentRowTransposeMatrix][$currentColumnTransposeMatrix] =
@@ -85,12 +85,12 @@ class Matrix
             }
         }
 
-        return new Matrix($this->_columnCount, $this->_rowCount, $transposeMatrix);
+        return new Matrix($this->columnCount, $this->rowCount, $transposeMatrix);
     }
 
     private function isSquare(): bool
     {
-        return ($this->_rowCount == $this->_columnCount) && ($this->_rowCount > 0);
+        return ($this->rowCount == $this->columnCount) && ($this->rowCount > 0);
     }
 
     public function getDeterminant(): float
@@ -100,21 +100,21 @@ class Matrix
             throw new Exception('Matrix must be square!');
         }
 
-        if ($this->_rowCount == 1) {
+        if ($this->rowCount == 1) {
             // Really happy path :)
-            return $this->_matrixRowData[0][0];
+            return $this->matrixRowData[0][0];
         }
 
-        if ($this->_rowCount == 2) {
+        if ($this->rowCount == 2) {
             // Happy path!
             // Given:
             // | a b |
             // | c d |
             // The determinant is ad - bc
-            $a = $this->_matrixRowData[0][0];
-            $b = $this->_matrixRowData[0][1];
-            $c = $this->_matrixRowData[1][0];
-            $d = $this->_matrixRowData[1][1];
+            $a = $this->matrixRowData[0][0];
+            $b = $this->matrixRowData[0][1];
+            $c = $this->matrixRowData[1][0];
+            $d = $this->matrixRowData[1][1];
 
             return $a * $d - $b * $c;
         }
@@ -128,8 +128,8 @@ class Matrix
         $result = 0.0;
 
         // I expand along the first row
-        for ($currentColumn = 0; $currentColumn < $this->_columnCount; $currentColumn++) {
-            $firstRowColValue = $this->_matrixRowData[0][$currentColumn];
+        for ($currentColumn = 0; $currentColumn < $this->columnCount; $currentColumn++) {
+            $firstRowColValue = $this->matrixRowData[0][$currentColumn];
             $cofactor = $this->getCofactor(0, $currentColumn);
             $itemToAdd = $firstRowColValue * $cofactor;
             $result += $itemToAdd;
@@ -145,7 +145,7 @@ class Matrix
         }
 
         // See http://en.wikipedia.org/wiki/Adjugate_matrix
-        if ($this->_rowCount == 2) {
+        if ($this->rowCount == 2) {
             // Happy path!
             // Adjugate of:
             // | a b |
@@ -154,10 +154,10 @@ class Matrix
             // | d -b |
             // | -c a |
 
-            $a = $this->_matrixRowData[0][0];
-            $b = $this->_matrixRowData[0][1];
-            $c = $this->_matrixRowData[1][0];
-            $d = $this->_matrixRowData[1][1];
+            $a = $this->matrixRowData[0][0];
+            $b = $this->matrixRowData[0][1];
+            $c = $this->matrixRowData[1][0];
+            $d = $this->matrixRowData[1][1];
 
             return new SquareMatrix(
                 $d,
@@ -170,19 +170,19 @@ class Matrix
         // The idea is that it's the transpose of the cofactors
         $result = [];
 
-        for ($currentColumn = 0; $currentColumn < $this->_columnCount; $currentColumn++) {
-            for ($currentRow = 0; $currentRow < $this->_rowCount; $currentRow++) {
+        for ($currentColumn = 0; $currentColumn < $this->columnCount; $currentColumn++) {
+            for ($currentRow = 0; $currentRow < $this->rowCount; $currentRow++) {
                 $result[$currentColumn][$currentRow] = $this->getCofactor($currentRow, $currentColumn);
             }
         }
 
-        return new Matrix($this->_columnCount, $this->_rowCount, $result);
+        return new Matrix($this->columnCount, $this->rowCount, $result);
     }
 
     public function getInverse(): Matrix|SquareMatrix
     {
-        if (($this->_rowCount == 1) && ($this->_columnCount == 1)) {
-            return new SquareMatrix(1.0 / $this->_matrixRowData[0][0]);
+        if (($this->rowCount == 1) && ($this->columnCount == 1)) {
+            return new SquareMatrix(1.0 / $this->matrixRowData[0][0]);
         }
 
         // Take the simple approach:
@@ -275,19 +275,19 @@ class Matrix
 
         $actualRow = 0;
 
-        for ($currentRow = 0; $currentRow < $this->_rowCount; $currentRow++) {
+        for ($currentRow = 0; $currentRow < $this->rowCount; $currentRow++) {
             if ($currentRow == $rowToRemove) {
                 continue;
             }
 
             $actualCol = 0;
 
-            for ($currentColumn = 0; $currentColumn < $this->_columnCount; $currentColumn++) {
+            for ($currentColumn = 0; $currentColumn < $this->columnCount; $currentColumn++) {
                 if ($currentColumn == $columnToRemove) {
                     continue;
                 }
 
-                $result[$actualRow][$actualCol] = $this->_matrixRowData[$currentRow][$currentColumn];
+                $result[$actualRow][$actualCol] = $this->matrixRowData[$currentRow][$currentColumn];
 
                 $actualCol++;
             }
@@ -295,7 +295,7 @@ class Matrix
             $actualRow++;
         }
 
-        return new Matrix($this->_rowCount - 1, $this->_columnCount - 1, $result);
+        return new Matrix($this->rowCount - 1, $this->columnCount - 1, $result);
     }
 
     public function getCofactor($rowToRemove, $columnToRemove)
@@ -319,15 +319,15 @@ class Matrix
             return false;
         }
 
-        if (($this->_rowCount != $otherMatrix->getRowCount()) || ($this->_columnCount != $otherMatrix->getColumnCount())) {
+        if (($this->rowCount != $otherMatrix->getRowCount()) || ($this->columnCount != $otherMatrix->getColumnCount())) {
             return false;
         }
 
-        for ($currentRow = 0; $currentRow < $this->_rowCount; $currentRow++) {
-            for ($currentColumn = 0; $currentColumn < $this->_columnCount; $currentColumn++) {
+        for ($currentRow = 0; $currentRow < $this->rowCount; $currentRow++) {
+            for ($currentColumn = 0; $currentColumn < $this->columnCount; $currentColumn++) {
                 $delta =
                     abs(
-                        $this->_matrixRowData[$currentRow][$currentColumn] -
+                        $this->matrixRowData[$currentRow][$currentColumn] -
                         $otherMatrix->getValue($currentRow, $currentColumn)
                     );
 

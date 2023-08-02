@@ -4,7 +4,7 @@ namespace DNW\Skills\FactorGraphs;
 
 class ScheduleSequence extends Schedule
 {
-    public function __construct($name, private readonly array $_schedules)
+    public function __construct($name, private readonly array $schedules)
     {
         parent::__construct($name);
     }
@@ -13,7 +13,7 @@ class ScheduleSequence extends Schedule
     {
         $maxDelta = 0;
 
-        $schedules = $this->_schedules;
+        $schedules = $this->schedules;
         foreach ($schedules as $currentSchedule) {
             $currentVisit = $currentSchedule->visit($depth + 1, $maxDepth);
             $maxDelta = max($currentVisit, $maxDelta);

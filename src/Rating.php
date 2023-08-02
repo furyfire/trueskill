@@ -12,11 +12,11 @@ class Rating implements \Stringable
     /**
      * Constructs a rating.
      *
-     * @param float     $_mean                                    The statistical mean value of the rating (also known as mu).
-     * @param float     $_standardDeviation                       The standard deviation of the rating (also known as s).
-     * @param float|int $_conservativeStandardDeviationMultiplier optional The number of standardDeviations to subtract from the mean to achieve a conservative rating.
+     * @param float     $mean                                    The statistical mean value of the rating (also known as mu).
+     * @param float     $standardDeviation                       The standard deviation of the rating (also known as s).
+     * @param float|int $conservativeStandardDeviationMultiplier optional The number of standardDeviations to subtract from the mean to achieve a conservative rating.
      */
-    public function __construct(private float $_mean, private float $_standardDeviation, private float|int $_conservativeStandardDeviationMultiplier = self::CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER)
+    public function __construct(private float $mean, private float $standardDeviation, private float|int $conservativeStandardDeviationMultiplier = self::CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER)
     {
     }
 
@@ -25,7 +25,7 @@ class Rating implements \Stringable
      */
     public function getMean(): float
     {
-        return $this->_mean;
+        return $this->mean;
     }
 
     /**
@@ -33,7 +33,7 @@ class Rating implements \Stringable
      */
     public function getStandardDeviation(): float
     {
-        return $this->_standardDeviation;
+        return $this->standardDeviation;
     }
 
     /**
@@ -41,7 +41,7 @@ class Rating implements \Stringable
      */
     public function getConservativeRating(): float
     {
-        return $this->_mean - $this->_conservativeStandardDeviationMultiplier * $this->_standardDeviation;
+        return $this->mean - $this->conservativeStandardDeviationMultiplier * $this->standardDeviation;
     }
 
     public function getPartialUpdate(Rating $prior, Rating $fullPosterior, $updatePercentage): Rating
@@ -64,11 +64,11 @@ class Rating implements \Stringable
             $priorGaussian->getPrecision() + $partialPrecisionDifference
         );
 
-        return new Rating($partialPosteriorGaussion->getMean(), $partialPosteriorGaussion->getStandardDeviation(), $prior->_conservativeStandardDeviationMultiplier);
+        return new Rating($partialPosteriorGaussion->getMean(), $partialPosteriorGaussion->getStandardDeviation(), $prior->conservativeStandardDeviationMultiplier);
     }
 
     public function __toString(): string
     {
-        return sprintf('mean=%.4f, standardDeviation=%.4f', $this->_mean, $this->_standardDeviation);
+        return sprintf('mean=%.4f, standardDeviation=%.4f', $this->mean, $this->standardDeviation);
     }
 }

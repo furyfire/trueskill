@@ -13,14 +13,14 @@ use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 // start the process.
 class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
 {
-    public function __construct(TrueSkillFactorGraph $parentGraph, private readonly array $_teams)
+    public function __construct(TrueSkillFactorGraph $parentGraph, private readonly array $teams)
     {
         parent::__construct($parentGraph);
     }
 
     public function buildLayer()
     {
-        $teams = $this->_teams;
+        $teams = $this->teams;
         foreach ($teams as $currentTeam) {
             $localCurrentTeam = $currentTeam;
             $currentTeamSkills = [];
