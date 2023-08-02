@@ -38,7 +38,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         $this->TeamDifferencesComparisonLayer->buildLayer();
     }
 
-    public function createPriorSchedule(): ScheduleSequence
+    public function createPriorSchedule(): ?ScheduleSequence
     {
         switch (is_countable($this->getInputVariablesGroups()) ? count($this->getInputVariablesGroups()) : 0) {
             case 0:
@@ -78,7 +78,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         );
     }
 
-    private function createTwoTeamInnerPriorLoopSchedule()
+    private function createTwoTeamInnerPriorLoopSchedule(): ScheduleSequence
     {
         $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors = $this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
         $teamDifferencesComparisonLayerLocalFactors = $this->TeamDifferencesComparisonLayer->getLocalFactors();
@@ -104,9 +104,9 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         );
     }
 
-    private function createMultipleTeamInnerPriorLoopSchedule()
+    private function createMultipleTeamInnerPriorLoopSchedule(): ScheduleLoop
     {
-        $totalTeamDifferences = is_countable($this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors()) ? count($this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors()) : 0;
+        $totalTeamDifferences = count($this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors());
 
         $forwardScheduleList = [];
 

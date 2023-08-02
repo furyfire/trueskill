@@ -198,8 +198,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         // The tricky part here is that we have to put the messages and variables in the same
         // order as the weights. Thankfully, the weights and messages share the same index numbers,
         // so we just need to make sure they're consistent
-        $allMessagesCount = is_countable($allMessages) ? count($allMessages) : 0;
-        for ($i = 0; $i < $allMessagesCount; $i++) {
+        for ($i = 0; $i < count($allMessages); $i++) {
             $updatedMessages[] = $allMessages[$indicesToUse[$i]];
             $updatedVariables[] = $allVariables[$indicesToUse[$i]];
         }

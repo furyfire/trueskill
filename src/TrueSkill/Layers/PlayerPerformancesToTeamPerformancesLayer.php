@@ -26,7 +26,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
         }
     }
 
-    public function createPriorSchedule(): ScheduleSequence
+    public function createPriorSchedule(): ?ScheduleSequence
     {
         $localFactors = $this->getLocalFactors();
 
@@ -57,7 +57,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
         );
     }
 
-    public function createPosteriorSchedule(): ScheduleSequence
+    public function createPosteriorSchedule(): ?ScheduleSequence
     {
         $allFactors = [];
         $localFactors = $this->getLocalFactors();

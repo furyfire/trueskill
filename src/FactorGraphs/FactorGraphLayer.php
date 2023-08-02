@@ -60,14 +60,14 @@ abstract class FactorGraphLayer
         $this->localFactors[] = $factor;
     }
 
-    abstract public function buildLayer();
+    abstract public function buildLayer(): void;
 
-    public function createPriorSchedule()
+    public function createPriorSchedule(): ?ScheduleSequence
     {
         return null;
     }
 
-    public function createPosteriorSchedule()
+    public function createPosteriorSchedule(): ?ScheduleSequence
     {
         return null;
     }
