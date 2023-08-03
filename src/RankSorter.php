@@ -12,7 +12,7 @@ class RankSorter
      *
      * @param  array<mixed> $teams     The items to sort according to the order specified by ranks.
      * @param  array<int>   $teamRanks The ranks for each item where 1 is first place.
-     * @return array<array>
+     * @return array<mixed>
      */
     public static function sort(array &$teams, array &$teamRanks): array
     {

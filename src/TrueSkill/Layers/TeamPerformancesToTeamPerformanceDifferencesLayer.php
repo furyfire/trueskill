@@ -10,7 +10,7 @@ class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorG
     public function buildLayer(): void
     {
         $inputVariablesGroups = $this->getInputVariablesGroups();
-        $inputVariablesGroupsCount = is_countable($inputVariablesGroups) ? count($inputVariablesGroups) : 0;
+        $inputVariablesGroupsCount = count($inputVariablesGroups);
         $outputVariablesGroup = &$this->getOutputVariablesGroups();
 
         for ($i = 0; $i < $inputVariablesGroupsCount - 1; $i++) {

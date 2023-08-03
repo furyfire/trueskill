@@ -4,6 +4,9 @@ namespace DNW\Skills\Numerics;
 
 class DiagonalMatrix extends Matrix
 {
+    /**
+     * @param float[] $diagonalValues
+     */
     public function __construct(array $diagonalValues)
     {
         $diagonalCount = count($diagonalValues);

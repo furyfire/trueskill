@@ -40,7 +40,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 
     public function createPriorSchedule(): ?ScheduleSequence
     {
-        switch (is_countable($this->getInputVariablesGroups()) ? count($this->getInputVariablesGroups()) : 0) {
+        switch (count($this->getInputVariablesGroups())) {
             case 0:
             case 1:
                 throw new Exception('InvalidOperation');

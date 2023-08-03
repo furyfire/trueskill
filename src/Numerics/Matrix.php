@@ -8,10 +8,16 @@ class Matrix
 {
     public const ERROR_TOLERANCE = 0.0000000001;
 
+    /**
+     * @param array<int,array<int,float>> $matrixRowData
+     */
     public function __construct(private int $rowCount = 0, private int $columnCount = 0, private array $matrixRowData = array())
     {
     }
 
+    /**
+     * @param array<int,array<int,float>> $columnValues
+     */
     public static function fromColumnValues(int $rows, int $columns, array $columnValues): self
     {
         $data = [];

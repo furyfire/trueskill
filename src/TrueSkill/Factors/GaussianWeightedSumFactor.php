@@ -230,6 +230,10 @@ class GaussianWeightedSumFactor extends GaussianFactor
         );
     }
 
+    /**
+     * @param Variable[] $variablesToSum
+     * @param float[] $weights
+     */
     private static function createName(string $sumVariable, array $variablesToSum, array $weights): string
     {
         // TODO: Perf? Use PHP equivalent of StringBuilder? implode on arrays?

@@ -1,6 +1,7 @@
 <?php
 
 namespace DNW\Skills\FactorGraphs;
+use DNW\Skills\FactorGraphs\ScheduleSequence;
 
 abstract class FactorGraphLayer
 {
@@ -9,15 +10,23 @@ abstract class FactorGraphLayer
      */
     private array $localFactors = [];
 
+    /**
+     * @var array<int,array<int,object>> 
+     */
     private array $outputVariablesGroups = [];
-
+    /**
+     * @var array<int,array<int,object>> 
+     */
     private $inputVariablesGroups = [];
 
     protected function __construct(private readonly FactorGraph $parentFactorGraph)
     {
     }
 
-    protected function getInputVariablesGroups()
+    /**
+     * @return array<int,array<int,object>>
+     */
+    protected function getInputVariablesGroups(): array
     {
         return $this->inputVariablesGroups;
     }
@@ -31,6 +40,7 @@ abstract class FactorGraphLayer
 
     /**
      * This reference is still needed
+     * @return array<int,array<int,object>>
      */
     public function &getOutputVariablesGroups(): array
     {
@@ -45,11 +55,17 @@ abstract class FactorGraphLayer
         return $this->localFactors;
     }
 
+    /**
+     * @param array<int,array<int,object>> $value
+     */
     public function setInputVariablesGroups(array $value): void
     {
         $this->inputVariablesGroups = $value;
     }
 
+    /**
+     * @param Schedule[] $itemsToSequence
+     */
     protected function scheduleSequence(array $itemsToSequence, string $name): ScheduleSequence
     {
         return new ScheduleSequence($name, $itemsToSequence);
