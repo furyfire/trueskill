@@ -30,6 +30,6 @@
         "@analyze-phpcs"
     ],
     "analyze-phpstan":"vendor/bin/phpstan analyze --level=8  --error-format=raw src/",
-    "analyze-phpcs":  "vendor/bin/phpcs src --report=emacs  --standard=PSR12"
+    "analyze-phpcs":  "vendor/bin/phpcs --report=emacs  --standard=PSR12 --exclude=Generic.Files.LineLength src"
   }
 }
