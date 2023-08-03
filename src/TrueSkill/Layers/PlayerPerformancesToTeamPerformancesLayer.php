@@ -5,6 +5,7 @@ namespace DNW\Skills\TrueSkill\Layers;
 use DNW\Skills\FactorGraphs\ScheduleStep;
 use DNW\Skills\FactorGraphs\ScheduleSequence;
 use DNW\Skills\PartialPlay;
+use DNW\Skills\Player;
 use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
 use DNW\Skills\FactorGraphs\Variable; 
 
@@ -39,6 +40,9 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
         );
     }
 
+    /**
+     * @param Team[] $teamMembers
+     */
     protected function createPlayerToTeamSumFactor(array $teamMembers, Variable $sumVariable): GaussianWeightedSumFactor
     {
         $weights = array_map(

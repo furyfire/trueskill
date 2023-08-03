@@ -11,6 +11,9 @@ class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
 {
     private float $epsilon;
 
+    /**
+     * @param int[] $teamRanks
+     */
     public function __construct(TrueSkillFactorGraph $parentGraph, private readonly array $teamRanks)
     {
         parent::__construct($parentGraph);

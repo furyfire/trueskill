@@ -7,6 +7,7 @@ use DNW\Skills\FactorGraphs\Variable;
 use DNW\Skills\FactorGraphs\KeyedVariable;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\Rating;
+use DNW\Skills\Team;
 use DNW\Skills\TrueSkill\Factors\GaussianPriorFactor;
 use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 use DNW\Skills\FactorGraphs\ScheduleSequence;
@@ -15,6 +16,9 @@ use DNW\Skills\FactorGraphs\ScheduleSequence;
 // start the process.
 class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
 {
+    /**
+     * @param Team[] $teams
+     */
     public function __construct(TrueSkillFactorGraph $parentGraph, private readonly array $teams)
     {
         parent::__construct($parentGraph);

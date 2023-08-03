@@ -17,8 +17,12 @@ class GaussianWeightedSumFactor extends GaussianFactor
 {
     private array $variableIndexOrdersForWeights = [];
 
-    // This following is used for convenience, for example, the first entry is [0, 1, 2]
-    // corresponding to v[0] = a1*v[1] + a2*v[2]
+
+    /**
+     * This following is used for convenience, for example, the first entry is [0, 1, 2]
+     * corresponding to v[0] = a1*v[1] + a2*v[2]
+     * @var array<int[]> $weights
+     */
     private array $weights = [];
 
     private array $weightsSquared = [];

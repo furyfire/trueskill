@@ -9,6 +9,7 @@ use DNW\Skills\FactorGraphs\VariableFactory;
 use DNW\Skills\GameInfo;
 use DNW\Skills\Numerics\GaussianDistribution;
 use DNW\Skills\Rating;
+use DNW\Skills\Team;
 use DNW\Skills\RatingContainer;
 use DNW\Skills\FactorGraphs\FactorGraphLayer;
 use DNW\Skills\TrueSkill\Layers\IteratedTeamDifferencesInnerLayer;
@@ -28,9 +29,9 @@ class TrueSkillFactorGraph extends FactorGraph
     private PlayerPriorValuesToSkillsLayer $priorLayer;
 
     /**
-     * @param  GameInfo $gameInfo               Parameters for the game.
-     * @param  Team[]   $teamsOfPlayerToRatings A mapping of team players and their ratings.
-     * @param  int[]    $teamRanks              The ranks of the teams where 1 is first place. For a tie, repeat the number (e.g. 1, 2, 2).
+     * @param  GameInfo $gameInfo  Parameters for the game.
+     * @param  Team[]   $teams     A mapping of team players and their ratings.
+     * @param  int[]    $teamRanks The ranks of the teams where 1 is first place. For a tie, repeat the number (e.g. 1, 2, 2).
      */
     public function __construct(private readonly GameInfo $gameInfo, array $teams, array $teamRanks)
     {

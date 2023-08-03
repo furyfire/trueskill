@@ -44,6 +44,9 @@ abstract class SkillCalculator
         return (bool)($this->supportedOptions & $option) == $option;
     }
 
+    /**
+     * @param Team[] $teamsOfPlayerToRatings
+     */
     protected function validateTeamCountAndPlayersCountPerTeam(array $teamsOfPlayerToRatings): void
     {
         self::validateTeamCountAndPlayersCountPerTeamWithRanges($teamsOfPlayerToRatings, $this->totalTeamsAllowed, $this->playersPerTeamAllowed);
