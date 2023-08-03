@@ -13,10 +13,10 @@ class BasicMath
     /**
      * Squares the input (x^2 = x * x)
      *
-     * @param  number $x Value to square (x)
-     * @return number The squared value (x^2)
+     * @param  float $x Value to square (x)
+     * @return float The squared value (x^2)
      */
-    public static function square($x): float|int
+    public static function square($x): float
     {
         return $x * $x;
     }
@@ -26,9 +26,9 @@ class BasicMath
      *
      * @param  mixed[]    $itemsToSum The items to sum,
      * @param  \Closure $callback   The function to apply to each array element before summing.
-     * @return number The sum.
+     * @return float The sum.
      */
-    public static function sum(array $itemsToSum, \Closure $callback): float|int
+    public static function sum(array $itemsToSum, \Closure $callback): float
     {
         $mappedItems = array_map($callback, $itemsToSum);
 

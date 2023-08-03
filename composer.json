@@ -10,7 +10,8 @@
     "rector/rector": "^0.17",
     "phpstan/phpstan": "^1",
     "laravel/pint": "^1",
-    "squizlabs/php_codesniffer": "*"
+    "squizlabs/php_codesniffer": "*",
+    "vimeo/psalm": "^5.14"
   },
   "autoload": {
     "psr-4": {
@@ -27,9 +28,11 @@
     "test-coverage":  "vendor/bin/phpunit tests --testdox --coverage-filter src --coverage-html output/coverage --coverage-text --path-coverage --testdox-html output/test.html  --log-junit output/test.xml ", 
     "analyze": [
         "@analyze-phpstan",
-        "@analyze-phpcs"
+        "@analyze-phpcs",
+        "@analyze-psalm"
     ],
-    "analyze-phpstan":"vendor/bin/phpstan analyze --level=8  --error-format=raw src/",
-    "analyze-phpcs":  "vendor/bin/phpcs --report=emacs  --standard=PSR12 --exclude=Generic.Files.LineLength src"
+    "analyze-phpstan":"vendor/bin/phpstan analyze --error-format=raw src/",
+    "analyze-phpcs":  "vendor/bin/phpcs --report=emacs  --standard=PSR12 --exclude=Generic.Files.LineLength src",
+    "analyze-psalm":  "vendor/bin/psalm"
   }
 }

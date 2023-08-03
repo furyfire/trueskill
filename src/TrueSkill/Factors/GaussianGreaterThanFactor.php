@@ -25,15 +25,10 @@ class GaussianGreaterThanFactor extends GaussianFactor
 
     public function getLogNormalization(): float
     {
-        /**
- * @var Variable[] $vars
-*/
         $vars = $this->getVariables();
         $marginal = $vars[0]->getValue();
 
-        /**
- * @var Message[] $messages
-*/
+
         $messages = $this->getMessages();
         $message = $messages[0]->getValue();
         $messageFromVariable = GaussianDistribution::divide($marginal, $message);
