@@ -6,6 +6,7 @@ use DNW\Skills\FactorGraphs\ScheduleStep;
 use DNW\Skills\FactorGraphs\ScheduleSequence;
 use DNW\Skills\PartialPlay;
 use DNW\Skills\Player;
+use DNW\Skills\Team;
 use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
 use DNW\Skills\FactorGraphs\Variable; 
 

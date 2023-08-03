@@ -4,6 +4,9 @@ namespace DNW\Skills\Numerics;
 
 class Vector extends Matrix
 {
+    /**
+     * @param float[] $vectorValues
+     */
     public function __construct(array $vectorValues)
     {
         $columnValues = [];

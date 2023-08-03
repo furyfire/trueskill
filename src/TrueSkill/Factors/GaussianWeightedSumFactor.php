@@ -5,6 +5,7 @@ namespace DNW\Skills\TrueSkill\Factors;
 use DNW\Skills\FactorGraphs\Message;
 use DNW\Skills\FactorGraphs\Variable;
 use DNW\Skills\Guard;
+use DNW\Skills\Team;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\Numerics\GaussianDistribution;
 
@@ -15,18 +16,26 @@ use DNW\Skills\Numerics\GaussianDistribution;
  */
 class GaussianWeightedSumFactor extends GaussianFactor
 {
+    /**
+     * @var array<float[]> $variableIndexOrdersForWeights
+     */
     private array $variableIndexOrdersForWeights = [];
-
 
     /**
      * This following is used for convenience, for example, the first entry is [0, 1, 2]
      * corresponding to v[0] = a1*v[1] + a2*v[2]
-     * @var array<int[]> $weights
+     * @var array<float[]> $weights
      */
     private array $weights = [];
-
+    /**
+     * @var array<float[]> $weightsSquared
+     */
     private array $weightsSquared = [];
 
+    /**
+     * @param Variable[] $variablesToSum
+     * @param array<float> $variableWeights
+     */
     public function __construct(Variable $sumVariable, array $variablesToSum, array $variableWeights = null)
     {
         parent::__construct(self::createName($sumVariable, $variablesToSum, $variableWeights));
@@ -132,6 +141,12 @@ class GaussianWeightedSumFactor extends GaussianFactor
         return $result;
     }
 
+    /**
+     * @param float[] $weights
+     * @param float[] $weightsSquared
+     * @param Message[] $messages
+     * @param Variable[] $variables
+     */
     private function updateHelper(array $weights, array $weightsSquared, array $messages, array $variables): float
     {
         // Potentially look at http://mathworld.wolfram.com/NormalSumDistribution.html for clues as

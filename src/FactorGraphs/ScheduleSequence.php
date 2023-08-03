@@ -4,6 +4,9 @@ namespace DNW\Skills\FactorGraphs;
 
 class ScheduleSequence extends Schedule
 {
+    /**
+     * @param Schedule[] $schedules
+     */
     public function __construct(string $name, private readonly array $schedules)
     {
         parent::__construct($name);

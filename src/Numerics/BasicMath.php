@@ -24,7 +24,7 @@ class BasicMath
     /**
      * Sums the items in $itemsToSum
      *
-     * @param  array    $itemsToSum The items to sum,
+     * @param  mixed[]    $itemsToSum The items to sum,
      * @param  \Closure $callback   The function to apply to each array element before summing.
      * @return number The sum.
      */

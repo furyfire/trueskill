@@ -91,6 +91,9 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         return exp($expPart) * sqrt($sqrtPart);
     }
 
+    /**
+     * @var Team[] $teamAssignmentsList
+     */
     private static function getPlayerMeansVector(array $teamAssignmentsList): Vector
     {
         // A simple vector of all the player means.
@@ -102,6 +105,9 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         );
     }
 
+    /**
+     * @var Team[] $teamAssignmentsList
+     */
     private static function getPlayerCovarianceMatrix(array $teamAssignmentsList): DiagonalMatrix
     {
         // This is a square matrix whose diagonal values represent the variance (square of standard deviation) of all
@@ -117,6 +123,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
     
     /**
      * Helper function that gets a list of values for all player ratings
+     * @var Team[] $teamAssignmentsList
      * @return int[]
      */
     private static function getPlayerRatingValues(array $teamAssignmentsList, \Closure $playerRatingFunction): array
