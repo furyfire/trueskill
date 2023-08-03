@@ -8,8 +8,8 @@ use DNW\Skills\PartialPlay;
 use DNW\Skills\Player;
 use DNW\Skills\Team;
 use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
-use DNW\Skills\FactorGraphs\Variable; 
-use DNW\Skills\FactorGraphs\KeyedVariable; 
+use DNW\Skills\FactorGraphs\Variable;
+use DNW\Skills\FactorGraphs\KeyedVariable;
 
 class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLayer
 {

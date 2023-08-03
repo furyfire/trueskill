@@ -120,7 +120,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         );
     }
 
-    
+
     /**
      * Helper function that gets a list of values for all player ratings
      * @param Team[] $teamAssignmentsList

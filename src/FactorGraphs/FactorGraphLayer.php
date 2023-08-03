@@ -1,6 +1,7 @@
 <?php
 
 namespace DNW\Skills\FactorGraphs;
+
 use DNW\Skills\FactorGraphs\ScheduleSequence;
 use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
@@ -12,11 +13,11 @@ abstract class FactorGraphLayer
     private array $localFactors = [];
 
     /**
-     * @var array<int,array<int,object>> 
+     * @var array<int,array<int,object>>
      */
     private array $outputVariablesGroups = [];
     /**
-     * @var array<int,array<int,object>> 
+     * @var array<int,array<int,object>>
      */
     private $inputVariablesGroups = [];
 
