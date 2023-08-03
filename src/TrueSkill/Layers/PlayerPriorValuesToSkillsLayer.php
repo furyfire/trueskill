@@ -61,7 +61,6 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
 
     private function createPriorFactor(Rating $priorRating, Variable $skillsVariable): GaussianPriorFactor
     {
-        echo (get_class($this->getParentFactorGraph()).PHP_EOL);
         return new GaussianPriorFactor(
             $priorRating->getMean(),
             BasicMath::square($priorRating->getStandardDeviation()) +

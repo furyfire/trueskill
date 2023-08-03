@@ -9,7 +9,7 @@ use Exception;
 
 class Range
 {
-    public function __construct(private int $min, private int $max)
+    final public function __construct(private int $min, private int $max)
     {
         if ($min > $max) {
             throw new Exception('min > max');
@@ -26,9 +26,9 @@ class Range
         return $this->max;
     }
 
-    protected static function create(int $min, int $max): self
+    protected static function create(int $min, int $max): static
     {
-        return new Range($min, $max);
+        return new static($min, $max);
     }
 
     // REVIEW: It's probably bad form to have access statics via a derived class, but the syntax looks better :-)
