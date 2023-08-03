@@ -2,6 +2,7 @@
 
 namespace DNW\Skills\FactorGraphs;
 use DNW\Skills\FactorGraphs\ScheduleSequence;
+use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 abstract class FactorGraphLayer
 {
@@ -19,7 +20,7 @@ abstract class FactorGraphLayer
      */
     private $inputVariablesGroups = [];
 
-    protected function __construct(private readonly FactorGraph $parentFactorGraph)
+    protected function __construct(private readonly TrueSkillFactorGraph $parentFactorGraph)
     {
     }
 
@@ -33,7 +34,7 @@ abstract class FactorGraphLayer
 
     // HACK
 
-    public function getParentFactorGraph(): FactorGraph
+    public function getParentFactorGraph(): TrueSkillFactorGraph
     {
         return $this->parentFactorGraph;
     }
