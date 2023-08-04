@@ -18,7 +18,7 @@ class DrawMarginTest extends TestCase
         $this->assertDrawMargin(0.33, $beta, 2.5111010132487492);
     }
 
-    private function assertDrawMargin($drawProbability, $beta, $expected): void
+    private function assertDrawMargin(float $drawProbability, float $beta, float $expected): void
     {
         $actual = DrawMargin::getDrawMarginFromDrawProbability($drawProbability, $beta);
         $this->assertEqualsWithDelta($expected, $actual, DrawMarginTest::ERROR_TOLERANCE);

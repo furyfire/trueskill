@@ -986,13 +986,13 @@ class TrueSkillCalculatorTests
         self::assertMatchQuality($testClass, 0.44721358745011336, $matchQuality);
     }
 
-    private static function assertRating(TestCase $testClass, $expectedMean, $expectedStandardDeviation, $actual): void
+    private static function assertRating(TestCase $testClass, float $expectedMean, float $expectedStandardDeviation, Rating $actual): void
     {
         $testClass->assertEqualsWithDelta($expectedMean, $actual->getMean(), self::ERROR_TOLERANCE_TRUESKILL);
         $testClass->assertEqualsWithDelta($expectedStandardDeviation, $actual->getStandardDeviation(), self::ERROR_TOLERANCE_TRUESKILL);
     }
 
-    private static function assertMatchQuality(TestCase $testClass, $expectedMatchQuality, $actualMatchQuality): void
+    private static function assertMatchQuality(TestCase $testClass, float $expectedMatchQuality, float $actualMatchQuality): void
     {
         $testClass->assertEqualsWithDelta($expectedMatchQuality, $actualMatchQuality, self::ERROR_TOLERANCE_MATCH_QUALITY);
     }
