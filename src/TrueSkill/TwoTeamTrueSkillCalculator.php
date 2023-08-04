@@ -84,7 +84,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
         $selfMeanSum = BasicMath::sum($selfTeam->getAllRatings(), $meanGetter);
         $otherTeamMeanSum = BasicMath::sum($otherTeam->getAllRatings(), $meanGetter);
 
-        $varianceGetter = fn ($currentRating) => BasicMath::square($currentRating->getStandardDeviation());
+        $varianceGetter = fn ($currentRating): float => BasicMath::square($currentRating->getStandardDeviation());
 
         $c = sqrt(
             BasicMath::sum($selfTeam->getAllRatings(), $varianceGetter)
@@ -162,7 +162,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
 
         $meanGetter = fn ($currentRating) => $currentRating->getMean();
 
-        $varianceGetter = fn ($currentRating) => BasicMath::square($currentRating->getStandardDeviation());
+        $varianceGetter = fn ($currentRating): float => BasicMath::square($currentRating->getStandardDeviation());
 
         $team1MeanSum = BasicMath::sum($team1Ratings, $meanGetter);
         $team1StdDevSquared = BasicMath::sum($team1Ratings, $varianceGetter);
