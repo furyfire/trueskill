@@ -7,7 +7,7 @@ use DNW\Skills\TrueSkill\DrawMargin;
 
 class DrawMarginTest extends TestCase
 {
-    const ERROR_TOLERANCE = 0.000001;
+    private const ERROR_TOLERANCE = 0.000001;
 
     public function testGetDrawMarginFromDrawProbability(): void
     {

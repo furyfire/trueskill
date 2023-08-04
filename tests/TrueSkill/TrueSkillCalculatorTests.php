@@ -12,9 +12,9 @@ use DNW\Skills\Tests\TestCase;
 
 class TrueSkillCalculatorTests
 {
-    const ERROR_TOLERANCE_TRUESKILL = 0.085;
+    private const ERROR_TOLERANCE_TRUESKILL = 0.085;
 
-    const ERROR_TOLERANCE_MATCH_QUALITY = 0.0005;
+    private const ERROR_TOLERANCE_MATCH_QUALITY = 0.0005;
 
     // These are the roll-up ones
 
@@ -849,14 +849,29 @@ class TrueSkillCalculatorTests
         $team16 = new Team($player16, $gameInfo->getDefaultRating());
 
         $teams = Teams::concat(
-            $team1, $team2, $team3, $team4, $team5,
-            $team6, $team7, $team8, $team9, $team10,
-            $team11, $team12, $team13, $team14, $team15,
-            $team16);
+            $team1,
+            $team2,
+            $team3,
+            $team4,
+            $team5,
+            $team6,
+            $team7,
+            $team8,
+            $team9,
+            $team10,
+            $team11,
+            $team12,
+            $team13,
+            $team14,
+            $team15,
+            $team16
+        );
 
         $newRatings = $calculator->calculateNewRatings(
-            $gameInfo, $teams,
-            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]);
+            $gameInfo,
+            $teams,
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+        );
 
         $player1NewRating = $newRatings->getRating($player1);
         self::assertRating($testClass, 40.53945776946920, 5.27581643889050, $player1NewRating);

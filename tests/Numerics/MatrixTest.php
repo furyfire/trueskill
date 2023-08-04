@@ -7,6 +7,7 @@ use DNW\Skills\Numerics\Matrix;
 use DNW\Skills\Numerics\SquareMatrix;
 use DNW\Skills\Tests\TestCase;
 
+// phpcs:disable PSR2.Methods.FunctionCallSignature,Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
 class MatrixTest extends TestCase
 {
     public function testTwoByTwoDeterminant(): void
@@ -185,3 +186,4 @@ class MatrixTest extends TestCase
         $this->assertTrue($identity3x3->equals($ccInverse));
     }
 }
+// phpcs:enable

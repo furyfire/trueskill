@@ -32,7 +32,7 @@
         "@analyze-psalm"
     ],
     "analyze-phpstan":"vendor/bin/phpstan analyze --error-format=raw",
-    "analyze-phpcs":  "vendor/bin/phpcs --report=emacs  --standard=PSR12 --exclude=Generic.Files.LineLength src",
+    "analyze-phpcs":  "vendor/bin/phpcs --report=emacs  --standard=PSR12 --exclude=Generic.Files.LineLength src tests",
     "analyze-psalm":  "vendor/bin/psalm"
   }
 }

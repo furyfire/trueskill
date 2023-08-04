@@ -8,7 +8,7 @@ use DNW\Skills\Tests\TestCase;
 
 class GaussianDistributionTest extends TestCase
 {
-    const ERROR_TOLERANCE = 0.000001;
+    private const ERROR_TOLERANCE = 0.000001;
 
     public function testCumulativeTo(): void
     {
