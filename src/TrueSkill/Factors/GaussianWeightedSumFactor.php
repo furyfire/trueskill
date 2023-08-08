@@ -38,7 +38,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
      */
     public function __construct(Variable $sumVariable, array $variablesToSum, array $variableWeights = null)
     {
-        parent::__construct(self::createName($sumVariable, $variablesToSum, $variableWeights));
+        parent::__construct(self::createName((string)$sumVariable, $variablesToSum, $variableWeights));
 
         // The first weights are a straightforward copy
         // v_0 = a_1*v_1 + a_2*v_2 + ... + a_n * v_n
@@ -237,7 +237,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
     private static function createName(string $sumVariable, array $variablesToSum, array $weights): string
     {
         // TODO: Perf? Use PHP equivalent of StringBuilder? implode on arrays?
-        $result = (string) $sumVariable;
+        $result = $sumVariable;
         $result .= ' = ';
 
         $totalVars = count($variablesToSum);

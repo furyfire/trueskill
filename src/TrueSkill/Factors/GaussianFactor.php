@@ -30,7 +30,7 @@ abstract class GaussianFactor extends Factor
             $variable,
             new Message(
                 $newDistribution,
-                sprintf('message from %s to %s', $this, $variable)
+                sprintf('message from %s to %s', (string)$this, (string)$variable)
             )
         );
     }

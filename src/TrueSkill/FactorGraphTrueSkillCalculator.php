@@ -16,6 +16,7 @@ use DNW\Skills\SkillCalculatorSupportedOptions;
 use DNW\Skills\Team;
 use DNW\Skills\TeamsRange;
 use DNW\Skills\RatingContainer;
+use DNW\Skills\Rating;
 
 /**
  * Calculates TrueSkill using a full factor graph.
@@ -100,7 +101,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         return new Vector(
             self::getPlayerRatingValues(
                 $teamAssignmentsList,
-                fn ($rating) => $rating->getMean()
+                fn (Rating $rating): float => $rating->getMean()
             )
         );
     }
@@ -115,7 +116,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         return new DiagonalMatrix(
             self::getPlayerRatingValues(
                 $teamAssignmentsList,
-                fn ($rating) => BasicMath::square($rating->getStandardDeviation())
+                fn (Rating $rating): float => BasicMath::square($rating->getStandardDeviation())
             )
         );
     }
