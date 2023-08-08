@@ -318,11 +318,6 @@ class Matrix
 
     public function equals(Matrix $otherMatrix): bool
     {
-        // If one is null, but not both, return false.
-        if ($otherMatrix == null) {
-            return false;
-        }
-
         if (($this->rowCount != $otherMatrix->getRowCount()) || ($this->columnCount != $otherMatrix->getColumnCount())) {
             return false;
         }

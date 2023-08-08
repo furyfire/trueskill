@@ -17,7 +17,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
 class GaussianWeightedSumFactor extends GaussianFactor
 {
     /**
-     * @var array<float[]> $variableIndexOrdersForWeights
+     * @var array<int[]> $variableIndexOrdersForWeights
      */
     private array $variableIndexOrdersForWeights = [];
 
@@ -42,8 +42,8 @@ class GaussianWeightedSumFactor extends GaussianFactor
 
         // The first weights are a straightforward copy
         // v_0 = a_1*v_1 + a_2*v_2 + ... + a_n * v_n
-        $variableWeightsLength = count((array) $variableWeights);
-        $this->weights[0] = array_fill(0, count((array) $variableWeights), 0);
+        $variableWeightsLength = count($variableWeights);
+        $this->weights[0] = array_fill(0, count($variableWeights), 0);
 
         for ($i = 0; $i < $variableWeightsLength; $i++) {
             $weight = &$variableWeights[$i];
@@ -59,7 +59,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
             $this->variableIndexOrdersForWeights[0][] = $i;
         }
 
-        $variableWeightsLength = count((array) $variableWeights);
+        $variableWeightsLength = count($variableWeights);
 
         // The rest move the variables around and divide out the constant.
         // For example:
@@ -111,7 +111,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
             }
             $currentWeights[$currentDestinationWeightIndex] = $finalWeight;
             $currentWeightsSquared[$currentDestinationWeightIndex] = BasicMath::square($finalWeight);
-            $variableIndices[count((array) $variableWeights)] = 0;
+            $variableIndices[count($variableWeights)] = 0;
             $this->variableIndexOrdersForWeights[] = $variableIndices;
 
             $this->weights[$weightsIndex] = $currentWeights;

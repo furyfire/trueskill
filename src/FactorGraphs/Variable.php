@@ -2,24 +2,26 @@
 
 namespace DNW\Skills\FactorGraphs;
 
+use DNW\Skills\Numerics\GaussianDistribution;
+
 class Variable implements \Stringable
 {
     private string $name;
 
     private mixed $value;
 
-    public function __construct(string $name, private mixed $prior)
+    public function __construct(string $name, private GaussianDistribution $prior)
     {
         $this->name = 'Variable[' . $name . ']';
         $this->resetToPrior();
     }
 
-    public function getValue(): mixed
+    public function getValue(): GaussianDistribution
     {
         return $this->value;
     }
 
-    public function setValue(mixed $value): void
+    public function setValue(GaussianDistribution $value): void
     {
         $this->value = $value;
     }

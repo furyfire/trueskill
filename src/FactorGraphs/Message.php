@@ -2,18 +2,20 @@
 
 namespace DNW\Skills\FactorGraphs;
 
+use DNW\Skills\Numerics\GaussianDistribution;
+
 class Message implements \Stringable
 {
-    public function __construct(private ?object $value = null, private ?string $name = null)
+    public function __construct(private GaussianDistribution $value, private string $name)
     {
     }
 
-    public function getValue(): ?object
+    public function getValue(): GaussianDistribution
     {
         return $this->value;
     }
 
-    public function setValue(?object $value): void
+    public function setValue(GaussianDistribution $value): void
     {
         $this->value = $value;
     }

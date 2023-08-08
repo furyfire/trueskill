@@ -6,11 +6,6 @@ class PartialPlay
 {
     public static function getPartialPlayPercentage(Player $player): float
     {
-        // If the player doesn't support the interface, assume 1.0 == 100%
-        if (! $player instanceof ISupportPartialPlay) {
-            return 1.0;
-        }
-
         $partialPlayPercentage = $player->getPartialPlayPercentage();
 
         // HACK to get around bug near 0
