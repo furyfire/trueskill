@@ -6,7 +6,7 @@ class FactorGraph
 {
     private VariableFactory $variableFactory;
 
-    public function __construct(VariableFactory $factory) 
+    public function __construct(VariableFactory $factory)
     {
         $this->variableFactory = $factory;
     }
