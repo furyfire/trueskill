@@ -4,6 +4,7 @@ namespace DNW\Skills\Tests;
 
 use DNW\Skills\Guard;
 use Exception;
+
 class GuardTest extends TestCase
 {
     public function testArgumentNotNull(): void
