@@ -6,6 +6,7 @@ use DNW\Skills\Numerics\IdentityMatrix;
 use DNW\Skills\Numerics\Matrix;
 use DNW\Skills\Numerics\SquareMatrix;
 use DNW\Skills\Tests\TestCase;
+use Exception;
 
 // phpcs:disable PSR2.Methods.FunctionCallSignature,Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
 class MatrixTest extends TestCase
@@ -129,6 +130,16 @@ class MatrixTest extends TestCase
                               3, 4);
 
         $this->assertTrue($g->equals($h));
+
+        $i = new Matrix(1, 2, [[1,2]]);
+        $j = new Matrix(2, 1, [[1],[2]]);
+
+        $this->assertFalse($i->equals($j));
+
+        $k = new Matrix(2, 2, [[1,2],[3,4]]);
+        $l = new Matrix(2, 2, [[4,3],[2,1]]);
+
+        $this->assertFalse($k->equals($l));
     }
 
     public function testAdjugate(): void
@@ -184,6 +195,36 @@ class MatrixTest extends TestCase
 
         $ccInverse = Matrix::multiply($c, $cInverse);
         $this->assertTrue($identity3x3->equals($ccInverse));
+    }
+
+    public function testErrorDeterminant(): void
+    {
+        $this->expectException(Exception::class);
+        $matrix = new Matrix(2, 3, [[1,2,3],[1,2,3]]);
+        $matrix->getDeterminant();
+    }
+
+    public function testErrorAdjugate(): void
+    {
+        $this->expectException(Exception::class);
+        $matrix = new Matrix(2, 3, [[1,2,3],[1,2,3]]);
+        $matrix->getAdjugate();
+    }
+
+    public function testErrorAdd(): void
+    {
+        $this->expectException(Exception::class);
+        $m1 = new Matrix(2, 3, [[1,2,3],[1,2,3]]);
+        $m2 = new Matrix(1, 1, [[1,1]]);
+        Matrix::add($m1, $m2);
+    }
+
+    public function testErrorMultiply(): void
+    {
+        $this->expectException(Exception::class);
+        $m1 = new Matrix(2, 3, [[1,2,3],[1,2,3]]);
+        $m2 = new Matrix(1, 1, [[1,1]]);
+        Matrix::multiply($m1, $m2);
     }
 }
 // phpcs:enable

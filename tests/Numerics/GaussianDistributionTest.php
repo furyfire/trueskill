@@ -10,6 +10,18 @@ class GaussianDistributionTest extends TestCase
 {
     private const ERROR_TOLERANCE = 0.000001;
 
+    public function testGetters(): void
+    {
+        $gd = new GaussianDistribution(10, 3);
+
+        $this->assertEquals(10, $gd->getMean());
+        $this->assertEquals(9, $gd->getVariance());
+        $this->assertEquals(3, $gd->getStandardDeviation());
+        $this->assertEquals(1 / 9, $gd->getPrecision());
+        $this->assertEquals(1 / 9 * 10, $gd->getPrecisionMean());
+        $this->assertEqualsWithDelta(0.13298076013, $gd->getNormalizationConstant(), GaussianDistributionTest::ERROR_TOLERANCE);
+    }
+
     public function testCumulativeTo(): void
     {
         // Verified with WolframAlpha
