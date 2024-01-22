@@ -1,9 +1,6 @@
-coverage
-nbproject
-.idea
 .vscode
 vendor
-bin
 .phpunit.cache
-composer.phar
+*.phar
+.phpdoc/
 output/
