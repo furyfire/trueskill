@@ -14,15 +14,18 @@ class FactorGraphTrueSkillCalculatorTest extends TestCase
     {
         $gameInfo = new GameInfo();
 
-        $players[] = new Player("alice");
-        $players[] = new Player("bob");
-        $players[] = new Player("chris");
-        $players[] = new Player("darren");
-        $players[] = new Player("eve");
-        $players[] = new Player("fabien");
-        $players[] = new Player("george");
-        $players[] = new Player("hillary");
+        $players = [
+            new Player("alice"),
+            new Player("bob"),
+            new Player("chris"),
+            new Player("darren"),
+            new Player("eve"),
+            new Player("fabien"),
+            new Player("george"),
+            new Player("hillary"),
+        ];
 
+        $teams = array();
         foreach ($players as $player) {
             $teams[] = new Team($player, $gameInfo->getDefaultRating());
         }
@@ -31,14 +34,16 @@ class FactorGraphTrueSkillCalculatorTest extends TestCase
 
         $newRatings = $calculator->calculateNewRatings($gameInfo, $teams, [1,2,3,4,5,6,7,8]);
 
-        $expected['alice'] = [36.771, 5.749];
-        $expected['bob'] = [32.242, 5.133];
-        $expected['chris'] = [29.074, 4.943];
-        $expected['darren'] = [26.322, 4.874];
-        $expected['eve'] = [23.678, 4.874];
-        $expected['fabien'] = [20.926, 4.943];
-        $expected['george'] = [17.758, 5.133];
-        $expected['hillary'] = [13.229, 5.749];
+        $expected = [
+            'alice'   => [36.771, 5.749],
+            'bob'     => [32.242, 5.133],
+            'chris'   => [29.074, 4.943],
+            'darren'  => [26.322, 4.874],
+            'eve'     => [23.678, 4.874],
+            'fabien'  => [20.926, 4.943],
+            'george'  => [17.758, 5.133],
+            'hillary' => [13.229, 5.749],
+        ];
 
         foreach ($players as $player) {
             $rating = $newRatings->getRating($player);
