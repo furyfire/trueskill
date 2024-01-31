@@ -22,9 +22,9 @@
     }
   },
   "scripts": {
-    "test":           "vendor/bin/phpunit tests --display-warnings",
-    "test-coverage":  "vendor/bin/phpunit tests --testdox --coverage-filter src --coverage-html output/coverage --coverage-text --testdox-html output/test.html  --log-junit output/test.xml", 
-    "document":  "phpDocumentor --setting=graphs.enabled=true", 
+    "test":          "vendor/bin/phpunit tests --display-warnings",
+    "test-coverage": "vendor/bin/phpunit tests --testdox --coverage-filter src --coverage-html output/coverage --coverage-text --testdox-html output/test.html  --log-junit output/test.xml", 
+    "document":      "phpDocumentor --setting=graphs.enabled=true", 
     "analyze": [
         "@analyze-phpstan",
         "@analyze-psalm",
