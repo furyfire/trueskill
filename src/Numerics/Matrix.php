@@ -74,16 +74,8 @@ class Matrix
         $transposeMatrix = [];
 
         $rowMatrixData = $this->matrixRowData;
-        for (
-            $currentRowTransposeMatrix = 0;
-             $currentRowTransposeMatrix < $this->columnCount;
-             $currentRowTransposeMatrix++
-        ) {
-            for (
-                $currentColumnTransposeMatrix = 0;
-                 $currentColumnTransposeMatrix < $this->rowCount;
-                 $currentColumnTransposeMatrix++
-            ) {
+        for ($currentRowTransposeMatrix = 0; $currentRowTransposeMatrix < $this->columnCount; $currentRowTransposeMatrix++) {
+            for ($currentColumnTransposeMatrix = 0; $currentColumnTransposeMatrix < $this->rowCount; $currentColumnTransposeMatrix++) {
                 $transposeMatrix[$currentRowTransposeMatrix][$currentColumnTransposeMatrix] =
                     $rowMatrixData[$currentColumnTransposeMatrix][$currentRowTransposeMatrix];
             }
@@ -214,11 +206,7 @@ class Matrix
 
     public static function add(Matrix $left, Matrix $right): Matrix
     {
-        if (
-            ($left->getRowCount() != $right->getRowCount())
-
-            || ($left->getColumnCount() != $right->getColumnCount())
-        ) {
+        if (($left->getRowCount() != $right->getRowCount()) || ($left->getColumnCount() != $right->getColumnCount())) {
             throw new Exception('Matrices must be of the same size');
         }
 

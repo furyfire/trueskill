@@ -24,7 +24,7 @@
   "scripts": {
     "test":           "vendor/bin/phpunit tests --display-warnings",
     "test-coverage":  "vendor/bin/phpunit tests --testdox --coverage-filter src --coverage-html output/coverage --coverage-text --testdox-html output/test.html  --log-junit output/test.xml", 
-    "document":  "./phpDocumentor.phar", 
+    "document":  "phpDocumentor --setting=graphs.enabled=true", 
     "analyze": [
         "@analyze-phpstan",
         "@analyze-psalm",
@@ -32,6 +32,6 @@
     ],
     "analyze-phpstan":"vendor/bin/phpstan analyze --error-format=raw",
     "analyze-psalm":  "vendor/bin/psalm --no-cache",
-    "analyze-phpcs":  "vendor/bin/phpcs --report=emacs  --standard=PSR12 --exclude=Generic.Files.LineLength src tests"
+    "analyze-phpcs":  "vendor/bin/phpcs --report=emacs --standard=PSR1,PSR2,PSR12 --exclude=Generic.Files.LineLength src tests"
   }
 }

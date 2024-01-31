@@ -79,11 +79,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
             // This is helpful since we skip over one of the spots
             $currentDestinationWeightIndex = 0;
 
-            for (
-                $currentWeightSourceIndex = 0;
-                 $currentWeightSourceIndex < $variableWeightsLength;
-                 $currentWeightSourceIndex++
-            ) {
+            for ($currentWeightSourceIndex = 0; $currentWeightSourceIndex < $variableWeightsLength; $currentWeightSourceIndex++) {
                 if ($currentWeightSourceIndex === $weightsIndex - 1) {
                     continue;
                 }
