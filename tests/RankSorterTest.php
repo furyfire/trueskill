@@ -3,6 +3,7 @@
 namespace DNW\Skills\Tests;
 
 use DNW\Skills\RankSorter;
+use PHPUnit\Framework\TestCase;
 
 class RankSorterTest extends TestCase
 {

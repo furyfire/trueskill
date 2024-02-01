@@ -3,6 +3,7 @@
 namespace DNW\Skills\Tests;
 
 use DNW\Skills\Rating;
+use PHPUnit\Framework\TestCase;
 
 class RatingTest extends TestCase
 {

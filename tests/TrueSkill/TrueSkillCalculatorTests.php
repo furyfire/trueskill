@@ -8,7 +8,7 @@ use DNW\Skills\Rating;
 use DNW\Skills\SkillCalculator;
 use DNW\Skills\Team;
 use DNW\Skills\Teams;
-use DNW\Skills\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class TrueSkillCalculatorTests
 {

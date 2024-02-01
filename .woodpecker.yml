@@ -17,7 +17,7 @@ pipeline:
     image: php:cli-bookworm
     commands:
     - vendor/bin/phpunit tests
-  document:
-    image: phpdoc/phpdoc
-    commands:
-    - phpdoc run
+#  document:
+#    image: phpdoc/phpdoc
+#    commands:
+#    - phpdoc

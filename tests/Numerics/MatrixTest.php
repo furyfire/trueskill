@@ -5,7 +5,7 @@ namespace DNW\Skills\Tests\Numerics;
 use DNW\Skills\Numerics\IdentityMatrix;
 use DNW\Skills\Numerics\Matrix;
 use DNW\Skills\Numerics\SquareMatrix;
-use DNW\Skills\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use Exception;
 
 // phpcs:disable PSR2.Methods.FunctionCallSignature,Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma

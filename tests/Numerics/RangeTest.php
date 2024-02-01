@@ -3,7 +3,7 @@
 namespace DNW\Skills\Tests\Numerics;
 
 use DNW\Skills\Numerics\Range;
-use DNW\Skills\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use Exception;
 
 class RangeTest extends TestCase

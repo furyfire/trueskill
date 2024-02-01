@@ -3,7 +3,7 @@
 namespace DNW\Skills\Tests\Numerics;
 
 use DNW\Skills\Numerics\BasicMath;
-use DNW\Skills\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class BasicMathTest extends TestCase
 {

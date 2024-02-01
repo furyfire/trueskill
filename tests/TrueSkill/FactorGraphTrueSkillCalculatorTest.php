@@ -2,11 +2,11 @@
 
 namespace DNW\Skills\Tests\TrueSkill;
 
-use DNW\Skills\Tests\TestCase;
 use DNW\Skills\GameInfo;
 use DNW\Skills\Player;
 use DNW\Skills\Team;
 use DNW\Skills\TrueSkill\FactorGraphTrueSkillCalculator;
+use PHPUnit\Framework\TestCase;
 
 class FactorGraphTrueSkillCalculatorTest extends TestCase
 {
