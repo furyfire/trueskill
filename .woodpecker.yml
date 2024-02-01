@@ -1,0 +1,23 @@
+pipeline:
+  requirements:
+    image: composer
+    commands:
+    - composer install --no-dev
+  run:
+    image: php:cli-bookworm
+    commands:
+      - php examples/3teams.php
+      - php examples/basic.php
+  dependencies:
+    image: composer
+    commands:
+    - composer install
+    - composer analyze
+  test:
+    image: php:cli-bookworm
+    commands:
+    - vendor/bin/phpunit tests
+  document:
+    image: phpdoc/phpdoc
+    commands:
+    - phpdoc run
