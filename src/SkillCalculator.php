@@ -37,8 +37,8 @@ abstract class SkillCalculator
     /**
      * Calculates the match quality as the likelihood of all teams drawing.
      *
-     * @param  GameInfo $gameInfo Parameters for the game.
-     * @param  Team[]   $teams    A mapping of team players and their ratings.
+     * @param GameInfo $gameInfo Parameters for the game.
+     * @param Team[]   $teams    A mapping of team players and their ratings.
      *
      * @return float The quality of the match between the teams as a percentage (0% = bad, 100% = well matched).
      */

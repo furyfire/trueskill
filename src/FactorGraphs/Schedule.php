@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\FactorGraphs;
 
 abstract class Schedule implements \Stringable

@@ -37,7 +37,8 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
         GameInfo $gameInfo,
         array $teams,
         array $teamRanks
-    ): RatingContainer {
+    ): RatingContainer
+    {
         // Basic argument checking
         Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);

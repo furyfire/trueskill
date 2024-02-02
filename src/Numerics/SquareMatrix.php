@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\Numerics;
 
 class SquareMatrix extends Matrix
 {
     public function __construct(float|int ...$allValues)
     {
-        $rows = (int) sqrt(count($allValues));
+        $rows = (int)sqrt(count($allValues));
         $cols = $rows;
 
         $matrixData = [];

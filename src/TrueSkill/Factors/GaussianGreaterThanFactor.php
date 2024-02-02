@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\TrueSkill\Factors;
 
 use DNW\Skills\FactorGraphs\Message;
@@ -62,11 +64,9 @@ class GaussianGreaterThanFactor extends GaussianFactor
         $denom = 1.0 - TruncatedGaussianCorrectionFunctions::wExceedsMargin($dOnSqrtC, $epsilsonTimesSqrtC);
 
         $newPrecision = $c / $denom;
-        $newPrecisionMean = (
-                $d +
+        $newPrecisionMean = ($d +
                 $sqrtC *
-                TruncatedGaussianCorrectionFunctions::vExceedsMargin($dOnSqrtC, $epsilsonTimesSqrtC)
-            ) / $denom;
+                TruncatedGaussianCorrectionFunctions::vExceedsMargin($dOnSqrtC, $epsilsonTimesSqrtC)) / $denom;
 
         $newMarginal = GaussianDistribution::fromPrecisionMean($newPrecisionMean, $newPrecision);
 

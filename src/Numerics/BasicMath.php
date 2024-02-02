@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\Numerics;
 
 /**
@@ -13,7 +15,8 @@ class BasicMath
     /**
      * Squares the input (x^2 = x * x)
      *
-     * @param  float $x Value to square (x)
+     * @param float $x Value to square (x)
+     *
      * @return float The squared value (x^2)
      */
     public static function square($x): float
@@ -24,8 +27,9 @@ class BasicMath
     /**
      * Sums the items in $itemsToSum
      *
-     * @param  mixed[]    $itemsToSum The items to sum,
-     * @param  \Closure $callback   The function to apply to each array element before summing.
+     * @param mixed[]    $itemsToSum The items to sum,
+     * @param \Closure $callback   The function to apply to each array element before summing.
+     *
      * @return float The sum.
      */
     public static function sum(array $itemsToSum, \Closure $callback): float

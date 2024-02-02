@@ -17,7 +17,8 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         TrueSkillFactorGraph $parentGraph,
         private readonly TeamPerformancesToTeamPerformanceDifferencesLayer $TeamPerformancesToTeamPerformanceDifferencesLayer,
         private readonly TeamDifferencesComparisonLayer $TeamDifferencesComparisonLayer
-    ) {
+    )
+    {
         parent::__construct($parentGraph);
     }
 

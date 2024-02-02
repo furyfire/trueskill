@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\FactorGraphs;
 
 use DNW\Skills\Numerics\GaussianDistribution;

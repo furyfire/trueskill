@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills;
 
 /**
@@ -26,7 +28,8 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
         private mixed $Id,
         float $partialPlayPercentage = self::DEFAULT_PARTIAL_PLAY_PERCENTAGE,
         float $partialUpdatePercentage = self::DEFAULT_PARTIAL_UPDATE_PERCENTAGE
-    ) {
+    )
+    {
         // If they don't want to give a player an id, that's ok...
         Guard::argumentInRangeInclusive($partialPlayPercentage, 0.0, 1.0, 'partialPlayPercentage');
         Guard::argumentInRangeInclusive($partialUpdatePercentage, 0, 1.0, 'partialUpdatePercentage');
@@ -60,6 +63,6 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
 
     public function __toString(): string
     {
-        return (string) $this->Id;
+        return (string)$this->Id;
     }
 }

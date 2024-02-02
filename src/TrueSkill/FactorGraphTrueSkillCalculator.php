@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\TrueSkill;
 
 use DNW\Skills\GameInfo;
@@ -34,7 +36,8 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         GameInfo $gameInfo,
         array $teams,
         array $teamRanks
-    ): RatingContainer {
+    ): RatingContainer
+    {
         Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
@@ -124,7 +127,9 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
 
     /**
      * Helper function that gets a list of values for all player ratings
+     *
      * @param Team[] $teamAssignmentsList
+     *
      * @return int[]
      */
     private static function getPlayerRatingValues(array $teamAssignmentsList, \Closure $playerRatingFunction): array

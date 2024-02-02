@@ -122,8 +122,7 @@ class TruncatedGaussianCorrectionFunctions
         $vt = self::vWithinMargin($teamPerformanceDifferenceAbsoluteValue, $drawMargin);
 
         return $vt * $vt +
-        (
-            ($drawMargin - $teamPerformanceDifferenceAbsoluteValue)
+        (($drawMargin - $teamPerformanceDifferenceAbsoluteValue)
             *
             GaussianDistribution::at(
                 $drawMargin - $teamPerformanceDifferenceAbsoluteValue

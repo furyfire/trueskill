@@ -70,7 +70,8 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
         Team $selfTeam,
         Team $otherTeam,
         PairwiseComparison $selfToOtherTeamComparison
-    ): void {
+    ): void
+    {
         $drawMargin = DrawMargin::getDrawMarginFromDrawProbability(
             $gameInfo->getDrawProbability(),
             $gameInfo->getBeta()

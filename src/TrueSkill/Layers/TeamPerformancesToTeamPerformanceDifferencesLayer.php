@@ -32,7 +32,8 @@ class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorG
         Variable $strongerTeam,
         Variable $weakerTeam,
         Variable $output
-    ): GaussianWeightedSumFactor {
+    ): GaussianWeightedSumFactor
+    {
         $teams = [$strongerTeam, $weakerTeam];
         $weights = [1.0, -1.0];
 

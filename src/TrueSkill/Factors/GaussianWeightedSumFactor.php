@@ -26,6 +26,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
     /**
      * This following is used for convenience, for example, the first entry is [0, 1, 2]
      * corresponding to v[0] = a1*v[1] + a2*v[2]
+     *
      * @var array<float[]> $weights
      */
     private array $weights = [];
@@ -249,7 +250,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
             $absValue = sprintf('%.2f', \abs($weights[$i])); // 0.00?
             $result .= $absValue;
             $result .= '*[';
-            $result .= (string) $variablesToSum[$i];
+            $result .= (string)$variablesToSum[$i];
             $result .= ']';
 
             $isLast = ($i === $totalVars - 1);

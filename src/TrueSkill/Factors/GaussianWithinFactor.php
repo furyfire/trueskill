@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\TrueSkill\Factors;
 
 use DNW\Skills\FactorGraphs\Message;
@@ -65,8 +67,7 @@ class GaussianWithinFactor extends GaussianFactor
         $newPrecision = $c / $denominator;
         $newPrecisionMean = ($d +
                                 $sqrtC *
-                                TruncatedGaussianCorrectionFunctions::vWithinMargin($dOnSqrtC, $epsilonTimesSqrtC)
-                            ) / $denominator;
+                                TruncatedGaussianCorrectionFunctions::vWithinMargin($dOnSqrtC, $epsilonTimesSqrtC)) / $denominator;
 
         $newMarginal = GaussianDistribution::fromPrecisionMean($newPrecisionMean, $newPrecision);
         $newMessage = GaussianDistribution::divide(

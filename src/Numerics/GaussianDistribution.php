@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\Numerics;
 
 /**
@@ -198,7 +200,8 @@ class GaussianDistribution implements \Stringable
             -1.523e-15,
             -9.4e-17,
             1.21e-16,
-            -2.8e-17, ];
+            -2.8e-17,
+        ];
 
         $ncof = count($coefficients);
         $d = 0.0;
