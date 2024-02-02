@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\Benchmark;
 
 use DNW\Skills\TrueSkill\TwoPlayerTrueSkillCalculator;
