@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\FactorGraphs;
 
 use DNW\Skills\Guard;
@@ -94,6 +96,7 @@ abstract class Factor implements \Stringable
 
     /**
      * Sends the ith message to the marginal and returns the log-normalization constant
+     *
      * @throws Exception
      */
     public function sendMessageIndex(int $messageIndex): float|int

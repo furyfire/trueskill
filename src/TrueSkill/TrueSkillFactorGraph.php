@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\TrueSkill;
 
 use DNW\Skills\FactorGraphs\FactorGraph;
@@ -60,11 +62,11 @@ class TrueSkillFactorGraph extends FactorGraph
 
     public function buildGraph(): void
     {
-        $lastOutput = null;
+        $lastOutput = NULL;
 
         $layers = $this->layers;
         foreach ($layers as $currentLayer) {
-            if ($lastOutput != null) {
+            if ($lastOutput != NULL) {
                 $currentLayer->setInputVariablesGroups($lastOutput);
             }
 
@@ -105,7 +107,7 @@ class TrueSkillFactorGraph extends FactorGraph
         $layers = $this->layers;
         foreach ($layers as $currentLayer) {
             $currentPriorSchedule = $currentLayer->createPriorSchedule();
-            if ($currentPriorSchedule != null) {
+            if ($currentPriorSchedule != NULL) {
                 $fullSchedule[] = $currentPriorSchedule;
             }
         }
@@ -114,7 +116,7 @@ class TrueSkillFactorGraph extends FactorGraph
 
         foreach ($allLayersReverse as $currentLayer) {
             $currentPosteriorSchedule = $currentLayer->createPosteriorSchedule();
-            if ($currentPosteriorSchedule != null) {
+            if ($currentPosteriorSchedule != NULL) {
                 $fullSchedule[] = $currentPosteriorSchedule;
             }
         }

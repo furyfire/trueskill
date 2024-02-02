@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\TrueSkill\Layers;
 
 use DNW\Skills\FactorGraphs\ScheduleStep;
@@ -87,7 +89,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
      */
     private function createOutputVariable(array $team): Variable
     {
-        $memberNames = array_map(fn ($currentPlayer) => (string) ($currentPlayer->getKey()), $team);
+        $memberNames = array_map(fn ($currentPlayer) => (string)($currentPlayer->getKey()), $team);
 
         $teamMemberNames = \implode(', ', $memberNames);
 

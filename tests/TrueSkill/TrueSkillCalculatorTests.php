@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace DNW\Skills\Tests\TrueSkill;
 
@@ -78,8 +80,8 @@ class TrueSkillCalculatorTests
 
     private static function twoPlayerTestNotDrawn(TestCase $testClass, SkillCalculator $calculator): void
     {
-        $player1 = new Player(1);
-        $player2 = new Player(2);
+        $player1  = new Player(1);
+        $player2  = new Player(2);
         $gameInfo = new GameInfo();
 
         $team1 = new Team($player1, $gameInfo->getDefaultRating());
@@ -108,6 +110,7 @@ class TrueSkillCalculatorTests
         $team2 = new Team($player2, $gameInfo->getDefaultRating());
 
         $teams = Teams::concat($team1, $team2);
+
         $newRatings = $calculator->calculateNewRatings($gameInfo, $teams, [1, 1]);
 
         $player1NewRating = $newRatings->getRating($player1);
@@ -122,8 +125,8 @@ class TrueSkillCalculatorTests
     private static function twoPlayerChessTestNotDrawn(TestCase $testClass, SkillCalculator $calculator): void
     {
         // Inspired by a real bug :-)
-        $player1 = new Player(1);
-        $player2 = new Player(2);
+        $player1  = new Player(1);
+        $player2  = new Player(2);
         $gameInfo = new GameInfo(1200.0, 1200.0 / 3.0, 200.0, 1200.0 / 300.0, 0.03);
 
         $team1 = new Team($player1, new Rating(1301.0007, 42.9232));
@@ -169,11 +172,9 @@ class TrueSkillCalculatorTests
 
     private static function oneOnTwoSimpleTest(TestCase $testClass, SkillCalculator $calculator): void
     {
-        $player1 = new Player(1);
-
+        $player1  = new Player(1);
         $gameInfo = new GameInfo();
-
-        $team1 = new Team();
+        $team1    = new Team();
         $team1->addPlayer($player1, $gameInfo->getDefaultRating());
 
         $player2 = new Player(2);
@@ -975,7 +976,7 @@ class TrueSkillCalculatorTests
     {
         $gameInfo = new GameInfo();
 
-        $p1 = new Player(1);
+        $p1    = new Player(1);
         $team1 = new Team($p1, $gameInfo->getDefaultRating());
 
         $p2 = new Player(2, 0.0);
@@ -985,7 +986,7 @@ class TrueSkillCalculatorTests
         $team2->addPlayer($p2, $gameInfo->getDefaultRating());
         $team2->addPlayer($p3, $gameInfo->getDefaultRating());
 
-        $teams = Teams::concat($team1, $team2);
+        $teams      = Teams::concat($team1, $team2);
         $newRatings = $calculator->calculateNewRatings($gameInfo, $teams, [1, 2]);
 
         $p1NewRating = $newRatings->getRating($p1);

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\Tests\Numerics;
 
 use DNW\Skills\Numerics\BasicMath;
@@ -39,9 +41,9 @@ class GaussianDistributionTest extends TestCase
     public function testMultiplication(): void
     {
         // I verified this against the formula at http://www.tina-vision.net/tina-knoppix/tina-memo/2003-003.pdf
-        $standardNormal = new GaussianDistribution(0, 1);
+        $standardNormal  = new GaussianDistribution(0, 1);
         $shiftedGaussian = new GaussianDistribution(2, 3);
-        $product = GaussianDistribution::multiply($standardNormal, $shiftedGaussian);
+        $product         = GaussianDistribution::multiply($standardNormal, $shiftedGaussian);
 
         $this->assertEqualsWithDelta(0.2, $product->getMean(), GaussianDistributionTest::ERROR_TOLERANCE);
         $this->assertEqualsWithDelta(3.0 / sqrt(10), $product->getStandardDeviation(), GaussianDistributionTest::ERROR_TOLERANCE);
@@ -61,15 +63,15 @@ class GaussianDistributionTest extends TestCase
     public function testDivision(): void
     {
         // Since the multiplication was worked out by hand, we use the same numbers but work backwards
-        $product = new GaussianDistribution(0.2, 3.0 / sqrt(10));
+        $product        = new GaussianDistribution(0.2, 3.0 / sqrt(10));
         $standardNormal = new GaussianDistribution(0, 1);
 
         $productDividedByStandardNormal = GaussianDistribution::divide($product, $standardNormal);
         $this->assertEqualsWithDelta(2.0, $productDividedByStandardNormal->getMean(), GaussianDistributionTest::ERROR_TOLERANCE);
         $this->assertEqualsWithDelta(3.0, $productDividedByStandardNormal->getStandardDeviation(), GaussianDistributionTest::ERROR_TOLERANCE);
 
-        $product2 = new GaussianDistribution((4 * BasicMath::square(7) + 6 * BasicMath::square(5)) / (BasicMath::square(5) + BasicMath::square(7)), sqrt(((BasicMath::square(5) * BasicMath::square(7)) / (BasicMath::square(5) + BasicMath::square(7)))));
-        $m4s5 = new GaussianDistribution(4, 5);
+        $product2              = new GaussianDistribution((4 * BasicMath::square(7) + 6 * BasicMath::square(5)) / (BasicMath::square(5) + BasicMath::square(7)), sqrt(((BasicMath::square(5) * BasicMath::square(7)) / (BasicMath::square(5) + BasicMath::square(7)))));
+        $m4s5                  = new GaussianDistribution(4, 5);
         $product2DividedByM4S5 = GaussianDistribution::divide($product2, $m4s5);
         $this->assertEqualsWithDelta(6.0, $product2DividedByM4S5->getMean(), GaussianDistributionTest::ERROR_TOLERANCE);
         $this->assertEqualsWithDelta(7.0, $product2DividedByM4S5->getStandardDeviation(), GaussianDistributionTest::ERROR_TOLERANCE);
@@ -93,7 +95,7 @@ class GaussianDistributionTest extends TestCase
         // Verified with Ralf Herbrich's F# implementation
         $m1s2 = new GaussianDistribution(1, 2);
         $m3s4 = new GaussianDistribution(3, 4);
-        $lrn = GaussianDistribution::logRatioNormalization($m1s2, $m3s4);
+        $lrn  = GaussianDistribution::logRatioNormalization($m1s2, $m3s4);
         $this->assertEqualsWithDelta(2.6157405972171204, $lrn, GaussianDistributionTest::ERROR_TOLERANCE);
     }
 
@@ -101,7 +103,7 @@ class GaussianDistributionTest extends TestCase
     {
         // Verified with Ralf Herbrich's F# implementation
         $standardNormal = new GaussianDistribution(0, 1);
-        $absDiff = GaussianDistribution::absoluteDifference($standardNormal, $standardNormal);
+        $absDiff        = GaussianDistribution::absoluteDifference($standardNormal, $standardNormal);
         $this->assertEqualsWithDelta(0.0, $absDiff, GaussianDistributionTest::ERROR_TOLERANCE);
 
         $m1s2 = new GaussianDistribution(1, 2);

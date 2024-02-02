@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills;
 
 /**
@@ -23,7 +25,8 @@ class GameInfo
         private float $beta = self::DEFAULT_BETA,
         private float $dynamicsFactor = self::DEFAULT_DYNAMICS_FACTOR,
         private float $drawProbability = self::DEFAULT_DRAW_PROBABILITY
-    ) {
+    )
+    {
     }
 
     public function getInitialMean(): float

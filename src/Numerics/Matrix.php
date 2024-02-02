@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\Numerics;
 
 use Exception;
@@ -11,7 +13,7 @@ class Matrix
     /**
      * @param array<int,array<int,float>> $matrixRowData
      */
-    public function __construct(private int $rowCount = 0, private int $columnCount = 0, private array $matrixRowData = array())
+    public function __construct(private int $rowCount = 0, private int $columnCount = 0, private array $matrixRowData = [])
     {
     }
 
@@ -307,7 +309,7 @@ class Matrix
     public function equals(Matrix $otherMatrix): bool
     {
         if (($this->rowCount != $otherMatrix->getRowCount()) || ($this->columnCount != $otherMatrix->getColumnCount())) {
-            return false;
+            return FALSE;
         }
 
         for ($currentRow = 0; $currentRow < $this->rowCount; $currentRow++) {
@@ -319,11 +321,11 @@ class Matrix
                     );
 
                 if ($delta > self::ERROR_TOLERANCE) {
-                    return false;
+                    return FALSE;
                 }
             }
         }
 
-        return true;
+        return TRUE;
     }
 }

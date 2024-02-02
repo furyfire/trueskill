@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace DNW\Skills\Tests\TrueSkill;
 
@@ -21,6 +23,6 @@ class FactorGraphTeamTrueSkillCalculatorTest extends TestCase
     public function testMethodisSupported(): void
     {
         $calculator = new FactorGraphTrueSkillCalculator();
-        $this->assertEquals(true, $calculator->isSupported(SkillCalculatorSupportedOptions::PARTIAL_PLAY));
+        $this->assertEquals(TRUE, $calculator->isSupported(SkillCalculatorSupportedOptions::PARTIAL_PLAY));
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\Tests;
 
 use DNW\Skills\Rating;
@@ -18,11 +20,11 @@ class RatingTest extends TestCase
 
     public function testPartialUpdate(): void
     {
-        $rating = new Rating(100, 10, 5);
-        $rating_prior = new Rating(100, 10, 5);
-        $rating_new = new Rating(200, 10, 5);
+        $rating    = new Rating(100, 10, 5);
+        $ratingOld = new Rating(100, 10, 5);
+        $ratingNew = new Rating(200, 10, 5);
 
-        $rating_partial = $rating ->getPartialUpdate($rating_prior, $rating_new, 0.5);
+        $rating_partial = $rating->getPartialUpdate($ratingOld, $ratingNew, 0.5);
 
 
         $this->assertEquals(150, $rating_partial->getMean());

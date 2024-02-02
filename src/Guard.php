@@ -13,7 +13,7 @@ class Guard
 {
     public static function argumentNotNull(mixed $value, string $parameterName): void
     {
-        if ($value == null) {
+        if ($value == NULL) {
             throw new Exception($parameterName . ' can not be null');
         }
     }

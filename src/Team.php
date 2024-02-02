@@ -4,7 +4,7 @@ namespace DNW\Skills;
 
 class Team extends RatingContainer
 {
-    public function __construct(Player $player = null, Rating $rating = null)
+    public function __construct(Player $player = NULL, Rating $rating = NULL)
     {
         parent::__construct();
 

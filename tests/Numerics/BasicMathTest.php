@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\Tests\Numerics;
 
 use DNW\Skills\Numerics\BasicMath;

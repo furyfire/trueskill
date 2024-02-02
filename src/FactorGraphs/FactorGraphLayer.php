@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\FactorGraphs;
 
 use DNW\Skills\FactorGraphs\ScheduleSequence;
@@ -42,6 +44,7 @@ abstract class FactorGraphLayer
 
     /**
      * This reference is still needed
+     *
      * @return array<int,array<int,object>>
      */
     public function &getOutputVariablesGroups(): array
@@ -82,11 +85,11 @@ abstract class FactorGraphLayer
 
     public function createPriorSchedule(): ?ScheduleSequence
     {
-        return null;
+        return NULL;
     }
 
     public function createPosteriorSchedule(): ?ScheduleSequence
     {
-        return null;
+        return NULL;
     }
 }

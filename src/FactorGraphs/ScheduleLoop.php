@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace DNW\Skills\FactorGraphs;
 
 class ScheduleLoop extends Schedule

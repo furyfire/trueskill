@@ -15,6 +15,8 @@ use DNW\Skills\Teams;
 class BasicBench
 {
     /**
+     * To benchmark performance when using TwoPlayerTrueSkillCalculator
+     *
      * @Revs(20)
      * @Iterations(20)
      */
@@ -44,6 +46,8 @@ class BasicBench
     }
 
     /**
+     * To benchmark performance when using TwoTeamTrueSkillCalculator for just two players in two teams
+     *
      * @Revs(20)
      * @Iterations(20)
      */
@@ -73,6 +77,8 @@ class BasicBench
     }
 
     /**
+     * To benchmark performance when using FactorGraphTrueSkillCalculator for just two players in two teams
+     *
      * @Revs(20)
      * @Iterations(20)
      */
@@ -102,6 +108,8 @@ class BasicBench
     }
 
     /**
+     * To benchmark performance when using FactorGraphTrueSkillCalculator with 3 players in 3 teams
+     *
      * @Revs(20)
      * @Iterations(20)
      */

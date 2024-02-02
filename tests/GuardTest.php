@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace DNW\Skills\Tests;
 
@@ -12,7 +14,7 @@ class GuardTest extends TestCase
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('dummy can not be null');
-        Guard::argumentNotNull(null, "dummy");
+        Guard::argumentNotNull(NULL, "dummy");
     }
 
     public function testargumentIsValidIndex(): void
