@@ -6,11 +6,10 @@
     "php": "^8.2"
   },
   "require-dev": {
-    "phpunit/phpunit": "^10",
-    "phpstan/phpstan": "^1",
-    "squizlabs/php_codesniffer": "*",
-    "vimeo/psalm": "^5.14",
-    "phpmetrics/phpmetrics": "^3.0-dev"
+    "phpstan/phpstan": "^1.0",
+    "vimeo/psalm": "^5.21.1",
+    "phpmetrics/phpmetrics": "^3.0-dev",
+    "phpunit/phpunit": "^10.5"
   },
   "autoload": {
     "psr-4": {
@@ -23,18 +22,26 @@
     }
   },
   "scripts": {
-    "test":          "vendor/bin/phpunit tests --display-warnings",
-    "test-coverage": "vendor/bin/phpunit tests --testdox --coverage-filter src --coverage-html output/coverage --coverage-text --testdox-html output/test.html  --log-junit output/test.xml", 
-    "document":      "phpDocumentor --setting=graphs.enabled=true", 
+    "test":          "phpunit",
+    "document":      "phpDocumentor", 
     "benchmark":     "phpbench run --report=default --output=build-artifact",
     "metrics":       "vendor/bin/phpmetrics --config=phpmetrics.json",
-    "analyze": [
+    "lint": [
+        "phplint",
+        "phpcs"
+    ],
+    "static": [
         "@analyze-phpstan",
-        "@analyze-psalm",
-        "@analyze-phpcs"
+        "@analyze-psalm"
     ],
     "analyze-phpstan":"vendor/bin/phpstan analyze --error-format=raw",
     "analyze-psalm":  "vendor/bin/psalm --no-cache",
-    "analyze-phpcs":  "vendor/bin/phpcs --report=emacs --standard=PSR1,PSR2,PSR12 --exclude=Generic.Files.LineLength src tests benchmark"
+    "all": [
+      "@test",
+      "@document",
+      "@benchmark",
+      "@lint",
+      "@static"
+    ]
   }
 }

@@ -8,7 +8,7 @@ class Team extends RatingContainer
     {
         parent::__construct();
 
-        if (! is_null($player) && ! is_null($rating)) {
+        if ($player && $rating) {
             $this->addPlayer($player, $rating);
         }
     }

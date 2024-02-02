@@ -1,6 +1,6 @@
 .vscode
 vendor
-.phpunit.cache
+.*.cache/
 *.phar
 .phpdoc/
 output/

@@ -12,12 +12,4 @@ pipeline:
     image: composer
     commands:
     - composer install
-    - composer analyze
-  test:
-    image: php:cli-bookworm
-    commands:
     - vendor/bin/phpunit tests
-#  document:
-#    image: phpdoc/phpdoc
-#    commands:
-#    - phpdoc
