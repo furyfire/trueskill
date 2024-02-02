@@ -1,0 +1,11 @@
+{
+    "runner.bootstrap": "vendor/autoload.php",
+    "runner.path": "benchmark/",
+    "report.outputs": {
+        "build-artifact": {
+            "renderer": "html",
+            "path": "output/benchmark.html",
+            "title": "Benchmarking"
+        }
+   }
+}

@@ -1,0 +1,20 @@
+{
+    "composer": true,
+    "includes": [
+      "src"
+    ],
+    "excludes": [
+      "tests"
+    ],
+    "report": {
+      "html": "output/metrics/"
+    },
+    "plugins": {
+      "git": {
+        "binary": "git"
+      },
+      "junit": {
+        "file": "output/test.xml"
+      }
+    }
+}
