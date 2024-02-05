@@ -8,11 +8,6 @@ class FactorGraph
 {
     private VariableFactory $variableFactory;
 
-    public function __construct(VariableFactory $factory)
-    {
-        $this->variableFactory = $factory;
-    }
-
     public function getVariableFactory(): VariableFactory
     {
         return $this->variableFactory;
