@@ -8,10 +8,13 @@ use DNW\Skills\GameInfo;
 use DNW\Skills\Player;
 use DNW\Skills\Team;
 use DNW\Skills\TrueSkill\FactorGraphTrueSkillCalculator;
+use DNW\Skills\SkillCalculatorSupportedOptions;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversNothing;
 
 class FactorGraphTrueSkillCalculatorTest extends TestCase
 {
+    #[CoversNothing]
     public function testMicrosoftResearchExample(): void
     {
         $gameInfo = new GameInfo();
@@ -52,5 +55,22 @@ class FactorGraphTrueSkillCalculatorTest extends TestCase
             $this->assertEqualsWithDelta($expected[$player->getId()][0], $rating->getMean(), 0.001);
             $this->assertEqualsWithDelta($expected[$player->getId()][1], $rating->getStandardDeviation(), 0.001);
         }
+    }
+
+    #[CoversNothing]
+    public function testFactorGraphTrueSkillCalculator(): void
+    {
+        $calculator = new FactorGraphTrueSkillCalculator();
+
+        TrueSkillCalculatorTests::testAllTwoPlayerScenarios($this, $calculator);
+        TrueSkillCalculatorTests::testAllTwoTeamScenarios($this, $calculator);
+        TrueSkillCalculatorTests::testAllMultipleTeamScenarios($this, $calculator);
+        TrueSkillCalculatorTests::testPartialPlayScenarios($this, $calculator);
+    }
+
+    public function testMethodisSupported(): void
+    {
+        $calculator = new FactorGraphTrueSkillCalculator();
+        $this->assertEquals(TRUE, $calculator->isSupported(SkillCalculatorSupportedOptions::PARTIAL_PLAY));
     }
 }

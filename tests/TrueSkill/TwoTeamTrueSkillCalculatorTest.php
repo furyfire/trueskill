@@ -6,9 +6,11 @@ namespace DNW\Skills\Tests\TrueSkill;
 
 use DNW\Skills\TrueSkill\TwoTeamTrueSkillCalculator;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversNothing;
 
 class TwoTeamTrueSkillCalculatorTest extends TestCase
 {
+    #[CoversNothing]
     public function testTwoTeamTrueSkillCalculator(): void
     {
         $calculator = new TwoTeamTrueSkillCalculator();
