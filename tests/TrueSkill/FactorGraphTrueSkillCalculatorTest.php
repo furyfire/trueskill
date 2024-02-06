@@ -10,8 +10,11 @@ use DNW\Skills\Team;
 use DNW\Skills\TrueSkill\FactorGraphTrueSkillCalculator;
 use DNW\Skills\SkillCalculatorSupportedOptions;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversNothing;
+use PHPUnit\Framework\Attributes\UsesClass;
 
+#[CoversClass(FactorGraphTrueSkillCalculator::class)]
 class FactorGraphTrueSkillCalculatorTest extends TestCase
 {
     #[CoversNothing]
