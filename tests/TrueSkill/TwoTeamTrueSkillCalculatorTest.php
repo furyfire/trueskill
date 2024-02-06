@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversNothing;
 
-#[CoversClass(TwoTeamTrueSkillCalculator::class)]
+//#[CoversClass(TwoTeamTrueSkillCalculator::class)]
 class TwoTeamTrueSkillCalculatorTest extends TestCase
 {
     #[CoversNothing]

@@ -7,12 +7,27 @@ namespace DNW\Skills\Tests\Numerics;
 use DNW\Skills\Numerics\IdentityMatrix;
 use DNW\Skills\Numerics\Matrix;
 use DNW\Skills\Numerics\SquareMatrix;
+use DNW\Skills\Numerics\DiagonalMatrix;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 use Exception;
 
+#[CoversClass(Matrix::class)]
+#[UsesClass(SquareMatrix::class)]
+#[UsesClass(IdentityMatrix::class)]
+#[UsesClass(DiagonalMatrix::class)]
 // phpcs:disable PSR2.Methods.FunctionCallSignature,Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
 class MatrixTest extends TestCase
 {
+    public function testOneByOneDeterminant(): void
+    {
+        $a = new SquareMatrix(1);
+
+        $this->assertEquals(1, $a->getDeterminant());
+    }
+
+
     public function testTwoByTwoDeterminant(): void
     {
         $a = new SquareMatrix(1, 2,
@@ -110,9 +125,7 @@ class MatrixTest extends TestCase
                                      1, 2, 3,
                                      4, 5, 6);
 
-        $d = Matrix::fromRowsColumns(2, 3,
-                                     1, 2, 3,
-                                     4, 5, 6);
+        $d = Matrix::fromColumnValues(2, 3, [[1, 4], [2, 5], [3,6]]);
 
         $this->assertTrue($c->equals($d));
 
@@ -142,6 +155,21 @@ class MatrixTest extends TestCase
         $l = new Matrix(2, 2, [[4,3],[2,1]]);
 
         $this->assertFalse($k->equals($l));
+    }
+
+    public function testAdd(): void
+    {
+        // From Wikipedia: http://en.wikipedia.org/wiki/Adjugate_matrix
+        $a = new SquareMatrix(1, 2,
+                              3, 4);
+
+        $b = new SquareMatrix(4, 3,
+                              2, 1);
+        
+        $sum = Matrix::add($a, $b);
+
+        $result = new SquareMatrix(5, 5, 5, 5);
+        $this->assertEquals(TRUE, $result->equals($sum));
     }
 
     public function testAdjugate(): void
@@ -197,6 +225,14 @@ class MatrixTest extends TestCase
 
         $ccInverse = Matrix::multiply($c, $cInverse);
         $this->assertTrue($identity3x3->equals($ccInverse));
+
+
+        $e = new SquareMatrix(10);
+
+        $f = new SquareMatrix(0.1);
+
+        $eInverse = $e->getInverse();
+        $this->assertTrue($f->equals($eInverse));
     }
 
     public function testErrorDeterminant(): void

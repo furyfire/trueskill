@@ -15,6 +15,10 @@ use PHPUnit\Framework\Attributes\CoversNothing;
 use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(FactorGraphTrueSkillCalculator::class)]
+#[UsesClass(\DNW\Skills\Numerics\Range::class)]
+#[UsesClass(\DNW\Skills\PlayersRange::class)]
+#[UsesClass(\DNW\Skills\SkillCalculator::class)]
+#[UsesClass(\DNW\Skills\TeamsRange::class)]
 class FactorGraphTrueSkillCalculatorTest extends TestCase
 {
     #[CoversNothing]

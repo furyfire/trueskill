@@ -15,4 +15,18 @@ class BasicMathTest extends TestCase
         $this->assertEquals(1.44, BasicMath::square(1.2));
         $this->assertEquals(4, BasicMath::square(2));
     }
+
+    public function testSum(): void
+    {
+        $arr = [1, 1, 1, 1];
+
+        $func_return = function ($f) {
+            return $f;
+        };
+        $func_double = function ($f) {
+            return $f * 2;
+        };
+        $this->assertEquals(4, BasicMath::sum($arr, $func_return));
+        $this->assertEquals(8, BasicMath::sum($arr, $func_double));
+    }
 }
