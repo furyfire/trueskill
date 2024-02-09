@@ -20,10 +20,10 @@ class BasicMathTest extends TestCase
     {
         $arr = [1, 1, 1, 1];
 
-        $func_return = function ($f) {
+        $func_return = function (float $f): float {
             return $f;
         };
-        $func_double = function ($f) {
+        $func_double = function (float $f): float {
             return $f * 2;
         };
         $this->assertEquals(4, BasicMath::sum($arr, $func_return));
