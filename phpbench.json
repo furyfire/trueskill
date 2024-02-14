@@ -1,6 +1,9 @@
 {
     "runner.bootstrap": "vendor/autoload.php",
     "runner.path": "benchmark/",
+    "runner.php_disable_ini": true,
+    "runner.retry_threshold": 5,
+    "runner.iterations": 10,
     "report.outputs": {
         "build-artifact": {
             "renderer": "html",
