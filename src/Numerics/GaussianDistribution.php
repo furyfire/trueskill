@@ -12,6 +12,13 @@ namespace DNW\Skills\Numerics;
  */
 class GaussianDistribution implements \Stringable
 {
+    //sqrt(2*pi)
+    //from https://www.wolframalpha.com/input?i=sqrt%282*pi%29
+    const M_SQRT_2_PI = 2.5066282746310005024157652848110452530069867406099383166299235763;
+    
+    //log(sqrt(2*pi))
+    //From https://www.wolframalpha.com/input?i=log%28sqrt%282*pi%29%29
+    const M_LOG_SQRT_2_PI = 0.9189385332046727417803297364056176398613974736377834128171515404;
     // precision and precisionMean are used because they make multiplying and dividing simpler
     // (the the accompanying math paper for more details)
     private float $precision;
@@ -62,7 +69,7 @@ class GaussianDistribution implements \Stringable
     public function getNormalizationConstant(): float
     {
         // Great derivation of this is at http://www.astro.psu.edu/~mce/A451_2/A451/downloads/notes0.pdf
-        return 1.0 / (sqrt(2 * M_PI) * $this->standardDeviation);
+        return 1.0 / (self::M_SQRT_2_PI * $this->standardDeviation);
     }
 
     public static function fromPrecisionMean(float $precisionMean, float $precision): self
@@ -115,9 +122,7 @@ class GaussianDistribution implements \Stringable
         $varianceSum = $left->variance + $right->variance;
         $meanDifference = $left->mean - $right->mean;
 
-        $logSqrt2Pi = log(sqrt(2 * M_PI));
-
-        return -$logSqrt2Pi - (log($varianceSum) / 2.0) - (BasicMath::square($meanDifference) / (2.0 * $varianceSum));
+        return -self::M_LOG_SQRT_2_PI - (log($varianceSum) / 2.0) - (BasicMath::square($meanDifference) / (2.0 * $varianceSum));
     }
 
     public static function divide(GaussianDistribution $numerator, GaussianDistribution $denominator): self
@@ -137,9 +142,7 @@ class GaussianDistribution implements \Stringable
         $varianceDifference = $denominator->variance - $numerator->variance;
         $meanDifference = $numerator->mean - $denominator->mean;
 
-        $logSqrt2Pi = log(sqrt(2 * M_PI));
-
-        return log($denominator->variance) + $logSqrt2Pi - log($varianceDifference) / 2.0 +
+        return log($denominator->variance) + self::M_LOG_SQRT_2_PI - log($varianceDifference) / 2.0 +
         BasicMath::square($meanDifference) / (2 * $varianceDifference);
     }
 
@@ -150,7 +153,7 @@ class GaussianDistribution implements \Stringable
         // P(x) = ------------------- * e
         //        stdDev * sqrt(2*pi)
 
-        $multiplier = 1.0 / ($standardDeviation * sqrt(2 * M_PI));
+        $multiplier = 1.0 / ($standardDeviation * self::M_SQRT_2_PI);
         $expPart = exp((-1.0 * BasicMath::square($x - $mean)) / (2 * BasicMath::square($standardDeviation)));
 
         return $multiplier * $expPart;
@@ -158,8 +161,7 @@ class GaussianDistribution implements \Stringable
 
     public static function cumulativeTo(float $x, float $mean = 0.0, float $standardDeviation = 1.0): float
     {
-        $invsqrt2 = -0.707106781186547524400844362104;
-        $result = GaussianDistribution::errorFunctionCumulativeTo($invsqrt2 * $x);
+        $result = GaussianDistribution::errorFunctionCumulativeTo(-M_SQRT1_2 * $x);
 
         return 0.5 * $result;
     }
@@ -231,11 +233,11 @@ class GaussianDistribution implements \Stringable
 
         $pp = ($p < 1.0) ? $p : 2 - $p;
         $t = sqrt(-2 * log($pp / 2.0)); // Initial guess
-        $x = -0.70711 * ((2.30753 + $t * 0.27061) / (1.0 + $t * (0.99229 + $t * 0.04481)) - $t);
+        $x = -M_SQRT1_2 * ((2.30753 + $t * 0.27061) / (1.0 + $t * (0.99229 + $t * 0.04481)) - $t);
 
         for ($j = 0; $j < 2; $j++) {
             $err = GaussianDistribution::errorFunctionCumulativeTo($x) - $pp;
-            $x += $err / (1.12837916709551257 * exp(-BasicMath::square($x)) - $x * $err); // Halley
+            $x += $err / (M_2_SQRTPI * exp(-BasicMath::square($x)) - $x * $err); // Halley
         }
 
         return ($p < 1.0) ? $x : -$x;
@@ -244,7 +246,7 @@ class GaussianDistribution implements \Stringable
     public static function inverseCumulativeTo(float $x, float $mean = 0.0, float $standardDeviation = 1.0): float
     {
         // From numerical recipes, page 320
-        return $mean - sqrt(2) * $standardDeviation * GaussianDistribution::inverseErrorFunctionCumulativeTo(2 * $x);
+        return $mean - M_SQRT2 * $standardDeviation * GaussianDistribution::inverseErrorFunctionCumulativeTo(2 * $x);
     }
 
     public function __toString(): string
