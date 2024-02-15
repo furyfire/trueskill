@@ -14,11 +14,11 @@ class GaussianDistribution implements \Stringable
 {
     //sqrt(2*pi)
     //from https://www.wolframalpha.com/input?i=sqrt%282*pi%29
-    const M_SQRT_2_PI = 2.5066282746310005024157652848110452530069867406099383166299235763;
+    private const M_SQRT_2_PI = 2.5066282746310005024157652848110452530069867406099383166299235763;
     
     //log(sqrt(2*pi))
     //From https://www.wolframalpha.com/input?i=log%28sqrt%282*pi%29%29
-    const M_LOG_SQRT_2_PI = 0.9189385332046727417803297364056176398613974736377834128171515404;
+    private const M_LOG_SQRT_2_PI = 0.9189385332046727417803297364056176398613974736377834128171515404;
     // precision and precisionMean are used because they make multiplying and dividing simpler
     // (the the accompanying math paper for more details)
     private float $precision;
