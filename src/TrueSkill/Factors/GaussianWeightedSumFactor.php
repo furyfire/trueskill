@@ -181,7 +181,6 @@ class GaussianWeightedSumFactor extends GaussianFactor
         }
 
         $newPrecision = 1.0 / $inverseOfNewPrecisionSum;
-        $anotherNewPrecision = 1.0 / $anotherInverseOfNewPrecisionSum;
 
         $newPrecisionMean = $newPrecision * $weightedMeanSum;
 

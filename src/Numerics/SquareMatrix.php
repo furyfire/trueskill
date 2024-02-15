@@ -8,18 +8,17 @@ class SquareMatrix extends Matrix
 {
     public function __construct(float|int ...$allValues)
     {
-        $rows = (int)sqrt(count($allValues));
-        $cols = $rows;
+        $size = (int)sqrt(count($allValues));
 
         $matrixData = [];
         $allValuesIndex = 0;
 
-        for ($currentRow = 0; $currentRow < $rows; $currentRow++) {
-            for ($currentColumn = 0; $currentColumn < $cols; $currentColumn++) {
+        for ($currentRow = 0; $currentRow < $size; $currentRow++) {
+            for ($currentColumn = 0; $currentColumn < $size; $currentColumn++) {
                 $matrixData[$currentRow][$currentColumn] = $allValues[$allValuesIndex++];
             }
         }
 
-        parent::__construct($rows, $cols, $matrixData);
+        parent::__construct($size, $size, $matrixData);
     }
 }

@@ -4,6 +4,7 @@
     "runner.php_disable_ini": true,
     "runner.retry_threshold": 5,
     "runner.iterations": 10,
+    "storage.xml_storage_path": "output/benchmarking/",
     "report.outputs": {
         "build-artifact": {
             "renderer": "html",
@@ -11,4 +12,5 @@
             "title": "Benchmarking"
         }
    }
+   
 }

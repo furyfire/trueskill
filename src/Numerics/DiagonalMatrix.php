@@ -12,13 +12,11 @@ class DiagonalMatrix extends Matrix
     public function __construct(array $diagonalValues)
     {
         $diagonalCount = count($diagonalValues);
-        $rowCount = $diagonalCount;
-        $colCount = $rowCount;
 
-        parent::__construct($rowCount, $colCount);
+        parent::__construct($diagonalCount, $diagonalCount);
 
-        for ($currentRow = 0; $currentRow < $rowCount; $currentRow++) {
-            for ($currentCol = 0; $currentCol < $colCount; $currentCol++) {
+        for ($currentRow = 0; $currentRow < $diagonalCount; $currentRow++) {
+            for ($currentCol = 0; $currentCol < $diagonalCount; $currentCol++) {
                 if ($currentRow === $currentCol) {
                     $this->setValue($currentRow, $currentCol, $diagonalValues[$currentRow]);
                 } else {

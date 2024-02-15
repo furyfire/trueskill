@@ -15,11 +15,11 @@ class BasicMath
     /**
      * Squares the input (x^2 = x * x)
      *
-     * @param float $x Value to square (x)
+     * @param $x Value to square (x)
      *
      * @return float The squared value (x^2)
      */
-    public static function square($x): float
+    public static function square(float $x): float
     {
         return $x * $x;
     }
