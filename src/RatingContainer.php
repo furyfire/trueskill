@@ -6,7 +6,7 @@ namespace DNW\Skills;
 
 class RatingContainer
 {
-    private HashMap $playerToRating;
+    private readonly HashMap $playerToRating;
 
     public function __construct()
     {

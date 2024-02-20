@@ -28,7 +28,7 @@ class TrueSkillFactorGraph extends FactorGraph
      */
     private array $layers;
 
-    private PlayerPriorValuesToSkillsLayer $priorLayer;
+    private readonly PlayerPriorValuesToSkillsLayer $priorLayer;
 
     /**
      * @param GameInfo $gameInfo  Parameters for the game.

@@ -6,7 +6,7 @@ namespace DNW\Skills\FactorGraphs;
 
 abstract class Schedule implements \Stringable
 {
-    protected function __construct(private string $name)
+    protected function __construct(private readonly string $name)
     {
     }
 

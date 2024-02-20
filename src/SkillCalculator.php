@@ -12,7 +12,7 @@ use Exception;
 abstract class SkillCalculator
 {
     protected function __construct(
-        private int $supportedOptions,
+        private readonly int $supportedOptions,
         private readonly TeamsRange $totalTeamsAllowed,
         private readonly PlayersRange $playersPerTeamAllowed
     )

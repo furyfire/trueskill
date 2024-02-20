@@ -13,9 +13,9 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
 
     private const DEFAULT_PARTIAL_UPDATE_PERCENTAGE = 1.0;
 
-    private float $PartialPlayPercentage;
+    private readonly float $PartialPlayPercentage;
 
-    private float $PartialUpdatePercentage;
+    private readonly float $PartialUpdatePercentage;
 
     /**
      * Constructs a player.
@@ -25,7 +25,7 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
      * @param float $partialUpdatePercentage Indicated how much of a skill update a player should receive where 0 represents no update and 1.0 represents 100% of the update.
      */
     public function __construct(
-        private mixed $Id,
+        private readonly mixed $Id,
         float $partialPlayPercentage = self::DEFAULT_PARTIAL_PLAY_PERCENTAGE,
         float $partialUpdatePercentage = self::DEFAULT_PARTIAL_UPDATE_PERCENTAGE
     )

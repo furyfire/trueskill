@@ -8,7 +8,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
 
 class Variable implements \Stringable
 {
-    private string $name;
+    private readonly string $name;
 
     private mixed $value;
 

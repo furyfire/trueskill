@@ -18,7 +18,7 @@ class Rating implements \Stringable
      * @param float     $standardDeviation                       The standard deviation of the rating (also known as s).
      * @param float|int $conservativeStandardDeviationMultiplier optional The number of standardDeviations to subtract from the mean to achieve a conservative rating.
      */
-    public function __construct(private float $mean, private float $standardDeviation, private float|int $conservativeStandardDeviationMultiplier = self::CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER)
+    public function __construct(private readonly float $mean, private readonly float $standardDeviation, private readonly float|int $conservativeStandardDeviationMultiplier = self::CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER)
     {
     }
 

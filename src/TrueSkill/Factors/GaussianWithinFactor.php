@@ -16,7 +16,7 @@ use DNW\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
  */
 class GaussianWithinFactor extends GaussianFactor
 {
-    private float $epsilon;
+    private readonly float $epsilon;
 
     public function __construct(float $epsilon, Variable $variable)
     {

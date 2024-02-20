@@ -17,7 +17,7 @@ use Exception;
  */
 class GaussianLikelihoodFactor extends GaussianFactor
 {
-    private float $precision;
+    private readonly float $precision;
 
     public function __construct(float $betaSquared, Variable $variable1, Variable $variable2)
     {

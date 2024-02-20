@@ -15,7 +15,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
  */
 class GaussianPriorFactor extends GaussianFactor
 {
-    private GaussianDistribution $newMessage;
+    private readonly GaussianDistribution $newMessage;
 
     public function __construct(float $mean, float $variance, Variable $variable)
     {

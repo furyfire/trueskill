@@ -6,7 +6,7 @@ namespace DNW\Skills\FactorGraphs;
 
 class KeyedVariable extends Variable
 {
-    public function __construct(private mixed $key, string $name, mixed $prior)
+    public function __construct(private readonly mixed $key, string $name, mixed $prior)
     {
         parent::__construct($name, $prior);
     }

@@ -13,7 +13,7 @@ class Matrix
     /**
      * @param array<int,array<int,float>> $matrixRowData
      */
-    public function __construct(private int $rowCount = 0, private int $columnCount = 0, private array $matrixRowData = [])
+    public function __construct(private readonly int $rowCount = 0, private readonly int $columnCount = 0, private array $matrixRowData = [])
     {
     }
 

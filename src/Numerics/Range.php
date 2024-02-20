@@ -11,7 +11,7 @@ use Exception;
 
 class Range
 {
-    final public function __construct(private int $min, private int $max)
+    final public function __construct(private readonly int $min, private readonly int $max)
     {
         if ($min > $max) {
             throw new Exception('min > max');

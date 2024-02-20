@@ -8,7 +8,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
 
 class Message implements \Stringable
 {
-    public function __construct(private GaussianDistribution $value, private string $name)
+    public function __construct(private GaussianDistribution $value, private readonly string $name)
     {
     }
 

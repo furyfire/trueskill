@@ -11,7 +11,7 @@ use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
 class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
 {
-    private float $epsilon;
+    private readonly float $epsilon;
 
     /**
      * @param int[] $teamRanks

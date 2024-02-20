@@ -15,9 +15,9 @@ abstract class Factor implements \Stringable
      */
     private array $messages = [];
 
-    private HashMap $messageToVariableBinding;
+    private readonly HashMap $messageToVariableBinding;
 
-    private string $name;
+    private readonly string $name;
 
     /**
      * @var Variable[] $variables

@@ -165,7 +165,7 @@ class MatrixTest extends TestCase
 
         $b = new SquareMatrix(4, 3,
                               2, 1);
-        
+
         $sum = Matrix::add($a, $b);
 
         $result = new SquareMatrix(5, 5, 5, 5);
