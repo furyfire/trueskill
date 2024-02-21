@@ -39,7 +39,7 @@ class TrueSkillFactorGraph extends FactorGraph
     {
         $this->priorLayer = new PlayerPriorValuesToSkillsLayer($this, $teams);
         $newFactory = new VariableFactory(
-            fn (): GaussianDistribution => GaussianDistribution::fromPrecisionMean(0, 0)
+            static fn(): GaussianDistribution => GaussianDistribution::fromPrecisionMean(0, 0)
         );
 
         $this->setVariableFactory($newFactory);

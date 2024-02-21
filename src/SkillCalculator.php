@@ -70,7 +70,8 @@ abstract class SkillCalculator
             if (! $playersPerTeam->isInRange($currentTeam->count())) {
                 throw new Exception('Player count is not in range');
             }
-            $countOfTeams++;
+
+            ++$countOfTeams;
         }
 
         if (! $totalTeams->isInRange($countOfTeams)) {

@@ -25,10 +25,10 @@ class Matrix
         $data = [];
         $result = new Matrix($rows, $columns, $data);
 
-        for ($currentColumn = 0; $currentColumn < $columns; $currentColumn++) {
+        for ($currentColumn = 0; $currentColumn < $columns; ++$currentColumn) {
             $currentColumnData = $columnValues[$currentColumn];
 
-            for ($currentRow = 0; $currentRow < $rows; $currentRow++) {
+            for ($currentRow = 0; $currentRow < $rows; ++$currentRow) {
                 $result->setValue($currentRow, $currentColumn, $currentColumnData[$currentRow]);
             }
         }
@@ -41,8 +41,8 @@ class Matrix
         $result = new Matrix($rows, $cols);
         $currentIndex = 0;
 
-        for ($currentRow = 0; $currentRow < $rows; $currentRow++) {
-            for ($currentCol = 0; $currentCol < $cols; $currentCol++) {
+        for ($currentRow = 0; $currentRow < $rows; ++$currentRow) {
+            for ($currentCol = 0; $currentCol < $cols; ++$currentCol) {
                 $result->setValue($currentRow, $currentCol, $args[$currentIndex++]);
             }
         }
@@ -76,8 +76,8 @@ class Matrix
         $transposeMatrix = [];
 
         $rowMatrixData = $this->matrixRowData;
-        for ($currentRowTransposeMatrix = 0; $currentRowTransposeMatrix < $this->columnCount; $currentRowTransposeMatrix++) {
-            for ($currentColumnTransposeMatrix = 0; $currentColumnTransposeMatrix < $this->rowCount; $currentColumnTransposeMatrix++) {
+        for ($currentRowTransposeMatrix = 0; $currentRowTransposeMatrix < $this->columnCount; ++$currentRowTransposeMatrix) {
+            for ($currentColumnTransposeMatrix = 0; $currentColumnTransposeMatrix < $this->rowCount; ++$currentColumnTransposeMatrix) {
                 $transposeMatrix[$currentRowTransposeMatrix][$currentColumnTransposeMatrix] =
                     $rowMatrixData[$currentColumnTransposeMatrix][$currentRowTransposeMatrix];
             }
@@ -126,7 +126,7 @@ class Matrix
         $result = 0.0;
 
         // I expand along the first row
-        for ($currentColumn = 0; $currentColumn < $this->columnCount; $currentColumn++) {
+        for ($currentColumn = 0; $currentColumn < $this->columnCount; ++$currentColumn) {
             $firstRowColValue = $this->matrixRowData[0][$currentColumn];
             $cofactor = $this->getCofactor(0, $currentColumn);
             $itemToAdd = $firstRowColValue * $cofactor;
@@ -168,8 +168,8 @@ class Matrix
         // The idea is that it's the transpose of the cofactors
         $result = [];
 
-        for ($currentColumn = 0; $currentColumn < $this->columnCount; $currentColumn++) {
-            for ($currentRow = 0; $currentRow < $this->rowCount; $currentRow++) {
+        for ($currentColumn = 0; $currentColumn < $this->columnCount; ++$currentColumn) {
+            for ($currentRow = 0; $currentRow < $this->rowCount; ++$currentRow) {
                 $result[$currentColumn][$currentRow] = $this->getCofactor($currentRow, $currentColumn);
             }
         }
@@ -197,8 +197,8 @@ class Matrix
         $columns = $matrix->getColumnCount();
         $newValues = [];
 
-        for ($currentRow = 0; $currentRow < $rows; $currentRow++) {
-            for ($currentColumn = 0; $currentColumn < $columns; $currentColumn++) {
+        for ($currentRow = 0; $currentRow < $rows; ++$currentRow) {
+            for ($currentColumn = 0; $currentColumn < $columns; ++$currentColumn) {
                 $newValues[$currentRow][$currentColumn] = $scalarValue * $matrix->getValue($currentRow, $currentColumn);
             }
         }
@@ -216,8 +216,8 @@ class Matrix
 
         $resultMatrix = [];
 
-        for ($currentRow = 0; $currentRow < $left->getRowCount(); $currentRow++) {
-            for ($currentColumn = 0; $currentColumn < $right->getColumnCount(); $currentColumn++) {
+        for ($currentRow = 0; $currentRow < $left->getRowCount(); ++$currentRow) {
+            for ($currentColumn = 0; $currentColumn < $right->getColumnCount(); ++$currentColumn) {
                 $resultMatrix[$currentRow][$currentColumn] =
                     $left->getValue($currentRow, $currentColumn)
                     +
@@ -242,11 +242,11 @@ class Matrix
 
         $resultMatrix = [];
 
-        for ($currentRow = 0; $currentRow < $resultRows; $currentRow++) {
-            for ($currentColumn = 0; $currentColumn < $resultColumns; $currentColumn++) {
+        for ($currentRow = 0; $currentRow < $resultRows; ++$currentRow) {
+            for ($currentColumn = 0; $currentColumn < $resultColumns; ++$currentColumn) {
                 $productValue = 0;
 
-                for ($vectorIndex = 0; $vectorIndex < $left->getColumnCount(); $vectorIndex++) {
+                for ($vectorIndex = 0; $vectorIndex < $left->getColumnCount(); ++$vectorIndex) {
                     $leftValue = $left->getValue($currentRow, $vectorIndex);
                     $rightValue = $right->getValue($vectorIndex, $currentColumn);
                     $vectorIndexProduct = $leftValue * $rightValue;
@@ -269,24 +269,24 @@ class Matrix
 
         $actualRow = 0;
 
-        for ($currentRow = 0; $currentRow < $this->rowCount; $currentRow++) {
+        for ($currentRow = 0; $currentRow < $this->rowCount; ++$currentRow) {
             if ($currentRow == $rowToRemove) {
                 continue;
             }
 
             $actualCol = 0;
 
-            for ($currentColumn = 0; $currentColumn < $this->columnCount; $currentColumn++) {
+            for ($currentColumn = 0; $currentColumn < $this->columnCount; ++$currentColumn) {
                 if ($currentColumn == $columnToRemove) {
                     continue;
                 }
 
                 $result[$actualRow][$actualCol] = $this->matrixRowData[$currentRow][$currentColumn];
 
-                $actualCol++;
+                ++$actualCol;
             }
 
-            $actualRow++;
+            ++$actualRow;
         }
 
         return new Matrix($this->rowCount - 1, $this->columnCount - 1, $result);
@@ -312,8 +312,8 @@ class Matrix
             return FALSE;
         }
 
-        for ($currentRow = 0; $currentRow < $this->rowCount; $currentRow++) {
-            for ($currentColumn = 0; $currentColumn < $this->columnCount; $currentColumn++) {
+        for ($currentRow = 0; $currentRow < $this->rowCount; ++$currentRow) {
+            for ($currentColumn = 0; $currentColumn < $this->columnCount; ++$currentColumn) {
                 $delta =
                     abs(
                         $this->matrixRowData[$currentRow][$currentColumn] -

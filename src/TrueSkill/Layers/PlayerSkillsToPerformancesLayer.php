@@ -53,7 +53,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 
         return $this->scheduleSequence(
             array_map(
-                fn ($likelihood): ScheduleStep => new ScheduleStep('Skill to Perf step', $likelihood, 0),
+                static fn($likelihood): ScheduleStep => new ScheduleStep('Skill to Perf step', $likelihood, 0),
                 $localFactors
             ),
             'All skill to performance sending'
@@ -66,7 +66,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 
         return $this->scheduleSequence(
             array_map(
-                fn ($likelihood): ScheduleStep => new ScheduleStep('name', $likelihood, 1),
+                static fn($likelihood): ScheduleStep => new ScheduleStep('name', $likelihood, 1),
                 $localFactors
             ),
             'All skill to performance sending'

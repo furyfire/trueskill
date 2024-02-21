@@ -25,12 +25,12 @@ class FactorList
 
         $listCount = count($this->list);
 
-        for ($i = 0; $i < $listCount; $i++) {
+        for ($i = 0; $i < $listCount; ++$i) {
             $f = $this->list[$i];
 
             $numberOfMessages = $f->getNumberOfMessages();
 
-            for ($j = 0; $j < $numberOfMessages; $j++) {
+            for ($j = 0; $j < $numberOfMessages; ++$j) {
                 $sumLogZ += $f->sendMessageIndex($j);
             }
         }

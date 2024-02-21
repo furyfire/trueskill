@@ -15,8 +15,8 @@ class DiagonalMatrix extends Matrix
 
         parent::__construct($diagonalCount, $diagonalCount);
 
-        for ($currentRow = 0; $currentRow < $diagonalCount; $currentRow++) {
-            for ($currentCol = 0; $currentCol < $diagonalCount; $currentCol++) {
+        for ($currentRow = 0; $currentRow < $diagonalCount; ++$currentRow) {
+            for ($currentCol = 0; $currentCol < $diagonalCount; ++$currentCol) {
                 if ($currentRow === $currentCol) {
                     $this->setValue($currentRow, $currentCol, $diagonalValues[$currentRow]);
                 } else {

@@ -15,10 +15,11 @@ class GaussianDistribution implements \Stringable
     //sqrt(2*pi)
     //from https://www.wolframalpha.com/input?i=sqrt%282*pi%29
     private const M_SQRT_2_PI = 2.5066282746310005024157652848110452530069867406099383166299235763;
-    
+
     //log(sqrt(2*pi))
     //From https://www.wolframalpha.com/input?i=log%28sqrt%282*pi%29%29
     private const M_LOG_SQRT_2_PI = 0.9189385332046727417803297364056176398613974736377834128171515404;
+
     // precision and precisionMean are used because they make multiplying and dividing simpler
     // (the the accompanying math paper for more details)
     private float $precision;
@@ -209,7 +210,7 @@ class GaussianDistribution implements \Stringable
         $d = 0.0;
         $dd = 0.0;
 
-        for ($j = $ncof - 1; $j > 0; $j--) {
+        for ($j = $ncof - 1; $j > 0; --$j) {
             $tmp = $d;
             $d = $ty * $d - $dd + $coefficients[$j];
             $dd = $tmp;
@@ -227,6 +228,7 @@ class GaussianDistribution implements \Stringable
         if ($p >= 2.0) {
             return -100;
         }
+
         if ($p <= 0.0) {
             return 100;
         }
@@ -235,7 +237,7 @@ class GaussianDistribution implements \Stringable
         $t = sqrt(-2 * log($pp / 2.0)); // Initial guess
         $x = -M_SQRT1_2 * ((2.30753 + $t * 0.27061) / (1.0 + $t * (0.99229 + $t * 0.04481)) - $t);
 
-        for ($j = 0; $j < 2; $j++) {
+        for ($j = 0; $j < 2; ++$j) {
             $err = GaussianDistribution::errorFunctionCumulativeTo($x) - $pp;
             $x += $err / (M_2_SQRTPI * exp(-BasicMath::square($x)) - $x * $err); // Halley
         }

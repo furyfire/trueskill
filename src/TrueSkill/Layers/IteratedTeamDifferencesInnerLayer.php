@@ -113,7 +113,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 
         $forwardScheduleList = [];
 
-        for ($i = 0; $i < $totalTeamDifferences - 1; $i++) {
+        for ($i = 0; $i < $totalTeamDifferences - 1; ++$i) {
             $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors = $this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
             $teamDifferencesComparisonLayerLocalFactors = $this->TeamDifferencesComparisonLayer->getLocalFactors();
 
@@ -149,7 +149,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 
         $backwardScheduleList = [];
 
-        for ($i = 0; $i < $totalTeamDifferences - 1; $i++) {
+        for ($i = 0; $i < $totalTeamDifferences - 1; ++$i) {
             $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors = $this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
             $teamDifferencesComparisonLayerLocalFactors = $this->TeamDifferencesComparisonLayer->getLocalFactors();
 

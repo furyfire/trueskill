@@ -13,8 +13,8 @@ class SquareMatrix extends Matrix
         $matrixData = [];
         $allValuesIndex = 0;
 
-        for ($currentRow = 0; $currentRow < $size; $currentRow++) {
-            for ($currentColumn = 0; $currentColumn < $size; $currentColumn++) {
+        for ($currentRow = 0; $currentRow < $size; ++$currentRow) {
+            for ($currentColumn = 0; $currentColumn < $size; ++$currentColumn) {
                 $matrixData[$currentRow][$currentColumn] = $allValues[$allValuesIndex++];
             }
         }

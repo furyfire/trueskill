@@ -15,6 +15,7 @@ class Vector extends Matrix
         foreach ($vectorValues as $currentVectorValue) {
             $columnValues[] = [$currentVectorValue];
         }
+
         parent::__construct(count($vectorValues), 1, $columnValues);
     }
 }

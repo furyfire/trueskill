@@ -18,6 +18,7 @@ abstract class FactorGraphLayer
      * @var array<int,array<int,object>>
      */
     private array $outputVariablesGroups = [];
+
     /**
      * @var array<int,array<int,object>>
      */

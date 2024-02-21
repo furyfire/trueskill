@@ -15,7 +15,7 @@ class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorG
         $inputVariablesGroupsCount = count($inputVariablesGroups);
         $outputVariablesGroup = &$this->getOutputVariablesGroups();
 
-        for ($i = 0; $i < $inputVariablesGroupsCount - 1; $i++) {
+        for ($i = 0; $i < $inputVariablesGroupsCount - 1; ++$i) {
             $strongerTeam = $inputVariablesGroups[$i][0];
             $weakerTeam = $inputVariablesGroups[$i + 1][0];
 

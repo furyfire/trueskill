@@ -265,4 +265,5 @@ class MatrixTest extends TestCase
         Matrix::multiply($m1, $m2);
     }
 }
+
 // phpcs:enable

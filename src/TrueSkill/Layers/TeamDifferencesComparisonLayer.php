@@ -28,7 +28,7 @@ class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
         $inputVarGroups = $this->getInputVariablesGroups();
         $inputVarGroupsCount = count($inputVarGroups);
 
-        for ($i = 0; $i < $inputVarGroupsCount; $i++) {
+        for ($i = 0; $i < $inputVarGroupsCount; ++$i) {
             $isDraw = ($this->teamRanks[$i] == $this->teamRanks[$i + 1]);
             $teamDifference = $inputVarGroups[$i][0];
 

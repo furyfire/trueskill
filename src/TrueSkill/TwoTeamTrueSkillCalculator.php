@@ -28,6 +28,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
     {
         parent::__construct(SkillCalculatorSupportedOptions::NONE, TeamsRange::exactly(2), PlayersRange::atLeast(1));
     }
+
     /**
      * {@inheritdoc}
      */
@@ -82,12 +83,12 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
 
         $totalPlayers = $selfTeam->count() + $otherTeam->count();
 
-        $meanGetter = fn (Rating $currentRating): float => $currentRating->getMean();
+        $meanGetter = static fn(Rating $currentRating): float => $currentRating->getMean();
 
         $selfMeanSum = BasicMath::sum($selfTeam->getAllRatings(), $meanGetter);
         $otherTeamMeanSum = BasicMath::sum($otherTeam->getAllRatings(), $meanGetter);
 
-        $varianceGetter = fn (Rating $currentRating): float => BasicMath::square($currentRating->getStandardDeviation());
+        $varianceGetter = static fn(Rating $currentRating): float => BasicMath::square($currentRating->getStandardDeviation());
 
         $c = sqrt(
             BasicMath::sum($selfTeam->getAllRatings(), $varianceGetter)
@@ -163,9 +164,9 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
 
         $betaSquared = BasicMath::square($gameInfo->getBeta());
 
-        $meanGetter = fn (Rating $currentRating): float => $currentRating->getMean();
+        $meanGetter = static fn(Rating $currentRating): float => $currentRating->getMean();
 
-        $varianceGetter = fn (Rating $currentRating): float => BasicMath::square($currentRating->getStandardDeviation());
+        $varianceGetter = static fn(Rating $currentRating): float => BasicMath::square($currentRating->getStandardDeviation());
 
         $team1MeanSum = BasicMath::sum($team1Ratings, $meanGetter);
         $team1StdDevSquared = BasicMath::sum($team1Ratings, $varianceGetter);

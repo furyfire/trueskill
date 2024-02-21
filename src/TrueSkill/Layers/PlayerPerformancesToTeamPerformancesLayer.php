@@ -37,7 +37,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
 
         return $this->scheduleSequence(
             array_map(
-                fn ($weightedSumFactor): ScheduleStep => new ScheduleStep('Perf to Team Perf Step', $weightedSumFactor, 0),
+                static fn($weightedSumFactor): ScheduleStep => new ScheduleStep('Perf to Team Perf Step', $weightedSumFactor, 0),
                 $localFactors
             ),
             'all player perf to team perf schedule'
@@ -50,9 +50,8 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
     protected function createPlayerToTeamSumFactor(array $teamMembers, Variable $sumVariable): GaussianWeightedSumFactor
     {
         $weights = array_map(
-            function ($v): float {
+            static function ($v): float {
                 $player = $v->getKey();
-
                 return PartialPlay::getPartialPlayPercentage($player);
             },
             $teamMembers
@@ -72,7 +71,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
         foreach ($localFactors as $currentFactor) {
             $localCurrentFactor = $currentFactor;
             $numberOfMessages = $localCurrentFactor->getNumberOfMessages();
-            for ($currentIteration = 1; $currentIteration < $numberOfMessages; $currentIteration++) {
+            for ($currentIteration = 1; $currentIteration < $numberOfMessages; ++$currentIteration) {
                 $allFactors[] = new ScheduleStep(
                     'team sum perf @' . $currentIteration,
                     $localCurrentFactor,
@@ -89,7 +88,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
      */
     private function createOutputVariable(array $team): Variable
     {
-        $memberNames = array_map(fn ($currentPlayer): string => (string)($currentPlayer->getKey()), $team);
+        $memberNames = array_map(static fn($currentPlayer): string => (string)($currentPlayer->getKey()), $team);
 
         $teamMemberNames = \implode(', ', $memberNames);
 

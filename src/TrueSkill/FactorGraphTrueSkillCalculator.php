@@ -29,6 +29,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
     {
         parent::__construct(SkillCalculatorSupportedOptions::PARTIAL_PLAY | SkillCalculatorSupportedOptions::PARTIAL_UPDATE, TeamsRange::atLeast(2), PlayersRange::atLeast(1));
     }
+
     /**
      * {@inheritdoc}
      */
@@ -51,6 +52,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
 
         return $factorGraph->getUpdatedRatings();
     }
+
     /**
      * {@inheritdoc}
      */
@@ -104,7 +106,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         return new Vector(
             self::getPlayerRatingValues(
                 $teamAssignmentsList,
-                fn (Rating $rating): float => $rating->getMean()
+                static fn(Rating $rating): float => $rating->getMean()
             )
         );
     }
@@ -119,7 +121,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         return new DiagonalMatrix(
             self::getPlayerRatingValues(
                 $teamAssignmentsList,
-                fn (Rating $rating): float => BasicMath::square($rating->getStandardDeviation())
+                static fn(Rating $rating): float => BasicMath::square($rating->getStandardDeviation())
             )
         );
     }
@@ -171,7 +173,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
 
         $currentColumn = 0;
 
-        for ($i = 0; $i < count($teamAssignmentsList) - 1; $i++) {
+        for ($i = 0; $i < count($teamAssignmentsList) - 1; ++$i) {
             $currentTeam = $teamAssignmentsList[$i];
 
             // Need to add in 0's for all the previous players, since they're not
@@ -181,7 +183,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
             foreach ($currentTeam->getAllPlayers() as $currentPlayer) {
                 $playerAssignments[$currentColumn][] = PartialPlay::getPartialPlayPercentage($currentPlayer);
                 // indicates the player is on the team
-                $totalPreviousPlayers++;
+                ++$totalPreviousPlayers;
             }
 
             $rowsRemaining = $totalPlayers - $totalPreviousPlayers;
@@ -190,15 +192,15 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
             foreach ($nextTeam->getAllPlayers() as $nextTeamPlayer) {
                 // Add a -1 * playing time to represent the difference
                 $playerAssignments[$currentColumn][] = -1 * PartialPlay::getPartialPlayPercentage($nextTeamPlayer);
-                $rowsRemaining--;
+                --$rowsRemaining;
             }
 
-            for ($ixAdditionalRow = 0; $ixAdditionalRow < $rowsRemaining; $ixAdditionalRow++) {
+            for ($ixAdditionalRow = 0; $ixAdditionalRow < $rowsRemaining; ++$ixAdditionalRow) {
                 // Pad with zeros
                 $playerAssignments[$currentColumn][] = 0;
             }
 
-            $currentColumn++;
+            ++$currentColumn;
         }
 
         return Matrix::fromColumnValues($totalPlayers, count($teamAssignmentsList) - 1, $playerAssignments);

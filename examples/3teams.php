@@ -20,8 +20,8 @@ $team2 = new Team($p2, $gameInfo->getDefaultRating());
 $team3 = new Team($p3, $gameInfo->getDefaultRating());
 
 
-for($i = 0; $i < 5; $i++) {
-    echo "Iteration: $i\n";
+for($i = 0; $i < 5; ++$i) {
+    echo "Iteration: " . $i . PHP_EOL;
     $teams = Teams::concat($team1, $team2, $team3);
 
     $calculator = new FactorGraphTrueSkillCalculator();

@@ -30,7 +30,7 @@ class BasicBench
         $team1 = new Team($p1, $gameInfo->getDefaultRating());
         $team2 = new Team($p2, $gameInfo->getDefaultRating());
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             $teams = Teams::concat($team1, $team2);
 
             $calculator = new TwoPlayerTrueSkillCalculator();
@@ -61,7 +61,7 @@ class BasicBench
         $team1 = new Team($p1, $gameInfo->getDefaultRating());
         $team2 = new Team($p2, $gameInfo->getDefaultRating());
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             $teams = Teams::concat($team1, $team2);
 
             $calculator = new TwoTeamTrueSkillCalculator();
@@ -92,7 +92,7 @@ class BasicBench
         $team1 = new Team($p1, $gameInfo->getDefaultRating());
         $team2 = new Team($p2, $gameInfo->getDefaultRating());
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             $teams = Teams::concat($team1, $team2);
 
             $calculator = new FactorGraphTrueSkillCalculator();
@@ -125,7 +125,7 @@ class BasicBench
         $team2 = new Team($p2, $gameInfo->getDefaultRating());
         $team3 = new Team($p3, $gameInfo->getDefaultRating());
         
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             $teams = Teams::concat($team1, $team2, $team3);
 
             $calculator = new FactorGraphTrueSkillCalculator();

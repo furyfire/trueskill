@@ -19,8 +19,8 @@ $team1 = new Team($p1, $gameInfo->getDefaultRating());
 $team2 = new Team($p2, $gameInfo->getDefaultRating());
 
 
-for($i = 0; $i < 5; $i++) {
-    echo "Iteration: $i\n";
+for($i = 0; $i < 5; ++$i) {
+    echo "Iteration: " . $i . PHP_EOL;
     $teams = Teams::concat($team1, $team2);
 
     $calculator = new TwoPlayerTrueSkillCalculator();
