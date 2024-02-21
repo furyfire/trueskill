@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
-use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
+use Rector\CodeQuality\Rector\ClassMethod\LocallyCalledStaticMethodToNonStaticRector;
 
 return RectorConfig::configure()
     ->withPaths([
@@ -14,4 +14,7 @@ return RectorConfig::configure()
     ])
     // uncomment to reach your current PHP version
     ->withPhpSets()
-    ->withPreparedSets(deadCode: true, codeQuality: true, typeDeclarations : true);
+    ->withPreparedSets(deadCode: true, codeQuality: true, typeDeclarations : true)
+    ->withSkip([
+        LocallyCalledStaticMethodToNonStaticRector::class,
+    ]);;

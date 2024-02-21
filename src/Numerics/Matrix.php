@@ -88,7 +88,7 @@ class Matrix
 
     private function isSquare(): bool
     {
-        return ($this->rowCount == $this->columnCount) && ($this->rowCount > 0);
+        return ($this->rowCount === $this->columnCount) && ($this->rowCount > 0);
     }
 
     public function getDeterminant(): float
@@ -208,7 +208,7 @@ class Matrix
 
     public static function add(Matrix $left, Matrix $right): Matrix
     {
-        if (($left->getRowCount() != $right->getRowCount()) || ($left->getColumnCount() != $right->getColumnCount())) {
+        if (($left->getRowCount() !== $right->getRowCount()) || ($left->getColumnCount() !== $right->getColumnCount())) {
             throw new Exception('Matrices must be of the same size');
         }
 
@@ -233,7 +233,7 @@ class Matrix
         // Just your standard matrix multiplication.
         // See http://en.wikipedia.org/wiki/Matrix_multiplication for details
 
-        if ($left->getColumnCount() != $right->getRowCount()) {
+        if ($left->getColumnCount() !== $right->getRowCount()) {
             throw new Exception('The width of the left matrix must match the height of the right matrix');
         }
 
@@ -308,7 +308,7 @@ class Matrix
 
     public function equals(Matrix $otherMatrix): bool
     {
-        if (($this->rowCount != $otherMatrix->getRowCount()) || ($this->columnCount != $otherMatrix->getColumnCount())) {
+        if (($this->rowCount !== $otherMatrix->getRowCount()) || ($this->columnCount !== $otherMatrix->getColumnCount())) {
             return FALSE;
         }
 

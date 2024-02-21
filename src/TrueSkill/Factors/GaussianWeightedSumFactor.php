@@ -131,9 +131,11 @@ class GaussianWeightedSumFactor extends GaussianFactor
         $messages = $this->getMessages();
 
         $result = 0.0;
+        // We start at 1 since offset 0 has the sum
+        $counter = count($vars);
 
         // We start at 1 since offset 0 has the sum
-        for ($i = 1; $i < count($vars); $i++) {
+        for ($i = 1; $i < $counter; $i++) {
             $result += GaussianDistribution::logRatioNormalization($vars[$i]->getValue(), $messages[$i]->getValue());
         }
 
@@ -211,11 +213,15 @@ class GaussianWeightedSumFactor extends GaussianFactor
         $updatedVariables = [];
 
         $indicesToUse = $this->variableIndexOrdersForWeights[$messageIndex];
+        // The tricky part here is that we have to put the messages and variables in the same
+        // order as the weights. Thankfully, the weights and messages share the same index numbers,
+        // so we just need to make sure they're consistent
+        $counter = count($allMessages);
 
         // The tricky part here is that we have to put the messages and variables in the same
         // order as the weights. Thankfully, the weights and messages share the same index numbers,
         // so we just need to make sure they're consistent
-        for ($i = 0; $i < count($allMessages); $i++) {
+        for ($i = 0; $i < $counter; $i++) {
             $updatedMessages[] = $allMessages[$indicesToUse[$i]];
             $updatedVariables[] = $allVariables[$indicesToUse[$i]];
         }
