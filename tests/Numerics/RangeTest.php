@@ -13,13 +13,13 @@ class RangeTest extends TestCase
     public function testConstructInvalidParam(): void
     {
         $this->expectException(Exception::class);
-        $range = new Range(10, 5);
+        new Range(10, 5);
     }
 
     public function testFactoryInclusiveInvalidParam(): void
     {
         $this->expectException(Exception::class);
-        $range = Range::inclusive(10, 5);
+        Range::inclusive(10, 5);
     }
 
     public function testNormalUse(): void
