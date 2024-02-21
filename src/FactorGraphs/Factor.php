@@ -31,9 +31,9 @@ abstract class Factor implements \Stringable
     }
 
     /**
-     * @return mixed The log-normalization constant of that factor
+     * @return float The log-normalization constant of that factor
      */
-    public function getLogNormalization()
+    public function getLogNormalization(): float
     {
         return 0;
     }

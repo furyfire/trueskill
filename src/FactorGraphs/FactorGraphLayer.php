@@ -21,7 +21,7 @@ abstract class FactorGraphLayer
     /**
      * @var array<int,array<int,object>>
      */
-    private $inputVariablesGroups = [];
+    private array $inputVariablesGroups = [];
 
     protected function __construct(private readonly TrueSkillFactorGraph $parentFactorGraph)
     {

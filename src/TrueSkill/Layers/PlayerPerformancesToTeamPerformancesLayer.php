@@ -37,7 +37,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
 
         return $this->scheduleSequence(
             array_map(
-                fn ($weightedSumFactor) => new ScheduleStep('Perf to Team Perf Step', $weightedSumFactor, 0),
+                fn ($weightedSumFactor): ScheduleStep => new ScheduleStep('Perf to Team Perf Step', $weightedSumFactor, 0),
                 $localFactors
             ),
             'all player perf to team perf schedule'
@@ -50,7 +50,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
     protected function createPlayerToTeamSumFactor(array $teamMembers, Variable $sumVariable): GaussianWeightedSumFactor
     {
         $weights = array_map(
-            function ($v) {
+            function ($v): float {
                 $player = $v->getKey();
 
                 return PartialPlay::getPartialPlayPercentage($player);
@@ -89,7 +89,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
      */
     private function createOutputVariable(array $team): Variable
     {
-        $memberNames = array_map(fn ($currentPlayer) => (string)($currentPlayer->getKey()), $team);
+        $memberNames = array_map(fn ($currentPlayer): string => (string)($currentPlayer->getKey()), $team);
 
         $teamMemberNames = \implode(', ', $memberNames);
 

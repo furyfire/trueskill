@@ -125,7 +125,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         }
     }
 
-    public function getLogNormalization()
+    public function getLogNormalization(): float
     {
         $vars = $this->getVariables();
         $messages = $this->getMessages();
