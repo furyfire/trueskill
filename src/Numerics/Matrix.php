@@ -302,6 +302,7 @@ class Matrix
         if ($isEven) {
             return $this->getMinorMatrix($rowToRemove, $columnToRemove)->getDeterminant();
         }
+
         return -1.0 * $this->getMinorMatrix($rowToRemove, $columnToRemove)->getDeterminant();
     }
 
