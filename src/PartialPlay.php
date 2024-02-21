@@ -13,7 +13,7 @@ class PartialPlay
         // HACK to get around bug near 0
         $smallestPercentage = 0.0001;
         if ($partialPlayPercentage < $smallestPercentage) {
-            $partialPlayPercentage = $smallestPercentage;
+            return $smallestPercentage;
         }
 
         return $partialPlayPercentage;

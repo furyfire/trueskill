@@ -9,10 +9,13 @@ class Team extends RatingContainer
     public function __construct(Player $player = NULL, Rating $rating = NULL)
     {
         parent::__construct();
-
-        if ($player && $rating) {
-            $this->addPlayer($player, $rating);
+        if (!$player instanceof \DNW\Skills\Player) {
+            return;
         }
+        if (!$rating instanceof \DNW\Skills\Rating) {
+            return;
+        }
+        $this->addPlayer($player, $rating);
     }
 
     public function addPlayer(Player $player, Rating $rating): self
