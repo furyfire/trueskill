@@ -9,11 +9,11 @@ class Team extends RatingContainer
     public function __construct(Player $player = NULL, Rating $rating = NULL)
     {
         parent::__construct();
-        if (!$player instanceof layer) {
+        if (! $player instanceof Player) {
             return;
         }
 
-        if (!$rating instanceof Rating) {
+        if (! $rating instanceof Rating) {
             return;
         }
 
