@@ -9,11 +9,17 @@ namespace DNW\Skills;
  */
 class GameInfo
 {
-    private const DEFAULT_BETA = 4.1666666666666666666666666666667; // Default initial mean / 6
+    /**
+     * Default initial mean / 6
+     */
+    private const DEFAULT_BETA = 4.1666666666666666666666666666667;
 
     private const DEFAULT_DRAW_PROBABILITY = 0.10;
 
-    private const DEFAULT_DYNAMICS_FACTOR = 0.083333333333333333333333333333333; // Default initial mean / 300
+    /**
+     * Default initial mean / 300
+     */
+    private const DEFAULT_DYNAMICS_FACTOR = 0.083333333333333333333333333333333;
 
     private const DEFAULT_INITIAL_MEAN = 25.0;
 

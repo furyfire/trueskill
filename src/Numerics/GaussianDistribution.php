@@ -12,12 +12,20 @@ namespace DNW\Skills\Numerics;
  */
 class GaussianDistribution implements \Stringable
 {
-    //sqrt(2*pi)
-    //from https://www.wolframalpha.com/input?i=sqrt%282*pi%29
+    /**
+     * Square Root 2π.
+     * Precalculated constant for performance reasons
+     * sqrt(2*pi)
+     * from https://www.wolframalpha.com/input?i=sqrt%282*pi%29
+     */
     private const M_SQRT_2_PI = 2.5066282746310005024157652848110452530069867406099383166299235763;
 
-    //log(sqrt(2*pi))
-    //From https://www.wolframalpha.com/input?i=log%28sqrt%282*pi%29%29
+    /**
+     * Log of Square Root 2π.
+     * Precalculated constant for performance reasons
+     * log(sqrt(2*pi))
+     * From https://www.wolframalpha.com/input?i=log%28sqrt%282*pi%29%29
+     */
     private const M_LOG_SQRT_2_PI = 0.9189385332046727417803297364056176398613974736377834128171515404;
 
     // precision and precisionMean are used because they make multiplying and dividing simpler
@@ -67,9 +75,11 @@ class GaussianDistribution implements \Stringable
         return $this->precisionMean;
     }
 
+    /**
+     * Great derivation of this is at http://www.astro.psu.edu/~mce/A451_2/A451/downloads/notes0.pdf
+     */
     public function getNormalizationConstant(): float
     {
-        // Great derivation of this is at http://www.astro.psu.edu/~mce/A451_2/A451/downloads/notes0.pdf
         return 1.0 / (self::M_SQRT_2_PI * $this->standardDeviation);
     }
 
@@ -92,14 +102,18 @@ class GaussianDistribution implements \Stringable
         return $result;
     }
 
-    // For details, see http://www.tina-vision.net/tina-knoppix/tina-memo/2003-003.pdf
-    // for multiplication, the precision mean ones are easier to write :)
+    /**
+     * For details, see http://www.tina-vision.net/tina-knoppix/tina-memo/2003-003.pdf
+     * for multiplication, the precision mean ones are easier to write :)
+     */
     public static function multiply(GaussianDistribution $left, GaussianDistribution $right): self
     {
         return GaussianDistribution::fromPrecisionMean($left->precisionMean + $right->precisionMean, $left->precision + $right->precision);
     }
 
-    // Computes the absolute difference between two Gaussians
+    /**
+     * Computes the absolute difference between two Gaussians
+     */
     public static function absoluteDifference(GaussianDistribution $left, GaussianDistribution $right): float
     {
         return max(
@@ -108,7 +122,9 @@ class GaussianDistribution implements \Stringable
         );
     }
 
-    // Computes the absolute difference between two Gaussians
+    /**
+     * Computes the absolute difference between two Gaussians
+     */
     public static function subtract(GaussianDistribution $left, GaussianDistribution $right): float
     {
         return GaussianDistribution::absoluteDifference($left, $right);

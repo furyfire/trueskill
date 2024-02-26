@@ -36,8 +36,6 @@ abstract class FactorGraphLayer
         return $this->inputVariablesGroups;
     }
 
-    // HACK
-
     public function getParentFactorGraph(): TrueSkillFactorGraph
     {
         return $this->parentFactorGraph;

@@ -30,7 +30,6 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
         float $partialUpdatePercentage = self::DEFAULT_PARTIAL_UPDATE_PERCENTAGE
     )
     {
-        // If they don't want to give a player an id, that's ok...
         Guard::argumentInRangeInclusive($partialPlayPercentage, 0.0, 1.0, 'partialPlayPercentage');
         Guard::argumentInRangeInclusive($partialUpdatePercentage, 0, 1.0, 'partialUpdatePercentage');
         $this->PartialPlayPercentage = $partialPlayPercentage;
