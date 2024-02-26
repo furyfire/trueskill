@@ -38,12 +38,17 @@
     ],
     "analyze-phpstan":"vendor/bin/phpstan analyze --error-format=raw",
     "analyze-psalm":  "vendor/bin/psalm --no-cache",
+    "html": [
+      "pandoc -s README.md -o output/README.html",
+      "pandoc -s docs/index.rst -o output/index.html"
+    ],
     "all": [
       "@test",
       "@document",
       "@benchmark",
       "@lint",
-      "@static"
+      "@static",
+      "@html"
     ]
   }
 }

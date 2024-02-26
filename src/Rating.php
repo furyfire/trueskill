@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace DNW\Skills;
 
-// Container for a player's rating.
 use DNW\Skills\Numerics\GaussianDistribution;
 
+/**
+ * Container for a player's rating.
+ */
 class Rating implements \Stringable
 {
     private const CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER = 3;
@@ -46,6 +48,9 @@ class Rating implements \Stringable
         return $this->mean - $this->conservativeStandardDeviationMultiplier * $this->standardDeviation;
     }
 
+    /**
+     * Get a partial rating update.
+     */
     public function getPartialUpdate(Rating $prior, Rating $fullPosterior, float $updatePercentage): Rating
     {
         $priorGaussian = new GaussianDistribution($prior->getMean(), $prior->getStandardDeviation());

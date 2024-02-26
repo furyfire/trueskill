@@ -3,16 +3,18 @@
         configVersion="3"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns="https://www.phpdoc.org"
+        xsi:noNamespaceSchemaLocation="https://docs.phpdoc.org/latest/phpdoc.xsd"
 >
-    <title>backupscript</title>
+    <title>trueskill</title>
     <paths>
         <output>output/docs</output>
     </paths>
     <version number="latest">
         <api>
-            <source dsn=".">
+            <source>
                 <path>src</path>
             </source>
         </api>
     </version>
+    <!--setting name="graphs.enabled" value="true"/-->
 </phpdocumentor>
