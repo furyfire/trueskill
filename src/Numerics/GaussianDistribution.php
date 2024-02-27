@@ -16,6 +16,7 @@ class GaussianDistribution implements \Stringable
      * Square Root 2π.
      * Precalculated constant for performance reasons
      * sqrt(2*pi)
+     *
      * @link https://www.wolframalpha.com/input?i=sqrt%282*pi%29 Source of value
      */
     private const M_SQRT_2_PI = 2.5066282746310005024157652848110452530069867406099383166299235763;
@@ -24,6 +25,7 @@ class GaussianDistribution implements \Stringable
      * Log of Square Root 2π.
      * Precalculated constant for performance reasons
      * log(sqrt(2*pi))
+     *
      * @link https://www.wolframalpha.com/input?i=log%28sqrt%282*pi%29%29 Source of value
      */
     private const M_LOG_SQRT_2_PI = 0.9189385332046727417803297364056176398613974736377834128171515404;
@@ -76,8 +78,9 @@ class GaussianDistribution implements \Stringable
     }
 
     /**
-     * Great derivation of this is at 
-     * @link http://www.astro.psu.edu/~mce/A451_2/A451/downloads/notes0.pdf 
+     * Great derivation of this is at
+     *
+     * @link http://www.astro.psu.edu/~mce/A451_2/A451/downloads/notes0.pdf
      */
     public function getNormalizationConstant(): float
     {
