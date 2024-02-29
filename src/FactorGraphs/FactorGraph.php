@@ -4,9 +4,14 @@ declare(strict_types=1);
 
 namespace DNW\Skills\FactorGraphs;
 
-class FactorGraph
+abstract class FactorGraph
 {
     private VariableFactory $variableFactory;
+
+    protected function __construct()
+    {
+        $this->variableFactory = new VariableFactory(fn () => NULL);
+    }
 
     public function getVariableFactory(): VariableFactory
     {
