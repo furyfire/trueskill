@@ -15,12 +15,12 @@ abstract class FactorGraphLayer
     private array $localFactors = [];
 
     /**
-     * @var array<int,array<int,object>>
+     * @var array<int,array<int,Variable>>
      */
     private array $outputVariablesGroups = [];
 
     /**
-     * @var array<int,array<int,object>>
+     * @var array<int,array<int,Variable>>
      */
     private array $inputVariablesGroups = [];
 
@@ -29,7 +29,7 @@ abstract class FactorGraphLayer
     }
 
     /**
-     * @return array<int,array<int,object>>
+     * @return array<int,array<int,Variable>>
      */
     protected function getInputVariablesGroups(): array
     {
@@ -44,7 +44,7 @@ abstract class FactorGraphLayer
     /**
      * This reference is still needed
      *
-     * @return array<int,array<int,object>>
+     * @return array<int,array<int,Variable>>
      */
     public function &getOutputVariablesGroups(): array
     {
@@ -60,7 +60,7 @@ abstract class FactorGraphLayer
     }
 
     /**
-     * @param array<int,array<int,object>> $value
+     * @param array<int,array<int,Variable>> $value
      */
     public function setInputVariablesGroups(array $value): void
     {

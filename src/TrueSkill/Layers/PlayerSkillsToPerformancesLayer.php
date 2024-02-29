@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace DNW\Skills\TrueSkill\Layers;
 
 use DNW\Skills\FactorGraphs\KeyedVariable;
+use DNW\Skills\FactorGraphs\Variable;
 use DNW\Skills\FactorGraphs\ScheduleStep;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\TrueSkill\Factors\GaussianLikelihoodFactor;
@@ -20,9 +21,12 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
         foreach ($inputVariablesGroups as $currentTeam) {
             $currentTeamPlayerPerformances = [];
 
+            /**
+             * @var Variable $playerSkillVariable
+             */
             foreach ($currentTeam as $playerSkillVariable) {
                 $localPlayerSkillVariable = $playerSkillVariable;
-                $currentPlayer = $localPlayerSkillVariable->getKey();
+                $currentPlayer = ($localPlayerSkillVariable instanceof KeyedVariable) ? $localPlayerSkillVariable->getKey() : "";
                 $playerPerformance = $this->createOutputVariable($currentPlayer);
                 $newLikelihoodFactor = $this->createLikelihood($localPlayerSkillVariable, $playerPerformance);
                 $this->addLayerFactor($newLikelihoodFactor);
@@ -33,7 +37,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
         }
     }
 
-    private function createLikelihood(KeyedVariable $playerSkill, KeyedVariable $playerPerformance): GaussianLikelihoodFactor
+    private function createLikelihood(Variable $playerSkill, Variable $playerPerformance): GaussianLikelihoodFactor
     {
         return new GaussianLikelihoodFactor(
             BasicMath::square($this->getParentFactorGraph()->getGameInfo()->getBeta()),

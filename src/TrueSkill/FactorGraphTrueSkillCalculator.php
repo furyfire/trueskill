@@ -39,7 +39,6 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
         array $teamRanks
     ): RatingContainer
     {
-        Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
         RankSorter::sort($teams, $teamRanks);

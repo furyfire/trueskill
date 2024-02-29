@@ -34,7 +34,6 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
      */
     public function calculateNewRatings(GameInfo $gameInfo, array $teams, array $teamRanks): RatingContainer
     {
-        Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
         RankSorter::sort($teams, $teamRanks);
@@ -150,7 +149,6 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
      */
     public function calculateMatchQuality(GameInfo $gameInfo, array $teams): float
     {
-        Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
         // We've verified that there's just two teams

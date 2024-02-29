@@ -13,13 +13,6 @@ use Exception;
  */
 class Guard
 {
-    public static function argumentNotNull(mixed $value, string $parameterName): void
-    {
-        if ($value == NULL) {
-            throw new Exception($parameterName . ' can not be null');
-        }
-    }
-
     public static function argumentIsValidIndex(int $index, int $count, string $parameterName): void
     {
         if (($index < 0) || ($index >= $count)) {

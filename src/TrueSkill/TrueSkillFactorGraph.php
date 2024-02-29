@@ -12,8 +12,10 @@ use DNW\Skills\GameInfo;
 use DNW\Skills\Numerics\GaussianDistribution;
 use DNW\Skills\Rating;
 use DNW\Skills\Team;
+use DNW\Skills\Player;
 use DNW\Skills\RatingContainer;
 use DNW\Skills\FactorGraphs\FactorGraphLayer;
+use DNW\Skills\FactorGraphs\KeyedVariable;
 use DNW\Skills\TrueSkill\Layers\IteratedTeamDifferencesInnerLayer;
 use DNW\Skills\TrueSkill\Layers\PlayerPerformancesToTeamPerformancesLayer;
 use DNW\Skills\TrueSkill\Layers\PlayerPriorValuesToSkillsLayer;
@@ -132,7 +134,7 @@ class TrueSkillFactorGraph extends FactorGraph
         $priorLayerOutputVariablesGroups = $this->priorLayer->getOutputVariablesGroups();
         foreach ($priorLayerOutputVariablesGroups as $currentTeam) {
             foreach ($currentTeam as $currentPlayer) {
-                $localCurrentPlayer = $currentPlayer->getKey();
+                $localCurrentPlayer = ($currentPlayer instanceof KeyedVariable) ? $currentPlayer->getKey() : new Player("");
                 $newRating = new Rating(
                     $currentPlayer->getValue()->getMean(),
                     $currentPlayer->getValue()->getStandardDeviation()

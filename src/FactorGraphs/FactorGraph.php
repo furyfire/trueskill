@@ -10,7 +10,7 @@ abstract class FactorGraph
 
     protected function __construct()
     {
-        $this->variableFactory = new VariableFactory(fn () => NULL);
+        $this->variableFactory = new VariableFactory(static fn(): null => NULL);
     }
 
     public function getVariableFactory(): VariableFactory

@@ -40,7 +40,6 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
     ): RatingContainer
     {
         // Basic argument checking
-        Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
         // Make sure things are in order
@@ -143,7 +142,6 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
      */
     public function calculateMatchQuality(GameInfo $gameInfo, array $teams): float
     {
-        Guard::argumentNotNull($gameInfo, 'gameInfo');
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
 
         $team1 = $teams[0];

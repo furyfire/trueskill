@@ -10,13 +10,6 @@ use PHPUnit\Framework\TestCase;
 
 class GuardTest extends TestCase
 {
-    public function testArgumentNotNull(): void
-    {
-        $this->expectException(Exception::class);
-        $this->expectExceptionMessage('dummy can not be null');
-        Guard::argumentNotNull(NULL, "dummy");
-    }
-
     public function testargumentIsValidIndex(): void
     {
         $this->expectException(Exception::class);
