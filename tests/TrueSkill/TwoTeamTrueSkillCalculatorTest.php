@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversNothing;
 
-//#[CoversClass(TwoTeamTrueSkillCalculator::class)]
+#[CoversClass(TwoTeamTrueSkillCalculator::class)]
 class TwoTeamTrueSkillCalculatorTest extends TestCase
 {
     #[CoversNothing]
@@ -17,7 +17,6 @@ class TwoTeamTrueSkillCalculatorTest extends TestCase
     {
         $calculator = new TwoTeamTrueSkillCalculator();
 
-        // We only support two players
         TrueSkillCalculatorTests::testAllTwoPlayerScenarios($this, $calculator);
         TrueSkillCalculatorTests::testAllTwoTeamScenarios($this, $calculator);
     }

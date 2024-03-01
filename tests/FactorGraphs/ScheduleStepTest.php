@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class ScheduleStepTest extends TestCase
 {
-    public function test(): void
+    public function testtoStringInterface(): void
     {
         $stub = $this->createStub(Factor::class);
         $ss = new ScheduleStep('dummy', $stub, 0);

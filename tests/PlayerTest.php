@@ -9,10 +9,11 @@ use PHPUnit\Framework\TestCase;
 
 class PlayerTest extends TestCase
 {
-    public function test(): void
+    public function testPlayerObjectGetterSetter(): void
     {
         $p = new Player('dummy', 0.1, 0.2);
         $this->assertEquals('dummy', (string)$p);
+        $this->assertEquals('dummy', $p->getId());
         $this->assertEquals(0.1, $p->getPartialPlayPercentage());
         $this->assertEquals(0.2, $p->getPartialUpdatePercentage());
     }

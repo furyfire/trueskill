@@ -17,7 +17,6 @@ class TwoPlayerTrueSkillCalculatorTest extends TestCase
     {
         $calculator = new TwoPlayerTrueSkillCalculator();
 
-        // We only support two players
         TrueSkillCalculatorTests::testAllTwoPlayerScenarios($this, $calculator);
     }
 }

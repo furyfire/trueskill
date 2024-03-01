@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class VariableTest extends TestCase
 {
-    public function test(): void
+    public function testGetterSetter(): void
     {
         $gd_prior = new GaussianDistribution();
         $var      = new Variable('dummy', $gd_prior);

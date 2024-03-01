@@ -32,13 +32,13 @@
         "phplint",
         "phpcs"
     ],
-    "static": [
+    "analyze": [
         "@analyze-phpstan",
         "@analyze-psalm",
         "@analyze-rector"
     ],
     "analyze-phpstan":"vendor/bin/phpstan analyze --error-format=raw",
-    "analyze-psalm":  "vendor/bin/psalm --no-cache",
+    "analyze-psalm":  "vendor/bin/psalm --no-cache --show-info=true",
     "analyze-rector": "vendor/bin/rector --dry-run",
     "html": [
       "pandoc -s README.md -o output/README.html",
@@ -49,7 +49,7 @@
       "@document",
       "@benchmark",
       "@lint",
-      "@static",
+      "@analyze",
       "@html"
     ]
   }
