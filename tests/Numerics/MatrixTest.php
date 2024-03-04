@@ -14,9 +14,9 @@ use PHPUnit\Framework\Attributes\UsesClass;
 use Exception;
 
 #[CoversClass(Matrix::class)]
-#[UsesClass(SquareMatrix::class)]
-#[UsesClass(IdentityMatrix::class)]
-#[UsesClass(DiagonalMatrix::class)]
+#[CoversClass(SquareMatrix::class)]
+#[CoversClass(IdentityMatrix::class)]
+#[CoversClass(DiagonalMatrix::class)]
 // phpcs:disable PSR2.Methods.FunctionCallSignature,Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
 class MatrixTest extends TestCase
 {
