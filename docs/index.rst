@@ -47,6 +47,7 @@ PHP Tools
 ---------
 For development Composer and the following packages are used (Recommended as Phars installed via Phive)
 
-* sudo phive install -g composer phpdocumentor infection phpcs phpcbf phploc phpbench overtrue/phplint --force-accept-unsigned
+* sudo phive install -g composer phpdocumentor infection phpcs phpcbf phploc phpbench 
+* sudo phive install -g overtrue/phplint --force-accept-unsigned
 * composer install
 * composer all
