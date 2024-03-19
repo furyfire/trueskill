@@ -12,6 +12,8 @@ namespace DNW\Skills\Numerics;
  */
 class GaussianDistribution implements \Stringable
 {
+    private const DEFAULT_STANDARD_DEVIATION = 1.0;
+    private const DEFAULT_MEAN = 0.0;
     /**
      * Square Root 2π.
      * Precalculated constant for performance reasons
@@ -32,16 +34,21 @@ class GaussianDistribution implements \Stringable
 
     // precision and precisionMean are used because they make multiplying and dividing simpler
     // (the the accompanying math paper for more details)
-    private float $precision;
+    private float $precision = 1.0;
 
-    private float $precisionMean;
+    private float $precisionMean = 0.0;
 
-    private float $variance;
+    private float $variance = 1.0;
 
-    public function __construct(private float $mean = 0.0, private float $standardDeviation = 1.0)
+    public function __construct(private float $mean = self::DEFAULT_MEAN, private float $standardDeviation = self::DEFAULT_STANDARD_DEVIATION)
     {
-        $this->variance = BasicMath::square($standardDeviation);
+        if($mean == self::DEFAULT_MEAN && $standardDeviation == self::DEFAULT_STANDARD_DEVIATION)
+        {
+            //Use all the defaults
+            return;
+        }
 
+        $this->variance = BasicMath::square($standardDeviation);
         if ($this->variance != 0) {
             $this->precision = 1.0 / $this->variance;
             $this->precisionMean = $this->precision * $this->mean;
