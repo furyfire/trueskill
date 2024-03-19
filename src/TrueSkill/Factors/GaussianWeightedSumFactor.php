@@ -42,7 +42,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
      */
     public function __construct(Variable $sumVariable, array $variablesToSum, array $variableWeights)
     {
-        parent::__construct('$sumVariable, $variablesToSum, $variableWeights');
+        parent::__construct();
 
         // The first weights are a straightforward copy
         // v_0 = a_1*v_1 + a_2*v_2 + ... + a_n * v_n

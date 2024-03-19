@@ -18,7 +18,7 @@ class GaussianGreaterThanFactor extends GaussianFactor
 {
     public function __construct(private readonly float $epsilon, Variable $variable)
     {
-        parent::__construct('%s > %.2f');
+        parent::__construct();
         $this->createVariableToMessageBinding($variable);
     }
 

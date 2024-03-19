@@ -8,7 +8,7 @@ use DNW\Skills\Guard;
 use DNW\Skills\HashMap;
 use Exception;
 
-abstract class Factor implements \Stringable
+abstract class Factor
 {
     /**
      * @var Message[] $messages
@@ -17,16 +17,13 @@ abstract class Factor implements \Stringable
 
     private readonly HashMap $messageToVariableBinding;
 
-    private readonly string $name;
-
     /**
      * @var Variable[] $variables
      */
     private array $variables = [];
 
-    protected function __construct(string $name)
+    protected function __construct()
     {
-        $this->name = 'Factor[' . $name . ']';
         $this->messageToVariableBinding = new HashMap();
     }
 
@@ -120,10 +117,5 @@ abstract class Factor implements \Stringable
         $this->variables[] = $variable;
 
         return $message;
-    }
-
-    public function __toString(): string
-    {
-        return $this->name;
     }
 }

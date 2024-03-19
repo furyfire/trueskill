@@ -19,11 +19,11 @@ class GaussianPriorFactor extends GaussianFactor
 
     public function __construct(float $mean, float $variance, Variable $variable)
     {
-        parent::__construct('Prior value going to %s');
+        //Prior value going to $variable
+        parent::__construct();
         $this->newMessage = new GaussianDistribution($mean, sqrt($variance));
         $newMessage = new Message(
-            GaussianDistribution::fromPrecisionMean(0, 0),
-            'message from %s to %s'
+            GaussianDistribution::fromPrecisionMean(0, 0)
         );
 
         $this->createVariableToMessageBindingWithMessage($variable, $newMessage);
