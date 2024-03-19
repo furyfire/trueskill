@@ -7,7 +7,7 @@ namespace DNW\Skills;
 /**
  * Represents a player who has a Rating.
  */
-class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
+class Player implements ISupportPartialPlay, ISupportPartialUpdate
 {
     private const DEFAULT_PARTIAL_PLAY_PERCENTAGE = 1.0; // = 100% play time
 
@@ -20,7 +20,7 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
     /**
      * Constructs a player.
      *
-     * @param mixed  $Id                      The identifier for the player, such as a name.
+     * @param mixed $Id                      The identifier for the player, such as a name.
      * @param float $partialPlayPercentage   The weight percentage to give this player when calculating a new rank.
      * @param float $partialUpdatePercentage Indicated how much of a skill update a player should receive where 0 represents no update and 1.0 represents 100% of the update.
      */
@@ -59,9 +59,9 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate, \Stringable
     {
         return $this->PartialUpdatePercentage;
     }
-
+/*
     public function __toString(): string
     {
         return (string)$this->Id;
-    }
+    }*/
 }
