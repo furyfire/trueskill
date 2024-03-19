@@ -77,7 +77,7 @@ abstract class Factor
 
     protected function updateMessageVariable(Message $message, Variable $variable): float
     {
-        throw new Exception();
+        throw new Exception("Must override updateMessageVariable(" . $message::class . ", " . $variable::class . ")");
     }
 
     /**

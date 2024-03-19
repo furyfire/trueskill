@@ -70,7 +70,7 @@ abstract class FactorGraphLayer
     /**
      * @param Schedule[] $itemsToSequence
      */
-    protected function scheduleSequence(array $itemsToSequence, string $name): ScheduleSequence
+    protected function scheduleSequence(array $itemsToSequence): ScheduleSequence
     {
         return new ScheduleSequence($itemsToSequence);
     }

@@ -101,9 +101,9 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
             ),
         ];
 
+        //loop of just two teams inner sequence
         return $this->scheduleSequence(
-            $itemsToSequence,
-            'loop of just two teams inner sequence'
+            $itemsToSequence
         );
     }
 
@@ -120,10 +120,11 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
             $currentTeamPerfToTeamPerfDiff = $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors[$i];
             $currentTeamDiffComparison = $teamDifferencesComparisonLayerLocalFactors[$i];
 
+            //current forward schedule piece $i
             $currentForwardSchedulePiece =
                 $this->scheduleSequence(
                     [
-                        //team perf to perf diff 
+                        //team perf to perf diff
                         new ScheduleStep(
                             $currentTeamPerfToTeamPerfDiff,
                             0
@@ -138,8 +139,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
                             $currentTeamPerfToTeamPerfDiff,
                             2
                         ),
-                    ],
-                    sprintf('current forward schedule piece %d', $i)
+                    ]
                 );
 
             $forwardScheduleList[] = $currentForwardSchedulePiece;
