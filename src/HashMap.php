@@ -19,16 +19,16 @@ class HashMap
      */
     private array $hashToKey = [];
 
-    public function getValue(string|object $key): mixed
+    public function getValue(object $key): object
     {
-        $hash = self::getHash($key);
+        $hash = spl_object_id($key);
 
         return $this->hashToValue[$hash];
     }
 
-    public function setValue(string|object $key, mixed $value): self
+    public function setValue(object $key, mixed $value): self
     {
-        $hash = self::getHash($key);
+        $hash = spl_object_id($key);
         $this->hashToKey[$hash] = $key;
         $this->hashToValue[$hash] = $value;
 
@@ -54,14 +54,5 @@ class HashMap
     public function count(): int
     {
         return count($this->hashToKey);
-    }
-
-    private static function getHash(string|object $key): string
-    {
-        if (is_object($key)) {
-            return spl_object_hash($key);
-        }
-
-        return $key;
     }
 }
