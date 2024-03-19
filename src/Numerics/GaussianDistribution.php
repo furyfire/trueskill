@@ -13,7 +13,9 @@ namespace DNW\Skills\Numerics;
 class GaussianDistribution
 {
     private const DEFAULT_STANDARD_DEVIATION = 1.0;
+
     private const DEFAULT_MEAN = 0.0;
+
     /**
      * Square Root 2π.
      * Precalculated constant for performance reasons
@@ -42,8 +44,7 @@ class GaussianDistribution
 
     public function __construct(private float $mean = self::DEFAULT_MEAN, private float $standardDeviation = self::DEFAULT_STANDARD_DEVIATION)
     {
-        if($mean == self::DEFAULT_MEAN && $standardDeviation == self::DEFAULT_STANDARD_DEVIATION)
-        {
+        if ($mean == self::DEFAULT_MEAN && $standardDeviation == self::DEFAULT_STANDARD_DEVIATION) {
             //Use all the defaults
             return;
         }
@@ -187,7 +188,7 @@ class GaussianDistribution
         return $multiplier * $expPart;
     }
 
-    public static function cumulativeTo(float $x, float $mean = 0.0, float $standardDeviation = 1.0): float
+    public static function cumulativeTo(float $x): float
     {
         $result = GaussianDistribution::errorFunctionCumulativeTo(-M_SQRT1_2 * $x);
 

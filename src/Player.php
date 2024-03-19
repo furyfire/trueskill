@@ -59,9 +59,4 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate
     {
         return $this->PartialUpdatePercentage;
     }
-/*
-    public function __toString(): string
-    {
-        return (string)$this->Id;
-    }*/
 }

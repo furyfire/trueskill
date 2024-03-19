@@ -9,7 +9,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
 /**
  * Container for a player's rating.
  */
-class Rating implements \Stringable
+class Rating
 {
     private const CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER = 3;
 
@@ -72,10 +72,5 @@ class Rating implements \Stringable
         );
 
         return new Rating($partialPosteriorGaussion->getMean(), $partialPosteriorGaussion->getStandardDeviation(), $prior->conservativeStandardDeviationMultiplier);
-    }
-
-    public function __toString(): string
-    {
-        return sprintf('mean=%.4f, standardDeviation=%.4f', $this->mean, $this->standardDeviation);
     }
 }

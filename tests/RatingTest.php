@@ -15,7 +15,6 @@ class RatingTest extends TestCase
         $this->assertEquals(100, $rating->getMean());
         $this->assertEquals(10, $rating->getStandardDeviation());
         $this->assertEquals(50, $rating->getConservativeRating());
-        $this->assertEquals("mean=100.0000, standardDeviation=10.0000", (string)$rating);
     }
 
     public function testPartialUpdate(): void
@@ -26,10 +25,8 @@ class RatingTest extends TestCase
 
         $rating_partial = $rating->getPartialUpdate($ratingOld, $ratingNew, 0.5);
 
-
         $this->assertEquals(150, $rating_partial->getMean());
         $this->assertEquals(10, $rating_partial->getStandardDeviation());
         $this->assertEquals(100, $rating_partial->getConservativeRating());
-        $this->assertEquals("mean=150.0000, standardDeviation=10.0000", (string)$rating_partial);
     }
 }
