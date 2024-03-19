@@ -38,7 +38,8 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
 
         return $this->scheduleSequence(
             array_map(
-                static fn($weightedSumFactor): ScheduleStep => new ScheduleStep('Perf to Team Perf Step', $weightedSumFactor, 0),
+                //Perf to Team Perf Step
+                static fn($weightedSumFactor): ScheduleStep => new ScheduleStep($weightedSumFactor, 0),
                 $localFactors
             ),
             'all player perf to team perf schedule'
@@ -73,8 +74,8 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
             $localCurrentFactor = $currentFactor;
             $numberOfMessages = $localCurrentFactor->getNumberOfMessages();
             for ($currentIteration = 1; $currentIteration < $numberOfMessages; ++$currentIteration) {
+                //team sum perf
                 $allFactors[] = new ScheduleStep(
-                    'team sum perf @' . $currentIteration,
                     $localCurrentFactor,
                     $currentIteration
                 );

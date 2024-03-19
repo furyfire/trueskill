@@ -6,9 +6,8 @@ namespace DNW\Skills\FactorGraphs;
 
 class ScheduleLoop extends Schedule
 {
-    public function __construct(string $name, private readonly Schedule $scheduleToLoop, private readonly float $maxDelta)
+    public function __construct(private readonly Schedule $scheduleToLoop, private readonly float $maxDelta)
     {
-        parent::__construct($name);
     }
 
     public function visit(int $depth = -1, int $maxDepth = 0): float

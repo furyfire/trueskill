@@ -72,7 +72,7 @@ abstract class FactorGraphLayer
      */
     protected function scheduleSequence(array $itemsToSequence, string $name): ScheduleSequence
     {
-        return new ScheduleSequence($name, $itemsToSequence);
+        return new ScheduleSequence($itemsToSequence);
     }
 
     protected function addLayerFactor(Factor $factor): void

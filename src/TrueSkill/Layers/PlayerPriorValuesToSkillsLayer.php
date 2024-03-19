@@ -55,7 +55,8 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
 
         return $this->scheduleSequence(
             array_map(
-                static fn($prior): ScheduleStep => new ScheduleStep('Prior to Skill Step', $prior, 0),
+                //Prior to Skill Step
+                static fn($prior): ScheduleStep => new ScheduleStep($prior, 0),
                 $localFactors
             ),
             'All priors'

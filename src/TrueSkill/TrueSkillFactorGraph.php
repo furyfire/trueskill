@@ -124,7 +124,8 @@ class TrueSkillFactorGraph extends FactorGraph
             }
         }
 
-        return new ScheduleSequence('Full schedule', $fullSchedule);
+        //Full schedule
+        return new ScheduleSequence($fullSchedule);
     }
 
     public function getUpdatedRatings(): RatingContainer

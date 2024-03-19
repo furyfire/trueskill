@@ -9,9 +9,8 @@ class ScheduleSequence extends Schedule
     /**
      * @param Schedule[] $schedules
      */
-    public function __construct(string $name, private readonly array $schedules)
+    public function __construct(private readonly array $schedules)
     {
-        parent::__construct($name);
     }
 
     public function visit(int $depth = -1, int $maxDepth = 0): float
