@@ -10,7 +10,7 @@ namespace DNW\Skills\Numerics;
  * @author    Jeff Moser <jeff@moserware.com>
  * @copyright 2010 Jeff Moser
  */
-class GaussianDistribution implements \Stringable
+class GaussianDistribution
 {
     private const DEFAULT_STANDARD_DEVIATION = 1.0;
     private const DEFAULT_MEAN = 0.0;
@@ -33,7 +33,7 @@ class GaussianDistribution implements \Stringable
     private const M_LOG_SQRT_2_PI = 0.9189385332046727417803297364056176398613974736377834128171515404;
 
     // precision and precisionMean are used because they make multiplying and dividing simpler
-    // (the the accompanying math paper for more details)
+    // (see the accompanying math paper for more details)
     private float $precision = 1.0;
 
     private float $precisionMean = 0.0;
@@ -276,10 +276,5 @@ class GaussianDistribution implements \Stringable
     {
         // From numerical recipes, page 320
         return $mean - M_SQRT2 * $standardDeviation * GaussianDistribution::inverseErrorFunctionCumulativeTo(2 * $x);
-    }
-
-    public function __toString(): string
-    {
-        return sprintf('mean=%.4f standardDeviation=%.4f', $this->mean, $this->standardDeviation);
     }
 }
