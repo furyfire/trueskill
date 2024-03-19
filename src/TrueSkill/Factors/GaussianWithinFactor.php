@@ -16,12 +16,9 @@ use DNW\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
  */
 class GaussianWithinFactor extends GaussianFactor
 {
-    private readonly float $epsilon;
-
-    public function __construct(float $epsilon, Variable $variable)
+    public function __construct(private readonly float $epsilon, Variable $variable)
     {
-        parent::__construct(sprintf('%s <= %.2f', (string)$variable, $epsilon));
-        $this->epsilon = $epsilon;
+        parent::__construct('%s <= %.2f');
         $this->createVariableToMessageBinding($variable);
     }
 

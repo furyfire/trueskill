@@ -13,13 +13,12 @@ class VariableTest extends TestCase
     public function testGetterSetter(): void
     {
         $gd_prior = new GaussianDistribution();
-        $var      = new Variable('dummy', $gd_prior);
+        $var      = new Variable($gd_prior);
         $this->assertEquals($gd_prior, $var->getValue());
 
         $gd_new = new GaussianDistribution();
         $this->assertEquals($gd_new, $var->getValue());
         $var->resetToPrior();
         $this->assertEquals($gd_prior, $var->getValue());
-        $this->assertEquals('Variable[dummy]', (string)$var);
     }
 }

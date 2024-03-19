@@ -31,8 +31,7 @@ abstract class GaussianFactor extends Factor
         return parent::createVariableToMessageBindingWithMessage(
             $variable,
             new Message(
-                $newDistribution,
-                sprintf('message from %s to %s', (string)$this, (string)$variable)
+                $newDistribution,'message from %s to %s'
             )
         );
     }

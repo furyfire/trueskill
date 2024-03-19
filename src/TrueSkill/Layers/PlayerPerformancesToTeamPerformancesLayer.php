@@ -21,7 +21,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
          */
         foreach ($inputVariablesGroups as $currentTeam) {
             $localCurrentTeam = $currentTeam;
-            $teamPerformance = $this->createOutputVariable($localCurrentTeam);
+            $teamPerformance = $this->createOutputVariable();
             $newSumFactor = $this->createPlayerToTeamSumFactor($localCurrentTeam, $teamPerformance);
 
             $this->addLayerFactor($newSumFactor);
@@ -85,14 +85,10 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
     }
 
     /**
-     * @param KeyedVariable[] $team
+     * Team's performance
      */
-    private function createOutputVariable(array $team): Variable
+    private function createOutputVariable(): Variable
     {
-        $memberNames = array_map(static fn($currentPlayer): string => (string)($currentPlayer->getKey()->getId()), $team);
-
-        $teamMemberNames = \implode(', ', $memberNames);
-
-        return $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable('Team[' . $teamMemberNames . "]'s performance");
+        return $this->getParentFactorGraph()->getVariableFactory()->createBasicVariable();
     }
 }
