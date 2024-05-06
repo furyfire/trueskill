@@ -1,15 +1,15 @@
-pipeline:
-  requirements:
+steps:
+  - name: requirements
     image: composer
     commands:
     - composer install --no-dev
-  run:
+  - name: run
     image: php:cli-bookworm
     commands:
       - php examples/3teams.php
       - php examples/basic.php
-  dependencies:
+  - name: dependencies
     image: composer
     commands:
     - composer install
-    - vendor/bin/phpunit tests --no-coverage 
+    - vendor/bin/phpunit tests --no-coverage
