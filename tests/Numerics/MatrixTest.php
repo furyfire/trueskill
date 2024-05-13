@@ -8,6 +8,7 @@ use DNW\Skills\Numerics\IdentityMatrix;
 use DNW\Skills\Numerics\Matrix;
 use DNW\Skills\Numerics\SquareMatrix;
 use DNW\Skills\Numerics\DiagonalMatrix;
+use DNW\Skills\Numerics\Vector;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
@@ -17,6 +18,7 @@ use Exception;
 #[CoversClass(SquareMatrix::class)]
 #[CoversClass(IdentityMatrix::class)]
 #[CoversClass(DiagonalMatrix::class)]
+#[CoversClass(Vector::class)]
 // phpcs:disable PSR2.Methods.FunctionCallSignature,Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
 class MatrixTest extends TestCase
 {
@@ -263,6 +265,15 @@ class MatrixTest extends TestCase
         $m1 = new Matrix(2, 3, [[1,2,3],[1,2,3]]);
         $m2 = new Matrix(1, 1, [[1,1]]);
         Matrix::multiply($m1, $m2);
+    }
+
+    public function testVector(): void
+    {
+        $vector = new Vector([1,2,3,4]);
+
+        $m1 = new Matrix(4, 1, [[1],[2],[3],[4]]);
+
+        $this->assertTrue($vector->equals($m1));
     }
 }
 
