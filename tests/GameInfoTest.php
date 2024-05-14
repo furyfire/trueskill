@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DNW\Skills\Tests;
 
 use DNW\Skills\GameInfo;
-use \DNW\Skills\Rating;
+use DNW\Skills\Rating;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\UsesClass;
