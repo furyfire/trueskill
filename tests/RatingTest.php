@@ -5,8 +5,15 @@ declare(strict_types=1);
 namespace DNW\Skills\Tests;
 
 use DNW\Skills\Rating;
+use DNW\Skills\Numerics\BasicMath;
+use DNW\Skills\Numerics\GaussianDistribution;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 
+#[CoversClass(Rating::class)]
+#[UsesClass(BasicMath::class)]
+#[UsesClass(GaussianDistribution::class)]
 class RatingTest extends TestCase
 {
     public function testGetRatingParameters(): void

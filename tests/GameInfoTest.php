@@ -5,8 +5,13 @@ declare(strict_types=1);
 namespace DNW\Skills\Tests;
 
 use DNW\Skills\GameInfo;
+use \DNW\Skills\Rating;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 
+#[CoversClass(GameInfo::class)]
+#[UsesClass(Rating::class)]
 class GameInfoTest extends TestCase
 {
     public function testMembers(): void
@@ -17,6 +22,6 @@ class GameInfoTest extends TestCase
         $this->assertEquals(3, $gi->getBeta());
         $this->assertEquals(4, $gi->getDynamicsFactor());
         $this->assertEquals(5, $gi->getDrawProbability());
-        $this->assertInstanceOf(\DNW\Skills\Rating::class, $gi->getDefaultRating());
+        $this->assertInstanceOf(Rating::class, $gi->getDefaultRating());
     }
 }

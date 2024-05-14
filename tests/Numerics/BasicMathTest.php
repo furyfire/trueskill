@@ -6,7 +6,9 @@ namespace DNW\Skills\Tests\Numerics;
 
 use DNW\Skills\Numerics\BasicMath;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
+#[CoversClass(BasicMath::class)]
 class BasicMathTest extends TestCase
 {
     public function testSquare(): void

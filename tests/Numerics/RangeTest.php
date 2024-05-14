@@ -6,8 +6,10 @@ namespace DNW\Skills\Tests\Numerics;
 
 use DNW\Skills\Numerics\Range;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 use Exception;
 
+#[CoversClass(Range::class)]
 class RangeTest extends TestCase
 {
     public function testConstructInvalidParam(): void

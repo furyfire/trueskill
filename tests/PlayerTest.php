@@ -5,8 +5,14 @@ declare(strict_types=1);
 namespace DNW\Skills\Tests;
 
 use DNW\Skills\Player;
+use DNW\Skills\Guard;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 
+
+#[CoversClass(Player::class)]
+#[UsesClass(Guard::class)]
 class PlayerTest extends TestCase
 {
     public function testPlayerObjectGetterSetter(): void

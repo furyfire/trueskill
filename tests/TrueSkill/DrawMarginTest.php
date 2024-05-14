@@ -5,8 +5,15 @@ declare(strict_types=1);
 namespace DNW\Skills\Tests\TrueSkill;
 
 use DNW\Skills\TrueSkill\DrawMargin;
+use DNW\Skills\Numerics\BasicMath;
+use DNW\Skills\Numerics\GaussianDistribution;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 
+#[CoversClass(DrawMargin::class)]
+#[UsesClass(BasicMath::class)]
+#[UsesClass(GaussianDistribution::class)]
 class DrawMarginTest extends TestCase
 {
     private const ERROR_TOLERANCE = 0.000001;
@@ -23,6 +30,6 @@ class DrawMarginTest extends TestCase
     private function assertDrawMargin(float $drawProbability, float $beta, float $expected): void
     {
         $actual = DrawMargin::getDrawMarginFromDrawProbability($drawProbability, $beta);
-        $this->assertEqualsWithDelta($expected, $actual, DrawMarginTest::ERROR_TOLERANCE);
+        $this->assertEqualsWithDelta($expected, $actual, self::ERROR_TOLERANCE);
     }
 }

@@ -7,7 +7,9 @@ namespace DNW\Skills\Tests;
 use DNW\Skills\Guard;
 use Exception;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
+#[CoversClass(Guard::class)]
 class GuardTest extends TestCase
 {
     public function testargumentIsValidIndex(): void

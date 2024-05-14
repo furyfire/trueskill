@@ -6,7 +6,9 @@ namespace DNW\Skills\Tests;
 
 use DNW\Skills\RankSorter;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
 
+#[CoversClass(RankSorter::class)]
 class RankSorterTest extends TestCase
 {
     public function testSort(): void

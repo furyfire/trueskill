@@ -7,7 +7,11 @@ namespace DNW\Skills\Tests\FactorGraphs;
 use DNW\Skills\FactorGraphs\Variable;
 use DNW\Skills\Numerics\GaussianDistribution;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 
+#[CoversClass(Variable::class)]
+#[UsesClass(GaussianDistribution::class)]
 class VariableTest extends TestCase
 {
     public function testGetterSetter(): void

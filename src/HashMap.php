@@ -19,7 +19,7 @@ class HashMap
      */
     private array $hashToKey = [];
 
-    public function getValue(object $key): object
+    public function getValue(object $key): mixed
     {
         $hash = spl_object_id($key);
 

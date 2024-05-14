@@ -7,7 +7,11 @@ namespace DNW\Skills\Tests\Numerics;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\Numerics\GaussianDistribution;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\UsesClass;
 
+#[CoversClass(GaussianDistribution::class)]
+#[UsesClass(BasicMath::class)]
 class GaussianDistributionTest extends TestCase
 {
     private const ERROR_TOLERANCE = 0.000001;
