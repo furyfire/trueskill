@@ -252,7 +252,6 @@ class GaussianDistribution
     private static function inverseErrorFunctionCumulativeTo(float $p): float
     {
         // From page 265 of numerical recipes
-
         if ($p >= 2.0) {
             return -100;
         }

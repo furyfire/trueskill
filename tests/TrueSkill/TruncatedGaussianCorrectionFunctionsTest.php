@@ -16,9 +16,8 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(GaussianDistribution::class)]
 class TruncatedGaussianCorrectionFunctionsTest extends TestCase
 {
-    
-
-    public function testVGreaterThan(): void {
+    public function testvGreaterThan(): void
+    {
         // Test values taken from Ralf Herbrich's F# TrueSkill implementation
         $want = 0.4181660649773850;
         $tVar = 0.7495591915280050;
@@ -26,7 +25,8 @@ class TruncatedGaussianCorrectionFunctionsTest extends TestCase
         $this->assertEqualsWithDelta($want, TruncatedGaussianCorrectionFunctions::vExceedsMargin($tVar, $eps), 1e-6);
     }
     
-    public function testWGreaterThan(): void {
+    public function testwGreaterThan(): void
+    {
         // Test values taken from Ralf Herbrich's F# TrueSkill implementation
         $want = 0.4619049929317120;
         $tVar = 0.7495591915280050;
@@ -34,7 +34,8 @@ class TruncatedGaussianCorrectionFunctionsTest extends TestCase
         $this->assertEqualsWithDelta($want, TruncatedGaussianCorrectionFunctions::wExceedsMargin($tVar, $eps), 1e-6);
     }
     
-    public function testVWithin(): void {
+    public function testvWithin(): void
+    {
         // Test values taken from Ralf Herbrich's F# TrueSkill implementation
         $want = -0.7485644072749330;
         $tVar = 0.7495591915280050;
@@ -42,11 +43,12 @@ class TruncatedGaussianCorrectionFunctionsTest extends TestCase
         $this->assertEqualsWithDelta($want, TruncatedGaussianCorrectionFunctions::vWithinMargin($tVar, $eps), 1e-6);
     }
     
-    public function testWWithin(): void {
+    public function testwWithin(): void
+    {
         // Test values taken from Ralf Herbrich's F# TrueSkill implementation
         $want = 0.9986734210033660;
         $tVar = 0.7495591915280050;
         $eps = 0.0631282276750071;
-        $this->assertEqualsWithDelta($want, TruncatedGaussianCorrectionFunctions::wWithinMargin($tVar, $eps), 1e-6);   
+        $this->assertEqualsWithDelta($want, TruncatedGaussianCorrectionFunctions::wWithinMargin($tVar, $eps), 1e-6);
     }
 }
