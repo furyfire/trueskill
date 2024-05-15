@@ -12,24 +12,43 @@ use PHPUnit\Framework\Attributes\CoversClass;
 #[CoversClass(Guard::class)]
 class GuardTest extends TestCase
 {
-    public function testargumentIsValidIndex(): void
+    public function testargumentIsValidIndexArgumentAbove(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('dummy is an invalid index');
         Guard::argumentIsValidIndex(10, 10, "dummy");
     }
 
-    public function testargumentIsValidIndex2(): void
+    public function testargumentIsValidIndexArgumentBelow(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('dummy is an invalid index');
         Guard::argumentIsValidIndex(-1, 10, "dummy");
     }
 
-    public function testargumentInRangeInclusive(): void
+    public function testargumentIsValidIndexArgumentValid(): void
+    {
+        Guard::argumentIsValidIndex(5, 10, "dummy");
+        $this->expectNotToPerformAssertions();
+    }
+
+    public function testargumentInRangeInclusiveAbove(): void
     {
         $this->expectException(Exception::class);
         $this->expectExceptionMessage('dummy is not in the valid range [0, 100]');
         Guard::argumentInRangeInclusive(101, 0, 100, "dummy");
+    }
+
+    public function testargumentInRangeInclusiveBelow(): void
+    {
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('dummy is not in the valid range [0, 100]');
+        Guard::argumentInRangeInclusive(-1, 0, 100, "dummy");
+    }
+
+    public function testargumentInRangeInclusiveValid(): void
+    {
+        Guard::argumentInRangeInclusive(50, 0, 100, "dummy");
+        $this->expectNotToPerformAssertions();
     }
 }
