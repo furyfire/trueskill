@@ -1,9 +1,7 @@
 {
     "runner.bootstrap": "vendor/autoload.php",
     "runner.path": "benchmark/",
-    "runner.php_config": {
-        "xdebug.mode": "none"
-    },
+    "runner.php_disable_ini": true,
     "runner.retry_threshold": 10,
     "runner.iterations": 10,
     "report.outputs": {

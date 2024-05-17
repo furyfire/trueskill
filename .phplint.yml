@@ -5,9 +5,8 @@ path:
 jobs: 10
 extensions:
   - php
-exclude:
+exclude:com
   - vendor
 warning: true
 memory-limit: -1
-no-cache: true
 log-junit: "output/lint.xml"
