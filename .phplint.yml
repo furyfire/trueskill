@@ -5,7 +5,7 @@ path:
 jobs: 10
 extensions:
   - php
-exclude:com
+exclude:
   - vendor
 warning: true
 memory-limit: -1

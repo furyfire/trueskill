@@ -20,7 +20,7 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate
     /**
      * Constructs a player.
      *
-     * @param mixed $Id                      The identifier for the player, such as a name.
+     * @param string|int $Id                      The identifier for the player, such as a name.
      * @param float $partialPlayPercentage   The weight percentage to give this player when calculating a new rank.
      * @param float $partialUpdatePercentage Indicated how much of a skill update a player should receive where 0 represents no update and 1.0 represents 100% of the update.
      */
