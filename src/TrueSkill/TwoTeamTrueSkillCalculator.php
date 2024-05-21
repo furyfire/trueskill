@@ -13,7 +13,6 @@ use DNW\Skills\RankSorter;
 use DNW\Skills\Rating;
 use DNW\Skills\RatingContainer;
 use DNW\Skills\SkillCalculator;
-use DNW\Skills\SkillCalculatorSupportedOptions;
 use DNW\Skills\Team;
 use DNW\Skills\TeamsRange;
 
@@ -26,7 +25,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
 {
     public function __construct()
     {
-        parent::__construct(SkillCalculatorSupportedOptions::NONE, TeamsRange::exactly(2), PlayersRange::atLeast(1));
+        parent::__construct(SkillCalculator::NONE, TeamsRange::exactly(2), PlayersRange::atLeast(1));
     }
 
     /**

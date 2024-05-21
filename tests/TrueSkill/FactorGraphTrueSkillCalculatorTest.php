@@ -8,7 +8,7 @@ use DNW\Skills\GameInfo;
 use DNW\Skills\Player;
 use DNW\Skills\Team;
 use DNW\Skills\TrueSkill\FactorGraphTrueSkillCalculator;
-use DNW\Skills\SkillCalculatorSupportedOptions;
+use DNW\Skills\SkillCalculator;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversNothing;
@@ -78,6 +78,6 @@ class FactorGraphTrueSkillCalculatorTest extends TestCase
     public function testMethodisSupported(): void
     {
         $calculator = new FactorGraphTrueSkillCalculator();
-        $this->assertEquals(TRUE, $calculator->isSupported(SkillCalculatorSupportedOptions::PARTIAL_PLAY));
+        $this->assertEquals(TRUE, $calculator->isSupported(SkillCalculator::PARTIAL_PLAY));
     }
 }

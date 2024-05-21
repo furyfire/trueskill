@@ -14,7 +14,6 @@ use DNW\Skills\PartialPlay;
 use DNW\Skills\PlayersRange;
 use DNW\Skills\RankSorter;
 use DNW\Skills\SkillCalculator;
-use DNW\Skills\SkillCalculatorSupportedOptions;
 use DNW\Skills\Team;
 use DNW\Skills\TeamsRange;
 use DNW\Skills\RatingContainer;
@@ -27,7 +26,7 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
 {
     public function __construct()
     {
-        parent::__construct(SkillCalculatorSupportedOptions::PARTIAL_PLAY | SkillCalculatorSupportedOptions::PARTIAL_UPDATE, TeamsRange::atLeast(2), PlayersRange::atLeast(1));
+        parent::__construct(SkillCalculator::PARTIAL_PLAY | SkillCalculator::PARTIAL_UPDATE, TeamsRange::atLeast(2), PlayersRange::atLeast(1));
     }
 
     /**

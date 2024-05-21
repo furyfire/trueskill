@@ -30,9 +30,8 @@ Links
 * `Project README <README.html>`_
 * `API Documentations <docs/>`_
 * `CodeCoverage <coverage/>`_
-* `Metrics <metrics/>`_
 * `Test report <test/index.html>`_
-* `Mutation testing <mutation/>`_
+* `Mutation testing <mutation/infection.html>`_
 
 
 Standard Tools
