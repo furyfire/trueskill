@@ -10,8 +10,10 @@ use DNW\Skills\TrueSkill\FactorGraphTrueSkillCalculator;
 use DNW\Skills\GameInfo;
 use DNW\Skills\Player;
 use DNW\Skills\Team;
-use DNW\Skills\Teams;
 
+/**
+ * Basic Benchmarks.
+ */
 class BasicBench
 {
     /**
