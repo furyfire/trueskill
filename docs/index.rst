@@ -32,6 +32,7 @@ Links
 * `CodeCoverage <coverage/>`_
 * `Test report <test/index.html>`_
 * `Mutation testing <mutation/infection.html>`_
+* `Code metrics <metrics/index.html>`_
 
 
 Standard Tools

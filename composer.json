@@ -51,6 +51,7 @@
       "@benchmark",
       "@lint",
       "@analyze",
+      "@metrics",
       "@html"
     ]
   }
