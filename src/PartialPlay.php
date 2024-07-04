@@ -8,14 +8,14 @@ class PartialPlay
 {
     public static function getPartialPlayPercentage(Player $player): float
     {
-        $partialPlayPercentage = $player->getPartialPlayPercentage();
+        $partialPlayPct = $player->getPartialPlayPercentage();
 
         // HACK to get around bug near 0
-        $smallestPercentage = 0.0001;
-        if ($partialPlayPercentage < $smallestPercentage) {
-            return $smallestPercentage;
+        $smallestPct = 0.0001;
+        if ($partialPlayPct < $smallestPct) {
+            return $smallestPct;
         }
 
-        return $partialPlayPercentage;
+        return $partialPlayPct;
     }
 }

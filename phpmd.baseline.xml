@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<phpmd-baseline>
+  <violation rule="PHPMD\Rule\Design\TooManyPublicMethods" file="src/Numerics/GaussianDistribution.php"/>
+  <violation rule="PHPMD\Rule\UnusedPrivateMethod" file="src/Numerics/GaussianDistribution.php" method="errorFunctionCumulativeTo"/>
+  <violation rule="PHPMD\Rule\UnusedPrivateMethod" file="src/Numerics/GaussianDistribution.php" method="inverseErrorFunctionCumulativeTo"/>
+  <violation rule="PHPMD\Rule\Design\WeightedMethodCount" file="src/Numerics/Matrix.php"/>
+  <violation rule="PHPMD\Rule\Design\CouplingBetweenObjects" file="src/TrueSkill/FactorGraphTrueSkillCalculator.php"/>
+  <violation rule="PHPMD\Rule\Design\CouplingBetweenObjects" file="src/TrueSkill/TrueSkillFactorGraph.php"/>
+</phpmd-baseline>

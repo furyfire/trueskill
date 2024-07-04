@@ -19,9 +19,9 @@ use DNW\Skills\Numerics\GaussianDistribution;
 class GaussianWeightedSumFactor extends GaussianFactor
 {
     /**
-     * @var array<int[]> $variableIndexOrdersForWeights
+     * @var array<int[]> $varIndexOrdersForWeights
      */
-    private array $variableIndexOrdersForWeights = [];
+    private array $varIndexOrdersForWeights = [];
 
     /**
      * This following is used for convenience, for example, the first entry is [0, 1, 2]
@@ -58,9 +58,9 @@ class GaussianWeightedSumFactor extends GaussianFactor
         $variablesToSumLength = count($variablesToSum);
 
         // 0..n-1
-        $this->variableIndexOrdersForWeights[0] = [];
+        $this->varIndexOrdersForWeights[0] = [];
         for ($i = 0; $i < ($variablesToSumLength + 1); ++$i) {
-            $this->variableIndexOrdersForWeights[0][] = $i;
+            $this->varIndexOrdersForWeights[0][] = $i;
         }
 
         $variableWeightsLength = count($variableWeights);
@@ -113,7 +113,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
             $currentWeights[$currentDestinationWeightIndex] = $finalWeight;
             $currentWeightsSquared[$currentDestinationWeightIndex] = BasicMath::square($finalWeight);
             $variableIndices[count($variableWeights)] = 0;
-            $this->variableIndexOrdersForWeights[] = $variableIndices;
+            $this->varIndexOrdersForWeights[] = $variableIndices;
 
             $this->weights[$weightsIndex] = $currentWeights;
             $this->weightsSquared[$weightsIndex] = $currentWeightsSquared;
@@ -160,9 +160,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
 
         // The math works out so that 1/newPrecision = sum of a_i^2 /marginalsWithoutMessages[i]
         $inverseOfNewPrecisionSum = 0.0;
-        $anotherInverseOfNewPrecisionSum = 0.0;
         $weightedMeanSum = 0.0;
-        $anotherWeightedMeanSum = 0.0;
 
         $weightsSquaredLength = count($weightsSquared);
 
@@ -172,16 +170,11 @@ class GaussianWeightedSumFactor extends GaussianFactor
             $inverseOfNewPrecisionSum += $weightsSquared[$i] /
                 ($variables[$i + 1]->getValue()->getPrecision() - $messages[$i + 1]->getValue()->getPrecision());
 
-            $diff = GaussianDistribution::divide($variables[$i + 1]->getValue(), $messages[$i + 1]->getValue());
-            $anotherInverseOfNewPrecisionSum += $weightsSquared[$i] / $diff->getPrecision();
-
             $weightedMeanSum += $weights[$i]
                 *
                 ($variables[$i + 1]->getValue()->getPrecisionMean() - $messages[$i + 1]->getValue()->getPrecisionMean())
                 /
                 ($variables[$i + 1]->getValue()->getPrecision() - $messages[$i + 1]->getValue()->getPrecision());
-
-            $anotherWeightedMeanSum += $weights[$i] * $diff->getPrecisionMean() / $diff->getPrecision();
         }
 
         $newPrecision = 1.0 / $inverseOfNewPrecisionSum;
@@ -214,7 +207,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         $updatedMessages = [];
         $updatedVariables = [];
 
-        $indicesToUse = $this->variableIndexOrdersForWeights[$messageIndex];
+        $indicesToUse = $this->varIndexOrdersForWeights[$messageIndex];
         // The tricky part here is that we have to put the messages and variables in the same
         // order as the weights. Thankfully, the weights and messages share the same index numbers,
         // so we just need to make sure they're consistent

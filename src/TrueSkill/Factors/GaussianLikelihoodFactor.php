@@ -60,9 +60,9 @@ class GaussianLikelihoodFactor extends GaussianFactor
             $a * ($marginal2->getPrecision() - $message2Value->getPrecision())
         );
 
-        $oldMarginalWithoutMessage = GaussianDistribution::divide($marginal1, $message1Value);
+        $oldMarginalWithoutMsg = GaussianDistribution::divide($marginal1, $message1Value);
 
-        $newMarginal = GaussianDistribution::multiply($oldMarginalWithoutMessage, $newMessage);
+        $newMarginal = GaussianDistribution::multiply($oldMarginalWithoutMsg, $newMessage);
 
         // Update the message and marginal
 

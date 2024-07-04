@@ -118,9 +118,9 @@ class TrueSkillFactorGraph extends FactorGraph
         $allLayersReverse = array_reverse($this->layers);
 
         foreach ($allLayersReverse as $currentLayer) {
-            $currentPosteriorSchedule = $currentLayer->createPosteriorSchedule();
-            if ($currentPosteriorSchedule != NULL) {
-                $fullSchedule[] = $currentPosteriorSchedule;
+            $curPosteriorSchedule = $currentLayer->createPosteriorSchedule();
+            if ($curPosteriorSchedule != NULL) {
+                $fullSchedule[] = $curPosteriorSchedule;
             }
         }
 

@@ -15,7 +15,7 @@ abstract class Factor
      */
     private array $messages = [];
 
-    private readonly HashMap $messageToVariableBinding;
+    private readonly HashMap $msgToVariableBinding;
 
     /**
      * @var Variable[] $variables
@@ -24,7 +24,7 @@ abstract class Factor
 
     protected function __construct()
     {
-        $this->messageToVariableBinding = new HashMap();
+        $this->msgToVariableBinding = new HashMap();
     }
 
     /**
@@ -70,7 +70,7 @@ abstract class Factor
     {
         Guard::argumentIsValidIndex($messageIndex, count($this->messages), 'messageIndex');
         $message = $this->messages[$messageIndex];
-        $variable = $this->messageToVariableBinding->getValue($message);
+        $variable = $this->msgToVariableBinding->getValue($message);
 
         return $this->updateMessageVariable($message, $variable);
     }
@@ -85,7 +85,7 @@ abstract class Factor
      */
     public function resetMarginals(): void
     {
-        $allValues = $this->messageToVariableBinding->getAllValues();
+        $allValues = $this->msgToVariableBinding->getAllValues();
         foreach ($allValues as $currentVariable) {
             $currentVariable->resetToPrior();
         }
@@ -101,7 +101,7 @@ abstract class Factor
         Guard::argumentIsValidIndex($messageIndex, count($this->messages), 'messageIndex');
 
         $message = $this->messages[$messageIndex];
-        $variable = $this->messageToVariableBinding->getValue($message);
+        $variable = $this->msgToVariableBinding->getValue($message);
 
         return $this->sendMessageVariable($message, $variable);
     }
@@ -112,7 +112,7 @@ abstract class Factor
 
     protected function createVariableToMessageBindingWithMessage(Variable $variable, Message $message): Message
     {
-        $this->messageToVariableBinding->setValue($message, $variable);
+        $this->msgToVariableBinding->setValue($message, $variable);
         $this->messages[] = $message;
         $this->variables[] = $variable;
 

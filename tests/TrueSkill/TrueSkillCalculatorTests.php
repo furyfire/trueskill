@@ -9,7 +9,6 @@ use DNW\Skills\Player;
 use DNW\Skills\Rating;
 use DNW\Skills\SkillCalculator;
 use DNW\Skills\Team;
-use DNW\Skills\Teams;
 use PHPUnit\Framework\TestCase;
 
 class TrueSkillCalculatorTests
@@ -70,7 +69,6 @@ class TrueSkillCalculatorTests
     // online calculator at http://atom.research.microsoft.com/trueskill/rankcalculator.aspx
     //
     // All match quality expected values came from the online calculator
-
     // In both cases, there may be some discrepancy after the first decimal point. I think this is due to my implementation
     // using slightly higher precision in GaussianDistribution.
 
@@ -849,24 +847,7 @@ class TrueSkillCalculatorTests
         $team15 = new Team($player15, $gameInfo->getDefaultRating());
         $team16 = new Team($player16, $gameInfo->getDefaultRating());
 
-        $teams = [
-            $team1,
-            $team2,
-            $team3,
-            $team4,
-            $team5,
-            $team6,
-            $team7,
-            $team8,
-            $team9,
-            $team10,
-            $team11,
-            $team12,
-            $team13,
-            $team14,
-            $team15,
-            $team16
-        ];
+        $teams = [$team1, $team2, $team3, $team4, $team5, $team6, $team7, $team8, $team9, $team10, $team11, $team12, $team13, $team14, $team15, $team16];
 
         $newRatings = $calculator->calculateNewRatings(
             $gameInfo,

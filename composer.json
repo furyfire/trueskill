@@ -26,12 +26,13 @@
   },
   "scripts": {
     "test":          "phpunit",
-    "document":      "phpDocumentor", 
+    "document":      "phpDocumentor",
     "benchmark":     "phpbench run --report=default --output=build-artifact",
     "metrics":       "vendor/bin/phpmetrics --config=phpmetrics.json",
     "lint": [
         "phplint",
-        "phpcs"
+        "phpcs",
+        "phpmd src/,tests/,benchmark/,examples/ text phpmd.ruleset.xml"
     ],
     "analyze": [
         "@analyze-phpstan",
@@ -47,10 +48,9 @@
     ],
     "all": [
       "@test",
-      "@document",
-      "@benchmark",
       "@lint",
       "@analyze",
+      "@document",
       "@metrics",
       "@html"
     ]

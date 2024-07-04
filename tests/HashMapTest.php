@@ -7,6 +7,7 @@ namespace DNW\Skills\Tests;
 use DNW\Skills\HashMap;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
+use stdClass;
 
 #[CoversClass(HashMap::class)]
 class HashMapTest extends TestCase
@@ -19,8 +20,8 @@ class HashMapTest extends TestCase
         $this->assertEquals([], $h->getAllValues());
 
 
-        $o1 = new \stdClass();
-        $o2 = new \stdClass();
+        $o1 = new stdClass();
+        $o2 = new stdClass();
 
         $h->setValue($o1, 1);
         $h->setvalue($o2, 2);

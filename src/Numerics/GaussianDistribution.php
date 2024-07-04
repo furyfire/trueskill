@@ -55,7 +55,6 @@ class GaussianDistribution
             $this->precisionMean = $this->precision * $this->mean;
         } else {
             $this->precision = \INF;
-
             $this->precisionMean = $this->mean == 0 ? 0 : \INF;
         }
     }
@@ -175,7 +174,7 @@ class GaussianDistribution
         BasicMath::square($meanDifference) / (2 * $varianceDifference);
     }
 
-    public static function at(float $x, float $mean = 0.0, float $standardDeviation = 1.0): float
+    public static function at(float $var, float $mean = 0.0, float $standardDeviation = 1.0): float
     {
         // See http://mathworld.wolfram.com/NormalDistribution.html
         //                1              -(x-mean)^2 / (2*stdDev^2)
@@ -183,22 +182,22 @@ class GaussianDistribution
         //        stdDev * sqrt(2*pi)
 
         $multiplier = 1.0 / ($standardDeviation * self::M_SQRT_2_PI);
-        $expPart = exp((-1.0 * BasicMath::square($x - $mean)) / (2 * BasicMath::square($standardDeviation)));
+        $expPart = exp((-1.0 * BasicMath::square($var - $mean)) / (2 * BasicMath::square($standardDeviation)));
 
         return $multiplier * $expPart;
     }
 
-    public static function cumulativeTo(float $x): float
+    public static function cumulativeTo(float $var): float
     {
-        $result = GaussianDistribution::errorFunctionCumulativeTo(-M_SQRT1_2 * $x);
+        $result = GaussianDistribution::errorFunctionCumulativeTo(-M_SQRT1_2 * $var);
 
         return 0.5 * $result;
     }
 
-    private static function errorFunctionCumulativeTo(float $x): float
+    private static function errorFunctionCumulativeTo(float $var): float
     {
         // Derived from page 265 of Numerical Recipes 3rd Edition
-        $z = abs($x);
+        $z = abs($var);
 
         $t = 2.0 / (2.0 + $z);
         $ty = 4 * $t - 2;
@@ -246,7 +245,7 @@ class GaussianDistribution
 
         $ans = $t * exp(-$z * $z + 0.5 * ($coefficients[0] + $ty * $d) - $dd);
 
-        return ($x >= 0.0) ? $ans : (2.0 - $ans);
+        return ($var >= 0.0) ? $ans : (2.0 - $ans);
     }
 
     private static function inverseErrorFunctionCumulativeTo(float $p): float
@@ -272,9 +271,9 @@ class GaussianDistribution
         return ($p < 1.0) ? $x : -$x;
     }
 
-    public static function inverseCumulativeTo(float $x, float $mean = 0.0, float $standardDeviation = 1.0): float
+    public static function inverseCumulativeTo(float $var, float $mean = 0.0, float $standardDeviation = 1.0): float
     {
         // From numerical recipes, page 320
-        return $mean - M_SQRT2 * $standardDeviation * GaussianDistribution::inverseErrorFunctionCumulativeTo(2 * $x);
+        return $mean - M_SQRT2 * $standardDeviation * GaussianDistribution::inverseErrorFunctionCumulativeTo(2 * $var);
     }
 }

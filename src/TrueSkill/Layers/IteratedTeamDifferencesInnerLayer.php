@@ -15,8 +15,8 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 {
     public function __construct(
         TrueSkillFactorGraph $parentGraph,
-        private readonly TeamPerformancesToTeamPerformanceDifferencesLayer $TeamPerformancesToTeamPerformanceDifferencesLayer,
-        private readonly TeamDifferencesComparisonLayer $TeamDifferencesComparisonLayer
+        private readonly TeamPerformancesToTeamPerformanceDifferencesLayer $teamPerformancesToTeamPerformanceDifferencesLayer,
+        private readonly TeamDifferencesComparisonLayer $teamDifferencesComparisonLayer
     )
     {
         parent::__construct($parentGraph);
@@ -25,20 +25,20 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
     public function getLocalFactors(): array
     {
         return array_merge(
-            $this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors(),
-            $this->TeamDifferencesComparisonLayer->getLocalFactors()
+            $this->teamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors(),
+            $this->teamDifferencesComparisonLayer->getLocalFactors()
         );
     }
 
     public function buildLayer(): void
     {
         $inputVariablesGroups = $this->getInputVariablesGroups();
-        $this->TeamPerformancesToTeamPerformanceDifferencesLayer->setInputVariablesGroups($inputVariablesGroups);
-        $this->TeamPerformancesToTeamPerformanceDifferencesLayer->buildLayer();
+        $this->teamPerformancesToTeamPerformanceDifferencesLayer->setInputVariablesGroups($inputVariablesGroups);
+        $this->teamPerformancesToTeamPerformanceDifferencesLayer->buildLayer();
 
-        $teamDifferencesOutputVariablesGroups = $this->TeamPerformancesToTeamPerformanceDifferencesLayer->getOutputVariablesGroups();
-        $this->TeamDifferencesComparisonLayer->setInputVariablesGroups($teamDifferencesOutputVariablesGroups);
-        $this->TeamDifferencesComparisonLayer->buildLayer();
+        $teamDifferencesOutputVariablesGroups = $this->teamPerformancesToTeamPerformanceDifferencesLayer->getOutputVariablesGroups();
+        $this->teamDifferencesComparisonLayer->setInputVariablesGroups($teamDifferencesOutputVariablesGroups);
+        $this->teamDifferencesComparisonLayer->buildLayer();
     }
 
     public function createPriorSchedule(): ?ScheduleSequence
@@ -56,9 +56,9 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         }
 
         // When dealing with differences, there are always (n-1) differences, so add in the 1
-        $totalTeamDifferences = count($this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors());
+        $totalTeamDifferences = count($this->teamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors());
 
-        $localFactors = $this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
+        $localFactors = $this->teamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
 
         $firstDifferencesFactor = $localFactors[0];
         $lastDifferencesFactor = $localFactors[$totalTeamDifferences - 1];
@@ -83,8 +83,8 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 
     private function createTwoTeamInnerPriorLoopSchedule(): ScheduleSequence
     {
-        $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors = $this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
-        $teamDifferencesComparisonLayerLocalFactors = $this->TeamDifferencesComparisonLayer->getLocalFactors();
+        $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors = $this->teamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
+        $teamDifferencesComparisonLayerLocalFactors = $this->teamDifferencesComparisonLayer->getLocalFactors();
 
         $firstPerfToTeamDiff = $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors[0];
         $firstTeamDiffComparison = $teamDifferencesComparisonLayerLocalFactors[0];
@@ -109,13 +109,13 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 
     private function createMultipleTeamInnerPriorLoopSchedule(): ScheduleLoop
     {
-        $totalTeamDifferences = count($this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors());
+        $totalTeamDifferences = count($this->teamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors());
 
         $forwardScheduleList = [];
 
         for ($i = 0; $i < $totalTeamDifferences - 1; ++$i) {
-            $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors = $this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
-            $teamDifferencesComparisonLayerLocalFactors = $this->TeamDifferencesComparisonLayer->getLocalFactors();
+            $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors = $this->teamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
+            $teamDifferencesComparisonLayerLocalFactors = $this->teamDifferencesComparisonLayer->getLocalFactors();
 
             $currentTeamPerfToTeamPerfDiff = $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors[$i];
             $currentTeamDiffComparison = $teamDifferencesComparisonLayerLocalFactors[$i];
@@ -151,8 +151,8 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         $backwardScheduleList = [];
 
         for ($i = 0; $i < $totalTeamDifferences - 1; ++$i) {
-            $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors = $this->TeamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
-            $teamDifferencesComparisonLayerLocalFactors = $this->TeamDifferencesComparisonLayer->getLocalFactors();
+            $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors = $this->teamPerformancesToTeamPerformanceDifferencesLayer->getLocalFactors();
+            $teamDifferencesComparisonLayerLocalFactors = $this->teamDifferencesComparisonLayer->getLocalFactors();
 
             $differencesFactor = $teamPerformancesToTeamPerformanceDifferencesLayerLocalFactors[$totalTeamDifferences - 1 - $i];
             $comparisonFactor = $teamDifferencesComparisonLayerLocalFactors[$totalTeamDifferences - 1 - $i];

@@ -17,7 +17,7 @@ abstract class FactorGraphLayer
     /**
      * @var array<int,array<int,Variable>>
      */
-    private array $outputVariablesGroups = [];
+    private array $outputVarGroups = [];
 
     /**
      * @var array<int,array<int,Variable>>
@@ -48,7 +48,7 @@ abstract class FactorGraphLayer
      */
     public function &getOutputVariablesGroups(): array
     {
-        return $this->outputVariablesGroups;
+        return $this->outputVarGroups;
     }
 
     /**

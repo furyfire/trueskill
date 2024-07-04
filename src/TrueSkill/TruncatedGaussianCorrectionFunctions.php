@@ -102,33 +102,33 @@ class TruncatedGaussianCorrectionFunctions
     }
 
     // the multiplicative correction of a double-sided truncated Gaussian with unit variance
-    public static function wWithinMarginScaled(float $teamPerformanceDifference, float $drawMargin, float $c): float
+    public static function wWithinMarginScaled(float $teamPerformanceDiff, float $drawMargin, float $c): float
     {
-        return self::wWithinMargin($teamPerformanceDifference / $c, $drawMargin / $c);
+        return self::wWithinMargin($teamPerformanceDiff / $c, $drawMargin / $c);
     }
 
     // From F#:
-    public static function wWithinMargin(float $teamPerformanceDifference, float $drawMargin): float
+    public static function wWithinMargin(float $teamPerformanceDiff, float $drawMargin): float
     {
-        $teamPerformanceDifferenceAbsoluteValue = abs($teamPerformanceDifference);
-        $denominator = GaussianDistribution::cumulativeTo($drawMargin - $teamPerformanceDifferenceAbsoluteValue)
+        $teamPerformanceDiffAbsValue = abs($teamPerformanceDiff);
+        $denominator = GaussianDistribution::cumulativeTo($drawMargin - $teamPerformanceDiffAbsValue)
             -
-            GaussianDistribution::cumulativeTo(-$drawMargin - $teamPerformanceDifferenceAbsoluteValue);
+            GaussianDistribution::cumulativeTo(-$drawMargin - $teamPerformanceDiffAbsValue);
 
         if ($denominator < 2.222758749e-162) {
             return 1.0;
         }
 
-        $vt = self::vWithinMargin($teamPerformanceDifferenceAbsoluteValue, $drawMargin);
+        $vt = self::vWithinMargin($teamPerformanceDiffAbsValue, $drawMargin);
 
         return $vt * $vt +
-        (($drawMargin - $teamPerformanceDifferenceAbsoluteValue)
+        (($drawMargin - $teamPerformanceDiffAbsValue)
             *
             GaussianDistribution::at(
-                $drawMargin - $teamPerformanceDifferenceAbsoluteValue
+                $drawMargin - $teamPerformanceDiffAbsValue
             )
-            - (-$drawMargin - $teamPerformanceDifferenceAbsoluteValue)
+            - (-$drawMargin - $teamPerformanceDiffAbsValue)
             *
-            GaussianDistribution::at(-$drawMargin - $teamPerformanceDifferenceAbsoluteValue)) / $denominator;
+            GaussianDistribution::at(-$drawMargin - $teamPerformanceDiffAbsValue)) / $denominator;
     }
 }

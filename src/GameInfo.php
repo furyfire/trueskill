@@ -27,7 +27,7 @@ class GameInfo
 
     public function __construct(
         private readonly float $initialMean = self::DEFAULT_INITIAL_MEAN,
-        private readonly float $initialStandardDeviation = self::DEFAULT_INITIAL_STANDARD_DEVIATION,
+        private readonly float $initialStdDev = self::DEFAULT_INITIAL_STANDARD_DEVIATION,
         private readonly float $beta = self::DEFAULT_BETA,
         private readonly float $dynamicsFactor = self::DEFAULT_DYNAMICS_FACTOR,
         private readonly float $drawProbability = self::DEFAULT_DRAW_PROBABILITY
@@ -42,7 +42,7 @@ class GameInfo
 
     public function getInitialStandardDeviation(): float
     {
-        return $this->initialStandardDeviation;
+        return $this->initialStdDev;
     }
 
     public function getBeta(): float
@@ -62,6 +62,6 @@ class GameInfo
 
     public function getDefaultRating(): Rating
     {
-        return new Rating($this->initialMean, $this->initialStandardDeviation);
+        return new Rating($this->initialMean, $this->initialStdDev);
     }
 }

@@ -6,20 +6,20 @@ namespace DNW\Skills\FactorGraphs;
 
 class VariableFactory
 {
-    public function __construct(private \Closure $variablePriorInitializer)
+    public function __construct(private \Closure $varPriorInitializer)
     {
     }
 
     public function createBasicVariable(): Variable
     {
-        $initializer = $this->variablePriorInitializer;
+        $initializer = $this->varPriorInitializer;
 
         return new Variable($initializer());
     }
 
     public function createKeyedVariable(mixed $key): KeyedVariable
     {
-        $initializer = $this->variablePriorInitializer;
+        $initializer = $this->varPriorInitializer;
 
         return new KeyedVariable($key, $initializer());
     }

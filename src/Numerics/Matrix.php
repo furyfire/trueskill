@@ -76,10 +76,10 @@ class Matrix
         $transposeMatrix = [];
 
         $rowMatrixData = $this->matrixRowData;
-        for ($currentRowTransposeMatrix = 0; $currentRowTransposeMatrix < $this->columnCount; ++$currentRowTransposeMatrix) {
-            for ($currentColumnTransposeMatrix = 0; $currentColumnTransposeMatrix < $this->rowCount; ++$currentColumnTransposeMatrix) {
-                $transposeMatrix[$currentRowTransposeMatrix][$currentColumnTransposeMatrix] =
-                    $rowMatrixData[$currentColumnTransposeMatrix][$currentRowTransposeMatrix];
+        for ($curRowTransposeMx = 0; $curRowTransposeMx < $this->columnCount; ++$curRowTransposeMx) {
+            for ($curColTransposeMx = 0; $curColTransposeMx < $this->rowCount; ++$curColTransposeMx) {
+                $transposeMatrix[$curRowTransposeMx][$curColTransposeMx] =
+                    $rowMatrixData[$curColTransposeMx][$curRowTransposeMx];
             }
         }
 

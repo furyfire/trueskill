@@ -171,7 +171,8 @@ class FactorGraphTrueSkillCalculator extends SkillCalculator
 
         $currentColumn = 0;
 
-        for ($i = 0; $i < count($teamAssignmentsList) - 1; ++$i) {
+        $teamCnt = count($teamAssignmentsList);
+        for ($i = 0; $i < $teamCnt - 1; ++$i) {
             $currentTeam = $teamAssignmentsList[$i];
 
             // Need to add in 0's for all the previous players, since they're not

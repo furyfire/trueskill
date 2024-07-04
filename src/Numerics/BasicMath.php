@@ -13,15 +13,15 @@ namespace DNW\Skills\Numerics;
 class BasicMath
 {
     /**
-     * Squares the input (x^2 = x * x)
+     * Squares the input (input^2 = input * input)
      *
-     * @param $x Value to square (x)
+     * @param $input Value to square (input)
      *
-     * @return float The squared value (x^2)
+     * @return float The squared value (input^2)
      */
-    public static function square(float $x): float
+    public static function square(float $input): float
     {
-        return $x * $x;
+        return $input * $input;
     }
 
     /**
