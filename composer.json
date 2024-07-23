@@ -7,9 +7,9 @@
   },
   "require-dev": {
     "phpstan/phpstan": "^1.0",
-    "vimeo/psalm": "^5.21.1",
+    "vimeo/psalm": "dev-master",
     "phpmetrics/phpmetrics": "^3.0-dev",
-    "phpunit/phpunit": "^10.5",
+    "phpunit/phpunit": "^11.2",
     "psalm/plugin-phpunit": "^0.18.4",
     "rector/rector": "^1.0",
     "league/csv": "^9.0"
