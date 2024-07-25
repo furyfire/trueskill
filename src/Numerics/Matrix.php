@@ -60,13 +60,34 @@ class Matrix
         return $this->columnCount;
     }
 
+    private function checkRowCol(int $row, int $col): void
+    {
+        if ($row < 0) {
+            throw new Exception("Row negative");
+        }
+
+        if ($row >= $this->getRowCount()) {
+            throw new Exception("Row beyond range");
+        }
+
+        if ($col < 0) {
+            throw new Exception("Column negative");
+        }
+
+        if ($col >= $this->getColumnCount()) {
+            throw new Exception("Column beyond range");
+        }
+    }
+
     public function getValue(int $row, int $col): float|int
     {
+        $this->checkRowCol($row, $col);
         return $this->matrixRowData[$row][$col];
     }
 
     public function setValue(int $row, int $col, float|int $value): void
     {
+        $this->checkRowCol($row, $col);
         $this->matrixRowData[$row][$col] = $value;
     }
 
@@ -100,7 +121,7 @@ class Matrix
 
         if ($this->rowCount == 1) {
             // Really happy path :)
-            return $this->matrixRowData[0][0];
+            return $this->getValue(0, 0);
         }
 
         if ($this->rowCount == 2) {
@@ -109,10 +130,10 @@ class Matrix
             // | a b |
             // | c d |
             // The determinant is ad - bc
-            $a = $this->matrixRowData[0][0];
-            $b = $this->matrixRowData[0][1];
-            $c = $this->matrixRowData[1][0];
-            $d = $this->matrixRowData[1][1];
+            $a = $this->getValue(0, 0);
+            $b = $this->getValue(0, 1);
+            $c = $this->getValue(1, 0);
+            $d = $this->getValue(1, 1);
 
             return $a * $d - $b * $c;
         }
@@ -127,7 +148,7 @@ class Matrix
 
         // I expand along the first row
         for ($currentColumn = 0; $currentColumn < $this->columnCount; ++$currentColumn) {
-            $firstRowColValue = $this->matrixRowData[0][$currentColumn];
+            $firstRowColValue = $this->getValue(0, $currentColumn);
             $cofactor = $this->getCofactor(0, $currentColumn);
             $itemToAdd = $firstRowColValue * $cofactor;
             $result += $itemToAdd;
@@ -152,10 +173,10 @@ class Matrix
             // | d -b |
             // | -c a |
 
-            $a = $this->matrixRowData[0][0];
-            $b = $this->matrixRowData[0][1];
-            $c = $this->matrixRowData[1][0];
-            $d = $this->matrixRowData[1][1];
+            $a = $this->getValue(0, 0);
+            $b = $this->getValue(0, 1);
+            $c = $this->getValue(1, 0);
+            $d = $this->getValue(1, 1);
 
             return new SquareMatrix(
                 $d,
@@ -180,7 +201,7 @@ class Matrix
     public function getInverse(): Matrix|SquareMatrix
     {
         if (($this->rowCount == 1) && ($this->columnCount == 1)) {
-            return new SquareMatrix(1.0 / $this->matrixRowData[0][0]);
+            return new SquareMatrix(1.0 / $this->getValue(0, 0));
         }
 
         // Take the simple approach:
@@ -262,6 +283,7 @@ class Matrix
 
     private function getMinorMatrix(int $rowToRemove, int $columnToRemove): Matrix
     {
+        $this->checkRowCol($rowToRemove, $columnToRemove);
         // See http://en.wikipedia.org/wiki/Minor_(linear_algebra)
 
         // I'm going to use a horribly naïve algorithm... because I can :)
@@ -281,7 +303,7 @@ class Matrix
                     continue;
                 }
 
-                $result[$actualRow][$actualCol] = $this->matrixRowData[$currentRow][$currentColumn];
+                $result[$actualRow][$actualCol] = $this->getValue($currentRow, $currentColumn);
 
                 ++$actualCol;
             }
@@ -294,6 +316,7 @@ class Matrix
 
     public function getCofactor(int $rowToRemove, int $columnToRemove): float
     {
+        $this->checkRowCol($rowToRemove, $columnToRemove);
         // See http://en.wikipedia.org/wiki/Cofactor_(linear_algebra) for details
         // REVIEW: should things be reversed since I'm 0 indexed?
         $sum = $rowToRemove + $columnToRemove;
@@ -316,7 +339,7 @@ class Matrix
             for ($currentColumn = 0; $currentColumn < $this->columnCount; ++$currentColumn) {
                 $delta =
                     abs(
-                        $this->matrixRowData[$currentRow][$currentColumn] -
+                        $this->getValue($currentRow, $currentColumn) -
                         $otherMatrix->getValue($currentRow, $currentColumn)
                     );
 

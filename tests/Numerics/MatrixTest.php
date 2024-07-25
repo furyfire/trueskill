@@ -22,6 +22,83 @@ use Exception;
 // phpcs:disable PSR2.Methods.FunctionCallSignature,Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
 class MatrixTest extends TestCase
 {
+    public function testEmptyMatrix(): void
+    {
+        $m1 = new Matrix();
+        $this->assertEquals(0, $m1->getRowCount());
+        $this->assertEquals(0, $m1->getColumnCount());
+
+        $m2 = new Matrix(0, 0);
+        $this->assertEquals(0, $m2->getRowCount());
+        $this->assertEquals(0, $m2->getColumnCount());
+
+        $this->assertEquals(new Matrix(), Matrix::multiply($m1, $m2));
+    }
+
+    public function testIndexing(): void
+    {
+        $m = new Matrix(5, 5);
+        $m->setValue(0, 0, 1);
+        $this->assertEquals(1, $m->getValue(0, 0));
+        $m->setValue(0, 1, 2);
+        $this->assertEquals(2, $m->getValue(0, 1));
+        $m->setValue(1, 0, 3);
+        $this->assertEquals(3, $m->getValue(1, 0));
+        $m->setValue(1, 1, 4);
+        $this->assertEquals(4, $m->getValue(1, 1));
+
+        $m->setValue(3, 3, 11);
+        $this->assertEquals(11, $m->getValue(3, 3));
+        $m->setValue(4, 3, 22);
+        $this->assertEquals(22, $m->getValue(4, 3));
+        $m->setValue(3, 4, 33);
+        $this->assertEquals(33, $m->getValue(3, 4));
+        $m->setValue(4, 4, 44);
+        $this->assertEquals(44, $m->getValue(4, 4));
+
+        try {
+            $m->getValue(-1, -1);
+            $this->fail("No exception");
+        } catch (Exception $exception) {
+            $this->assertInstanceOf(Exception::class, $exception);
+        }
+
+        try {
+            $m->getValue(-1, 0);
+            $this->fail("No exception");
+        } catch (Exception $exception) {
+            $this->assertInstanceOf(Exception::class, $exception);
+        }
+
+        try {
+            $m->getValue(0, -1);
+            $this->fail("No exception");
+        } catch (Exception $exception) {
+            $this->assertInstanceOf(Exception::class, $exception);
+        }
+
+        try {
+            $m->getValue(5, 5);
+            $this->fail("No exception");
+        } catch (Exception $exception) {
+            $this->assertInstanceOf(Exception::class, $exception);
+        }
+
+        try {
+            $m->getValue(5, 4);
+            $this->fail("No exception");
+        } catch (Exception $exception) {
+            $this->assertInstanceOf(Exception::class, $exception);
+        }
+
+        try {
+            $m->getValue(4, 5);
+            $this->fail("No exception");
+        } catch (Exception $exception) {
+            $this->assertInstanceOf(Exception::class, $exception);
+        }
+    }
+
     public function testOneByOneDeterminant(): void
     {
         $a = new SquareMatrix(1);

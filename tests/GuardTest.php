@@ -28,7 +28,9 @@ class GuardTest extends TestCase
 
     public function testargumentIsValidIndexArgumentValid(): void
     {
-        Guard::argumentIsValidIndex(5, 10, "dummy");
+        Guard::argumentIsValidIndex(0, 10, "dummy");
+        Guard::argumentIsValidIndex(1, 10, "dummy");
+        Guard::argumentIsValidIndex(9, 10, "dummy");
         $this->expectNotToPerformAssertions();
     }
 
@@ -48,7 +50,12 @@ class GuardTest extends TestCase
 
     public function testargumentInRangeInclusiveValid(): void
     {
+        Guard::argumentInRangeInclusive(0, 0, 100, "dummy");
+        Guard::argumentInRangeInclusive(1, 0, 100, "dummy");
         Guard::argumentInRangeInclusive(50, 0, 100, "dummy");
+        Guard::argumentInRangeInclusive(99, 0, 100, "dummy");
+        Guard::argumentInRangeInclusive(100, 0, 100, "dummy");
+
         $this->expectNotToPerformAssertions();
     }
 }

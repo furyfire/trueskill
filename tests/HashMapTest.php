@@ -27,6 +27,7 @@ class HashMapTest extends TestCase
         $h->setvalue($o2, 2);
 
         $this->assertEquals([1, 2], $h->getAllValues());
+        $this->assertEquals([$o1, $o2], $h->getAllKeys());
 
         $this->assertEquals(1, $h->getvalue($o1));
         $this->assertEquals(2, $h->getvalue($o2));

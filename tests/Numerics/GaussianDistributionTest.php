@@ -92,6 +92,20 @@ class GaussianDistributionTest extends TestCase
         $m3s4 = new GaussianDistribution(3, 4);
         $lpn2 = GaussianDistribution::logProductNormalization($m1s2, $m3s4);
         $this->assertEqualsWithDelta(-2.5168046699816684, $lpn2, GaussianDistributionTest::ERROR_TOLERANCE);
+
+        $numerator = GaussianDistribution::fromPrecisionMean(1, 0);
+        $denominator = GaussianDistribution::fromPrecisionMean(1, 0);
+        $lrn  = GaussianDistribution::logProductNormalization($numerator, $denominator);
+        $this->assertEquals(0, $lrn);
+
+        $numerator = GaussianDistribution::fromPrecisionMean(1, 1);
+        $denominator = GaussianDistribution::fromPrecisionMean(1, 0);
+        $lrn  = GaussianDistribution::logProductNormalization($numerator, $denominator);
+        $this->assertEquals(0, $lrn);
+        $numerator = GaussianDistribution::fromPrecisionMean(1, 0);
+        $denominator = GaussianDistribution::fromPrecisionMean(1, 1);
+        $lrn  = GaussianDistribution::logProductNormalization($numerator, $denominator);
+        $this->assertEquals(0, $lrn);
     }
 
     public function testLogRatioNormalization(): void
@@ -101,6 +115,20 @@ class GaussianDistributionTest extends TestCase
         $m3s4 = new GaussianDistribution(3, 4);
         $lrn  = GaussianDistribution::logRatioNormalization($m1s2, $m3s4);
         $this->assertEqualsWithDelta(2.6157405972171204, $lrn, GaussianDistributionTest::ERROR_TOLERANCE);
+
+        $numerator = GaussianDistribution::fromPrecisionMean(1, 0);
+        $denominator = GaussianDistribution::fromPrecisionMean(1, 0);
+        $lrn  = GaussianDistribution::logRatioNormalization($numerator, $denominator);
+        $this->assertEquals(0, $lrn);
+
+        $numerator = GaussianDistribution::fromPrecisionMean(1, 1);
+        $denominator = GaussianDistribution::fromPrecisionMean(1, 0);
+        $lrn  = GaussianDistribution::logRatioNormalization($numerator, $denominator);
+        $this->assertEquals(0, $lrn);
+        $numerator = GaussianDistribution::fromPrecisionMean(1, 0);
+        $denominator = GaussianDistribution::fromPrecisionMean(1, 1);
+        $lrn  = GaussianDistribution::logRatioNormalization($numerator, $denominator);
+        $this->assertEquals(0, $lrn);
     }
 
     public function testAbsoluteDifference(): void
@@ -114,5 +142,28 @@ class GaussianDistributionTest extends TestCase
         $m3s4 = new GaussianDistribution(3, 4);
         $absDiff2 = GaussianDistribution::absoluteDifference($m1s2, $m3s4);
         $this->assertEqualsWithDelta(0.4330127018922193, $absDiff2, GaussianDistributionTest::ERROR_TOLERANCE);
+    }
+
+    public function testSubtract(): void
+    {
+        // Verified with Ralf Herbrich's F# implementation
+        $standardNormal = new GaussianDistribution(0, 1);
+        $absDiff        = GaussianDistribution::subtract($standardNormal, $standardNormal);
+        $this->assertEqualsWithDelta(0.0, $absDiff, GaussianDistributionTest::ERROR_TOLERANCE);
+
+        $m1s2 = new GaussianDistribution(1, 2);
+        $m3s4 = new GaussianDistribution(3, 4);
+        $absDiff2 = GaussianDistribution::subtract($m1s2, $m3s4);
+        $this->assertEqualsWithDelta(0.4330127018922193, $absDiff2, GaussianDistributionTest::ERROR_TOLERANCE);
+    }
+
+    public function testfromPrecisionMean(): void
+    {
+        $gd = GaussianDistribution::fromPrecisionMean(0, 0);
+        $this->assertInfinite($gd->getVariance());
+        $this->assertInfinite($gd->getStandardDeviation());
+        $this->assertNan($gd->getMean());
+        $this->assertEquals(0, $gd->getPrecisionMean());
+        $this->assertEquals(0, $gd->getPrecision());
     }
 }
