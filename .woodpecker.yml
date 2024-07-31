@@ -1,3 +1,5 @@
+when:
+  - event: [push, tag]
 steps:
   - name: requirements
     image: composer
@@ -8,7 +10,7 @@ steps:
     commands:
       - php examples/3teams.php
       - php examples/basic.php
-  - name: dependencies
+  - name: test
     image: composer
     commands:
     - composer install

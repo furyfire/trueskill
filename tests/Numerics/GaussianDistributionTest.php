@@ -102,6 +102,7 @@ class GaussianDistributionTest extends TestCase
         $denominator = GaussianDistribution::fromPrecisionMean(1, 0);
         $lrn  = GaussianDistribution::logProductNormalization($numerator, $denominator);
         $this->assertEquals(0, $lrn);
+
         $numerator = GaussianDistribution::fromPrecisionMean(1, 0);
         $denominator = GaussianDistribution::fromPrecisionMean(1, 1);
         $lrn  = GaussianDistribution::logProductNormalization($numerator, $denominator);
@@ -125,6 +126,7 @@ class GaussianDistributionTest extends TestCase
         $denominator = GaussianDistribution::fromPrecisionMean(1, 0);
         $lrn  = GaussianDistribution::logRatioNormalization($numerator, $denominator);
         $this->assertEquals(0, $lrn);
+
         $numerator = GaussianDistribution::fromPrecisionMean(1, 0);
         $denominator = GaussianDistribution::fromPrecisionMean(1, 1);
         $lrn  = GaussianDistribution::logRatioNormalization($numerator, $denominator);
