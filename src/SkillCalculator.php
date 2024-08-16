@@ -52,7 +52,7 @@ abstract class SkillCalculator
 
     public function isSupported(int $option): bool
     {
-        return (bool)($this->supportedOptions & $option) == $option;
+        return ($this->supportedOptions & $option) === $option;
     }
 
     /**
@@ -64,7 +64,7 @@ abstract class SkillCalculator
     }
 
     /**
-     * @param array<\DNW\Skills\Team> $teams
+     * @param Team[] $teams
      *
      * @throws \Exception
      */

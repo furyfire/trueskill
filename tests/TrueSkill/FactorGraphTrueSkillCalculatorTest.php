@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace DNW\Skills\Tests\TrueSkill;
 
+use DNW\Skills\SkillCalculator;
 use DNW\Skills\GameInfo;
 use DNW\Skills\Player;
 use DNW\Skills\Team;
 use DNW\Skills\TrueSkill\FactorGraphTrueSkillCalculator;
-use DNW\Skills\SkillCalculator;
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversNothing;
