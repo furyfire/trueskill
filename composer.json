@@ -28,7 +28,7 @@
     "test":          "phpunit",
     "document":      "phpDocumentor",
     "benchmark":     "phpbench run --report=default --output=build-artifact",
-    "metrics":       "vendor/bin/phpmetrics --config=phpmetrics.json",
+    "metrics":       "vendor/bin/phpmetrics --config=phpmetrics.yml",
     "lint": [
         "phplint",
         "phpcs",

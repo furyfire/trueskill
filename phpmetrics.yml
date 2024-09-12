@@ -1,0 +1,18 @@
+---
+composer: true
+includes:
+    - src
+excludes:
+    - benchmark
+    - tests
+extensions:
+    - php
+report:
+  html: "output/metrics/"
+  json: "output/metrics/report.json"
+  violations: "/tmp/violations.xml"
+plugins:
+  git:
+    binary: git
+  junit:
+    file: "output/test.xml"
