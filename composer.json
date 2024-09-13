@@ -32,6 +32,7 @@
     "lint": [
         "phplint",
         "phpcs",
+        "phpcbf  src/ tests/ benchmark/ examples/",
         "phpmd src/,tests/,benchmark/,examples/ text phpmd.ruleset.xml"
     ],
     "analyze": [

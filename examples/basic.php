@@ -19,7 +19,7 @@ $team1 = new Team($p1, $gameInfo->getDefaultRating());
 $team2 = new Team($p2, $gameInfo->getDefaultRating());
 
 
-for($i = 0; $i < 5; ++$i) {
+for ($i = 0; $i < 5; ++$i) {
     echo "Iteration: " . $i . PHP_EOL;
     $teams = [$team1, $team2];
 
@@ -30,9 +30,6 @@ for($i = 0; $i < 5; ++$i) {
     $team1 = new Team($p1, $newRatings->getRating($p1));
     $team2 = new Team($p2, $newRatings->getRating($p2));
 
-    echo "P1: ". $newRatings->getRating($p1)->getConservativeRating() . PHP_EOL;
-    echo "P2: ". $newRatings->getRating($p2)->getConservativeRating() . PHP_EOL;
+    echo "P1: " . $newRatings->getRating($p1)->getConservativeRating() . PHP_EOL;
+    echo "P2: " . $newRatings->getRating($p2)->getConservativeRating() . PHP_EOL;
 }
-
-
-
