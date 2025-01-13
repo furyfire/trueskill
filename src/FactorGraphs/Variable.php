@@ -10,7 +10,7 @@ class Variable
 {
     private mixed $value;
 
-    public function __construct(private GaussianDistribution $prior)
+    public function __construct(private readonly GaussianDistribution $prior)
     {
         $this->resetToPrior();
     }
