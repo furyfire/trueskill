@@ -47,6 +47,7 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate
     /**
      * Indicates the percent of the time the player should be weighted where 0.0 indicates the player didn't play and 1.0 indicates the player played 100% of the time.
      */
+    #[\Override]
     public function getPartialPlayPercentage(): float
     {
         return $this->PartialPlayPct;
@@ -55,6 +56,7 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate
     /**
      * Indicated how much of a skill update a player should receive where 0.0 represents no update and 1.0 represents 100% of the update.
      */
+    #[\Override]
     public function getPartialUpdatePercentage(): float
     {
         return $this->PartialUpdatePct;

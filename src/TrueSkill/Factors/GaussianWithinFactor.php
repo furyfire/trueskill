@@ -23,6 +23,7 @@ class GaussianWithinFactor extends GaussianFactor
         $this->createVariableToMessageBinding($variable);
     }
 
+    #[\Override]
     public function getLogNormalization(): float
     {
         /**
@@ -46,6 +47,7 @@ class GaussianWithinFactor extends GaussianFactor
         return -GaussianDistribution::logProductNormalization($messageFromVariable, $message) + log($z);
     }
 
+    #[\Override]
     protected function updateMessageVariable(Message $message, Variable $variable): float
     {
         $oldMarginal = clone $variable->getValue();

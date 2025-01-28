@@ -10,6 +10,7 @@ class ScheduleStep extends Schedule
     {
     }
 
+    #[\Override]
     public function visit(int $depth = -1, int $maxDepth = 0): float
     {
         return $this->factor->updateMessageIndex($this->index);

@@ -23,6 +23,7 @@ class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
         $this->epsilon = DrawMargin::getDrawMarginFromDrawProbability($gameInfo->getDrawProbability(), $gameInfo->getBeta());
     }
 
+    #[\Override]
     public function buildLayer(): void
     {
         $inputVarGroups = $this->getInputVariablesGroups();

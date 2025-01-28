@@ -29,6 +29,7 @@ class GaussianPriorFactor extends GaussianFactor
         $this->createVariableToMessageBindingWithMessage($variable, $newMessage);
     }
 
+    #[\Override]
     protected function updateMessageVariable(Message $message, Variable $variable): float
     {
         $oldMarginal = clone $variable->getValue();

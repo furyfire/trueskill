@@ -10,6 +10,7 @@ class ScheduleLoop extends Schedule
     {
     }
 
+    #[\Override]
     public function visit(int $depth = -1, int $maxDepth = 0): float
     {
         $delta = $this->scheduleToLoop->visit($depth + 1, $maxDepth);

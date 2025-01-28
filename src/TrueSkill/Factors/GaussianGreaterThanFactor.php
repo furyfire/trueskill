@@ -22,6 +22,7 @@ class GaussianGreaterThanFactor extends GaussianFactor
         $this->createVariableToMessageBinding($variable);
     }
 
+    #[\Override]
     public function getLogNormalization(): float
     {
         $vars = $this->getVariables();
@@ -42,6 +43,7 @@ class GaussianGreaterThanFactor extends GaussianFactor
         );
     }
 
+    #[\Override]
     protected function updateMessageVariable(Message $message, Variable $variable): float
     {
         $oldMarginal = clone $variable->getValue();

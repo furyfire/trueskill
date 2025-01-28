@@ -13,6 +13,7 @@ class ScheduleSequence extends Schedule
     {
     }
 
+    #[\Override]
     public function visit(int $depth = -1, int $maxDepth = 0): float
     {
         $maxDelta = 0;

@@ -27,6 +27,7 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
         parent::__construct($parentGraph);
     }
 
+    #[\Override]
     public function buildLayer(): void
     {
         $teams = $this->teams;
@@ -49,6 +50,7 @@ class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
         }
     }
 
+    #[\Override]
     public function createPriorSchedule(): ?ScheduleSequence
     {
         $localFactors = $this->getLocalFactors();

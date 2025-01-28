@@ -22,6 +22,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         parent::__construct($parentGraph);
     }
 
+    #[\Override]
     public function getLocalFactors(): array
     {
         return array_merge(
@@ -30,6 +31,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         );
     }
 
+    #[\Override]
     public function buildLayer(): void
     {
         $inputVariablesGroups = $this->getInputVariablesGroups();
@@ -41,6 +43,7 @@ class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
         $this->teamDifferencesComparisonLayer->buildLayer();
     }
 
+    #[\Override]
     public function createPriorSchedule(): ?ScheduleSequence
     {
         switch (count($this->getInputVariablesGroups())) {

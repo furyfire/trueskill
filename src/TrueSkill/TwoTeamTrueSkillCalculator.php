@@ -31,6 +31,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function calculateNewRatings(GameInfo $gameInfo, array $teams, array $teamRanks): RatingContainer
     {
         $this->validateTeamCountAndPlayersCountPerTeam($teams);
@@ -146,6 +147,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
     /**
      * {@inheritdoc}
      */
+    #[\Override]
     public function calculateMatchQuality(GameInfo $gameInfo, array $teams): float
     {
         $this->validateTeamCountAndPlayersCountPerTeam($teams);

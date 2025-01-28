@@ -127,6 +127,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         }
     }
 
+    #[\Override]
     public function getLogNormalization(): float
     {
         $vars = $this->getVariables();
@@ -197,6 +198,7 @@ class GaussianWeightedSumFactor extends GaussianFactor
         return $finalDiff;
     }
 
+    #[\Override]
     public function updateMessageIndex(int $messageIndex): float
     {
         $allMessages = $this->getMessages();

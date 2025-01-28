@@ -28,6 +28,7 @@ class GaussianLikelihoodFactor extends GaussianFactor
         $this->createVariableToMessageBinding($variable2);
     }
 
+    #[\Override]
     public function getLogNormalization(): float
     {
         /**
@@ -73,6 +74,7 @@ class GaussianLikelihoodFactor extends GaussianFactor
         return GaussianDistribution::subtract($newMarginal, $marginal1);
     }
 
+    #[\Override]
     public function updateMessageIndex(int $messageIndex): float
     {
         $messages = $this->getMessages();

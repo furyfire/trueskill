@@ -13,6 +13,7 @@ use DNW\Skills\FactorGraphs\ScheduleSequence;
 
 class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 {
+    #[\Override]
     public function buildLayer(): void
     {
         $inputVarGroups = $this->getInputVariablesGroups();
@@ -51,6 +52,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
         return $this->getParentFactorGraph()->getVariableFactory()->createKeyedVariable($key);
     }
 
+    #[\Override]
     public function createPriorSchedule(): ?ScheduleSequence
     {
         $localFactors = $this->getLocalFactors();
@@ -65,6 +67,7 @@ class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
         );
     }
 
+    #[\Override]
     public function createPosteriorSchedule(): ?ScheduleSequence
     {
         $localFactors = $this->getLocalFactors();

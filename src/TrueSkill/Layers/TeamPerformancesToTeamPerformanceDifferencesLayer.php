@@ -9,6 +9,7 @@ use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
 
 class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorGraphLayer
 {
+    #[\Override]
     public function buildLayer(): void
     {
         $inputVariablesGroups = $this->getInputVariablesGroups();
