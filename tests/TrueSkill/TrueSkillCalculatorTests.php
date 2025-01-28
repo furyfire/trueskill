@@ -13,9 +13,9 @@ use PHPUnit\Framework\TestCase;
 
 class TrueSkillCalculatorTests
 {
-    private const ERROR_TOLERANCE_TRUESKILL = 0.085;
+    private const float ERROR_TOLERANCE_TRUESKILL = 0.085;
 
-    private const ERROR_TOLERANCE_MATCH_QUALITY = 0.0005;
+    private const float ERROR_TOLERANCE_MATCH_QUALITY = 0.0005;
 
     // These are the roll-up ones
 

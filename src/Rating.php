@@ -11,7 +11,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
  */
 class Rating
 {
-    private const CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER = 3;
+    private const float CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER = 3;
 
     /**
      * Constructs a rating.

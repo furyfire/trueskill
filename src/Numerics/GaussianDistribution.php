@@ -12,9 +12,9 @@ namespace DNW\Skills\Numerics;
  */
 class GaussianDistribution
 {
-    private const DEFAULT_STANDARD_DEVIATION = 1.0;
+    private const float DEFAULT_STANDARD_DEVIATION = 1.0;
 
-    private const DEFAULT_MEAN = 0.0;
+    private const float DEFAULT_MEAN = 0.0;
 
     /**
      * Square Root 2π.
@@ -23,7 +23,7 @@ class GaussianDistribution
      *
      * @link https://www.wolframalpha.com/input?i=sqrt%282*pi%29 Source of value
      */
-    private const M_SQRT_2_PI = 2.5066282746310005024157652848110452530069867406099383166299235763;
+    private const float M_SQRT_2_PI = 2.5066282746310005024157652848110452530069867406099383166299235763;
 
     /**
      * Log of Square Root 2π.
@@ -32,7 +32,7 @@ class GaussianDistribution
      *
      * @link https://www.wolframalpha.com/input?i=log%28sqrt%282*pi%29%29 Source of value
      */
-    private const M_LOG_SQRT_2_PI = 0.9189385332046727417803297364056176398613974736377834128171515404;
+    private const float M_LOG_SQRT_2_PI = 0.9189385332046727417803297364056176398613974736377834128171515404;
 
     // precision and precisionMean are used because they make multiplying and dividing simpler
     // (see the accompanying math paper for more details)

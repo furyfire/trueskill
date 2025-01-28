@@ -9,9 +9,9 @@ namespace DNW\Skills;
  */
 class Player implements ISupportPartialPlay, ISupportPartialUpdate
 {
-    private const DEFAULT_PARTIAL_PLAY_PERCENTAGE = 1.0; // = 100% play time
+    private const float DEFAULT_PARTIAL_PLAY_PERCENTAGE = 1.0; // = 100% play time
 
-    private const DEFAULT_PARTIAL_UPDATE_PERCENTAGE = 1.0;
+    private const float DEFAULT_PARTIAL_UPDATE_PERCENTAGE = 1.0;
 
     private readonly float $PartialPlayPct;
 

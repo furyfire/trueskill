@@ -16,7 +16,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(GaussianDistribution::class)]
 class DrawMarginTest extends TestCase
 {
-    private const ERROR_TOLERANCE = 0.000001;
+    private const float ERROR_TOLERANCE = 0.000001;
 
     public function testGetDrawMarginFromDrawProbability(): void
     {

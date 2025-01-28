@@ -14,7 +14,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(BasicMath::class)]
 class GaussianDistributionTest extends TestCase
 {
-    private const ERROR_TOLERANCE = 0.000001;
+    private const float ERROR_TOLERANCE = 0.000001;
 
     public function testGetters(): void
     {
