@@ -11,11 +11,11 @@ use Exception;
  */
 abstract class SkillCalculator
 {
-    public const NONE = 0x00;
+    public const int NONE = 0x00;
 
-    public const PARTIAL_PLAY = 0x01;
+    public const int PARTIAL_PLAY = 0x01;
 
-    public const PARTIAL_UPDATE = 0x02;
+    public const int PARTIAL_UPDATE = 0x02;
 
     protected function __construct(
         private readonly int $supportedOptions,

@@ -8,7 +8,7 @@ use Exception;
 
 class Matrix
 {
-    public const ERROR_TOLERANCE = 0.0000000001;
+    public const float ERROR_TOLERANCE = 0.0000000001;
 
     /**
      * @param array<int,array<int,float>> $matrixRowData
