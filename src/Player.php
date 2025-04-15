@@ -7,15 +7,15 @@ namespace DNW\Skills;
 /**
  * Represents a player who has a Rating.
  */
-class Player implements ISupportPartialPlay, ISupportPartialUpdate
+final readonly class Player implements ISupportPartialPlay, ISupportPartialUpdate
 {
     private const float DEFAULT_PARTIAL_PLAY_PERCENTAGE = 1.0; // = 100% play time
 
     private const float DEFAULT_PARTIAL_UPDATE_PERCENTAGE = 1.0;
 
-    private readonly float $PartialPlayPct;
+    private float $PartialPlayPct;
 
-    private readonly float $PartialUpdatePct;
+    private float $PartialUpdatePct;
 
     /**
      * Constructs a player.
@@ -25,7 +25,7 @@ class Player implements ISupportPartialPlay, ISupportPartialUpdate
      * @param float $partialUpdatePct Indicated how much of a skill update a player should receive where 0 represents no update and 1.0 represents 100% of the update.
      */
     public function __construct(
-        private readonly mixed $Id,
+        private mixed $Id,
         float $partialPlayPct = self::DEFAULT_PARTIAL_PLAY_PERCENTAGE,
         float $partialUpdatePct = self::DEFAULT_PARTIAL_UPDATE_PERCENTAGE
     )

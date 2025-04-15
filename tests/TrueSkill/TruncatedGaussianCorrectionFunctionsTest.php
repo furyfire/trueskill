@@ -14,7 +14,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(TruncatedGaussianCorrectionFunctions::class)]
 #[UsesClass(BasicMath::class)]
 #[UsesClass(GaussianDistribution::class)]
-class TruncatedGaussianCorrectionFunctionsTest extends TestCase
+final class TruncatedGaussianCorrectionFunctionsTest extends TestCase
 {
     public function testvGreaterThan(): void
     {

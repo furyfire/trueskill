@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DNW\Skills;
 
-class Team extends RatingContainer
+final class Team extends RatingContainer
 {
     public function __construct(?Player $player = NULL, ?Rating $rating = NULL)
     {

@@ -18,7 +18,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Player::class)]
 #[UsesClass(Rating::class)]
 #[UsesClass(Guard::class)]
-class RatingContainerTest extends TestCase
+final class RatingContainerTest extends TestCase
 {
     public function testRatingContainer(): void
     {

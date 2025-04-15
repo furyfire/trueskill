@@ -14,7 +14,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(DrawMargin::class)]
 #[UsesClass(BasicMath::class)]
 #[UsesClass(GaussianDistribution::class)]
-class DrawMarginTest extends TestCase
+final class DrawMarginTest extends TestCase
 {
     private const float ERROR_TOLERANCE = 0.000001;
 

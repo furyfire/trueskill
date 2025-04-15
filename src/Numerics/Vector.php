@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DNW\Skills\Numerics;
 
-class Vector extends Matrix
+final class Vector extends Matrix
 {
     /**
      * @param float[] $vectorValues

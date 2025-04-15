@@ -6,7 +6,7 @@ namespace DNW\Skills\FactorGraphs;
 
 use DNW\Skills\Numerics\GaussianDistribution;
 
-class Message
+final class Message
 {
     public function __construct(private GaussianDistribution $value)
     {

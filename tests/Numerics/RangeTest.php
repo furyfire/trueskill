@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use Exception;
 
 #[CoversClass(Range::class)]
-class RangeTest extends TestCase
+final class RangeTest extends TestCase
 {
     public function testConstructInvalidParam(): void
     {

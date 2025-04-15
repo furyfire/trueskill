@@ -11,7 +11,7 @@ use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 use Exception;
 
 // The whole purpose of this is to do a loop on the bottom
-class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
+final class IteratedTeamDifferencesInnerLayer extends TrueSkillFactorGraphLayer
 {
     public function __construct(
         TrueSkillFactorGraph $parentGraph,

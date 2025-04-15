@@ -12,7 +12,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(GameInfo::class)]
 #[UsesClass(Rating::class)]
-class GameInfoTest extends TestCase
+final class GameInfoTest extends TestCase
 {
     public function testMembers(): void
     {

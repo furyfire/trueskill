@@ -13,7 +13,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
  *
  * See the accompanying math paper for more details.
  */
-class GaussianPriorFactor extends GaussianFactor
+final class GaussianPriorFactor extends GaussianFactor
 {
     private readonly GaussianDistribution $newMessage;
 

@@ -17,7 +17,7 @@ use DNW\Skills\FactorGraphs\ScheduleSequence;
 
 // We intentionally have no Posterior schedule since the only purpose here is to
 // start the process.
-class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
+final class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
 {
     /**
      * @param Team[] $teams

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DNW\Skills\FactorGraphs;
 
-class ScheduleSequence extends Schedule
+final class ScheduleSequence extends Schedule
 {
     /**
      * @param Schedule[] $schedules

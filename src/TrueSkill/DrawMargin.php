@@ -18,6 +18,6 @@ final class DrawMargin
         //
         // margin = inversecdf((draw probability + 1)/2) * sqrt(n1+n2) * beta
         // n1 and n2 are the number of players on each team
-        return GaussianDistribution::inverseCumulativeTo(.5 * ($drawProbability + 1), 0, 1) * M_SQRT2 * $beta;
+        return GaussianDistribution::inverseCumulativeTo(0.5 * ($drawProbability + 1.0), 0.0, 1.0) * M_SQRT2 * $beta;
     }
 }

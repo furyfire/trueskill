@@ -14,7 +14,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(PartialPlay::class)]
 #[UsesClass(Player::class)]
 #[UsesClass(Guard::class)]
-class PartialPlayTest extends TestCase
+final class PartialPlayTest extends TestCase
 {
     public function testgetPartialPlayPercentage(): void
     {

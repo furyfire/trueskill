@@ -17,7 +17,7 @@ use PHPUnit\Framework\Attributes\RequiresPhpunit;
 #[UsesClass(PlayersRange::class)]
 #[UsesClass(TeamsRange::class)]
 #[RequiresPhpunit('<12.0')]
-class SkillCalculatorTest extends TestCase
+final class SkillCalculatorTest extends TestCase
 {
     public function testisSupported(): void
     {

@@ -12,7 +12,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(GaussianDistribution::class)]
 #[UsesClass(BasicMath::class)]
-class GaussianDistributionTest extends TestCase
+final class GaussianDistributionTest extends TestCase
 {
     private const float ERROR_TOLERANCE = 0.000001;
 
@@ -24,7 +24,7 @@ class GaussianDistributionTest extends TestCase
         $this->assertEquals(9, $gd->getVariance());
         $this->assertEquals(3, $gd->getStandardDeviation());
         $this->assertEquals(1 / 9, $gd->getPrecision());
-        $this->assertEquals(1 / 9 * 10, $gd->getPrecisionMean());
+        $this->assertEquals(1.0 / 9.0 * 10.0, $gd->getPrecisionMean());
         $this->assertEqualsWithDelta(0.13298076013, $gd->getNormalizationConstant(), GaussianDistributionTest::ERROR_TOLERANCE);
     }
 
@@ -57,7 +57,7 @@ class GaussianDistributionTest extends TestCase
 
         $product2 = GaussianDistribution::multiply($m4s5, $m6s7);
 
-        $expectedMean = (4 * BasicMath::square(7) + 6 * BasicMath::square(5)) / (BasicMath::square(5) + BasicMath::square(7));
+        $expectedMean = (4.0 * BasicMath::square(7) + 6.0 * BasicMath::square(5)) / (BasicMath::square(5) + BasicMath::square(7));
         $this->assertEqualsWithDelta($expectedMean, $product2->getMean(), GaussianDistributionTest::ERROR_TOLERANCE);
 
         $expectedSigma = sqrt(((BasicMath::square(5) * BasicMath::square(7)) / (BasicMath::square(5) + BasicMath::square(7))));
@@ -74,7 +74,7 @@ class GaussianDistributionTest extends TestCase
         $this->assertEqualsWithDelta(2.0, $productDividedByStandardNormal->getMean(), GaussianDistributionTest::ERROR_TOLERANCE);
         $this->assertEqualsWithDelta(3.0, $productDividedByStandardNormal->getStandardDeviation(), GaussianDistributionTest::ERROR_TOLERANCE);
 
-        $product2              = new GaussianDistribution((4 * BasicMath::square(7) + 6 * BasicMath::square(5)) / (BasicMath::square(5) + BasicMath::square(7)), sqrt(((BasicMath::square(5) * BasicMath::square(7)) / (BasicMath::square(5) + BasicMath::square(7)))));
+        $product2              = new GaussianDistribution((4.0 * BasicMath::square(7) + 6.0 * BasicMath::square(5)) / (BasicMath::square(5) + BasicMath::square(7)), sqrt(((BasicMath::square(5) * BasicMath::square(7)) / (BasicMath::square(5) + BasicMath::square(7)))));
         $m4s5                  = new GaussianDistribution(4, 5);
         $product2DividedByM4S5 = GaussianDistribution::divide($product2, $m4s5);
         $this->assertEqualsWithDelta(6.0, $product2DividedByM4S5->getMean(), GaussianDistributionTest::ERROR_TOLERANCE);

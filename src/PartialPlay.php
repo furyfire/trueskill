@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DNW\Skills;
 
-class PartialPlay
+final class PartialPlay
 {
     public static function getPartialPlayPercentage(Player $player): float
     {

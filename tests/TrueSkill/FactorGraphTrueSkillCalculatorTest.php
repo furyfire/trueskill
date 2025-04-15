@@ -19,7 +19,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(\DNW\Skills\PlayersRange::class)]
 #[UsesClass(\DNW\Skills\SkillCalculator::class)]
 #[UsesClass(\DNW\Skills\TeamsRange::class)]
-class FactorGraphTrueSkillCalculatorTest extends TestCase
+final class FactorGraphTrueSkillCalculatorTest extends TestCase
 {
     #[CoversNothing]
     public function testMicrosoftResearchExample(): void

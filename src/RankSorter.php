@@ -7,7 +7,7 @@ namespace DNW\Skills;
 /**
  * Helper class to sort ranks in non-decreasing order.
  */
-class RankSorter
+final class RankSorter
 {
     /**
      * Performs an in-place sort of the items in according to the ranks in non-decreasing order.

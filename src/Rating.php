@@ -9,7 +9,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
 /**
  * Container for a player's rating.
  */
-class Rating
+final readonly class Rating
 {
     private const float CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER = 3;
 
@@ -18,9 +18,9 @@ class Rating
      *
      * @param float     $mean                                    The statistical mean value of the rating (also known as mu).
      * @param float     $standardDeviation                       The standard deviation of the rating (also known as s).
-     * @param float|int $conservativeStandardDeviationMultiplier optional The number of standardDeviations to subtract from the mean to achieve a conservative rating.
+     * @param float     $conservativeStandardDeviationMultiplier optional The number of standardDeviations to subtract from the mean to achieve a conservative rating.
      */
-    public function __construct(private readonly float $mean, private readonly float $standardDeviation, private readonly float|int $conservativeStandardDeviationMultiplier = self::CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER)
+    public function __construct(private float $mean, private float $standardDeviation, private float $conservativeStandardDeviationMultiplier = self::CONSERVATIVE_STANDARD_DEVIATION_MULTIPLIER)
     {
     }
 

@@ -23,7 +23,7 @@ use DNW\Skills\TrueSkill\Layers\PlayerSkillsToPerformancesLayer;
 use DNW\Skills\TrueSkill\Layers\TeamDifferencesComparisonLayer;
 use DNW\Skills\TrueSkill\Layers\TeamPerformancesToTeamPerformanceDifferencesLayer;
 
-class TrueSkillFactorGraph extends FactorGraph
+final class TrueSkillFactorGraph extends FactorGraph
 {
     /**
      * @var FactorGraphLayer[] $layers

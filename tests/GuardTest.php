@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(Guard::class)]
-class GuardTest extends TestCase
+final class GuardTest extends TestCase
 {
     public function testargumentIsValidIndexArgumentAbove(): void
     {

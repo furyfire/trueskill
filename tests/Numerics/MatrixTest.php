@@ -20,7 +20,7 @@ use Exception;
 #[CoversClass(DiagonalMatrix::class)]
 #[CoversClass(Vector::class)]
 // phpcs:disable PSR2.Methods.FunctionCallSignature,Generic.Functions.FunctionCallArgumentSpacing.TooMuchSpaceAfterComma
-class MatrixTest extends TestCase
+final class MatrixTest extends TestCase
 {
     public function testEmptyMatrix(): void
     {
@@ -295,7 +295,7 @@ class MatrixTest extends TestCase
                               1, 0, 6);
 
         $cInverse = $c->getInverse();
-        $d = Matrix::scalarMultiply((1.0 / 22), new SquareMatrix(24, -12, -2,
+        $d = Matrix::scalarMultiply((1.0 / 22.0), new SquareMatrix(24, -12, -2,
                                                                   5,   3, -5,
                                                                  -4, 2, 4));
 

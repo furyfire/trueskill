@@ -22,7 +22,7 @@ use DNW\Skills\Rating;
 /**
  * Calculates TrueSkill using a full factor graph.
  */
-class FactorGraphTrueSkillCalculator extends SkillCalculator
+final class FactorGraphTrueSkillCalculator extends SkillCalculator
 {
     public function __construct()
     {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DNW\Skills\Numerics;
 
-class SquareMatrix extends Matrix
+final class SquareMatrix extends Matrix
 {
     public function __construct(float|int ...$allValues)
     {

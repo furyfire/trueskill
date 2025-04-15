@@ -14,7 +14,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[CoversClass(Rating::class)]
 #[UsesClass(BasicMath::class)]
 #[UsesClass(GaussianDistribution::class)]
-class RatingTest extends TestCase
+final class RatingTest extends TestCase
 {
     public function testGetRatingParameters(): void
     {

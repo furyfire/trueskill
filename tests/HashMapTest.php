@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\CoversClass;
 use stdClass;
 
 #[CoversClass(HashMap::class)]
-class HashMapTest extends TestCase
+final class HashMapTest extends TestCase
 {
     public function testHashmap(): void
     {

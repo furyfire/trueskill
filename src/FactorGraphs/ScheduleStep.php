@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DNW\Skills\FactorGraphs;
 
-class ScheduleStep extends Schedule
+final class ScheduleStep extends Schedule
 {
     public function __construct(private readonly Factor $factor, private readonly int $index)
     {

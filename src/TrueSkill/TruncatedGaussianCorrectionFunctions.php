@@ -6,7 +6,7 @@ namespace DNW\Skills\TrueSkill;
 
 use DNW\Skills\Numerics\GaussianDistribution;
 
-class TruncatedGaussianCorrectionFunctions
+final class TruncatedGaussianCorrectionFunctions
 {
     // These functions from the bottom of page 4 of the TrueSkill paper.
 

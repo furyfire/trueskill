@@ -7,7 +7,7 @@ namespace DNW\Skills;
 /**
  * Basic hashmap that supports object keys.
  */
-class HashMap
+final class HashMap
 {
     /**
      * @var mixed[] $hashToValue

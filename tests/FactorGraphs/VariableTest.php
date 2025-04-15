@@ -12,7 +12,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(Variable::class)]
 #[UsesClass(GaussianDistribution::class)]
-class VariableTest extends TestCase
+final class VariableTest extends TestCase
 {
     public function testGetterSetter(): void
     {

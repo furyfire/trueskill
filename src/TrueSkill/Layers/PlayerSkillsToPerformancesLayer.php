@@ -11,7 +11,7 @@ use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\TrueSkill\Factors\GaussianLikelihoodFactor;
 use DNW\Skills\FactorGraphs\ScheduleSequence;
 
-class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
+final class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
 {
     #[\Override]
     public function buildLayer(): void

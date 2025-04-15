@@ -9,7 +9,7 @@ use DNW\Skills\TrueSkill\Factors\GaussianGreaterThanFactor;
 use DNW\Skills\TrueSkill\Factors\GaussianWithinFactor;
 use DNW\Skills\TrueSkill\TrueSkillFactorGraph;
 
-class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
+final class TeamDifferencesComparisonLayer extends TrueSkillFactorGraphLayer
 {
     private readonly float $epsilon;
 

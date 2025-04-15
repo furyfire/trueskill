@@ -7,7 +7,7 @@ namespace DNW\Skills\TrueSkill\Layers;
 use DNW\Skills\FactorGraphs\Variable;
 use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
 
-class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorGraphLayer
+final class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillFactorGraphLayer
 {
     #[\Override]
     public function buildLayer(): void

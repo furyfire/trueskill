@@ -14,7 +14,7 @@ use DNW\Skills\TrueSkill\TruncatedGaussianCorrectionFunctions;
  *
  * See the accompanying math paper for more details.
  */
-class GaussianGreaterThanFactor extends GaussianFactor
+final class GaussianGreaterThanFactor extends GaussianFactor
 {
     public function __construct(private readonly float $epsilon, Variable $variable)
     {

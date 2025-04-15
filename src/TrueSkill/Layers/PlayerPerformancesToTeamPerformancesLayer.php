@@ -11,7 +11,7 @@ use DNW\Skills\TrueSkill\Factors\GaussianWeightedSumFactor;
 use DNW\Skills\FactorGraphs\Variable;
 use DNW\Skills\FactorGraphs\KeyedVariable;
 
-class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLayer
+final class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLayer
 {
     #[\Override]
     public function buildLayer(): void
@@ -51,7 +51,7 @@ class PlayerPerformancesToTeamPerformancesLayer extends TrueSkillFactorGraphLaye
     /**
      * @param KeyedVariable[] $teamMembers
      */
-    protected function createPlayerToTeamSumFactor(array $teamMembers, Variable $sumVariable): GaussianWeightedSumFactor
+    private function createPlayerToTeamSumFactor(array $teamMembers, Variable $sumVariable): GaussianWeightedSumFactor
     {
         $weights = array_map(
             static function ($v): float {

@@ -21,7 +21,7 @@ use DNW\Skills\TeamsRange;
  * When you only have two players, a lot of the math simplifies. The main purpose of this class
  * is to show the bare minimum of what a TrueSkill implementation should have.
  */
-class TwoPlayerTrueSkillCalculator extends SkillCalculator
+final class TwoPlayerTrueSkillCalculator extends SkillCalculator
 {
     public function __construct()
     {
@@ -95,7 +95,7 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
             +
             BasicMath::square($opponentRating->getStandardDeviation())
             +
-            2 * BasicMath::square($gameInfo->getBeta())
+            2.0 * BasicMath::square($gameInfo->getBeta())
         );
 
         $winningMean = $selfRating->getMean();
@@ -131,7 +131,7 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
         $stdDevMultiplier = $varianceWithDynamics / BasicMath::square($c);
 
         $newMean = $selfRating->getMean() + ($rankMultiplier * $meanMultiplier * $v);
-        $newStdDev = sqrt($varianceWithDynamics * (1 - $w * $stdDevMultiplier));
+        $newStdDev = sqrt($varianceWithDynamics * (1.0 - $w * $stdDevMultiplier));
 
         return new Rating($newMean, $newStdDev);
     }
@@ -160,16 +160,16 @@ class TwoPlayerTrueSkillCalculator extends SkillCalculator
 
         // This is the square root part of the equation:
         $sqrtPart = sqrt(
-            (2 * $betaSquared)
+            (2.0 * $betaSquared)
             /
-            (2 * $betaSquared + $player1SigmaSquared + $player2SigmaSquared)
+            (2.0 * $betaSquared + $player1SigmaSquared + $player2SigmaSquared)
         );
 
         // This is the exponent part of the equation:
         $expPart = exp(
-            (-1 * BasicMath::square($player1Rating->getMean() - $player2Rating->getMean()))
+            (-1.0 * BasicMath::square($player1Rating->getMean() - $player2Rating->getMean()))
             /
-            (2 * (2 * $betaSquared + $player1SigmaSquared + $player2SigmaSquared))
+            (2.0 * (2.0 * $betaSquared + $player1SigmaSquared + $player2SigmaSquared))
         );
 
         return $sqrtPart * $expPart;

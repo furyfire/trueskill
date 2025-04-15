@@ -16,7 +16,7 @@ use DNW\Skills\Numerics\GaussianDistribution;
  *
  * See the accompanying math paper for more details.
  */
-class GaussianWeightedSumFactor extends GaussianFactor
+final class GaussianWeightedSumFactor extends GaussianFactor
 {
     /**
      * @var array<int[]> $varIndexOrdersForWeights

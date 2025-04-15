@@ -14,7 +14,7 @@ use DNW\Skills\Team;
 /**
  * Basic Benchmarks.
  */
-class BasicBench
+final class BasicBench
 {
     /**
      * To benchmark performance when using TwoPlayerTrueSkillCalculator

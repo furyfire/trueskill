@@ -10,7 +10,7 @@ namespace DNW\Skills\Numerics;
  * @author    Jeff Moser <jeff@moserware.com>
  * @copyright 2010 Jeff Moser
  */
-class BasicMath
+final class BasicMath
 {
     /**
      * Squares the input (input^2 = input * input)

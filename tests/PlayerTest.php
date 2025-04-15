@@ -12,7 +12,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 
 #[CoversClass(Player::class)]
 #[UsesClass(Guard::class)]
-class PlayerTest extends TestCase
+final class PlayerTest extends TestCase
 {
     public function testPlayerObjectGetterSetter(): void
     {

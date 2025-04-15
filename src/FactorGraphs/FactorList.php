@@ -7,7 +7,7 @@ namespace DNW\Skills\FactorGraphs;
 /**
  * Helper class for computing the factor graph's normalization constant.
  */
-class FactorList
+final class FactorList
 {
     /**
      * @var Factor[] $list
@@ -31,11 +31,11 @@ class FactorList
             $numberOfMessages = $factor->getNumberOfMessages();
 
             for ($j = 0; $j < $numberOfMessages; ++$j) {
-                $sumLogZ += $factor->sendMessageIndex($j);
+                $sumLogZ += (float)$factor->sendMessageIndex($j);
             }
         }
 
-        $sumLogS = 0;
+        $sumLogS = 0.0;
 
         foreach ($list as &$currentFactor) {
             $sumLogS += $currentFactor->getLogNormalization();

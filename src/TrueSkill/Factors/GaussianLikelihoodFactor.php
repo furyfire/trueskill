@@ -15,7 +15,7 @@ use Exception;
  *
  * See the accompanying math paper for more details.
  */
-class GaussianLikelihoodFactor extends GaussianFactor
+final class GaussianLikelihoodFactor extends GaussianFactor
 {
     private readonly float $precision;
 

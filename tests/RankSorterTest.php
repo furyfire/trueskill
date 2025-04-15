@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\CoversClass;
 
 #[CoversClass(RankSorter::class)]
-class RankSorterTest extends TestCase
+final class RankSorterTest extends TestCase
 {
     public function testSort(): void
     {

@@ -7,7 +7,7 @@ namespace DNW\Skills;
 /**
  * Parameters about the game for calculating the TrueSkill.
  */
-class GameInfo
+final readonly class GameInfo
 {
     /**
      * Default initial mean / 6
@@ -26,11 +26,11 @@ class GameInfo
     private const float DEFAULT_INITIAL_STANDARD_DEVIATION = 8.3333333333333333333333333333333;
 
     public function __construct(
-        private readonly float $initialMean = self::DEFAULT_INITIAL_MEAN,
-        private readonly float $initialStdDev = self::DEFAULT_INITIAL_STANDARD_DEVIATION,
-        private readonly float $beta = self::DEFAULT_BETA,
-        private readonly float $dynamicsFactor = self::DEFAULT_DYNAMICS_FACTOR,
-        private readonly float $drawProbability = self::DEFAULT_DRAW_PROBABILITY
+        private float $initialMean = self::DEFAULT_INITIAL_MEAN,
+        private float $initialStdDev = self::DEFAULT_INITIAL_STANDARD_DEVIATION,
+        private float $beta = self::DEFAULT_BETA,
+        private float $dynamicsFactor = self::DEFAULT_DYNAMICS_FACTOR,
+        private float $drawProbability = self::DEFAULT_DRAW_PROBABILITY
     )
     {
     }

@@ -10,7 +10,7 @@ namespace DNW\Skills\Numerics;
  * @author    Jeff Moser <jeff@moserware.com>
  * @copyright 2010 Jeff Moser
  */
-class GaussianDistribution
+final class GaussianDistribution
 {
     private const float DEFAULT_STANDARD_DEVIATION = 1.0;
 
@@ -171,7 +171,7 @@ class GaussianDistribution
         $meanDifference = $numerator->mean - $denominator->mean;
 
         return log($denominator->variance) + self::M_LOG_SQRT_2_PI - log($varianceDifference) / 2.0 +
-        BasicMath::square($meanDifference) / (2 * $varianceDifference);
+        BasicMath::square($meanDifference) / (2.0 * $varianceDifference);
     }
 
     public static function at(float $var, float $mean = 0.0, float $standardDeviation = 1.0): float
@@ -182,7 +182,7 @@ class GaussianDistribution
         //        stdDev * sqrt(2*pi)
 
         $multiplier = 1.0 / ($standardDeviation * self::M_SQRT_2_PI);
-        $expPart = exp((-1.0 * BasicMath::square($var - $mean)) / (2 * BasicMath::square($standardDeviation)));
+        $expPart = exp((-1.0 * BasicMath::square($var - $mean)) / (2.0 * BasicMath::square($standardDeviation)));
 
         return $multiplier * $expPart;
     }
@@ -200,7 +200,7 @@ class GaussianDistribution
         $z = abs($var);
 
         $t = 2.0 / (2.0 + $z);
-        $ty = 4 * $t - 2;
+        $ty = 4.0 * $t - 2.0;
 
         $coefficients = [
             -1.3026537197817094,
@@ -259,8 +259,8 @@ class GaussianDistribution
             return 100;
         }
 
-        $pp = ($p < 1.0) ? $p : 2 - $p;
-        $t = sqrt(-2 * log($pp / 2.0)); // Initial guess
+        $pp = ($p < 1.0) ? $p : 2.0 - $p;
+        $t = sqrt(-2.0 * log($pp / 2.0)); // Initial guess
         $x = -M_SQRT1_2 * ((2.30753 + $t * 0.27061) / (1.0 + $t * (0.99229 + $t * 0.04481)) - $t);
 
         for ($j = 0; $j < 2; ++$j) {
@@ -274,6 +274,6 @@ class GaussianDistribution
     public static function inverseCumulativeTo(float $var, float $mean = 0.0, float $standardDeviation = 1.0): float
     {
         // From numerical recipes, page 320
-        return $mean - M_SQRT2 * $standardDeviation * GaussianDistribution::inverseErrorFunctionCumulativeTo(2 * $var);
+        return $mean - M_SQRT2 * $standardDeviation * GaussianDistribution::inverseErrorFunctionCumulativeTo(2.0 * $var);
     }
 }

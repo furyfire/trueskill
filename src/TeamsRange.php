@@ -6,6 +6,6 @@ namespace DNW\Skills;
 
 use DNW\Skills\Numerics\Range;
 
-class TeamsRange extends Range
+final class TeamsRange extends Range
 {
 }

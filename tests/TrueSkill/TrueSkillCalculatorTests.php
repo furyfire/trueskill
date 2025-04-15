@@ -11,7 +11,7 @@ use DNW\Skills\SkillCalculator;
 use DNW\Skills\Team;
 use PHPUnit\Framework\TestCase;
 
-class TrueSkillCalculatorTests
+final class TrueSkillCalculatorTests
 {
     private const float ERROR_TOLERANCE_TRUESKILL = 0.085;
 

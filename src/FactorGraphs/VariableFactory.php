@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace DNW\Skills\FactorGraphs;
 
-class VariableFactory
+final readonly class VariableFactory
 {
-    public function __construct(private readonly \Closure $varPriorInitializer)
+    public function __construct(private \Closure $varPriorInitializer)
     {
     }
 

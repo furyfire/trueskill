@@ -21,7 +21,7 @@ use DNW\Skills\TeamsRange;
  *
  * When you only have two teams, the math is still simple: no factor graphs are used yet.
  */
-class TwoTeamTrueSkillCalculator extends SkillCalculator
+final class TwoTeamTrueSkillCalculator extends SkillCalculator
 {
     public function __construct()
     {
@@ -122,7 +122,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
             // assume draw
             $v = TruncatedGaussianCorrectionFunctions::vWithinMarginScaled($meanDelta, $drawMargin, $c);
             $w = TruncatedGaussianCorrectionFunctions::wWithinMarginScaled($meanDelta, $drawMargin, $c);
-            $rankMultiplier = 1;
+            $rankMultiplier = 1.0;
         }
 
         $selfTeamAllPlayers = $selfTeam->getAllPlayers();
@@ -137,7 +137,7 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
             $newMean = $previousPlayerRating->getMean() + $playerMeanDelta;
 
             $newStdDev = sqrt(
-                (BasicMath::square($previousPlayerRating->getStandardDeviation()) + $tauSquared) * (1 - $w * $stdDevMultiplier)
+                (BasicMath::square($previousPlayerRating->getStandardDeviation()) + $tauSquared) * (1.0 - $w * $stdDevMultiplier)
             );
 
             $newPlayerRatings->setRating($localSelfTeamCurPlayer, new Rating($newMean, $newStdDev));
@@ -184,9 +184,9 @@ class TwoTeamTrueSkillCalculator extends SkillCalculator
         );
 
         $expPart = exp(
-            (-1 * BasicMath::square($team1MeanSum - $team2MeanSum))
+            (-1.0 * BasicMath::square($team1MeanSum - $team2MeanSum))
             /
-            (2 * ($totalPlayers * $betaSquared + $team1StdDevSquared + $team2StdDevSquared))
+            (2.0 * ($totalPlayers * $betaSquared + $team1StdDevSquared + $team2StdDevSquared))
         );
 
         return $expPart * $sqrtPart;

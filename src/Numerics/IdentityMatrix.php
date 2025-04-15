@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace DNW\Skills\Numerics;
 
-class IdentityMatrix extends DiagonalMatrix
+final class IdentityMatrix extends DiagonalMatrix
 {
     public function __construct(int $rows)
     {

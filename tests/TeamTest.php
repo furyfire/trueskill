@@ -20,7 +20,7 @@ use PHPUnit\Framework\Attributes\UsesClass;
 #[UsesClass(Player::class)]
 #[UsesClass(Rating::class)]
 #[UsesClass(Guard::class)]
-class TeamTest extends TestCase
+final class TeamTest extends TestCase
 {
     public function testTeam(): void
     {

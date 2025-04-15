@@ -11,7 +11,7 @@ use Exception;
  *
  * @see http://www.moserware.com/2008/01/borrowing-ideas-from-3-interesting.html
  */
-class Guard
+final class Guard
 {
     public static function argumentIsValidIndex(int $index, int $count, string $parameterName): void
     {
@@ -23,7 +23,7 @@ class Guard
     public static function argumentInRangeInclusive(float $value, float $min, float $max, string $parameterName): void
     {
         if (($value < $min) || ($value > $max)) {
-            throw new Exception($parameterName . ' is not in the valid range [' . $min . ', ' . $max . ']');
+            throw new Exception($parameterName . ' is not in the valid range [' . (int)$min . ', ' . (int)$max . ']');
         }
     }
 }
