@@ -6,8 +6,6 @@
     "php": "^8.4"
   },
   "require-dev": {
-    "phpstan/phpstan": "^1.0",
-    "vimeo/psalm": "dev-master",
     "phpmetrics/phpmetrics": "^3.0-dev",
     "phpunit/phpunit": "^11.2",
     "psalm/plugin-phpunit": "^0.18.4",
@@ -26,22 +24,22 @@
   },
   "scripts": {
     "test":          "phpunit",
-    "document":      "phpDocumentor",
-    "benchmark":     "phpbench run --report=default --output=build-artifact",
+    "document":      "tools/phpDocumentor",
+    "benchmark":     "tools/phpbench run --report=default --output=build-artifact",
     "metrics":       "vendor/bin/phpmetrics --config=phpmetrics.yml",
     "lint": [
-        "phplint",
-        "phpcs",
-        "phpcbf  src/ tests/ benchmark/ examples/",
-        "phpmd src/,tests/,benchmark/,examples/ text phpmd.ruleset.xml"
+        "tools/phplint",
+        "tools/phpcs",
+        "tools/phpcbf  src/ tests/ benchmark/ examples/",
+        "tools/phpmd src/,tests/,benchmark/,examples/ text phpmd.ruleset.xml"
     ],
     "analyze": [
         "@analyze-phpstan",
         "@analyze-psalm",
         "@analyze-rector"
     ],
-    "analyze-phpstan":"vendor/bin/phpstan analyze --error-format=raw",
-    "analyze-psalm":  "vendor/bin/psalm --no-cache --show-info=true",
+    "analyze-phpstan":"tools/phpstan analyze --error-format=raw",
+    "analyze-psalm":  "tools/psalm --no-cache --show-info=true",
     "analyze-rector": "vendor/bin/rector --dry-run",
     "html": [
       "pandoc -s README.md -o output/README.html",

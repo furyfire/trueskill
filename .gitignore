@@ -1,6 +1,5 @@
-.*/
-vendor
+vendor/
 .*.cache/
-*.phar
 .phpdoc/
 output/
+tools/

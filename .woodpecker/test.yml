@@ -1,0 +1,17 @@
+when:
+  - event: [push, tag]
+steps:
+  - name: requirements
+    image: composer
+    commands:
+    - composer install --no-dev
+  - name: run
+    image: php:cli-bookworm
+    commands:
+      - php examples/3teams.php
+      - php examples/basic.php
+  - name: test
+    image: composer
+    commands:
+    - composer install
+    - vendor/bin/phpunit tests --no-coverage

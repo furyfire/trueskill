@@ -32,7 +32,7 @@ final class GaussianLikelihoodFactor extends GaussianFactor
     public function getLogNormalization(): float
     {
         /**
- * @var KeyedVariable[]|mixed $vars
+ * @var KeyedVariable[] $vars
 */
         $vars = $this->getVariables();
         /**
