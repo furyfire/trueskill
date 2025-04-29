@@ -51,7 +51,7 @@ final class PlayerPriorValuesToSkillsLayer extends TrueSkillFactorGraphLayer
     }
 
     #[\Override]
-    public function createPriorSchedule(): ?ScheduleSequence
+    public function createPriorSchedule(): ScheduleSequence
     {
         $localFactors = $this->getLocalFactors();
 

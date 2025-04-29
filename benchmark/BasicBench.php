@@ -41,9 +41,11 @@ final class BasicBench
 
             $team1 = new Team($p1, $newRatings->getRating($p1));
             $team2 = new Team($p2, $newRatings->getRating($p2));
-
+            
+            ob_start();
             echo $newRatings->getRating($p1)->getConservativeRating();
             echo $newRatings->getRating($p2)->getConservativeRating();
+            ob_clean();
         }
     }
 
@@ -73,8 +75,10 @@ final class BasicBench
             $team1 = new Team($p1, $newRatings->getRating($p1));
             $team2 = new Team($p2, $newRatings->getRating($p2));
 
+            ob_start();
             echo $newRatings->getRating($p1)->getConservativeRating();
             echo $newRatings->getRating($p2)->getConservativeRating();
+            ob_clean();
         }
     }
 
@@ -104,8 +108,10 @@ final class BasicBench
             $team1 = new Team($p1, $newRatings->getRating($p1));
             $team2 = new Team($p2, $newRatings->getRating($p2));
 
+            ob_start();
             echo $newRatings->getRating($p1)->getConservativeRating();
             echo $newRatings->getRating($p2)->getConservativeRating();
+            ob_clean();
         }
     }
 
@@ -138,9 +144,11 @@ final class BasicBench
             $team2 = new Team($p2, $newRatings->getRating($p2));
             $team3 = new Team($p3, $newRatings->getRating($p3));
 
+            ob_start();
             echo $newRatings->getRating($p1)->getConservativeRating();
             echo $newRatings->getRating($p2)->getConservativeRating();
             echo $newRatings->getRating($p3)->getConservativeRating();
+            ob_clean();
         }
     }
 }

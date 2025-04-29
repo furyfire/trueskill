@@ -159,7 +159,7 @@ final class TwoTeamTrueSkillCalculator extends SkillCalculator
         $team2Ratings = $teams[1]->getAllRatings();
         $team2Count = count($team2Ratings);
 
-        $totalPlayers = $team1Count + $team2Count;
+        $totalPlayers = (float)($team1Count + $team2Count);
 
         $betaSquared = BasicMath::square($gameInfo->getBeta());
 

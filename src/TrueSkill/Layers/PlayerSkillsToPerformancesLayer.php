@@ -53,7 +53,7 @@ final class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
     }
 
     #[\Override]
-    public function createPriorSchedule(): ?ScheduleSequence
+    public function createPriorSchedule(): ScheduleSequence
     {
         $localFactors = $this->getLocalFactors();
 
@@ -68,7 +68,7 @@ final class PlayerSkillsToPerformancesLayer extends TrueSkillFactorGraphLayer
     }
 
     #[\Override]
-    public function createPosteriorSchedule(): ?ScheduleSequence
+    public function createPosteriorSchedule(): ScheduleSequence
     {
         $localFactors = $this->getLocalFactors();
 

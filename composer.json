@@ -8,7 +8,6 @@
   "require-dev": {
     "phpmetrics/phpmetrics": "^3.0-dev",
     "phpunit/phpunit": "^11.2",
-    "psalm/plugin-phpunit": "^0.18.4",
     "rector/rector": "^1.0",
     "league/csv": "^9.0"
   },
