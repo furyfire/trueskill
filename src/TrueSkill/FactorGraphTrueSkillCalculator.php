@@ -192,7 +192,7 @@ final class FactorGraphTrueSkillCalculator extends SkillCalculator
             $nextTeam = $teamAssignmentsList[$i + 1];
             foreach ($nextTeam->getAllPlayers() as $nextTeamPlayer) {
                 // Add a -1 * playing time to represent the difference
-                $playerAssignments[$currentColumn][] = -1 * PartialPlay::getPartialPlayPercentage($nextTeamPlayer);
+                $playerAssignments[$currentColumn][] = -1.0 * PartialPlay::getPartialPlayPercentage($nextTeamPlayer);
                 --$rowsRemaining;
             }
 

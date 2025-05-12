@@ -94,7 +94,7 @@ final class TwoTeamTrueSkillCalculator extends SkillCalculator
             +
             BasicMath::sum($otherTeam->getAllRatings(), $varianceGetter)
             +
-            $totalPlayers * $betaSquared
+            (float)$totalPlayers * $betaSquared
         );
 
         $winningMean = $selfMeanSum;
@@ -117,7 +117,7 @@ final class TwoTeamTrueSkillCalculator extends SkillCalculator
             // non-draw case
             $v = TruncatedGaussianCorrectionFunctions::vExceedsMarginScaled($meanDelta, $drawMargin, $c);
             $w = TruncatedGaussianCorrectionFunctions::wExceedsMarginScaled($meanDelta, $drawMargin, $c);
-            $rankMultiplier = $selfToOtherTeamComparison->value;
+            $rankMultiplier = (float)$selfToOtherTeamComparison->value;
         } else {
             // assume draw
             $v = TruncatedGaussianCorrectionFunctions::vWithinMarginScaled($meanDelta, $drawMargin, $c);

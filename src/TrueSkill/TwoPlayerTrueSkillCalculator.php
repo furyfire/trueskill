@@ -118,11 +118,11 @@ final class TwoPlayerTrueSkillCalculator extends SkillCalculator
             // non-draw case
             $v = TruncatedGaussianCorrectionFunctions::vExceedsMarginScaled($meanDelta, $drawMargin, $c);
             $w = TruncatedGaussianCorrectionFunctions::wExceedsMarginScaled($meanDelta, $drawMargin, $c);
-            $rankMultiplier = $comparison->value;
+            $rankMultiplier = (float)$comparison->value;
         } else {
             $v = TruncatedGaussianCorrectionFunctions::vWithinMarginScaled($meanDelta, $drawMargin, $c);
             $w = TruncatedGaussianCorrectionFunctions::wWithinMarginScaled($meanDelta, $drawMargin, $c);
-            $rankMultiplier = 1;
+            $rankMultiplier = 1.0;
         }
 
         $meanMultiplier = (BasicMath::square($selfRating->getStandardDeviation()) + BasicMath::square($gameInfo->getDynamicsFactor())) / $c;

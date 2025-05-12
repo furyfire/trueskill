@@ -72,12 +72,12 @@ final class GaussianWeightedSumFactor extends GaussianFactor
 
         $weightsLength = $variableWeightsLength + 1;
         for ($weightsIndex = 1; $weightsIndex < $weightsLength; ++$weightsIndex) {
-            $currentWeights = \array_fill(0, $variableWeightsLength, 0);
+            $currentWeights = \array_fill(0, $variableWeightsLength, 0.0);
 
-            $variableIndices = \array_fill(0, $variableWeightsLength + 1, 0);
+            $variableIndices = \array_fill(0, $variableWeightsLength + 1, 0.0);
             $variableIndices[0] = $weightsIndex;
 
-            $currentWeightsSquared = \array_fill(0, $variableWeightsLength, 0);
+            $currentWeightsSquared = \array_fill(0, $variableWeightsLength, 0.0);
 
             // keep a single variable to keep track of where we are in the array.
             // This is helpful since we skip over one of the spots
@@ -90,9 +90,9 @@ final class GaussianWeightedSumFactor extends GaussianFactor
 
                 $currentWeight = (-$variableWeights[$currentWeightSourceIndex] / $variableWeights[$weightsIndex - 1]);
 
-                if ($variableWeights[$weightsIndex - 1] == 0) {
+                if ($variableWeights[$weightsIndex - 1] == 0.0) {
                     // HACK: Getting around division by zero
-                    $currentWeight = 0;
+                    $currentWeight = 0.0;
                 }
 
                 $currentWeights[$currentDestinationWeightIndex] = $currentWeight;

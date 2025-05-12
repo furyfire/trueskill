@@ -2,10 +2,11 @@
 <phive xmlns="https://phar.io/phive">
   <phar name="phpmd" version="^2.15.0" installed="2.15.0" location="./tools/phpmd" copy="false"/>
   <phar name="overtrue/phplint" version="^9.6.2" installed="9.6.2" location="./tools/phplint" copy="false"/>
-  <phar name="phpstan" version="^2.1.12" installed="2.1.12" location="./tools/phpstan" copy="false"/>
-  <phar name="psalm" version="^7.0.0-beta6" installed="7.0.0-beta6" location="./tools/psalm" copy="false"/>
-  <phar name="phpcs" version="^3.12.2" installed="3.12.2" location="./tools/phpcs" copy="false"/>
-  <phar name="phpcbf" version="^3.12.2" installed="3.12.2" location="./tools/phpcbf" copy="false"/>
+  <phar name="phpstan" version="^2.1.12" installed="2.1.14" location="./tools/phpstan" copy="false"/>
+  <phar name="psalm" version="^7.0.0-beta6" installed="7.0.0-beta7" location="./tools/psalm" copy="false"/>
+  <phar name="phpcs" version="^3.12.2" installed="3.13.0" location="./tools/phpcs" copy="false"/>
+  <phar name="phpcbf" version="^3.12.2" installed="3.13.0" location="./tools/phpcbf" copy="false"/>
   <phar name="phpdocumentor" version="^3.7.1" installed="3.7.1" location="./tools/phpdocumentor" copy="false"/>
   <phar name="phpbench" version="^1.4.1" installed="1.4.1" location="./tools/phpbench" copy="false"/>
+  <phar name="infection" version="^0.29.14" installed="0.29.14" location="./tools/infection" copy="false"/>
 </phive>

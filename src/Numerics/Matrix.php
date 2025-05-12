@@ -79,7 +79,7 @@ class Matrix
         }
     }
 
-    public function getValue(int $row, int $col): float|int
+    public function getValue(int $row, int $col): float
     {
         $this->checkRowCol($row, $col);
         return $this->matrixRowData[$row][$col];
@@ -212,7 +212,7 @@ class Matrix
         return self::scalarMultiply($determinantInverse, $adjugate);
     }
 
-    public static function scalarMultiply(float|int $scalarValue, Matrix $matrix): Matrix
+    public static function scalarMultiply(float $scalarValue, Matrix $matrix): Matrix
     {
         $rows = $matrix->getRowCount();
         $columns = $matrix->getColumnCount();
@@ -265,7 +265,7 @@ class Matrix
 
         for ($currentRow = 0; $currentRow < $resultRows; ++$currentRow) {
             for ($currentColumn = 0; $currentColumn < $resultColumns; ++$currentColumn) {
-                $productValue = 0;
+                $productValue = 0.0;
 
                 for ($vectorIndex = 0; $vectorIndex < $left->getColumnCount(); ++$vectorIndex) {
                     $leftValue = (float)$left->getValue($currentRow, $vectorIndex);
