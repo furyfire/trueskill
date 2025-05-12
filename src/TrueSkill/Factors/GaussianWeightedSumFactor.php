@@ -112,7 +112,7 @@ final class GaussianWeightedSumFactor extends GaussianFactor
 
             $currentWeights[$currentDestinationWeightIndex] = $finalWeight;
             $currentWeightsSquared[$currentDestinationWeightIndex] = BasicMath::square($finalWeight);
-            $variableIndices[count($variableWeights)] = 0;
+            $variableIndices[count($variableWeights)] = 0.0;
             $this->varIndexOrdersForWeights[] = $variableIndices;
 
             $this->weights[$weightsIndex] = $currentWeights;

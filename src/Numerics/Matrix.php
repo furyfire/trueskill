@@ -130,10 +130,10 @@ class Matrix
             // | a b |
             // | c d |
             // The determinant is ad - bc
-            $a = (float)$this->getValue(0, 0);
-            $b = (float)$this->getValue(0, 1);
-            $c = (float)$this->getValue(1, 0);
-            $d = (float)$this->getValue(1, 1);
+            $a = $this->getValue(0, 0);
+            $b = $this->getValue(0, 1);
+            $c = $this->getValue(1, 0);
+            $d = $this->getValue(1, 1);
 
             return $a * $d - $b * $c;
         }
@@ -148,7 +148,7 @@ class Matrix
 
         // I expand along the first row
         for ($currentColumn = 0; $currentColumn < $this->columnCount; ++$currentColumn) {
-            $firstRowColValue = (float)$this->getValue(0, $currentColumn);
+            $firstRowColValue = $this->getValue(0, $currentColumn);
             $cofactor = $this->getCofactor(0, $currentColumn);
             $itemToAdd = $firstRowColValue * $cofactor;
             $result += $itemToAdd;
@@ -201,7 +201,7 @@ class Matrix
     public function getInverse(): Matrix|SquareMatrix
     {
         if (($this->rowCount == 1) && ($this->columnCount == 1)) {
-            return new SquareMatrix(1.0 / (float)$this->getValue(0, 0));
+            return new SquareMatrix(1.0 / $this->getValue(0, 0));
         }
 
         // Take the simple approach:
@@ -240,9 +240,9 @@ class Matrix
         for ($currentRow = 0; $currentRow < $left->getRowCount(); ++$currentRow) {
             for ($currentColumn = 0; $currentColumn < $right->getColumnCount(); ++$currentColumn) {
                 $resultMatrix[$currentRow][$currentColumn] =
-                    (float)$left->getValue($currentRow, $currentColumn)
+                    $left->getValue($currentRow, $currentColumn)
                     +
-                    (float)$right->getValue($currentRow, $currentColumn);
+                    $right->getValue($currentRow, $currentColumn);
             }
         }
 
@@ -268,8 +268,8 @@ class Matrix
                 $productValue = 0.0;
 
                 for ($vectorIndex = 0; $vectorIndex < $left->getColumnCount(); ++$vectorIndex) {
-                    $leftValue = (float)$left->getValue($currentRow, $vectorIndex);
-                    $rightValue = (float)$right->getValue($vectorIndex, $currentColumn);
+                    $leftValue = $left->getValue($currentRow, $vectorIndex);
+                    $rightValue = $right->getValue($vectorIndex, $currentColumn);
                     $vectorIndexProduct = $leftValue * $rightValue;
                     $productValue += $vectorIndexProduct;
                 }
@@ -339,8 +339,8 @@ class Matrix
             for ($currentColumn = 0; $currentColumn < $this->columnCount; ++$currentColumn) {
                 $delta =
                     abs(
-                        (float)$this->getValue($currentRow, $currentColumn) -
-                        (float)$otherMatrix->getValue($currentRow, $currentColumn)
+                        $this->getValue($currentRow, $currentColumn) -
+                        $otherMatrix->getValue($currentRow, $currentColumn)
                     );
 
                 if ($delta > self::ERROR_TOLERANCE) {
