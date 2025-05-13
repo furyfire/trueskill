@@ -16,5 +16,5 @@
             </source>
         </api>
     </version>
-    <!--setting name="graphs.enabled" value="true"/-->
+    <setting name="graphs.enabled" value="true"/>
 </phpdocumentor>

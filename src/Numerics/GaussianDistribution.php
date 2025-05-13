@@ -34,8 +34,9 @@ final class GaussianDistribution
      */
     private const float M_LOG_SQRT_2_PI = 0.9189385332046727417803297364056176398613974736377834128171515404;
 
-    // precision and precisionMean are used because they make multiplying and dividing simpler
-    // (see the accompanying math paper for more details)
+    /**
+     * Precision and precisionMean are used because they make multiplying and dividing simpler.
+     */
     private float $precision = 1.0;
 
     private float $precisionMean = 0.0;

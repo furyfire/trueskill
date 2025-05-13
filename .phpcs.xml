@@ -6,6 +6,11 @@
     <file>tests/</file>
     <file>benchmark/</file>
 
+    <arg name="basepath" value="."/>
+    <arg name="colors"/>
+    <arg name="parallel" value="8"/>
+    <arg name="report" value="emacs"/>
+    <arg value="p"/>
 
     <rule ref="PSR1">
         <exclude name="Generic.Files.LineLength"/>
@@ -18,23 +23,19 @@
         <exclude name="Generic.Files.LowercasedFilename.NotFound"/>
         <exclude name="Generic.PHP.ClosingPHPTag.NotFound"/>
         <exclude name="Generic.Files.EndFileNoNewline.Found"/>
-        <exclude name="Generic.Files.EndFileNoNewline.Found"/>
         <exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
         <exclude name="Generic.Functions.OpeningFunctionBraceKernighanRitchie.BraceOnNewLine"/>
         <exclude name="Generic.Classes.OpeningBraceSameLine.BraceOnNewLine"/>
         <exclude name="Generic.PHP.LowerCaseConstant.Found"/>
-        <exclude name="Generic.Formatting.SpaceAfterCast"/>
         <exclude name="Generic.Formatting.MultipleStatementAlignment.NotSameWarning"/>
         <exclude name="Generic.Commenting.DocComment.MissingShort"/>
         <exclude name="Generic.NamingConventions.AbstractClassNamePrefix.Missing"/>
         <exclude name="Generic.CodeAnalysis.ForLoopWithTestFunctionCall.NotAllowed"/>
         <exclude name="Generic.NamingConventions.InterfaceNameSuffix.Missing"/>
-        <exclude name="Generic.Commenting.Todo.TaskFound"/>
         <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceAfterLastUse"/>
         <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed"/>
         <exclude name="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInImplementedInterfaceAfterLastUsed"/>
-        <exclude name="Generic.Formatting.SpaceBeforeCast.NoSpace"/>
-        <exclude name="Generic.CodeAnalysis.UselessOverridingMethod.Found"/>
+        
         <exclude name="Squiz.Functions.MultiLineFunctionDeclaration.NewlineBeforeOpenBrace"/>
     </rule>
 
@@ -50,4 +51,25 @@
             </property>
         </properties>
     </rule>
+
+    <rule ref="Generic.Formatting.SpaceAfterCast">
+        <properties>
+            <property name="spacing" value="0"/>
+        </properties>
+    </rule>
+
+    <!-- Do not allow unreachable code. -->
+    <rule ref="Squiz.PHP.NonExecutableCode"/>
+
+    <!-- Do not allow ambiguous conditions. -->
+    <rule ref="Generic.CodeAnalysis.RequireExplicitBooleanOperatorPrecedence"/>
+
+    <!-- The testing bootstrap file uses string concats to stop IDEs seeing the class aliases -->
+    <rule ref="Generic.Strings.UnnecessaryStringConcat" />
+
+    <!-- This test file specifically *needs* Windows line endings for testing purposes. -->
+    <rule ref="Generic.Files.LineEndings.InvalidEOLChar" />
+
+    <!-- Avoid false positive with this sniff detecting itself -->
+    <rule ref="Generic.Commenting.Todo"/>
 </ruleset>
