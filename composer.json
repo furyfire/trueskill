@@ -30,14 +30,13 @@
   "scripts": {
     "test": "phpunit",
     "document": [
-      "tools/phpcs --generator=MarkDown > docs/CodeStandard.md",
       "tools/phpdocumentor"
     ],
     "benchmark": "tools/phpbench run --report=default --output=build-artifact",
     "metrics": "vendor/bin/phpmetrics --config=phpmetrics.yml",
     "lint": [
+      "tools/phpcbf",
       "tools/phpcs",
-      "tools/phpcbf  src/ tests/ benchmark/ examples/",
       "tools/phpmd src/,tests/,benchmark/,examples/ text phpmd.ruleset.xml"
     ],
     "analyze": [
@@ -46,12 +45,12 @@
       "@analyze-rector"
     ],
     "analyze-phpstan": "tools/phpstan analyze --error-format=raw",
-    "analyze-psalm": "tools/psalm --no-cache --show-info=true",
+    "analyze-psalm": "tools/psalm --show-info=true",
     "analyze-rector": "vendor/bin/rector --dry-run",
     "html": [
       "pandoc -s README.md -o output/README.html",
       "pandoc -s docs/index.rst -o output/index.html",
-      "pandoc -s docs/CodeStandard.md -o output/CodeStandard.html  --metadata title=\"Code Standard\""
+      "tools/phpcs --generator=MarkDown | pandoc  -o output/CodeStandard.html --metadata title=\"Code Standard\""
     ],
     "all": [
       "@test",
