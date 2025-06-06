@@ -28,12 +28,10 @@
     }
   },
   "scripts": {
-    "test": "phpunit",
-    "document": [
-      "tools/phpdocumentor"
-    ],
+    "test": "tools/phpunit",
+    "document": "tools/phpdocumentor",
     "benchmark": "tools/phpbench run --report=default --output=build-artifact",
-    "metrics": "vendor/bin/phpmetrics --config=phpmetrics.yml",
+    "metrics": "phpmetrics --config=phpmetrics.yml",
     "lint": [
       "tools/phpcbf",
       "tools/phpcs",
@@ -46,7 +44,7 @@
     ],
     "analyze-phpstan": "tools/phpstan analyze --error-format=raw",
     "analyze-psalm": "tools/psalm --show-info=true",
-    "analyze-rector": "vendor/bin/rector --dry-run",
+    "analyze-rector": "rector --dry-run",
     "html": [
       "pandoc -s README.md -o output/README.html",
       "pandoc -s docs/index.rst -o output/index.html",

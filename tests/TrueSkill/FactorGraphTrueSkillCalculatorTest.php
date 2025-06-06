@@ -10,15 +10,8 @@ use DNW\Skills\Player;
 use DNW\Skills\Team;
 use DNW\Skills\TrueSkill\FactorGraphTrueSkillCalculator;
 use PHPUnit\Framework\TestCase;
-use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\Attributes\CoversNothing;
-use PHPUnit\Framework\Attributes\UsesClass;
 
-#[CoversClass(FactorGraphTrueSkillCalculator::class)]
-#[UsesClass(\DNW\Skills\Numerics\Range::class)]
-#[UsesClass(\DNW\Skills\PlayersRange::class)]
-#[UsesClass(\DNW\Skills\SkillCalculator::class)]
-#[UsesClass(\DNW\Skills\TeamsRange::class)]
 final class FactorGraphTrueSkillCalculatorTest extends TestCase
 {
     #[CoversNothing]
@@ -75,6 +68,7 @@ final class FactorGraphTrueSkillCalculatorTest extends TestCase
         TrueSkillCalculatorTests::testPartialPlayScenarios($this, $calculator);
     }
 
+    #[CoversNothing]
     public function testMethodisSupported(): void
     {
         $calculator = new FactorGraphTrueSkillCalculator();
