@@ -29,11 +29,7 @@ final class TeamPerformancesToTeamPerformanceDifferencesLayer extends TrueSkillF
         }
     }
 
-    private function createTeamPerformanceToDifferenceFactor(
-        Variable $strongerTeam,
-        Variable $weakerTeam,
-        Variable $output
-    ): GaussianWeightedSumFactor
+    private function createTeamPerformanceToDifferenceFactor(Variable $strongerTeam, Variable $weakerTeam, Variable $output): GaussianWeightedSumFactor
     {
         $teams = [$strongerTeam, $weakerTeam];
         $weights = [1.0, -1.0];

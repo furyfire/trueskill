@@ -32,11 +32,7 @@ final class TwoPlayerTrueSkillCalculator extends SkillCalculator
      * {@inheritdoc}
      */
     #[\Override]
-    public function calculateNewRatings(
-        GameInfo $gameInfo,
-        array $teams,
-        array $teamRanks
-    ): RatingContainer
+    public function calculateNewRatings(GameInfo $gameInfo, array $teams, array $teamRanks): RatingContainer
     {
         // Basic argument checking
         $this->validateTeamCountAndPlayersCountPerTeam($teams);

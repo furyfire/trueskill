@@ -10,12 +10,12 @@ namespace DNW\Skills;
 final class HashMap
 {
     /**
-     * @var mixed[] $hashToValue
+     * @var mixed[] $hashToValue Store the hash to value mapping.
      */
     private array $hashToValue = [];
 
     /**
-     * @var mixed[] $hashToKey
+     * @var mixed[] $hashToKey Store the hash to original key mapping.
      */
     private array $hashToKey = [];
 

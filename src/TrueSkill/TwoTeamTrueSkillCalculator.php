@@ -64,13 +64,7 @@ final class TwoTeamTrueSkillCalculator extends SkillCalculator
         return $results;
     }
 
-    private static function updatePlayerRatings(
-        GameInfo $gameInfo,
-        RatingContainer $newPlayerRatings,
-        Team $selfTeam,
-        Team $otherTeam,
-        PairwiseComparison $selfToOtherTeamComparison
-    ): void
+    private static function updatePlayerRatings(GameInfo $gameInfo, RatingContainer $newPlayerRatings, Team $selfTeam, Team $otherTeam, PairwiseComparison $selfToOtherTeamComparison): void
     {
         $drawMargin = DrawMargin::getDrawMarginFromDrawProbability(
             $gameInfo->getDrawProbability(),

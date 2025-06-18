@@ -811,15 +811,15 @@ final class TrueSkillCalculatorTests
 
     private static function sixteenTeamsOfOneNotDrawn(TestCase $testClass, SkillCalculator $calculator): void
     {
-        $player1 = new Player(1);
-        $player2 = new Player(2);
-        $player3 = new Player(3);
-        $player4 = new Player(4);
-        $player5 = new Player(5);
-        $player6 = new Player(6);
-        $player7 = new Player(7);
-        $player8 = new Player(8);
-        $player9 = new Player(9);
+        $player1  = new Player(1);
+        $player2  = new Player(2);
+        $player3  = new Player(3);
+        $player4  = new Player(4);
+        $player5  = new Player(5);
+        $player6  = new Player(6);
+        $player7  = new Player(7);
+        $player8  = new Player(8);
+        $player9  = new Player(9);
         $player10 = new Player(10);
         $player11 = new Player(11);
         $player12 = new Player(12);
@@ -830,15 +830,15 @@ final class TrueSkillCalculatorTests
 
         $gameInfo = new GameInfo();
 
-        $team1 = new Team($player1, $gameInfo->getDefaultRating());
-        $team2 = new Team($player2, $gameInfo->getDefaultRating());
-        $team3 = new Team($player3, $gameInfo->getDefaultRating());
-        $team4 = new Team($player4, $gameInfo->getDefaultRating());
-        $team5 = new Team($player5, $gameInfo->getDefaultRating());
-        $team6 = new Team($player6, $gameInfo->getDefaultRating());
-        $team7 = new Team($player7, $gameInfo->getDefaultRating());
-        $team8 = new Team($player8, $gameInfo->getDefaultRating());
-        $team9 = new Team($player9, $gameInfo->getDefaultRating());
+        $team1 =  new Team($player1, $gameInfo->getDefaultRating());
+        $team2 =  new Team($player2, $gameInfo->getDefaultRating());
+        $team3 =  new Team($player3, $gameInfo->getDefaultRating());
+        $team4 =  new Team($player4, $gameInfo->getDefaultRating());
+        $team5 =  new Team($player5, $gameInfo->getDefaultRating());
+        $team6 =  new Team($player6, $gameInfo->getDefaultRating());
+        $team7 =  new Team($player7, $gameInfo->getDefaultRating());
+        $team8 =  new Team($player8, $gameInfo->getDefaultRating());
+        $team9 =  new Team($player9, $gameInfo->getDefaultRating());
         $team10 = new Team($player10, $gameInfo->getDefaultRating());
         $team11 = new Team($player11, $gameInfo->getDefaultRating());
         $team12 = new Team($player12, $gameInfo->getDefaultRating());
