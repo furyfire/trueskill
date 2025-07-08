@@ -34,11 +34,15 @@ Links
 * `Mutation testing <mutation/infection.html>`_
 * `Code metrics <metrics/index.html>`_
 * `Code Standard <CodeStandard.html>`_
+* `Benchmark <benchmark.html>`_
 
 
 Standard Tools
 --------------
-* PHP8.3
+* PHP8.4
+
+Development Tools
+-------------------
 * PlantUML
 * GraphViz
 * Pandoc
@@ -48,7 +52,5 @@ PHP Tools
 ---------
 For development Composer and the following packages are used (Recommended as Phars installed via Phive)
 
-* sudo phive install -g composer phpdocumentor infection phpcs phpcbf phploc phpbench 
-* sudo phive install -g overtrue/phplint --force-accept-unsigned
 * composer install
 * composer all

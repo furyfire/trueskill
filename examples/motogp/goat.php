@@ -17,7 +17,7 @@ $csv->setDelimiter(',');
 $csv->setHeaderOffset(0);
 
 //build a statement
-$stmt = Statement::create()->where(static fn (array $record): bool => $record['category'] == "MotoGP" ||  $record['category'] == "500cc");
+$stmt = new Statement()->where(static fn (array $record): bool => $record['category'] == "MotoGP" ||  $record['category'] == "500cc");
 
 /**
  * @var $riders Player[]
