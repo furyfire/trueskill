@@ -11,13 +11,14 @@ use DNW\Skills\Team;
 use DNW\Skills\Teams;
 
 //load the CSV document from a stream
-$stream = fopen('motogp.csv', 'r');
-$csv = Reader::createFromStream($stream);
+$csv = Reader::createFromPath('motogp.csv', 'r');
 $csv->setDelimiter(',');
 $csv->setHeaderOffset(0);
+$csv->setEscape('');
 
 //build a statement
-$stmt = new Statement()->where(static fn (array $record): bool => $record['category'] == "MotoGP" ||  $record['category'] == "500cc");
+$statement = new Statement();
+$stmt = $statement->where(static fn (array $record): bool => $record['category'] == "MotoGP" ||  $record['category'] == "500cc");
 
 /**
  * @var $riders Player[]
