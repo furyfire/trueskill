@@ -1,5 +1,6 @@
 ---
 title: README
+lang: en
 ...
 # PHP TrueSkill Implementation
 This is a PHP port of the Moserware.Skills project that's available at

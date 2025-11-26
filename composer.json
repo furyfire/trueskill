@@ -46,9 +46,9 @@
     "analyze-psalm": "tools/psalm --show-info=true",
     "analyze-rector": "rector --dry-run",
     "html": [
-      "pandoc -s README.md -o output/README.html",
-      "pandoc -s docs/index.rst -o output/index.html",
-      "tools/phpcs --generator=MarkDown | pandoc  -o output/CodeStandard.html --metadata title=\"Code Standard\""
+      "pandoc --verbose -s README.md -o output/README.html",
+      "pandoc --verbose -f rst -s docs/index.rst -o output/index.html --metadata=lang:en",
+      "tools/phpcs --generator=MarkDown | pandoc --verbose -f markdown -s -o output/CodeStandard.html --metadata title='Code Standard' --metadata=lang:en"
     ],
     "all": [
       "@test",
