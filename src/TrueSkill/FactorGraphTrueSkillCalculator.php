@@ -29,9 +29,6 @@ final class FactorGraphTrueSkillCalculator extends SkillCalculator
         parent::__construct(SkillCalculator::PARTIAL_PLAY | SkillCalculator::PARTIAL_UPDATE, TeamsRange::atLeast(2), PlayersRange::atLeast(1));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     #[\Override]
     public function calculateNewRatings(
         GameInfo $gameInfo,
@@ -52,9 +49,6 @@ final class FactorGraphTrueSkillCalculator extends SkillCalculator
         return $factorGraph->getUpdatedRatings();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     #[\Override]
     public function calculateMatchQuality(GameInfo $gameInfo, array $teams): float
     {

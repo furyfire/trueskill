@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="7.0.0-beta16@491dd740b8862db7d4fe8c1f6c161055c32ad651">
+  <file src="src/FactorGraphs/Factor.php">
+    <MissingAbstractPureAnnotation>
+      <code><![CDATA[createVariableToMessageBinding]]></code>
+      <code><![CDATA[sendMessageVariable]]></code>
+    </MissingAbstractPureAnnotation>
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[getLogNormalization]]></code>
+      <code><![CDATA[getNumberOfMessages]]></code>
+      <code><![CDATA[updateMessageVariable]]></code>
+    </MissingPureAnnotation>
+    <MixedArgument>
+      <code><![CDATA[$variable]]></code>
+      <code><![CDATA[$variable]]></code>
+    </MixedArgument>
+    <MixedAssignment>
+      <code><![CDATA[$currentVariable]]></code>
+      <code><![CDATA[$variable]]></code>
+      <code><![CDATA[$variable]]></code>
+    </MixedAssignment>
+    <MixedMethodCall>
+      <code><![CDATA[resetToPrior]]></code>
+    </MixedMethodCall>
+  </file>
+  <file src="src/FactorGraphs/FactorGraph.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[setVariableFactory]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/FactorGraphs/FactorGraphLayer.php">
+    <MissingAbstractPureAnnotation>
+      <code><![CDATA[buildLayer]]></code>
+    </MissingAbstractPureAnnotation>
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[addLayerFactor]]></code>
+      <code><![CDATA[createPosteriorSchedule]]></code>
+      <code><![CDATA[createPriorSchedule]]></code>
+      <code><![CDATA[getLocalFactors]]></code>
+      <code><![CDATA[setInputVariablesGroups]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/FactorGraphs/FactorList.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[addFactor]]></code>
+      <code><![CDATA[count]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/FactorGraphs/KeyedVariable.php">
+    <MixedArgument>
+      <code><![CDATA[$prior]]></code>
+    </MixedArgument>
+  </file>
+  <file src="src/FactorGraphs/Message.php">
+    <MissingImmutableAnnotation>
+      <code><![CDATA[Message]]></code>
+    </MissingImmutableAnnotation>
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[setValue]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/FactorGraphs/Schedule.php">
+    <MissingAbstractPureAnnotation>
+      <code><![CDATA[visit]]></code>
+    </MissingAbstractPureAnnotation>
+    <MissingImmutableAnnotation>
+      <code><![CDATA[Schedule]]></code>
+    </MissingImmutableAnnotation>
+  </file>
+  <file src="src/FactorGraphs/ScheduleLoop.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/FactorGraphs/ScheduleSequence.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/FactorGraphs/ScheduleStep.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/FactorGraphs/Variable.php">
+    <MissingImmutableAnnotation>
+      <code><![CDATA[Variable]]></code>
+    </MissingImmutableAnnotation>
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[resetToPrior]]></code>
+      <code><![CDATA[setValue]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/FactorGraphs/VariableFactory.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+    </MissingPureAnnotation>
+    <MixedArgument>
+      <code><![CDATA[$initializer()]]></code>
+    </MixedArgument>
+  </file>
+  <file src="src/GameInfo.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/Guard.php">
+    <MissingImmutableAnnotation>
+      <code><![CDATA[Guard]]></code>
+    </MissingImmutableAnnotation>
+    <MissingPureAnnotation>
+      <code><![CDATA[argumentInRangeInclusive]]></code>
+      <code><![CDATA[argumentIsValidIndex]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/HashMap.php">
+    <MissingImmutableAnnotation>
+      <code><![CDATA[HashMap]]></code>
+    </MissingImmutableAnnotation>
+    <MissingPureAnnotation>
+      <code><![CDATA[count]]></code>
+      <code><![CDATA[getAllKeys]]></code>
+      <code><![CDATA[getAllValues]]></code>
+      <code><![CDATA[getValue]]></code>
+      <code><![CDATA[setValue]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/ISupportPartialPlay.php">
+    <MissingAbstractPureAnnotation>
+      <code><![CDATA[getPartialPlayPercentage]]></code>
+    </MissingAbstractPureAnnotation>
+    <MissingInterfaceImmutableAnnotation>
+      <code><![CDATA[ISupportPartialPlay]]></code>
+    </MissingInterfaceImmutableAnnotation>
+  </file>
+  <file src="src/ISupportPartialUpdate.php">
+    <MissingAbstractPureAnnotation>
+      <code><![CDATA[getPartialUpdatePercentage]]></code>
+    </MissingAbstractPureAnnotation>
+    <MissingInterfaceImmutableAnnotation>
+      <code><![CDATA[ISupportPartialUpdate]]></code>
+    </MissingInterfaceImmutableAnnotation>
+  </file>
+  <file src="src/Numerics/BasicMath.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[square]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/Numerics/GaussianDistribution.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[absoluteDifference]]></code>
+      <code><![CDATA[errorFunctionCumulativeTo]]></code>
+      <code><![CDATA[getNormalizationConstant]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/Numerics/Matrix.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[checkRowCol]]></code>
+      <code><![CDATA[isSquare]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/Numerics/Range.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[isInRange]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/PartialPlay.php">
+    <MissingImmutableAnnotation>
+      <code><![CDATA[PartialPlay]]></code>
+    </MissingImmutableAnnotation>
+    <MissingPureAnnotation>
+      <code><![CDATA[getPartialPlayPercentage]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/RankSorter.php">
+    <MissingImmutableAnnotation>
+      <code><![CDATA[RankSorter]]></code>
+    </MissingImmutableAnnotation>
+    <MissingPureAnnotation>
+      <code><![CDATA[sort]]></code>
+    </MissingPureAnnotation>
+    <MixedReturnTypeCoercion>
+      <code><![CDATA[$teams]]></code>
+      <code><![CDATA[array<int>]]></code>
+    </MixedReturnTypeCoercion>
+  </file>
+  <file src="src/Rating.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[getConservativeRating]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/RatingContainer.php">
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+    </MissingPureAnnotation>
+    <MixedReturnStatement>
+      <code><![CDATA[$this->playerToRating->getValue($player)]]></code>
+    </MixedReturnStatement>
+    <MixedReturnTypeCoercion>
+      <code><![CDATA[$this->playerToRating->getAllKeys()]]></code>
+      <code><![CDATA[$this->playerToRating->getAllValues()]]></code>
+      <code><![CDATA[Player[]]]></code>
+      <code><![CDATA[Rating[]]]></code>
+    </MixedReturnTypeCoercion>
+  </file>
+  <file src="src/SkillCalculator.php">
+    <MissingAbstractPureAnnotation>
+      <code><![CDATA[calculateMatchQuality]]></code>
+      <code><![CDATA[calculateNewRatings]]></code>
+    </MissingAbstractPureAnnotation>
+    <MissingPureAnnotation>
+      <code><![CDATA[__construct]]></code>
+      <code><![CDATA[isSupported]]></code>
+    </MissingPureAnnotation>
+  </file>
+  <file src="src/TrueSkill/FactorGraphTrueSkillCalculator.php">
+    <MixedArgumentTypeCoercion>
+      <code><![CDATA[$teams]]></code>
+    </MixedArgumentTypeCoercion>
+    <MixedAssignment>
+      <code><![CDATA[$playerRatingValues[]]]></code>
+    </MixedAssignment>
+    <MixedReturnTypeCoercion>
+      <code><![CDATA[$playerRatingValues]]></code>
+      <code><![CDATA[int[]]]></code>
+    </MixedReturnTypeCoercion>
+  </file>
+  <file src="src/TrueSkill/Factors/GaussianWeightedSumFactor.php">
+    <InvalidPropertyAssignmentValue>
+      <code><![CDATA[$this->varIndexOrdersForWeights]]></code>
+    </InvalidPropertyAssignmentValue>
+  </file>
+  <file src="src/TrueSkill/Layers/PlayerPerformancesToTeamPerformancesLayer.php">
+    <MixedArgument>
+      <code><![CDATA[$player]]></code>
+    </MixedArgument>
+    <MixedAssignment>
+      <code><![CDATA[$player]]></code>
+    </MixedAssignment>
+    <UnsupportedReferenceUsage>
+      <code><![CDATA[$outputVarGroups = &$this->getOutputVariablesGroups()]]></code>
+    </UnsupportedReferenceUsage>
+  </file>
+  <file src="src/TrueSkill/Layers/PlayerPriorValuesToSkillsLayer.php">
+    <UnsupportedReferenceUsage>
+      <code><![CDATA[$outputVariablesGroups = &$this->getOutputVariablesGroups()]]></code>
+    </UnsupportedReferenceUsage>
+  </file>
+  <file src="src/TrueSkill/Layers/PlayerSkillsToPerformancesLayer.php">
+    <MixedAssignment>
+      <code><![CDATA[$currentPlayer]]></code>
+    </MixedAssignment>
+    <UnsupportedReferenceUsage>
+      <code><![CDATA[$outputVarGroups = &$this->getOutputVariablesGroups()]]></code>
+    </UnsupportedReferenceUsage>
+  </file>
+  <file src="src/TrueSkill/Layers/TeamPerformancesToTeamPerformanceDifferencesLayer.php">
+    <UnsupportedReferenceUsage>
+      <code><![CDATA[$outputVariablesGroup = &$this->getOutputVariablesGroups()]]></code>
+    </UnsupportedReferenceUsage>
+  </file>
+  <file src="src/TrueSkill/TrueSkillFactorGraph.php">
+    <MixedArgument>
+      <code><![CDATA[$localCurrentPlayer]]></code>
+    </MixedArgument>
+    <MixedAssignment>
+      <code><![CDATA[$localCurrentPlayer]]></code>
+    </MixedAssignment>
+  </file>
+  <file src="tests/SkillCalculatorTest.php">
+    <DeprecatedMethod>
+      <code><![CDATA[getMockForAbstractClass]]></code>
+    </DeprecatedMethod>
+  </file>
+  <file src="tests/TrueSkill/FactorGraphTrueSkillCalculatorTest.php">
+    <MixedArrayOffset>
+      <code><![CDATA[$expected[$player->getId()]]]></code>
+      <code><![CDATA[$expected[$player->getId()]]]></code>
+    </MixedArrayOffset>
+  </file>
+</files>

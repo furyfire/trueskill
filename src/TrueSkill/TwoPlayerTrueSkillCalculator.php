@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace DNW\Skills\TrueSkill;
 
 use DNW\Skills\GameInfo;
-use DNW\Skills\Guard;
+use DNW\Skills\Team;
 use DNW\Skills\Numerics\BasicMath;
 use DNW\Skills\PairwiseComparison;
 use DNW\Skills\PlayersRange;
@@ -28,9 +28,6 @@ final class TwoPlayerTrueSkillCalculator extends SkillCalculator
         parent::__construct(SkillCalculator::NONE, TeamsRange::exactly(2), PlayersRange::exactly(1));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     #[\Override]
     public function calculateNewRatings(GameInfo $gameInfo, array $teams, array $teamRanks): RatingContainer
     {
@@ -39,7 +36,9 @@ final class TwoPlayerTrueSkillCalculator extends SkillCalculator
 
         // Make sure things are in order
         RankSorter::sort($teams, $teamRanks);
-
+        /**
+         * @var Team[] $teams
+         */
         // Since we verified that each team has one player, we know the player is the first one
         $winningTeamPlayers = $teams[0]->getAllPlayers();
         $winner = $winningTeamPlayers[0];
@@ -132,9 +131,6 @@ final class TwoPlayerTrueSkillCalculator extends SkillCalculator
         return new Rating($newMean, $newStdDev);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     #[\Override]
     public function calculateMatchQuality(GameInfo $gameInfo, array $teams): float
     {

@@ -8,11 +8,11 @@ use DNW\Skills\Numerics\GaussianDistribution;
 
 class Variable
 {
-    private mixed $value;
+    private GaussianDistribution $value;
 
     public function __construct(private readonly GaussianDistribution $prior)
     {
-        $this->resetToPrior();
+        $this->value = $prior;
     }
 
     public function getValue(): GaussianDistribution

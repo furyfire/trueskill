@@ -28,9 +28,6 @@ final class TwoTeamTrueSkillCalculator extends SkillCalculator
         parent::__construct(SkillCalculator::NONE, TeamsRange::exactly(2), PlayersRange::atLeast(1));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     #[\Override]
     public function calculateNewRatings(GameInfo $gameInfo, array $teams, array $teamRanks): RatingContainer
     {
@@ -38,6 +35,9 @@ final class TwoTeamTrueSkillCalculator extends SkillCalculator
 
         RankSorter::sort($teams, $teamRanks);
 
+        /**
+         * @var Team[] $teams
+         */
         $team1 = $teams[0];
         $team2 = $teams[1];
 
@@ -138,9 +138,6 @@ final class TwoTeamTrueSkillCalculator extends SkillCalculator
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     #[\Override]
     public function calculateMatchQuality(GameInfo $gameInfo, array $teams): float
     {
