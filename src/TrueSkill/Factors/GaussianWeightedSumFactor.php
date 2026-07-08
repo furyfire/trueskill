@@ -27,7 +27,7 @@ final class GaussianWeightedSumFactor extends GaussianFactor
      * This following is used for convenience, for example, the first entry is [0, 1, 2]
      * corresponding to v[0] = a1*v[1] + a2*v[2]
      *
-     * @var array<float[]> $weights
+     * @var array<float[]|int[]> $weights
      */
     private array $weights = [];
 

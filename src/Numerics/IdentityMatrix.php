@@ -8,6 +8,6 @@ final class IdentityMatrix extends DiagonalMatrix
 {
     public function __construct(int $rows)
     {
-        parent::__construct(array_fill(0, $rows, 1));
+        parent::__construct(array_fill(0, $rows, (float)1));
     }
 }
